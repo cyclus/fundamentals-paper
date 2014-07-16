@@ -1,0 +1,43 @@
+\documentclass{ntmanuscript}
+\usepackage[acronym,toc]{glossaries}
+\include{acros}
+\makeglossaries
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Fundamental Concepts in the Cyclus Fuel Cycle Simulator Framework and Modeling Ecosystem}
+
+% Authors. Separated by commas
+\input{authors}
+
+% Institutes of the authors
+\input{institutions}
+
+% Information concerning the person submitting the manuscript
+\submitter{Kathryhn D. Huff}
+\submitteraddress{2150 Shattuck Ave., Suite 230, Berkeley, CA 94704}
+\submitteremail{huff@berkeley.edu}
+
+
+% No more than three keywords, though each can be a phrase
+\keywords{fuel cycle, simulation, software }
+
+\usepackage{graphicx}
+\usepackage{booktabs} % nice rules for tables
+\usepackage{microtype} % if using PDF
+\newcommand{\units}[1] {\:\text{#1}}%
+\newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
+
+\date{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\input{intro}
+\input{impl}
+\input{examples}
+\input{verification}
+\input{conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{ans}
+\bibliography{bibliography}
+\end{document}
+
+
