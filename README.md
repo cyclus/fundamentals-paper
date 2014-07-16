@@ -8,7 +8,7 @@ Not Ready For Reuse
 ====================
 
 During development, this work is owned solely by the authors until its final 
-publication in an archival journal article. Derivatives of this work are not 
+publication in an archival journal. Derivatives of this work are not 
 permitted until that time, at which point attribution will be necessary, 
-accoring to its future license. 
+according to its future license. 
 
