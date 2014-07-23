@@ -4,15 +4,23 @@
 
 % Why did we do the work?
 % What were the central motivations and hypotheses?
-% The objectives of the work.
-% What will this work show
+% The objectives of the work?
+% What will this work show the reader?
 % Why is it important?
 % What should the reader watch for in the paper?
 % What are the interesting high points?
 % What strategy did we use?
 % What should the reader expect as conclusion?
 
+In nuclear fuel cycle simulation it is necessary to calculate and optimize 
+nuclear process physics, facility deployment, material routing, etc. 
 
+Historically, nuclear fuel cycle simulators have addressed this with software 
+ranging from spreadsheet driven flow calculators to full detail industrial 
+models. 
+
+An alternative to these approaches is a dynamic, agent-based simulator with an 
+open platform.
 
 \subsection{Background}
 
@@ -29,25 +37,58 @@
 % Previous attempts by this group (GENIUS v1/v2)
 % note NGFCS
 
+Simulators drive R\&D by calculating metrics that can be compared accross fuel 
+cycles. 
+
+Previous simulators have been static or dynamic. Some have been discrete while 
+others have been fleet-based. Some have captured regional behavior, material 
+isotopics, transmutation detail, etc. Indeed, some tools have attempted 
+agent-based functionality.
+
+Historically, the national laboratories have driven development and regulated 
+the use of their own tools (cite VISION, DANESS, NFCSim, etc.), while 
+universities and industry have simultaneously developed tools of their own as 
+well. 
+
+The Cyclus code arose out of the GENIUSv2 code. That software itself was the 
+result of lessons-learned from an LDRD project at INL called GENIUSv1. 
+
+
 \subsection{Motivation}
 % Gently reiterate the above need. 
 % There should be a hero narrative here
 % There was a gap in the capabilities of simulators.
 % Cyclus, a hero, came in to fill that gap. 
 
+Cyclus provides a sophisticated and modern, agent-based platform. Previous 
+codes were lacking in a number of ways. Cyclus has a number of features that 
+overcome those issues.  
+
 \subsubsection{Modular Architecture}
 % Motivation for encapsulated plug-in architecture 
 % enables ecosystem, ease of contribution across institutions
 % enables myriad levels of simulation fidelity
 % enables FC analyses that can compare ‘apples to apples'
+
+Draw from and cite the ``Open Architecture and Modular Paradigm'' ANS summary.
+
 \subsubsection{Agent-based Paradigm}
 % superior detail in capturing simulation dynamics
 % more flexible control over behavior
 % describe Region/Institution/Facility hierarchy
 % note importance of generic resource exchange paradigm
+
+ABM is modern, sophisticated, true to reality, and it takes advantage of modern 
+computing resources. 
+
+
 \subsubsection{Discrete Resource Tracking}
 % enables more realistic models and metrics
 % material routing metrics
 % shadow fuel cycles
 % etc.
+
+Not all simulations can be successfully run with a fleet-based model that 
+doesn't distinguish between discrete materials. Shadow fuel cycles are an 
+example. 
 
