@@ -18,7 +18,7 @@
 %%%%%%%%%%% TYPE AND GEOMETRY %%%%%%%%%%%
 \LoadClass[12pt]{article}
 
-\pagestyle{empty}						%no page numbering
+\pagestyle{empty}                                               %no page numbering
 
 \RequirePackage[text={173mm,9in}, columnsep=0.75cm,centering]{geometry}
 
@@ -30,7 +30,7 @@
 
 %%%%%%%%%%% INCLUDE PACKAGES %%%%%%%%%%%
 \RequirePackage{cuted} % for single column in a multicolumn doc
-\RequirePackage{indentfirst}	% indent the leading paragraph
+\RequirePackage{indentfirst}    % indent the leading paragraph
 \RequirePackage{amsmath}
 
 % for gray line
@@ -45,9 +45,6 @@
 
 % For the count of pages, tables, and figures on the title page
 \RequirePackage{totcount}
-
-% For line numbers (suggested by bob)
-\RequirePackage{lineno}
 
 %%%%%%%%%%% REQUIRED VARIABLES %%%%%%%%%%%
 \newif\if@institutedefined
@@ -91,32 +88,29 @@
 
 
 %%%%%%%%%%% SECTIONING %%%%%%%%%%%
-\renewcommand{\section}{\renewcommand{\@sec@title@format}[1]{\MakeUppercase{##1}}%
-  \@startsection%
-	{section}{1}{\z@}%		%name, level, indent
-	{-\baselineskip}%		%beforeskip
-	{.75\baselineskip}%		%afterskip
-	{\reset@font\bf\MakeUppercase}% %bold, uppercase
+\renewcommand\section{\@startsection%
+        {section}{1}{\z@}%              %name, level, indent
+        {-\baselineskip}%               %beforeskip
+        {.75\baselineskip}%             %afterskip
+        {\reset@font\bf\MakeUppercase}% %bold, uppercase
 }
-\renewcommand{\thesection}{\@Roman\c@section.} 
+\renewcommand{\thesection}{\@Roman\c@section} 
 
-\renewcommand{\subsection}{\renewcommand{\@sec@title@format}[1]{##1}%
-  \@startsection%
-	{subsection}{2}{\z@}%		%name, level, indent
-	{-\baselineskip}%		%beforeskip
-	{.75\baselineskip}%		%afterskip
-	{\reset@font\bfseries}%               %bold
+\renewcommand\subsection{\@startsection%
+        {subsection}{2}{\z@}%           %name, level, indent
+        {-\baselineskip}%               %beforeskip
+        {.75\baselineskip}%             %afterskip
+        {\reset@font\bf}%               %bold
 }
-\renewcommand{\thesubsection}{\thesection\@Alph\c@subsection.}
+\renewcommand{\thesubsection}{\thesection\@Alph\c@subsection}
 
-\renewcommand{\subsubsection}{\renewcommand{\@sec@title@format}[1]{\emph{##1}}%
-  \@startsection%
-	{subsubsection}{3}{\z@}%	%name, level, indent
-	{-.75\baselineskip}%		%beforeskip
-	{.5\baselineskip}%		%afterskip
-	{\reset@font}%             %italic
+\renewcommand\subsubsection{\@startsection
+        {subsubsection}{3}{\z@}%        %name, level, indent
+        {-.75\baselineskip}%            %beforeskip
+        {.5\baselineskip}%              %afterskip
+        {\reset@font\emph}%             %italic
 }
-\renewcommand{\thesubsubsection}{\thesubsection\@roman\c@subsection.}
+\renewcommand{\thesubsubsection}{\thesubsection.\@roman\c@subsection}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,12 +122,12 @@
 \let\@endoldthebibliography=\endthebibliography
 \let\@olditemsep=\itemsep
 \renewenvironment{thebibliography}[1]{%
-	\begin{@oldthebibliography}{#1}%
-		\setlength{\itemsep}{-\@olditemsep}%
+        \begin{@oldthebibliography}{#1}%
+                \setlength{\itemsep}{-\@olditemsep}%
 }%
 {%
-	\@endoldthebibliography%
-	\end{@oldthebibliography}%
+        \@endoldthebibliography%
+        \end{@oldthebibliography}%
 }
 
 %%%%%%%%%%% CHANGE TABLE/FIGURE STYLE %%%%%%%%%%%
@@ -201,10 +195,6 @@
 }
 
 \AtBeginDocument{
-  \renewcommand{\thetable}{\Roman{table}}
-  \setpagewiselinenumbers
-  \modulolinenumbers[5]
-  \linenumbers
   \maketitle
 }
 
