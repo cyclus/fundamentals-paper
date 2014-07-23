@@ -25,18 +25,68 @@ Mainly they do this by trading resources.
 
 <diagram of black box facilities>
 
+\subsection{Cluster-Ready Software}
+
+Because this doesn't rely on PowerSim, GoldSim, Excel, or any other COTS 
+Windows-based software, we can run singular instances of Cyclus 
+on large linux machines that have lots more capability than hacked together 
+Windows clusters. 
 
 \subsection{Dynamically loadable libraries}
 % (diagram)
+
+A key innovation that has previously not been implemented in nuclear fuel cycle 
+simulators in the literature is implementing this generic API and modular 
+architecture into a suite of dynamically loadable ``plug-in'' libraries. 
+
+This approach allows contribution to an ecosystem of libraries. The 
+scientist-developer can therefore focus on generating a model within their 
+sphere of expertise, while relying on the model contributions of others to fill 
+in the other technologies.
+
+This is implemented largely through a clean API and a modern build system.
+
 \subsection{Agent Interchangability}
 % interchangeability due to exchange behavior api
+
+This approach enables ``apples-to-apples'' comparisons, something that has been 
+sorely missing in previous simulators.
+
+By making the facilities interchangeable, it combinatorically increases the 
+number of scenarios that can be modeled. The user can choose to model just the 
+front end or just the back end of a fuel cycle. 
+
+This is implemented with an API that focuses on treating the agents as black 
+boxes. 
+
 \subsection{Region/Institution/Facility hierarchy}
 % (diagram)
+
+Not many fuel cycle simulators have this, it turns out. We used to implement 
+this with inheritance. Now I'm not so sure. . . <insert recent knowledge here>.
+
 \subsection{Discrete Object Tracking}
 % Resources, Materials (note isotope tracking, decay behavior)
+
+Discrete facility and material tracking is more realistic an dmore 
+
 \subsection{Toolkit}
 % library of tools
 % contributions to the toolkit
 % place for metrics
+
+The toolkit is a place for developers and users to contribute common-use tools 
+for calculating metrics, managing process physics, handling data.
+
+This was implemented by liberal use of namespaces  and is populated with an 
+introductory suite of useful tools. 
+
+
 \subsection{Cycamore}
 % base modules
+
+Cycamore contains a number of usefule facility models that are a mere base-set. 
+Additional modules are needed for full fuel cycle simulation. However, simple 
+fuel cycles can be generated with Cycamore and Cyclus alone. 
+
+<diagram of a possible Cycamore-only simulation>
