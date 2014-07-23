@@ -4,8 +4,28 @@
 % Driving concepts
 % Equations
 % Figures
+
+Only a modular, agent-based approach is capable of adequately solving system 
+dynamics problems involving material routing, facility deployment, regional and 
+institutional hierarchies.
+
 \subsection{Framework Structure}
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
+
+Agent-based modeling is inherently object oriented. 
+
+The core of the simulator creates a set of key classes on which agent plugins 
+are based. In addtion, a set of key tools are also provided, to enrich the API 
+and provide a robust suite of behaviors for the developer.
+
+<diagram of core, modules, toolkit, etc>
+
+Agent plug-ins utilize the generic core API to interact with one another. 
+Mainly they do this by trading resources. 
+
+<diagram of black box facilities>
+
+
 \subsection{Dynamically loadable libraries}
 % (diagram)
 \subsection{Agent Interchangability}
