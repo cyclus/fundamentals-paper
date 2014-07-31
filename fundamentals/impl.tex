@@ -5,9 +5,9 @@
 % Equations
 % Figures
 
-Only a modular, agent-based approach is capable of adequately solving system 
-dynamics problems involving material routing, facility deployment, regional and 
-institutional hierarchies.
+A modular, agent-based is an ideal approach for solving complicated
+physics-dependent supply chain problems involving material routing, facility
+deployment, regional and institutional hierarchies.
 
 \subsection{Framework Structure}
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
@@ -62,8 +62,16 @@ boxes.
 \subsection{Region/Institution/Facility hierarchy}
 % (diagram)
 
-Not many fuel cycle simulators have this, it turns out. We used to implement 
-this with inheritance. Now I'm not so sure. . . <insert recent knowledge here>.
+Cyclus has three core agent classes that be subclassed to create a simulation
+archetype: Region, Institution, and Facility. At present, Regions, Institutions,
+and Facilities (RIF) conceptually form a nested structure in a Cyclus simulation,
+i.e., Facilities exist in (i.e., are managed by) Institutions and Institutions
+exist in Regions.
+
+Importantly, the RIF separation allows for preferential trading. For example,
+Facilities in the same Institution can preferentially trade with each
+other. Similarly, Regions can be given a location proxy, and the trade between
+Facilities can be informed by their regional proximity.
 
 \subsection{Discrete Object Tracking}
 % Resources, Materials (note isotope tracking, decay behavior)
@@ -76,17 +84,18 @@ Discrete facility and material tracking is more realistic an dmore
 % place for metrics
 
 The toolkit is a place for developers and users to contribute common-use tools 
-for calculating metrics, managing process physics, handling data.
+for calculating metrics, managing process physics, and handling data.
 
-This was implemented by liberal use of namespaces  and is populated with an 
-introductory suite of useful tools. 
-
+This was implemented by liberal use of namespaces and is populated with an
+introductory suite of useful tools, including helper classes for managing
+facility deployment, minimum cost facility deployment decision making, and for
+enrichment-related calculations.
 
 \subsection{Cycamore}
 % base modules
 
-Cycamore contains a number of usefule facility models that are a mere base-set. 
-Additional modules are needed for full fuel cycle simulation. However, simple 
-fuel cycles can be generated with Cycamore and Cyclus alone. 
+Cycamore contains a number of usefule facility models that are a mere base-set.
+Additional modules are needed for interesting fuel cycle simulation. However,
+simple, once-through fuel cycles can be generated with Cycamore and Cyclus alone.
 
 <diagram of a possible Cycamore-only simulation>

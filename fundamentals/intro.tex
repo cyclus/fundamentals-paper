@@ -15,12 +15,15 @@
 In nuclear fuel cycle simulation it is necessary to calculate and optimize 
 nuclear process physics, facility deployment, material routing, etc. 
 
+% MJG - I'm hesitant about using the phrase 'full detail'. I think we can be
+% more precise.
+
 Historically, nuclear fuel cycle simulators have addressed this with software 
 ranging from spreadsheet driven flow calculators to full detail industrial 
 models. 
 
 An alternative to these approaches is a dynamic, agent-based simulator with an 
-open platform.
+free, openly accessible simulation-logic kernel.
 
 \subsection{Background}
 
@@ -40,10 +43,14 @@ open platform.
 Simulators drive R\&D by calculating metrics that can be compared accross fuel 
 cycles. 
 
+% MJG - We need to be very precise about the terms 'static' and 'dynamic'. They
+% should likely be defined before being used in this context.
+
 Previous simulators have been static or dynamic. Some have been discrete while 
 others have been fleet-based. Some have captured regional behavior, material 
 isotopics, transmutation detail, etc. Indeed, some tools have attempted 
-agent-based functionality.
+agent-based functionality. % MJG - Which ones? The closest I can think of is
+                           % NFCSim, and it's implementation details are closed.
 
 Historically, the national laboratories have driven development and regulated 
 the use of their own tools (cite VISION, DANESS, NFCSim, etc.), while 
@@ -60,9 +67,41 @@ result of lessons-learned from an LDRD project at INL called GENIUSv1.
 % There was a gap in the capabilities of simulators.
 % Cyclus, a hero, came in to fill that gap. 
 
+% MJG - @gonuke has always cited method-to-method comparisons as the primary
+% benefit Cyclus can bring to the table. Do we want to frame the hero narrative
+% in that context? The more I think about, the more I feel like this is a
+% secondary argument. I'll take a crack at a few sentences below.
+
 Cyclus provides a sophisticated and modern, agent-based platform. Previous 
 codes were lacking in a number of ways. Cyclus has a number of features that 
 overcome those issues.  
+
+% MJG - I don't claim that all of this belongs in the beginning of this
+% subsection, but here's some more content. 
+
+Modeling the growth of a physics-dependent, international nuclear fuel supply
+chain is a difficult problem. To date, it has been treated relatively
+lightly. Tools have either focused on macro effects, e.g., the fleet-level
+stocks and flows of commodities, or micro effects, e.g., the used fuel
+composition fast reactor fuel. Accordingly, each focus has driven the
+development of these tools, rendering the task of answering questions between
+the macro and micro levels either impossible or difficult and time consuming. 
+
+Cyclus uses a divide-and-conquer approach, separating the problem of modeling a
+physics-dependent supply chain into a simulation kernel and archetypes that
+interact with the kernel during a simulation. The kernel is responsible for the
+deployment and interaction logic of entities in the simulation. Physics
+calculations are constrained to individual archetypes. Accordingly, specialists
+in a given field can utilize their time and resources in modeling a specific
+process associated with the nuclear fuel cycle, e.g. reprocessing and advance
+fuel fabrication, rather than also modeling the entirety of the cycle.
+
+% we could use a specific example of Cosi's equivalence method below
+Because Cyclus uses a modular archetype approach, comparing two archetypes is
+straightforward. Consider a case in which an analyst would like to compare the
+effect of using different models to determining input fuel composition for fast
+reactors. A variety fuel fabrication archetypes can be developed and used
+interchangably to analyze the effect of each on a simulation's output.
 
 \subsubsection{Modular Architecture}
 % Motivation for encapsulated plug-in architecture 
@@ -76,6 +115,7 @@ We expect that there are a number of types of users and developers who will
 interact with the Cyclus framework. Those people fall into a number of 
 categories. All such people benefit from the modular architecture. 
 
+% man that figure has gone quite a ways =)
 <modified-open-source collaboration diagram>
 
 \subsubsection{Agent-based Paradigm}
@@ -84,9 +124,18 @@ categories. All such people benefit from the modular architecture.
 % describe Region/Institution/Facility hierarchy
 % note importance of generic resource exchange paradigm
 
-ABM is modern, sophisticated, true to reality, and it takes advantage of modern 
-computing resources. 
+ABM is modern, sophisticated, true to reality, and it takes advantage of modern
+computing resources. Furthermore, agent-based modeling provides an analyst a
+more natural perspective from which to model a given problem. In the nuclear
+fuel cycle context for example, an analyst can design an agent with
+reactor-related logic and a separate agent with fuel fabrication-related logic.
 
+System dynamics popular approach for modeling nuclear fuel cycles in current
+tools (cite VISION/CAFCA). It has been shown in the literature
+\cite{macal_agent-based_2010} that any system dynamics model can be translated
+into an agent-based model. Furthermore, it has been shown that agent-based
+techniques can provide a richer model than can system dynamics. Formally, the
+set of system dynamics models is a strict subset of agent-based models.
 
 \subsubsection{Discrete Resource Tracking}
 % enables more realistic models and metrics
@@ -97,4 +146,9 @@ computing resources.
 Not all simulations can be successfully run with a fleet-based model that 
 doesn't distinguish between discrete materials. Shadow fuel cycles are an 
 example. 
+
+A discrete resource model allows for a range of modeling granularity. In the
+macroscopic extreme, it is equivalent to time-stepped continuous flow. In the
+microscopic extreme, the model is capable of representing individual fuel
+assemblies.
 
