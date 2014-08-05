@@ -1,5 +1,5 @@
 manuscript = fundamentals
-references = refs fcs
+references = `ls *.bib`
 latexopt   = -halt-on-error -file-line-error
 
 for file in $(references); do \
