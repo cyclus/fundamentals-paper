@@ -12,16 +12,32 @@
 % What strategy did we use?
 % What should the reader expect as conclusion?
 
-In nuclear fuel cycle simulation, it is necessary to calculate and optimize 
-nuclear process physics, facility deployment, and material routing in order to 
-capture overall fuel cycle performance metrics. 
+In order to characterize performance metrics, nuclear fuel cycle analysis 
+requires calculation and optimization of myriad physical, nuclear, chemical, 
+industrial, and political phenomena. Furthermore, complex systems such as 
+nuclear process physics, facility deployment, and material routing each each 
+must be modeled simultaneously for even the simplest of nuclear fuel cycle 
+simulations. 
 
 Historically, nuclear fuel cycle simulators have addressed this with software 
-ranging from spreadsheet driven flow calculators to very high-fidelity industrial 
-models. 
+ranging from spreadsheet driven flow calculators to very high-fidelity 
+industrial models. To date, current tools are either static, fleet-based, or 
+privately distributed. An alternative to these approaches is a dynamic, 
+agent-based simulator with an open platform. 
 
-An alternative to these approaches is a dynamic, agent-based simulator with an 
-open platform.
+Modern insight indicates that dynamic nuclear fuel cycle analysis more 
+realistically supports a broader range of simulation goals than static analysis 
+\cite{piet_dynamic_2011}. Similarly, experience in the greater field of systems 
+analysis indicates that agent-based modeling enables more flexible simulation 
+control, without loss of generality \cite{thatpapermattsent}. Finally, 
+openness allows cross-institutional collaboration, increases code robustness, 
+and enables the cultivation of an ecosystem of calculation options, 
+\cite{softwarecarpentryresource}.  
+
+Myriad challenges in nuclear fuel cycle analysis could be 
+addressed with an agent-based framework for simulation and tracking of 
+transformation and trade of resources between facilities within institutions 
+and regions.  
 
 \subsection{Background}
 
@@ -38,21 +54,33 @@ open platform.
 % Previous attempts by this group (GENIUS v1/v2)
 % note NGFCS
 
-Simulators drive R\&D by calculating metrics that can be compared accross fuel 
-cycles. 
+Simulators drive \gls{RDD} by calculating metrics that can be compared among fuel 
+cycles. Examples include measures of economic feasibility (i.e., \gls{LCOE}), 
+proliferation risk (i.e., total separated Pu), and environmental performance 
+(i.e., waste volume). 
 
-Previous simulators have been static or dynamic. Some have been discrete while 
-others have been fleet-based. Some have captured regional behavior, material 
-isotopics, transmutation detail, etc. Indeed, some tools have attempted 
-agent-based functionality.
+Methods for calculating those metrics vary among simulators. Some model the fuel cycle at static equillibrium, while others 
+capture fuel cycle dynamics.  Similarly, while some simulators discretely model 
+material and and facilities, others track streams of materials and 
+fleets of facilities in an aggregated fashion. Depending on their intended use, 
+simulators often model some aspect of the fuel cycle in great detail. For this 
+reason, simulators specialize in economics, material isotopics, or 
+transmutation detail, where others do not. 
 
 Historically, the national laboratories have driven development and regulated 
-the use of their own tools (cite VISION, DANESS, NFCSim, etc.), while 
-universities and industry have simultaneously developed tools of their own as 
-well. 
+the use of their own tools such as \gls{VISION}\cite{jacobson_verifiable_2010}, 
+\gls{DANESS}\cite{van_den_durpel_daness_2009}, 
+\gls{DYMOND}\cite{modeling_yacout_2005}, and 
+\gls{NFCSim}\cite{schneider_nfcsim:_2005}, while universities and industry have 
+simultaneously developed tools of their own as well, such as 
+\gls{CAFCA}\cite{guerin_benchmark_2006}.
 
-The Cyclus code arose out of the GENIUSv2 code. That software itself was the 
-result of lessons-learned from an LDRD project at INL called GENIUSv1. 
+The Cyclus code arose out of the 
+\gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code. That software 
+itself was the result of lessons-learned from an \gls{LDRD} project at 
+\gls{INL}, 
+\gls{GENIUSv1}\cite{dunzik-gougar_global_2007,jain_transitioning_2006} which 
+captured regional behaviors in fuel cycle scenarios. 
 
 
 \subsection{Motivation}
