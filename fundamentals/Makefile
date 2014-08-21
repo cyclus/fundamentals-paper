@@ -1,14 +1,18 @@
 manuscript = fundamentals
-references = refs
+references = `ls *.bib`
 latexopt   = -halt-on-error -file-line-error
 
-all: all-via-dvi
+for file in $(references); do \
+   ref_handles = $(ref_handles) $(file).bib \
+done
 
-all-via-pdf: $(manuscript).tex $(references).bib
-	pdflatex $(latexopt) $(manuscript)
-	bibtex $(manuscript $<).aux
-	pdflatex $(latexopt) $(manuscript)
-	pdflatex $(latexopt) $(manuscript)
+all: all-via-pdf
+
+all-via-pdf: $(manuscript).tex $(ref_handles)
+	pdflatex $(latexopt) $<
+	bibtex $(manuscript).aux
+	pdflatex $(latexopt) $<
+	pdflatex $(latexopt) $<
 
 all-via-dvi: 
 	latex $(latexopt) $(manuscript)
