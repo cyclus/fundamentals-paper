@@ -147,4 +147,63 @@ regression tests. This is because the archetypes here are sophisticated enough
 to make interesting input files. Only a handful ($<10$) time steps are needed 
 for regression testing.
 
+\subsection{Documentation}
+
+All of the public interface (the API) must be documented as part of cyclus
+QA policy. This certifies that the intention for a code unit is communicated 
+in way that is separate from its implementation. This policy is important 
+because implementations are often wrong, hence bugs. They are thus unreliable 
+resources about themselves. Truly trustworthy communication about what 
+software should be doing comes from the author explicitly stating the 
+goals of an API in prose form. Furure development of the code is then able to 
+compare the implemetation versus the documentation to discern whether or not they 
+are in agreement. Documentation is thus a secondary higher-level information 
+stream.  In cyclus, this information is aggregated together into static 
+websites with the doxygen \cite{van2008doxygen} and sphinx \cite{brandl2014sphinx} 
+tools. These websites are placed online at \url{http://fuelcycle.org}.
+
+\subsection{Version Control}
+
+Version control is the history-preserving mechanism by which the provenance of 
+a code is recored. Cyclus uses a well-established tool called git \cite{git_2014}
+for this purpose. Git is currently the most popular utilty in the recent wave
+of \emph{distributed version control}. Briefly stated, this means that every 
+user has a complete local copy of the \emph{repository} (the version control
+term for the collection of all possible histories).
+Though there and many praises and criticisms of git, one 
+feature that the tool performs exceptionally well is the notion of code branches.
+These are distinct pathways in the history that branch out of a mainline source
+tree and then may be \emph{merged} back into the mainline. Multiple simeltaneous
+branches may exist at all point in time. Every change to the code is recorded
+in the history, along with metadata such as the author, a timestamp, and an 
+accompanying message. Thus 
+it is possible for cyclus to accurarely replay the entirety of who did what to the
+code when.
+
+Cyclus uses a strategy known as \emph{git flow} \cite{kalliamvakou2014code} 
+to manage topical branches where individuals develop code, the mainline development
+branch (simply known as develop), and the stable branch (called master).
+In addition to these rules and delineation, cyclus also imposes rules on 
+when it is accecptable from a quality control standpoint to merge code from 
+the personal topical branches into develop. All software at this stage 
+must have sufficient and passing tests and reasonable documentation. Without
+these core pieces proposed changes are not allowed into cyclus.
+
+The act of proposing a change is known as a \emph{pull request}. The main cyclus is 
+hosted remotely on the GitHub website \cite{dabbish2012social}. The online
+mechanism for pull requests allows for code review by a member of the cyclus 
+core team other than the author prior to any change being included. Non-members
+of the cyclus development team are allowed and encouraged to submit and review 
+pull requests. However, only members of the cyclus core team are allowed to 
+merge in any changes and only after the QA standards have been met.
+
+\subsection{Style Guide}
+
+In any multi-person software project, there is a tension between how individuals
+wish to write code. Every person tends to have their own custom style. To remedy this
+coding style guides are the software analogy to the natural language ones, 
+such as the Chicago Manual of Style. Cyclus strictly enforces the use of the 
+Google C++ Style Guide \cite{weinberger2008google} for all software contributions.
+
+
 
