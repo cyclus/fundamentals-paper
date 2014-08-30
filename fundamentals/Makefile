@@ -10,7 +10,7 @@ all: all-via-pdf
 
 all-via-pdf: $(manuscript).tex $(ref_handles)
 	pdflatex $(latexopt) $<
-	bibtex $(manuscript).aux
+	bibtex fcs.aux
 	pdflatex $(latexopt) $<
 	pdflatex $(latexopt) $<
 
