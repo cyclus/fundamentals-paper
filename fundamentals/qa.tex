@@ -81,34 +81,70 @@ more to those running cyclus than to those running it.  Furthermore, any UQ
 results that are generated are applicable only to the scenario that is under 
 analysis. Thus for cyclus UQ is well beyond the scope of core development.
 
-% Unfortunately, we can't wind forward the clock to compare our simulations to 
-% the futures that we are attempting to model.
-
-% However, Cyclus does implement a number of strategies for verification and 
-% validation of code.
-
-\subsection{Coding Practices}
-% What have we done to ensure robustness ?
-% Examples from Material class, Transactions, simulation IDs
-
-Some routines are implemented specifically to ensure robustness.
-
 \subsection{Testing}
-% Peer-review system (secretly a note on open source?)
 
-We have reasonable test coverage and a code review system.
+Automated software \emph{testing} is the first line of defense against
+errors in implementation. It also acts as an early warning sign that the
+simulator does or does not work as intended on a new system.
+Testing serves a critical role in QA because it directly compares the 
+results of running software versus the expected behavior of the software.
+In cyclus, three categories of tests are defined: unit tests, integration 
+tests, and regression tests. 
+
+It is important to note that before a proposed
+code changes is allowed into main stream cyclus, all of the tests must pass
+and the change must be covered by a test, either new or existing. This is 
+matter of policy for the developers. Additionally, test code is equally likely 
+as the code it is testing to contain errors. To prevent an infinite recurrsion 
+of testing-the-tests, it is assumed that dilligence and one level of testing 
+is sufficient to meet the aims of the quality assurance.
 
 \subsubsection{Unit Tests}
 
-Testing individual units of 'work'.
+Unit tests are those which compare the results of the smallest code \emph{unit}, 
+typically a single function or a class. What constitutes a the smallest code
+unit depends on the context of the specific unit in question. While this is 
+an ambiquous defintiion, combined with a philosophy of keeping units as small
+as possible it is often clear in practice what needs to be tested.
 
-\subsubsection{Regression Tests}
-
-Testing identical output for each pull request.
+Cyclus uses the Google Test framework \cite{gtest} as a harness for running unit 
+tests. Sufficient unit tests are required for any proposed change to the cyclus
+code base. Currently cyclus implements over 450 unit tests and cycamore has 
+85.  These cover approximately 65\% of their respective code bases. This number 
+is expected to grow over time. 
 
 \subsubsection{Integration Tests} 
 
-Testing aggregate answers for each pull request. Specifically, previous
-simulations used in publications are integration tested to confirm their output
-is maintained.
+Intergration tests are any tests that combine multiple elemnents of the 
+cyclus interface and test that they work correctly with each other.  By analogy, 
+simply because the gears (units) are made correctly does not imply that the 
+clock (integration) will run smoothly, run at all, or give the correct time.
+In cyclus and cycamore, integration tests are performed by running sample
+simulations and verifying that results are what would be expected ahead of 
+time. Precanned input files have thus been contsructed. Their results 
+are inspected and compared via nose \cite{nosetests}, a Python test framework.
+Python will run cyclus as a subprocess for each integration test. In this
+way cyclus code units are tested in the full context that they will
+executed. This category of testing is especially useful for ensuring that 
+major cyclus components are functioning as expected.
+
+\subsubsection{Regression Tests}
+
+Regression tests are tests which ensure that significant changes do not 
+occur over the course of cyclus development. Such a change is called a 
+\emph{regression} because the new version is almost always wrong.
+Regression tests are implemeneted similarly to integration tests.
+Nose is used to execute fully fledged cyclus simulations whose results
+are then compared. In this category however the comparison is done against 
+the output of the same input file when run with a previous version of cyclus, 
+typically the last released version.
+In some sense, regression tests are `dumb' in that they do 
+not care about the contents of a simulation being correct, only whether or not 
+it changed. They thus pick up glaring time-sensitive mistakes that may 
+not appear elsewhere though they do not purport to make claims about the
+quality of the physics modeled. The cycamore project is the primary location of
+regression tests. This is because the archetypes here are sophisticated enough
+to make interesting input files. Only a handful ($<10$) time steps are needed 
+for regression testing.
+
 
