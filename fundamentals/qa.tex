@@ -1,0 +1,114 @@
+\section{Quality Assurance}
+% Organize this section according to major topics
+% give each topic a section heading in boldface.
+% try to cover the major common points :
+%
+% problem design
+% methods of measurement
+% supporting models
+% supporting data
+% simulations run
+% results
+
+% Just write the section headings for each part and indicate what goes in that
+% section with words :
+%
+% heading
+% figures (with captions)
+% schematics (with captions and footnotes)
+% equations
+% tables
+
+% What does it mean?
+% What did I actually test?
+% What were the results?
+% Did the work yield a new method?
+% Did the work yield new knowledge?
+% What measurements did I make?
+% How were these measurements characterized?
+% What methods were used?
+% What were the results?
+% How were the measurements made and characterized?
+
+Simulation science - like experimental science - has since the begining had the 
+problem of identifying trustworthy results from the nonsensical and the noise.
+This is epitomized in the Charles Babbage quote, ``On two occasions I have been asked, 
+`Pray, Mr. Babbage, if you put into the machine wrong figures, will the right 
+answers come out?' ... I am not able rightly to apprehend the kind of confusion 
+of ideas that could provoke such a question.'' \cite{babbage2011passages}. 
+The \emph{garbage in, garbage out} phenomenon is not the only scenario which a
+simulator must gaurd against; ensuring correctness is equally important.
+
+Multiple strategies collectively known a \emph{quality assurance} (QA) have 
+been invented over the years to mitigate the structural and algorithmic errors
+on the part of simulators themselves. These include \emph{verification and validation}
+(V&V) \cite{boehm1989software}, \emph{uncertainty quantification} (UQ) 
+\cite{sacks1989design}, testing, and others. V&V and UQ come from 
+a distinctly computational science background while testing \emph{et al.} come from 
+a software development bent. 
+
+Nuclear enginerering code quality is often governed by NQA-1, an ASME specification 
+whose latest revision appeared in 2009 \cite{NQA-1a-2009}. This is primarily 
+used for designing reactors. However, it is general enough to apply to 
+cyclus. Cyclus has adopted an \emph{agile} development process \cite{larman2004agile}, 
+interpreting NQA-1 in a manner similar to NEAMS \cite{neams-qa} or PyNE \cite{pyne-vv}. 
+
+Cyclus acknowledges that quality assurance is an on-going process throughout the 
+entire life of the code. As a simulator where most modeling descisions are made 
+by third party archetype developers or users, the most important feature of QA 
+is verification. Validation may be impossible and UQ is beyond the scope.
+
+Verification may be defined as the question, ``Is cyclus being built correctly?'' 
+To answer this question we turn to the software development of notions of testing,
+documentation, version control, style guidelines, and continuous integration. 
+This suite of process controls supplies mechanims for reliable and reproducible 
+software. The impetus to implement these correctly is even stronger in a scientific 
+context because of the emphasis on reproducibility and provenance. These are 
+discussed below individually.
+
+Validation on the other hand may be defined as the question, 
+``Is cyclus the correct tool?''
+Since cyclus is alone in its class as an agent-based fuel cycle simulator logitudnal 
+validation is not possible. Still code-to-code comparisons with fuel cycle
+simulators with other modeling paradigms are underway, if nascent. However, such 
+exercises are more likely to bring into relief the differences between the modeling
+paradigms than be useful for QA and validation. 
+
+Lastly, uncertainty quantification is a process that is used on specific simulation
+instantiations to statistically determine its quality. Since the cyclus 
+kernel requires an input file written by the user, UQ is a process that applies 
+more to those running cyclus than to those running it.  Furthermore, any UQ
+results that are generated are applicable only to the scenario that is under 
+analysis. Thus for cyclus UQ is well beyond the scope of core development.
+
+% Unfortunately, we can't wind forward the clock to compare our simulations to 
+% the futures that we are attempting to model.
+
+% However, Cyclus does implement a number of strategies for verification and 
+% validation of code.
+
+\subsection{Coding Practices}
+% What have we done to ensure robustness ?
+% Examples from Material class, Transactions, simulation IDs
+
+Some routines are implemented specifically to ensure robustness.
+
+\subsection{Testing}
+% Peer-review system (secretly a note on open source?)
+
+We have reasonable test coverage and a code review system.
+
+\subsubsection{Unit Tests}
+
+Testing individual units of 'work'.
+
+\subsubsection{Regression Tests}
+
+Testing identical output for each pull request.
+
+\subsubsection{Integration Tests} 
+
+Testing aggregate answers for each pull request. Specifically, previous
+simulations used in publications are integration tested to confirm their output
+is maintained.
+
