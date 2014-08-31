@@ -119,15 +119,9 @@ interact with the kernel during a simulation. The kernel is responsible for the
 deployment and interaction logic of entities in the simulation. Physics
 calculations are constrained to individual archetypes. Accordingly, specialists
 in a given field can utilize their time and resources in modeling a specific
-process associated with the nuclear fuel cycle, e.g. reprocessing and advance
-fuel fabrication, rather than also modeling the entirety of the cycle.
+process associated with the nuclear fuel cycle (e.g., reprocessing and advanced
+fuel fabrication), rather than also modeling the entirety of the cycle.
 
-% we could use a specific example of Cosi's equivalence method below
-Because \Cyclus uses a modular archetype approach, comparing two archetypes is
-straightforward. Consider a case in which an analyst would like to compare the
-effect of using different models to determining input fuel composition for fast
-reactors. A variety fuel fabrication archetypes can be developed and used
-interchangably to analyze the effect of each on a simulation's output.
 
 \subsubsection{Modular Architecture}
 % Motivation for encapsulated plug-in architecture 
@@ -135,20 +129,26 @@ interchangably to analyze the effect of each on a simulation's output.
 % enables myriad levels of simulation fidelity
 % enables FC analyses that can compare ‘apples to apples'
 
-Draw from and cite the ``Open Architecture and Modular Paradigm'' ANS summary.
+The encapsulated plug-in architecture within the \Cyclus tool allows developers 
+to define nuclear fuel cycle facility processes independent of the simulation 
+logic. This design choice acheives two things. First, analysts across 
+institutions can take advantage of the simulation logic \gls{API} and 
+archetype ecosystem when they apply \Cyclus to their specific problem. The effort they 
+undertake can thereby be focused on creating or customizing 
+nuclear facility, institution, resource, and toolkit models within their 
+specific area of expertise.
+
+% we could use a specific example of Cosi's equivalence method below
+Second, because \Cyclus uses a modular archetype approach, comparing two 
+archetypes is straightforward. Consider a case in which an analyst would like 
+to compare the effect of using different models to determining input fuel 
+composition for fast reactors. A variety fuel fabrication archetypes can be 
+developed and used interchangably to analyze the effect of each on a 
+simulation's output.
 
 We expect that there are a number of types of users and developers who will 
 interact with the \Cyclus framework. Those people fall into a number of 
 categories. All such people benefit from the modular architecture. 
-
-\begin{figure}[htbp!]
-\begin{center}
-\includegraphics{./images/modifiedopen.eps}
-\end{center}
-\caption{The \Cyclus framework enables fully open, partially open, and fully 
-closed collaborations.}
-\label{fig:modifiedopen}
-\end{figure}
 
 \subsubsection{Agent-based Paradigm}
 % superior detail in capturing simulation dynamics
