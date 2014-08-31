@@ -62,13 +62,14 @@ cycles. Examples include measures of economic feasibility (i.e., \gls{LCOE}),
 proliferation risk (i.e., total separated Pu), and environmental performance 
 (i.e., waste volume). 
 
-Methods for calculating those metrics vary among simulators. Some model the fuel cycle at static equillibrium, while others 
-capture fuel cycle dynamics.  Similarly, while some simulators discretely model 
-material and and facilities, others track streams of materials and 
-fleets of facilities in an aggregated fashion. Depending on their intended use, 
-simulators often model some aspect of the fuel cycle in great detail. For this 
-reason, simulators specialize in economics, material isotopics, or 
-transmutation detail, where others do not. 
+Methods for calculating those metrics vary among simulators. Some model the 
+fuel cycle at static equillibrium, while others capture fuel cycle dynamics.  
+Similarly, while some simulators discretely model material and and facilities, 
+others track streams of materials and fleets of facilities in an aggregated 
+fashion. Depending on their intended use, simulators often overspecialize, 
+modeling a single aspect of the fuel cycle in great detail. For this reason, 
+some simulators specialize in economics, material isotopics, or transmutation 
+detail, where others do not. 
 
 Historically, the national laboratories have driven development and regulated 
 the use of their own tools such as \gls{VISION}\cite{jacobson_verifiable_2010}, 
@@ -76,15 +77,17 @@ the use of their own tools such as \gls{VISION}\cite{jacobson_verifiable_2010},
 \gls{DYMOND}\cite{modeling_yacout_2005}, and 
 \gls{NFCSim}\cite{schneider_nfcsim:_2005}, while universities and industry have 
 simultaneously developed tools of their own as well, such as 
-\gls{CAFCA}\cite{guerin_benchmark_2006}.
+\gls{CAFCA}\cite{guerin_benchmark_2006} and \gls{COSI}\cite{cosi}.
 
-The \Cyclus code arose out of the 
+The \Cyclus simulator arose out of the 
 \gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code. That software 
 itself was the result of lessons-learned from an \gls{LDRD} project at 
 \gls{INL}, 
 \gls{GENIUSv1}\cite{dunzik-gougar_global_2007,jain_transitioning_2006} which 
-captured regional behaviors in fuel cycle scenarios. 
-
+captured regional behaviors in fuel cycle scenarios. \Cyclus is a dynamic 
+simulator that treats both materials and facilities discretely, with an 
+architecture that permits simulations with multiple and variable levels of 
+fidelity.
 
 \subsection{Motivation}
 % Gently reiterate the above need. 
@@ -92,18 +95,15 @@ captured regional behaviors in fuel cycle scenarios.
 % There was a gap in the capabilities of simulators.
 % \Cyclus, a hero, came in to fill that gap. 
 
-% MJG - @gonuke has always cited method-to-method comparisons as the primary
-% benefit \Cyclus can bring to the table. Do we want to frame the hero narrative
-% in that context? The more I think about, the more I feel like this is a
-% secondary argument. I'll take a crack at a few sentences below.
-
 In addition to providing the fundamental features expected in fuel cycle 
-simulators, the \Cyclus paradigm enables two major capabilites that previous 
-simulators were lacking. First, it enables simulations at multiple levels of 
-fidelity. Second, it facilitates direct comparison of modeling methodologies.
-
-% MJG - I don't claim that all of this belongs in the beginning of this
-% subsection, but here's some more content. 
+simulators, the \Cyclus paradigm enables major capabilites that previous 
+simulators lack. First, its \emph{modular and open architecture}  
+facilitates targeted contribution 
+and collaboration within the nuclear fuel cycle analysis community. 
+Additionally, \emph{agent interchangability} facilitates direct comparison of modeling 
+methodologies. Finally, the flexibility and generality of its \emph{\gls{ABM}} 
+paradigm and \emph{discrete, object-oriented approach} emphasizes applicability of the \Cyclus tool accross a broader range 
+of applications than other simulators. 
 
 Modeling the evolution of a physics-dependent, international nuclear fuel supply
 chain is a difficult problem. To date, it has been treated relatively
@@ -156,14 +156,14 @@ closed collaborations.}
 % describe Region/Institution/Facility hierarchy
 % note importance of generic resource exchange paradigm
 
-ABM is modern, sophisticated, true to reality, and it takes advantage of modern
+\gls{ABM} is modern, sophisticated, true to reality, and it takes advantage of modern
 computing resources. Furthermore, agent-based modeling provides an analyst a
 more natural perspective from which to model a given problem. In the nuclear
 fuel cycle context for example, an analyst can design an agent with
 reactor-related logic and a separate agent with fuel fabrication-related logic.
 
 System dynamics popular approach for modeling nuclear fuel cycles in current
-tools (cite VISION/CAFCA). It has been shown in the literature
+tools \cite{VISION,CAFCA}. It has been shown in the literature
 \cite{macal_agent-based_2010} that any system dynamics model can be translated
 into an agent-based model. Furthermore, it has been shown that agent-based
 techniques can provide a richer model than can system dynamics. Formally, the
