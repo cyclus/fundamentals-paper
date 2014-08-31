@@ -78,7 +78,7 @@ the use of their own tools such as \gls{VISION}\cite{jacobson_verifiable_2010},
 simultaneously developed tools of their own as well, such as 
 \gls{CAFCA}\cite{guerin_benchmark_2006}.
 
-The Cyclus code arose out of the 
+The \Cyclus code arose out of the 
 \gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code. That software 
 itself was the result of lessons-learned from an \gls{LDRD} project at 
 \gls{INL}, 
@@ -90,17 +90,17 @@ captured regional behaviors in fuel cycle scenarios.
 % Gently reiterate the above need. 
 % There should be a hero narrative here
 % There was a gap in the capabilities of simulators.
-% Cyclus, a hero, came in to fill that gap. 
+% \Cyclus, a hero, came in to fill that gap. 
 
 % MJG - @gonuke has always cited method-to-method comparisons as the primary
-% benefit Cyclus can bring to the table. Do we want to frame the hero narrative
+% benefit \Cyclus can bring to the table. Do we want to frame the hero narrative
 % in that context? The more I think about, the more I feel like this is a
 % secondary argument. I'll take a crack at a few sentences below.
 
 In addition to providing the fundamental features expected in fuel cycle 
-simulators, the Cyclus paradigm enables two major capabilites that previous 
+simulators, the \Cyclus paradigm enables two major capabilites that previous 
 simulators were lacking. First, it enables simulations at multiple levels of 
-fidelity.  It also facilitates direct comparison of modeling methodologies.
+fidelity. Second, it facilitates direct comparison of modeling methodologies.
 
 % MJG - I don't claim that all of this belongs in the beginning of this
 % subsection, but here's some more content. 
@@ -113,7 +113,7 @@ composition fast reactor fuel. Accordingly, each focus has driven the
 development of these tools, rendering the task of answering questions between
 the macro and micro levels either impossible or difficult and time consuming. 
 
-Cyclus uses a divide-and-conquer approach, separating the problem of modeling a
+\Cyclus separates the problem of modeling a
 physics-dependent supply chain into a simulation kernel and archetypes that
 interact with the kernel during a simulation. The kernel is responsible for the
 deployment and interaction logic of entities in the simulation. Physics
@@ -123,7 +123,7 @@ process associated with the nuclear fuel cycle, e.g. reprocessing and advance
 fuel fabrication, rather than also modeling the entirety of the cycle.
 
 % we could use a specific example of Cosi's equivalence method below
-Because Cyclus uses a modular archetype approach, comparing two archetypes is
+Because \Cyclus uses a modular archetype approach, comparing two archetypes is
 straightforward. Consider a case in which an analyst would like to compare the
 effect of using different models to determining input fuel composition for fast
 reactors. A variety fuel fabrication archetypes can be developed and used
@@ -138,11 +138,17 @@ interchangably to analyze the effect of each on a simulation's output.
 Draw from and cite the ``Open Architecture and Modular Paradigm'' ANS summary.
 
 We expect that there are a number of types of users and developers who will 
-interact with the Cyclus framework. Those people fall into a number of 
+interact with the \Cyclus framework. Those people fall into a number of 
 categories. All such people benefit from the modular architecture. 
 
-% man that figure has gone quite a ways =)
-<modified-open-source collaboration diagram>
+\begin{figure}[htbp!]
+\begin{center}
+\includegraphics{modifiedopen.eps}
+\end{center}
+\caption{The \Cyclus framework enables fully open, partially open, and fully 
+closed collaborations.}
+\label{fig:modifiedopen}
+\end{figure}
 
 \subsubsection{Agent-based Paradigm}
 % superior detail in capturing simulation dynamics
