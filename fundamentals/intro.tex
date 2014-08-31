@@ -97,13 +97,13 @@ fidelity.
 
 In addition to providing the fundamental features expected in fuel cycle 
 simulators, the \Cyclus paradigm enables major capabilites that previous 
-simulators lack. First, its \emph{modular and open architecture}  
-facilitates targeted contribution 
-and collaboration within the nuclear fuel cycle analysis community. 
-Additionally, \emph{agent interchangability} facilitates direct comparison of modeling 
-methodologies. Finally, the flexibility and generality of its \emph{\gls{ABM}} 
-paradigm and \emph{discrete, object-oriented approach} emphasizes applicability of the \Cyclus tool accross a broader range 
-of applications than other simulators. 
+simulators lack. First, its \emph{modular and open architecture}  facilitates 
+targeted contribution and collaboration within the nuclear fuel cycle analysis 
+community.  Additionally, \emph{agent interchangability} facilitates direct 
+comparison of modeling methodologies. Finally, the flexibility and generality 
+of its \emph{\gls{ABM}} paradigm and \emph{discrete, object-oriented approach} 
+emphasizes applicability of the \Cyclus tool accross a broader range of 
+applications than other simulators. 
 
 Modeling the evolution of a physics-dependent, international nuclear fuel supply
 chain is a difficult problem. To date, it has been treated relatively
@@ -169,18 +169,28 @@ into an agent-based model. Furthermore, it has been shown that agent-based
 techniques can provide a richer model than can system dynamics. Formally, the
 set of system dynamics models is a strict subset of agent-based models.
 
-\subsubsection{Discrete Resource Tracking}
+\subsubsection{Discrete Objects}
 % enables more realistic models and metrics
 % material routing metrics
 % shadow fuel cycles
 % etc.
 
-Not all simulations can be successfully run with a fleet-based model that 
-doesn't distinguish between discrete materials. Shadow fuel cycles are an 
-example. 
-
-A discrete resource model allows for a range of modeling granularity. In the
+\Cyclus models facilities, institutions, regions, and resources as discrete 
+objects. A discrete resource model allows for a range of modeling granularity. In the
 macroscopic extreme, it is equivalent to time-stepped continuous flow. In the
-microscopic extreme, the model is capable of representing individual fuel
-assemblies.
+microscopic extreme, the model is capable of representing arbitrarily small 
+material objects at isotopic resolution. In this way, the \Cyclus simulator is 
+applicable across the full range of modeling extremes. 
+
+This generality specifically permits the use cases that cannot be acheived with 
+fleet-based models. That is, some questions require resolution at the level of 
+individual facilities and individual materials.  Since fleet-based, 
+lumped-material models do not distinguish between discrete facility entities or 
+discrete materials, many detailed performance metrics cannot be captured with 
+those tools. 
+
+One example use case seeks to capture system vulnerability to nefarious 
+material diversion. This type of analysis requires discrete simulation of a 
+target facility and the individual materials modified within it and is only 
+acheivable with discretely-modeled objects like those in the \Cyclus simulator. 
 
