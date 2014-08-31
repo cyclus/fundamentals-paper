@@ -46,6 +46,23 @@ in the other technologies.
 
 This is implemented largely through a clean API and a modern build system.
 
+Additionally, the clean plug-in architecture loads modules without any
+modifications to the \Cyclus kernel. Thus, as in Figure \ref{fig:modifiedopen},
+closed-source archetypes can be used with the simulator alongside open-source
+archetypes. This architecture therefore allows closed-source libraries (e.g.,
+those representing sensitive nuclear processes and subject to export control)
+to be developed and used privately.
+
+\begin{figure}[htbp!]
+\begin{center}
+\includegraphics{./images/modifiedopen.eps}
+\end{center}
+\caption{The \Cyclus framework enables fully open, partially open, and fully
+closed collaborations.}
+\label{fig:modifiedopen}
+\end{figure}
+
+
 \subsection{Agent Interchangability}
 % interchangeability due to exchange behavior api
 
