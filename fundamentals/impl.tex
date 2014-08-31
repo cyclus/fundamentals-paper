@@ -32,35 +32,55 @@ Windows-based software, we can run singular instances of Cyclus
 on large linux machines that have lots more capability than hacked together 
 Windows clusters. 
 
-\subsection{Dynamically loadable libraries}
+\subsection{Dynamically Loadable Libraries}
 % (diagram)
 
 A key innovation that has previously not been implemented in nuclear fuel cycle 
 simulators in the literature is implementing this generic API and modular 
 architecture into a suite of dynamically loadable ``plug-in'' libraries. 
-
-This approach allows contribution to an ecosystem of libraries. The 
-scientist-developer can therefore focus on generating a model within their 
-sphere of expertise, while relying on the model contributions of others to fill 
-in the other technologies.
-
 This is implemented largely through a clean API and a modern build system.
 
-Additionally, the clean plug-in architecture loads modules without any
-modifications to the \Cyclus kernel. Thus, as in Figure \ref{fig:modifiedopen},
-closed-source archetypes can be used with the simulator alongside open-source
-archetypes. This architecture therefore allows closed-source libraries (e.g.,
-those representing sensitive nuclear processes and subject to export control)
-to be developed and used privately.
+Dynamically-loadable libraries are the primary mechanism for extending \Cyclus' capability. 
+This approach provides encapsulation: the core of the code operates
+completely independently from the individual libraries. Thus, any
+customization or extension is implemented only in the loadable
+library. 
+
+This approach allows efficient, targeted contribution to the ecosystem of libraries.  The 
+scientist-developer can therefore focus on generating a model within their 
+sphere of expertise, while relying on the model contributions of others to fill 
+in the other technologies.  This strategy also allows individual developers to
+explore different levels of complexity within their archetypes, including
+wrapping other simulation tools as loadable libraries within the \Cyclus
+framework.
+
+A secondary benefit is the ability for
+contributors to choose different distribution and licensing strategies
+for their contributions. By allowing models to have varied
+availability, the security concerns of developers can be
+assuaged (See Figure \ref{fig:modifiedopen}).
 
 \begin{figure}[htbp!]
 \begin{center}
 \includegraphics{./images/modifiedopen.eps}
 \end{center}
 \caption{The \Cyclus framework enables fully open, partially open, and fully
-closed collaborations.}
+closed collaborations\cite{wilson_cyclus:_2012}.}
 \label{fig:modifiedopen}
 \end{figure}
+
+In particular, since the clean plug-in architecture loads libraries without any
+modifications to the \Cyclus kernel, closed-source archetypes can be used with
+the simulator alongside open-source archetypes. This architecture therefore
+allows closed-source libraries (e.g., those representing sensitive nuclear
+processes and subject to export control) to be developed and licensed privately.
+
+This last benefit of dynamically-loadable libraries addresses
+another goal of \Cyclus: ubiquity amongst its potential user base. By
+engineering \Cyclus to easily handle varying levels of complexity, a single
+simulation engine can be used by both users interested in big-picture policy
+questions as well as users focused on more detailed, technical
+analyses.
 
 
 \subsection{Agent Interchangability}
