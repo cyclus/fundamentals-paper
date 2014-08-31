@@ -15,7 +15,7 @@
 In order to characterize performance metrics, nuclear fuel cycle analysis 
 requires calculation and optimization of myriad physical, nuclear, chemical, 
 industrial, and political phenomena. Furthermore, complex systems such as 
-nuclear process physics, facility deployment, and material routing each each 
+nuclear process physics, facility deployment, and material routing each 
 must be modeled simultaneously for even the simplest of nuclear fuel cycle 
 simulations. 
 
@@ -23,7 +23,7 @@ simulations.
 % more precise.
 
 Historically, nuclear fuel cycle simulators have addressed this with software 
-ranging from spreadsheet driven flow calculators to full detail industrial 
+ranging from spreadsheet driven flow calculators to high-fidelity industrial 
 models. To date, current tools are either static, fleet-based, or 
 privately distributed. An alternative to these approaches is a dynamic, 
 agent-based simulator with an open platform. 
@@ -156,11 +156,12 @@ closed collaborations.}
 % describe Region/Institution/Facility hierarchy
 % note importance of generic resource exchange paradigm
 
-\gls{ABM} is modern, sophisticated, true to reality, and it takes advantage of modern
-computing resources. Furthermore, agent-based modeling provides an analyst a
-more natural perspective from which to model a given problem. In the nuclear
-fuel cycle context for example, an analyst can design an agent with
-reactor-related logic and a separate agent with fuel fabrication-related logic.
+\Cyclus utilizes an \gls{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
+true to reality, and it takes advantage of modern computing resources. 
+Furthermore, agent-based modeling provides an analyst a more natural 
+perspective from which to model a given problem. In the nuclear fuel cycle 
+context for example, an analyst can design an agent with reactor-related logic 
+and a separate agent with fuel fabrication-related logic.  
 
 System dynamics popular approach for modeling nuclear fuel cycles in current
 tools \cite{VISION,CAFCA}. It has been shown in the literature
@@ -168,6 +169,8 @@ tools \cite{VISION,CAFCA}. It has been shown in the literature
 into an agent-based model. Furthermore, it has been shown that agent-based
 techniques can provide a richer model than can system dynamics. Formally, the
 set of system dynamics models is a strict subset of agent-based models.
+
+
 
 \subsubsection{Discrete Objects}
 % enables more realistic models and metrics
