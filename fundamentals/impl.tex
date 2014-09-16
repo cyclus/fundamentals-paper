@@ -113,7 +113,47 @@ Facilities can be informed by their regional proximity.
 \subsection{Discrete Object Tracking}
 % Resources, Materials (note isotope tracking, decay behavior)
 
-Discrete facility and material tracking is more realistic an dmore 
+TODO: add blurb about discrete agent/facility tracking.
+
+In Cyclus, agents can transfer discrete resource objects between each other.
+Cyclus supports two types of resources:
+
+\begin{itemize}
+
+  \item Materials: These represent typical nuclear materials with
+      nuclide-based compositions.
+
+  \item Products: These can represent any user-defined thing - e.g. carbon
+      credits, build permits, employees, etc.
+
+\end{itemize}
+
+All operations performed on every resource object (splitting, combining,
+decay, etc.) are tracked in detail.  This information includes the creating
+agent for when resources are newly created and introduced into the simulation.
+The parentage of each resource is also tracked. This makes it possible to
+follow the travel history of resource objects as they are transferred between
+agents.
+
+In large simulations there may be many material objects changing frequently.
+Material decay can also contribute significantly to such changes.  In order to
+help avoid unnecessary runtime performance and database space impacts,
+compositions in Cyclus have some special features.  Compositions in Cyclus are
+immutable.  This immutability allows multiple material objects to all hold
+references to the same composition object safely.  When operations are
+performed on a material that don't change the composition, any new resulting
+materials hold a reference to the same, originating composition object.
+Although the decay operation generates a new, separate composition (preserving
+immutability), a reference to the new composition is placed in a cache shared
+by the new an originating compositions. The next time the originating
+composition is decayed, this cache will be checked for a prior calculation
+with the same cumulative decay time.  If one exists, the cached composition is
+used.  This cache is shared by all compositions that transitively come from
+the same origin.  Composition immutability in concert with decay history
+caching help eliminate many redundant decay calculations in addition to
+reducing the total number of composition objects.  Since each composition
+object is only recorded in the database once, significant space savings also
+occurs.
 
 \subsection{Toolkit}
 % library of tools
