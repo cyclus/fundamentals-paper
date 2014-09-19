@@ -27,10 +27,18 @@ Mainly they do this by trading resources.
 
 \subsection{Cluster-Ready Software}
 
-Because this doesn't rely on PowerSim, GoldSim, Excel, or any other COTS 
-Windows-based software, we can run singular instances of Cyclus 
-on large linux machines that have lots more capability than hacked together 
-Windows clusters. 
+\Cyclus is primarily written in \texttt{C++}, and support is currently provided
+for Linux-based (including Ubuntu and OSX) platforms. Furthermore, the core
+infrastructure and related archetypes are free and open-source, BSD-3-clause
+licsened. No part of \Cyclus is proprietary or based on commercial, off the
+shelf (COTS) software. Accordingly, it can be easily deployed on large compute
+systems, such as high-throughput computing (HTC) systems.
+
+Cyclopts (\TODO{cite}), a proof of principle design and implementation of such a
+system, uses UW-Madison's HTCondor HTC infrastructure to perform sensitivity
+studies on \Cyclus' resource exchange optimization solvers. To date, it has been
+used run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
+the \Cyclus library via its resource exchange API.
 
 \subsection{Dynamically Loadable Libraries}
 % (diagram)
