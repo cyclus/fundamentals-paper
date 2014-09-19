@@ -90,19 +90,20 @@ interchanged. Critically, this novel functionality enables the comparison
 between agent implementations. For example, a low-physics-fidelity
 implementation of a reactor can be comparied to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
-fidelity on a given fuel cycle. Interchangability is accomplished by providing
-APIs that define agent-to-agent interaction and agent-to-environment
-interaction, primarily through the \Class{Agent} and \Class{Trader} interfaces.
+fidelity on a given fuel cycle. 
 
-The \Class{Agent} interface provides a notion of parent-child hierarchichal
-relationship, where parents can choose to \textit{build} child agents and
-\textit{decommission} child agents. The \Class{Trader} interface allows
-agent-agent interaction through the trading of \Class{Resource}s. Usabe
-archetypes in a \Cyclus simulation must implement the \Class{Agent} interface
-and may optionally implement the \Class{Trader} interface. For example, a
-\Class{Region} implements only the \Class{Agent} interface, whereas a
-\Class{Facility} implements both the \Class{Agent} and \Class{Trader} interface,
-allowing any \Class{Facility} to trade with another \Class{Facility}.
+Interchangability is accomplished by providing APIs that define agent-to-agent
+interaction and agent-to-environment interaction, primarily through the
+\Class{Agent} and \Class{Trader} interfaces. The \Class{Agent} interface
+provides a notion of parent-child hierarchichal relationship, where parents can
+choose to \textit{build} child agents and \textit{decommission} child
+agents. The \Class{Trader} interface allows agent-agent interaction through the
+trading of \Class{Resource}s. Usabe archetypes in a \Cyclus simulation must
+implement the \Class{Agent} interface and may optionally implement the
+\Class{Trader} interface. For example, a \Class{Region} implements only the
+\Class{Agent} interface, whereas a \Class{Facility} implements both the
+\Class{Agent} and \Class{Trader} interface, allowing any \Class{Facility} to
+trade with another \Class{Facility}.
 
 \subsection{Region/Institution/Facility hierarchy}
 % (diagram)
