@@ -83,7 +83,7 @@ questions as well as users focused on more detailed, technical
 analyses.
 
 
-\subsection{Agent Interchangability}
+\subsection{Agent Interchangability}\label{sec:interchangeability}
 % interchangeability due to exchange behavior api
 
 This approach enables ``apples-to-apples'' comparisons, something that has been 
@@ -100,20 +100,30 @@ boxes.
 
 \Cyclus provides a novel representation of entities in the nuclear fuel cycle,
 including facilities, institutions managing those facilities, and regions. While
-some simulators (TODO cite DESAE) have provided a notion of static regional
+some simulators (\TODO{cite DESAE}) have provided a notion of static regional
 effects, \Cyclus allows for both regions and institutions to be first-class
 actors in simulated fuel cycles.
 
-Cyclus has three core agent classes that be subclassed to create a simulation
-archetype: Region, Institution, and Facility. At present, Regions, Institutions,
-and Facilities (RIF) conceptually form a nested structure in a Cyclus simulation,
-i.e., Facilities exist in (i.e., are managed by) Institutions and Institutions
-exist in Regions.
+The basic interaction models for each entity is implemented by a corresponding
+archetype class in \Cyclus, i.e., the \Class{Region} class, \Class{Institution}
+class, and \Class{Facility} class. Archetype developers can then build on the
+provided functionality by subclassing the appropriate class.
 
-Importantly, the RIF separation allows for preferential trading. For example,
-Facilities in the same Institution can preferentially trade with each
-other. Similarly, Regions can be given a location proxy, and the trade between
-Facilities can be informed by their regional proximity.
+\Cyclus implements a Region-Institution-Facility (RIF) relationship through the
+parent-child hierarchy described in \S \ref{sec:interchangeability}, where
+regions are the parents of institutions which are, in turn, the parents of
+facilities. In other words, RIF hierarchies form a directed acyclic graph (DAG),
+with regions as root nodes and facilities as leaf nodes.
+
+Two primary consequences arise from this structure. First, institutions are
+responsible for building and decommissioning facilities. Accordingly, advanced
+logic regarding building and decommissioning can be obtained by subclassing the
+\Class{Institution} interface. Second, the \Class{Facility} class implmenets the
+\Class{Trader} interface, and thus institutions and regions, respectively, can
+adjust the resource flow preferences of their managed facilities. Importantly,
+this novel capability allows for the modeling of preferential regional trading
+of resources (e.g., tariffs) as well as preferential institutional trading
+(e.g., long-term contracts).
 
 \subsection{Discrete Object Tracking}
 % Resources, Materials (note isotope tracking, decay behavior)
