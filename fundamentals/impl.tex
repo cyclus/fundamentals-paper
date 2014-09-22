@@ -90,19 +90,28 @@ simulation engine can be used by both users interested in big-picture policy
 questions as well as users focused on more detailed, technical
 analyses.
 
-
 \subsection{Agent Interchangability}\label{sec:interchangeability}
-% interchangeability due to exchange behavior api
 
-This approach enables ``apples-to-apples'' comparisons, something that has been 
-sorely missing in previous simulators.
+A key compontent of the \Cyclus kernel architecture is the ability for
+implementations of actors in a given simulation to be easily
+interchanged. Critically, this novel functionality enables the comparison
+between agent implementations. For example, a low-physics-fidelity
+implementation of a reactor can be comparied to an implementation with higher
+physics fidelity, allowing an analyst to discern the effect of reactor physical
+fidelity on a given fuel cycle. 
 
-By making the facilities interchangeable, it combinatorically increases the 
-number of scenarios that can be modeled. The user can choose to model just the 
-front end or just the back end of a fuel cycle. 
-
-This is implemented with an API that focuses on treating the agents as black 
-boxes. 
+Interchangability is accomplished by providing APIs that define agent-to-agent
+interaction and agent-to-environment interaction, primarily through the
+\Class{Agent} and \Class{Trader} interfaces. The \Class{Agent} interface
+provides a notion of parent-child hierarchichal relationship, where parents can
+choose to \textit{build} child agents and \textit{decommission} child
+agents. The \Class{Trader} interface allows agent-agent interaction through the
+trading of \Class{Resource}s. Usabe archetypes in a \Cyclus simulation must
+implement the \Class{Agent} interface and may optionally implement the
+\Class{Trader} interface. For example, a \Class{Region} implements only the
+\Class{Agent} interface, whereas a \Class{Facility} implements both the
+\Class{Agent} and \Class{Trader} interface, allowing any \Class{Facility} to
+trade with another \Class{Facility}.
 
 \subsection{Regions, Institutions, and Facilities}
 
