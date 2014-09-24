@@ -159,28 +159,28 @@
   <recipe>
     <name>lwr_fresh_fuel</name>
     <basis>mass</basis>
-    <nuclide> <id>922350000</id><comp>0.04</comp></nuclide>
-    <nuclide><id>922380000</id><comp>0.96</comp></nuclide>
+    <nuclide> <id>922350000</id> <comp>0.04</comp> </nuclide>
+    <nuclide> <id>922380000</id> <comp>0.96</comp> </nuclide>
   </recipe>
 
   <recipe>
     <name>dummy</name>
     <basis>mass</basis>
-    <nuclide> <id>922350000</id><comp>1.0</comp></nuclide>
+    <nuclide> <id>922350000</id> <comp>1.0</comp> </nuclide>
   </recipe>
 
   <recipe>
     <name>depleted_u</name>
     <basis>mass</basis>
-    <nuclide> <id>922350000</id><comp>0.003</comp></nuclide>
-    <nuclide><id>922380000</id><comp>0.997</comp></nuclide>
+    <nuclide> <id>922350000</id> <comp>0.003</comp> </nuclide>
+    <nuclide> <id>922380000</id> <comp>0.997</comp> </nuclide>
   </recipe>
 
   <recipe>
     <name>lwr_mox_fuel</name>
     <basis>mass</basis>
-    <nuclide> <id>922350000</id><comp>0.0027381</comp></nuclide>
-    <nuclide> <id>922380000</id><comp>0.9099619</comp></nuclide>
+    <nuclide> <id>922350000</id> <comp>0.0027381</comp> </nuclide>
+    <nuclide> <id>922380000</id> <comp>0.9099619</comp> </nuclide>
     <nuclide> <id>942380000</id> <comp>0.001746</comp> </nuclide>
     <nuclide> <id>942390000</id> <comp>0.045396</comp> </nuclide>
     <nuclide> <id>942400000</id> <comp>0.020952</comp> </nuclide>
@@ -191,8 +191,8 @@
   <recipe>
     <name>mox_spent_fuel</name>
     <basis>mass</basis>
-    <nuclide> <id>922350000</id><comp>0.0017381</comp></nuclide>
-    <nuclide> <id>922380000</id><comp>0.90</comp></nuclide>
+    <nuclide> <id>922350000</id> <comp>0.0017381</comp> </nuclide>
+    <nuclide> <id>922380000</id> <comp>0.90</comp> </nuclide>
     <nuclide> <id>942380000</id> <comp>0.001746</comp> </nuclide>
     <nuclide> <id>942390000</id> <comp>0.0134</comp> </nuclide>
     <nuclide> <id>942400000</id> <comp>0.006000</comp> </nuclide>
