@@ -1,8 +1,15 @@
 
-all: puseries.eps flow-mod-open.eps flow-closed.eps
+outs += puseries-1.eps
+outs += puseries-n.eps
+outs += flow-mod-open-1.eps
+outs += flow-mod-open-n.eps
+outs += flow-closed-1.eps
+outs += flow-closed-n.eps
 
-puseries.eps: pu.gp closed.pudat mod-open.pudat
-	gnuplot pu.gp
+all: $(outs)
+
+puseries-%.eps: pu-%.gp closed-%.pudat mod-open-%.pudat
+	gnuplot $<
 
 flow-%.eps: %.dot
 	dot -Teps -o $@ $<
