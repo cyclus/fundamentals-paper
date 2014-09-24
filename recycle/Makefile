@@ -1,12 +1,11 @@
 
-outs += puseries-1.eps
-outs += puseries-n.eps
-outs += flow-mod-open-1.eps
-outs += flow-mod-open-n.eps
-outs += flow-closed-1.eps
-outs += flow-closed-n.eps
+infiles = $(wildcard *.xml)
+scenarios = $(wildcard mod-open*.xml)
 
-all: $(outs)
+flowgraphs = $(infiles:%.xml=flow-%.eps)
+pucharts = $(scenarios:mod-open-%.xml=puseries-%.eps)
+
+all: $(flowgraphs) $(pucharts)
 
 puseries-%.eps: pu-%.gp closed-%.pudat mod-open-%.pudat
 	gnuplot $<
