@@ -108,7 +108,7 @@
         <fuel>         
           <incommodity>mox_fuel</incommodity>
           <inrecipe>lwr_mox_fuel</inrecipe>
-          <outcommodity>spent_mox</outcommodity>
+          <outcommodity>spent_fuel</outcommodity>
           <outrecipe>mox_spent_fuel</outrecipe>
         </fuel>
 
