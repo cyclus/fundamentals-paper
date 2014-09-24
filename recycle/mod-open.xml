@@ -145,10 +145,8 @@
         <buildorder> <prototype>repo</prototype> <number>1</number> <date>1</date> </buildorder> 
         <buildorder> <prototype>separations</prototype> <number>1</number> <date>1</date> </buildorder> 
         <buildorder> <prototype>spent_fuel_fab</prototype> <number>1</number> <date>1</date> </buildorder> 
-
         <buildorder> <prototype>depleted_u_source</prototype> <number>1</number> <date>1</date> </buildorder> 
         <buildorder> <prototype>enrichment</prototype> <number>1</number> <date>1</date> </buildorder> 
-        <buildorder> <prototype>lwr_reactor</prototype> <number>10</number> <date>1</date> </buildorder> 
       </DeployInst>
     </config>
   </prototype>
