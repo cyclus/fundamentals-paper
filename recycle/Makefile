@@ -1,5 +1,5 @@
 
-infiles = $(wildcard *.xml)
+infiles = $(wildcard *-1.xml)
 scenarios = $(wildcard mod-open*.xml)
 
 flowgraphs = $(infiles:%.xml=flow-%.eps)

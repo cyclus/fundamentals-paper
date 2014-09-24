@@ -59,7 +59,7 @@
         <outcommod_>pu_stream</outcommod_>
         <wastecommod_>waste</wastecommod_>
         <inrecipe_>dummy</inrecipe_>
-        <inpref_>-1</inpref_>
+        <inpref_>2.0</inpref_>
         <inbuf_size_>1e10</inbuf_size_>
         <outbuf_size_>60000</outbuf_size_>
         <wastebuf_size_>60000</wastebuf_size_>
@@ -150,9 +150,6 @@
         <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>7</date> </buildorder> 
 
         <buildorder> <prototype>repo</prototype> <number>1</number> <date>1</date> </buildorder> 
-        <buildorder> <prototype>separations</prototype> <number>1</number> <date>1</date> </buildorder> 
-        <buildorder> <prototype>spent_fuel_fab</prototype> <number>1</number> <date>1</date> </buildorder> 
-        <buildorder> <prototype>depleted_u_source</prototype> <number>1</number> <date>1</date> </buildorder> 
         <buildorder> <prototype>enrichment</prototype> <number>1</number> <date>1</date> </buildorder> 
       </DeployInst>
     </config>
