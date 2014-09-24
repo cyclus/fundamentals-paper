@@ -1,0 +1,9 @@
+{
+    "puseries":
+        "SELECT ti.Time,SUM(cmp.MassFrac * inv.Quantity) FROM ( Compositions AS cmp INNER JOIN Inventories AS inv ON inv.QualId = cmp.QualId INNER JOIN TimeList AS ti ON (ti.Time >= inv.StartTime AND ti.Time < inv.EndTime)) WHERE ( inv.SimId = cmp.SimId AND ti.SimId = inv.SimId AND cmp.NucId = 942390000) GROUP BY ti.Time,cmp.NucId;",
+    "agentop":
+        "SELECT ag.Prototype,SUM(IFNULL(ag.ExitTime,Info.Duration)-ag.EnterTime) FROM Agents AS ag INNER JOIN Info ON Info.SimId = ag.SimId GROUP BY ag.Prototype;",
+    "moxfrac":
+        "SELECT SUM(CASE WHEN  snd.Prototype='spent_fuel_fab' THEN rs.Quantity ELSE 0.0 END) / SUM(CASE WHEN  snd.Prototype='fresh_fuel_fab' THEN rs.Quantity ELSE 0.0 END) FROM Transactions AS tr INNER JOIN Agents AS rcv ON tr.ReceiverId = rcv.AgentId INNER JOIN Agents AS snd ON tr.SenderId = snd.AgentId INNER JOIN Resources AS rs ON tr.ResourceId = rs.ResourceId WHERE rcv.Prototype = 'lwr_reactor';"
+}
+
