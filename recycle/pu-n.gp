@@ -6,7 +6,8 @@ set title "Plutonium Buildup: many reactors"
 set xlabel "Time (month)"
 set ylabel "Pu (metric tonnes)"
 
-plot "mod-open-n.pudat" using 1:($2/1000) every ::1 title "Modified Open" with linespoints linecolor rgb "#1B9E77", \
+plot "open-n.pudat" using 1:($2/1000) every ::1 title "Open" with linespoints linecolor rgb "#1B9E77", \
+     "mod-open-n.pudat" using 1:($2/1000) every ::1 title "Modified Open" with linespoints linecolor rgb "#7570B3", \
      "closed-n.pudat" using 1:($2/1000) every ::1 title "Closed" with linespoints linecolor rgb "#D95F02"
 
 set output "puseries.eps"
