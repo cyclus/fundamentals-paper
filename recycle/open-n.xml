@@ -1,7 +1,7 @@
 <simulation>
   <schematype>flat</schematype>
   <control>
-    <duration>500</duration>
+    <duration>1500</duration>
     <startmonth>1</startmonth>
     <startyear>2000</startyear>
   </control>
@@ -112,10 +112,10 @@
           <outrecipe>mox_spent_fuel</outrecipe>
         </fuel>
 
-        <processtime>6</processtime>
+        <processtime>18</processtime>
         <nbatches>3</nbatches>
         <batchsize>20000</batchsize>
-        <refueltime>1</refueltime>
+        <refueltime>2</refueltime>
 
         <commodity_production>
           <commodity>lwr_power</commodity>
@@ -142,12 +142,15 @@
     <config>
       <DeployInst>
         <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>1</date> </buildorder> 
-        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>2</date> </buildorder> 
         <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>3</date> </buildorder> 
-        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>4</date> </buildorder> 
         <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>5</date> </buildorder> 
-        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>6</date> </buildorder> 
         <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>7</date> </buildorder> 
+        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>9</date> </buildorder> 
+        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>11</date> </buildorder> 
+        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>13</date> </buildorder> 
+        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>15</date> </buildorder> 
+        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>17</date> </buildorder> 
+        <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>19</date> </buildorder> 
 
         <buildorder> <prototype>repo</prototype> <number>1</number> <date>1</date> </buildorder> 
         <buildorder> <prototype>enrichment</prototype> <number>1</number> <date>1</date> </buildorder> 
