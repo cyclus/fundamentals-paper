@@ -2,7 +2,7 @@
 set output "puseries-1.svg"
 set terminal svg
 
-set title "Plutonium Buildup: many reactors"
+set title "Plutonium Buildup: one reactor"
 set xlabel "Time (month)"
 set ylabel "Pu (metric tonnes)"
 set key center top
