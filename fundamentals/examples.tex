@@ -73,3 +73,55 @@ of models.
 
 Simulations have been run in the past and more are being run. FCO is an 
 example. 
+
+Some simple examples of recycle scenarios in Cyclus follow.  In \Cyclus,
+because material is tracked as discrete objects, single-pass mox recycle is
+easy to implement.  The \em{BatchReactor} archetype from \Cycamore has the
+ability to accept fuel from multiple input sources with non-uniform
+preference.  The dynamic resource exchange makes it easy for a reactor to
+preferrentially accept recycled MOX fuel over fresh UOX fuel.  The material
+flows for this simulation are shown below in figure \ref{fig:flow-modopen}.
+
+\begin{figure}
+\label{fig:flow-modopen}
+\caption{Modified open 1-pass MOX recycle fuel cycle material flows.}
+\begin{center}
+\includegraphics{./images/flow-mod-open-1.eps}
+\end{center}
+\end{figure}
+
+To switch to a fully closed fuel cycle, all that needs to be done is change
+the output commodity for the \em{BatchReactor}'s spent MOX fuel.  All this
+requires is a single word change in the input file resulting in the material
+flows in Figure \ref{fig:flow-closed}.  Note that because the
+\em{BatchReactor} always transmutes fuel into the same composition, the
+nuclide level flows are not realistic for the full, multipass recycle case.
+
+\TODO{mention how fuel fab mixes fissile and filler streams}
+
+\begin{figure}
+\label{fig:flow-closed}
+\caption{Full MOX recycle (multi-pass) fuel cycle material flows.}
+\begin{center}
+\includegraphics{./images/flow-closed-1.eps}
+\end{center}
+\end{figure}
+
+\TODO{discuss Pu buildup charts}
+
+\begin{figure}
+\label{fig:puseries-1}
+\caption{bla}
+\begin{center}
+\includegraphics{./images/puseries-1.eps}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\label{fig:puseries-n}
+\caption{bla}
+\begin{center}
+\includegraphics{./images/puseries-n.eps}
+\end{center}
+\end{figure}
+
