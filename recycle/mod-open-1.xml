@@ -1,7 +1,7 @@
 <simulation>
   <schematype>flat</schematype>
   <control>
-    <duration>500</duration>
+    <duration>1500</duration>
     <startmonth>1</startmonth>
     <startyear>2000</startyear>
   </control>
@@ -112,10 +112,10 @@
           <outrecipe>mox_spent_fuel</outrecipe>
         </fuel>
 
-        <processtime>6</processtime>
+        <processtime>18</processtime>
         <nbatches>3</nbatches>
         <batchsize>20000</batchsize>
-        <refueltime>1</refueltime>
+        <refueltime>2</refueltime>
 
         <commodity_production>
           <commodity>lwr_power</commodity>
