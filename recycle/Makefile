@@ -7,6 +7,9 @@ pucharts = $(scenarios:mod-open-%.xml=puseries-%.eps)
 
 all: $(flowgraphs) $(pucharts)
 
+update:
+	cp *.eps ../fundamentals/images/
+
 puseries-%.eps: pu-%.gp open-%.pudat closed-%.pudat mod-open-%.pudat
 	gnuplot $<
 
@@ -28,6 +31,4 @@ clean:
 	rm -f *.pudat
 	rm -f *.eps *.svg
 
-.PRECIOUS: %.sqlite
-
-.PHONY: all clean
+.PHONY: all clean update

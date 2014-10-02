@@ -1,7 +1,7 @@
 <simulation>
   <schematype>flat</schematype>
   <control>
-    <duration>1500</duration>
+    <duration>1100</duration>
     <startmonth>1</startmonth>
     <startyear>2000</startyear>
   </control>
