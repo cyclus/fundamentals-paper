@@ -71,16 +71,44 @@ of models.
 % reactor models. We could easily use the same demand schedule and enrichment
 % facility parameters and run it again.
 
-Simulations have been run in the past and more are being run. FCO is an 
-example. 
+\TODO{discuss FCO?}
 
-Some simple examples of recycle scenarios in \Cyclus follow.  In \Cyclus,
-because material is tracked as discrete objects, single-pass mox recycle is
-easy to implement.  The \textit{BatchReactor} archetype from \Cycamore has the
-ability to accept fuel from multiple input sources with non-uniform
-preference.  The dynamic resource exchange makes it easy for a reactor to
-preferrentially accept recycled MOX fuel over fresh UOX fuel.  The material
-flows for this simulation are shown below in figure \ref{fig:flow-modopen}.
+Results of some simple recycle scenarios run in \Cyclus follow.  In \Cyclus,
+because material is tracked as discrete objects, single-pass MOX recycle is
+easy to implement.  The simulation initially included one provider of fresh
+UOX fuel, one recycled fuel fabrication facility, one reactor, one separations
+facility, and one repository. The simulation duration was set to 1100 months.
+
+The \Class{BatchReactor} archetype from \Cycamore has the ability to accept
+fuel materials from an arbitrary number of different sources dilineated by
+commodity. Custom, non-uniform preferences can be set for each different fuel
+commodity.  The dynamic resource exchange makes it easy for a reactor to
+preferrentially accept recycled MOX fuel over fresh UOX fuel.  The
+\Class{BatchReactor} was configured to run with a 3 batch core on 18 month cycles and
+a 2-month refueling period.  Adjusting and setting parameters such as these is
+as simple as editing numbers in an input file such as:
+
+\begin{lstlisting}[language=xml]
+  ...
+  <BatchReactor>
+      ...
+      <processtime>18</processtime>
+      <nbatches>3</nbatches>
+      <batchsize>20000</batchsize>
+      <refueltime>2</refueltime>
+      ...
+  </BatchReactor>
+  ...
+\end{lstlisting}
+
+The \Class{Source} and \Class{Sink} modules from \Cycamore were also used as a
+source of fresh, enriched uranium and a repository respectively. A simple
+custom recycled fuel fabrication facility was used.  This fabrication facility
+mixes fissile and fertile streams to match target fuel compositions as closely
+as possible.  The method used for this matching is approximately the same as
+that used by the Cosi fuel cycle simulator \TODO{cite COSI equivalence
+method}. The material flows for this simulation are shown below in figure
+\ref{fig:flow-modopen}.
 
 \begin{figure}[!]
 \label{fig:flow-modopen}
@@ -91,13 +119,26 @@ flows for this simulation are shown below in figure \ref{fig:flow-modopen}.
 \end{figure}
 
 To switch to a fully closed fuel cycle, all that needs to be done is change
-the output commodity for the \textit{BatchReactor}'s spent MOX fuel.  All this
-requires is a single word change in the input file resulting in the material
-flows in Figure \ref{fig:flow-closed}.  Note that because the
-\textit{BatchReactor} always transmutes fuel into the same composition, the
-nuclide level flows are not realistic for the full, multipass recycle case.
+the output commodity for the \Class{BatchReactor}'s spent MOX fuel.  All this
+requires is a one-word change in the input file: 
 
-\TODO{mention how fuel fab mixes fissile and filler streams}
+\begin{lstlisting}[language=diff]
+  --- mod-open-1.xml	2014-10-08 08:31:33.892523173 -0500
+  +++ closed-1.xml	2014-10-08 08:31:33.892523173 -0500
+  @@ -108,7 +108,7 @@
+           <fuel>         
+             <incommodity>mox_fuel</incommodity>
+             <inrecipe>lwr_mox_fuel</inrecipe>
+  -          <outcommodity>spent_mox</outcommodity>
+  +          <outcommodity>spent_fuel</outcommodity>
+             <outrecipe>mox_spent_fuel</outrecipe>
+           </fuel>
+\end{lstlisting}
+
+This results in new the material flows in Figure \ref{fig:flow-closed}. Note
+that because the \Class{BatchReactor} always transmutes fuel into the same
+composition, the nuclide level flows are not very realistic for the full, multipass
+recycle case.
 
 \begin{figure}[!]
 \label{fig:flow-closed}

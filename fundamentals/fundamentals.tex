@@ -20,6 +20,25 @@
 % No more than three keywords, though each can be a phrase
 \keywords{fuel cycle, simulation, software}
 
+
+%%%%%%%%%%%%% stuff for syntax highlighting and code blocks %%%%%%%%%%%%%%%%
+\usepackage{listings} % for highlighted code blocks
+\usepackage{color}
+
+% create listings pkg definition of diff language
+\lstdefinelanguage{diff}{
+  morecomment=[l][\color{blue}]{@@},     % group identifier
+  morecomment=[l][\color{red}]-,         % deleted lines 
+  morecomment=[l][\color{green}]+,       % added lines
+  morecomment=[l][\color{magenta}]{---}, % Diff header lines (must appear after +,-)
+  morecomment=[l][\color{magenta}]{+++},
+}
+\definecolor{bkggray}{rgb}{0.93,0.93,0.93}
+\lstset{
+    backgroundcolor=\color{bkggray}
+}
+%%%%%%%%%%% end stuff for syntax highlighting and code blocks %%%%%%%%%%%%%%
+
 \usepackage{graphicx}
 \usepackage{booktabs} % nice rules for tables
 \usepackage{microtype} % if using PDF
