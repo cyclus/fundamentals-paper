@@ -20,7 +20,7 @@ and provide a robust suite of behaviors for the developer.
 
 <diagram of core, modules, toolkit, etc>
 
-Agent plug-ins utilize the generic core API to interact with one another. 
+Agent plugins utilize the generic core API to interact with one another. 
 Mainly they do this by trading resources. 
 
 <diagram of black box facilities>
@@ -45,17 +45,17 @@ the \Cyclus library via its resource exchange API.
 
 A key innovation that has previously not been implemented in nuclear fuel cycle 
 simulators in the literature is implementing this generic API and modular 
-architecture into a suite of dynamically loadable ``plug-in'' libraries. 
+architecture into a suite of dynamically loadable ``plugin'' libraries.
 This is implemented largely through a clean API and a modern build system.
 
 Dynamically-loadable libraries are the primary mechanism for extending \Cyclus' capability. 
 This approach provides encapsulation: the core of the code operates
-completely independently from the individual libraries. Thus, any
+completely independently from the individual plugin libraries. Thus, any
 customization or extension is implemented only in the loadable
 library. 
 
 This approach allows efficient, targeted contribution to the ecosystem of libraries.  The 
-scientist-developer can therefore focus on generating a model within their 
+scientist-developer can focus on generating a model within their
 sphere of expertise, while relying on the model contributions of others to fill 
 in the other technologies.  This strategy also allows individual developers to
 explore different levels of complexity within their archetypes, including
@@ -77,9 +77,9 @@ closed collaborations\cite{wilson_cyclus:_2012}.}
 \label{fig:modifiedopen}
 \end{figure}
 
-In particular, since the clean plug-in architecture loads libraries without any
+In particular, since the clean plugin architecture loads libraries without any
 modifications to the \Cyclus kernel, closed-source archetypes can be used with
-the simulator alongside open-source archetypes. This architecture therefore
+the simulator alongside open-source archetypes. This architecture
 allows closed-source libraries (e.g., those representing sensitive nuclear
 processes and subject to export control) to be developed and licensed privately.
 
@@ -96,7 +96,7 @@ A key compontent of the \Cyclus kernel architecture is the ability for
 implementations of actors in a given simulation to be easily
 interchanged. Critically, this novel functionality enables the comparison
 between agent implementations. For example, a low-physics-fidelity
-implementation of a reactor can be comparied to an implementation with higher
+implementation of a reactor can be compared to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
 fidelity on a given fuel cycle. 
 
