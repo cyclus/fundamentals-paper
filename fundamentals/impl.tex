@@ -186,21 +186,28 @@ modes likely to be added in future releases:
 
 \begin{itemize}
 
-    \item "manual" (currently implemented) is the default mode just described where agents decay
-        materials as needed.
+    \item "manual" (currently implemented) is the default mode just described
+        where agents decay materials as needed.
 
-    \item "never" (currently implemented) globally turns off all decay.  Materials' decay function
-        does nothing.
+    \item "never" (currently implemented) globally turns off all decay.
+        Materials' decay function does nothing.
 
     \item "periodic" (future) automatically decays all materials in a
         simulation with some fixed frequency.
 
     \item "lazy" (future) decays any material whenever its composition is
-        viewed (e.g. an agent queries information about a material's
+        viewed (e.g. when an agent queries information about a material's
         $^{239}Pu$ content).
 
 \end{itemize}
 
+In order to avoid excess decay calculations, when a material's decay function
+is invoked, the material checks to see if it contains any nuclides with decay
+constants that are significant with respect to the time delta for the current
+decay operation.  If all the decay constants are not significant, no decay
+calculation is performed and the material remains unchanged.  This error does
+not accumulate because the next time the material's decay function is invoked,
+the time delta will be larger. \TODO{want more detail on this decay shortcut?}
 \TODO{describe decay algorithm and how it might be improved}.
 
 \Cyclus has no notion of "tracked" nuclides.  In cyclus, a  material's
