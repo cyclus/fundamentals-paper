@@ -142,7 +142,18 @@ this novel capability allows for the modeling of preferential regional trading
 of resources (e.g., tariffs) as well as preferential institutional trading
 (e.g., long-term contracts).
 
-\subsection{Discrete Object Tracking}
+Although concept of the RIF hierarchy is provided, the \Cyclus kernel is
+really designed to handle hierarchies of arbitrary depth.  It is just as easy
+to run a simulation without regions and institutions (i.e.  only facilities)
+or a simulation having archetypes that are the parents' of regions.  By
+convention, institutions are mainly responsible for facility deployment, but
+any archetype can have access to \Cyclus' agent deployment mechanism.  It easy
+to implement agents that deploy copies of themselves, or that schedule their
+own decommissioning.  Because regions, institutions, and facilities are all
+just agents, they can all be implemented to excersize the full set of features
+offerred to by the \Cyclus kernel.
+
+\subsection{Resources and Materials}
 % Resources, Materials (note isotope tracking, decay behavior)
 
 TODO: add blurb about discrete agent/facility tracking.
@@ -164,8 +175,39 @@ All operations performed on every resource object (splitting, combining,
 decay, etc.) are tracked in detail.  This information includes the creating
 agent for when resources are newly created and introduced into the simulation.
 The parentage of each resource is also tracked. This makes it possible to
-follow the travel history of resource objects as they are transferred between
-agents.
+follow the travel history of discrete resource objects as they are transferred
+between agents.
+
+The \Cyclus kernel has built-in experimental support for decay calculations.
+Materials "remember" the time since their last decay and agents are free to
+invoke the decay function on them as desired to decay them to the current
+simulation time.  Cyclus can currently operate in 2 decay modes with 2 other
+modes likely to be added in future releases:
+
+\begin{itemize}
+
+    \item "manual" (currently implemented) is the default mode just described where agents decay
+        materials as needed.
+
+    \item "never" (currently implemented) globally turns off all decay.  Materials' decay function
+        does nothing.
+
+    \item "periodic" (future) automatically decays all materials in a
+        simulation with some fixed frequency.
+
+    \item "lazy" (future) decays any material whenever its composition is
+        viewed (e.g. an agent queries information about a material's
+        $^{239}Pu$ content).
+
+\end{itemize}
+
+\TODO{describe decay algorithm and how it might be improved}.
+
+\Cyclus has no notion of "tracked" nuclides.  In cyclus, a  material's
+composition represents an arbitrarily large list (potentially thousands) of
+nuclides.  Agents are free to treat nuclides present in materials any way they
+please - including ignoring them.  It is the responsibility of archetype
+developers to choose how to handle potentially full-fidelity compositions.
 
 In large simulations there may be many material objects changing frequently.
 Material decay can also contribute significantly to such changes.  In order to
