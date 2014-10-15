@@ -13,7 +13,6 @@
 % What should the reader expect as conclusion?
 
 
-
 As nuclear power expands both domestically and internationally, nuclear fuel cycle
 performance analysis on technical, economic, political, and environmental axes increases 
 in importance. Appropriate nuclear fuel cycle analysis requires calculation of myriad physical, nuclear, 
@@ -22,9 +21,16 @@ therefore couple complex systems such as nuclear process physics,
 facility deployment, and material routing. However, most nuclear fuel cycle 
 simulators have not incorporated modern insights in simulation science and 
 software architecture that can enable more efficient, accurate, robust, and 
-validated analysis. The Cyclus Nuclear Fuel Cycle Simulator Framework and 
-its modeling ecosystem answer the need for a next generation nuclear fuel cycle 
-simulator. 
+validated analysis. 
+
+The \Cyclus Nuclear Fuel Cycle Simulator framework and 
+its modeling ecosystem answer this need for a next generation nuclear fuel cycle 
+simulator. Dynamic simulation of nuclear fuel cycles with discrete agents 
+and up to isotopic resolution support 
+levels of detail appropriate for a varied community of analysts
+interested in a range of analysis types. Additionally \Cyclus employs an 
+open development process that supports user access and 
+encourages developer extensions.
 
 Historically, nuclear fuel cycle simulators have estimated 
 nuclear fuel cycle performance using software 
@@ -62,27 +68,33 @@ in nuclear fuel cycle analysis can be better addressed.
 % Previous attempts by this group (GENIUS v1/v2)
 % note NGFCS
 
-Simulators drive \gls{RDD} by calculating metrics that can be compared among fuel 
-cycles. Examples include measures of economic feasibility (i.e., \gls{LCOE}), 
-proliferation risk (i.e., total separated Pu), and environmental performance 
-(i.e., waste volume). 
+Nuclear fuel cycle simulators can drive \gls{RDD} by calculating `metrics', 
+quantitative measures of performance that 
+can be compared among fuel cycle options. The feasibility of technology 
+strategies, dynamics of transitions between fuel cycles, and many other 
+measures of performance can be expressed in terms of these metrics. For example, 
+economic feasibility is often measured in \gls{LCOE} while proliferation risk 
+can be proportional to total kilograms of separated Pu, and environmental 
+performance might be measured in spent fuel volume, toxicity, or mined uranium.
 
 Methods for calculating those metrics vary among simulators. Some model the 
-fuel cycle at static equillibrium, while others capture fuel cycle dynamics.  
-Similarly, while some simulators discretely model material and and facilities, 
-others track streams of materials and fleets of facilities in an aggregated 
+system of facilities, economics, and materials at static equillibrium, while 
+others capture its dynamics.  
+Similarly, while some simulators discretely model material and facilities, 
+others treat materials in streams and facilities in fleets, in an aggregated 
 fashion. Depending on their intended use, simulators often overspecialize, 
-modeling a single aspect of the fuel cycle in great detail. For this reason, 
-some simulators specialize in economics, material isotopics, or transmutation 
-detail, where others do not. 
+modeling a single aspect of the fuel cycle in great detail while neglecting 
+others. A simulator created for policy modeling might have excellent 
+capability in economics while material isotopics and transmutation detail are 
+neglected. 
 
 Historically, the national laboratories have driven development and regulated 
 the use of their own tools such as \gls{VISION}\cite{jacobson_verifiable_2010}, 
 \gls{DANESS}\cite{van_den_durpel_daness_2009}, 
 \gls{DYMOND}\cite{modeling_yacout_2005}, and 
-\gls{NFCSim}\cite{schneider_nfcsim:_2005}, while universities and industry have 
-simultaneously developed tools of their own as well, such as 
-\gls{CAFCA}\cite{guerin_benchmark_2006} and \gls{COSI}\cite{cosi}.
+\gls{NFCSim}\cite{schneider_nfcsim:_2005}. With limited access to those tools, 
+universities and industry have simultaneously developed tools of their own, 
+such as \gls{CAFCA}\cite{guerin_benchmark_2006} and \gls{COSI}\cite{cosi}.
 
 The \Cyclus simulator arose out of the 
 \gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code. That software 
