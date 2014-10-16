@@ -128,20 +128,13 @@ simulators.
 
 In addition to providing the fundamental features expected in fuel cycle 
 simulators, the \Cyclus paradigm enables major capabilities that previous 
-simulators lack. First, its \emph{modular and open architecture}  facilitates 
+simulators lack. First, its its \emph{modular and open architecture}  facilitates 
 targeted contribution and collaboration within the nuclear fuel cycle analysis 
 community.  Additionally, \emph{agent interchangeability} facilitates direct 
 comparison of modeling methodologies. Finally, the flexibility and generality 
 of its \emph{\gls{ABM}} paradigm and \emph{discrete, object-oriented approach} 
 emphasizes applicability of the \Cyclus tool across a broader range of 
-applications than other simulators. 
-
-Modeling the evolution of a physics-dependent, international nuclear fuel supply
-chain is a multiscale problem. Tools have either focused on macro effects, e.g., the fleet-level
-stocks and flows of commodities, or micro effects, e.g., the used fuel
-composition fast reactor fuel. Accordingly, each focus has driven the
-development of these tools, rendering the task of answering questions between
-the macro and micro levels either impossible or difficult and time consuming. 
+fidelities, scales, and applications than other simulators. 
 
 \Cyclus separates the problem of modeling a
 physics-dependent supply chain into a simulation kernel and archetypes that
@@ -152,6 +145,15 @@ in a given field can utilize their time and resources in modeling a specific
 process associated with the nuclear fuel cycle (e.g., reprocessing and advanced
 fuel fabrication), rather than also modeling the entirety of the cycle.
 
+Furthermore, modeling the evolution of a physics-dependent, international nuclear fuel supply
+chain is a multiscale problem, but existing tools are not sufficiently 
+multi-scale. Tools have either focused on macro effects, e.g., the fleet-level
+stocks and flows of commodities, or micro effects, e.g., the used fuel
+composition fast reactor fuel. Accordingly, each focus has driven the
+development of these tools, rendering the task of answering questions between
+the macro and micro levels either impossible or difficult and time consuming. 
+However, an extensible architecture and discrete object tracking allow 
+the creation and exchange ability of custom \Cyclus archetypes at any level of fidelity.
 
 \subsubsection{Modular Architecture}
 % Motivation for encapsulated plug-in architecture 
@@ -177,7 +179,8 @@ developed and used interchangeably to analyze the effect of each on a
 simulation's output.
 
 We expect that there are a number of types of users and developers who will 
-interact with the \Cyclus framework. Those people fall into a number of 
+interact with the \Cyclus framework. National laboratory researchers,
+graduate student and faculty researchers  Those people fall into a number of 
 categories. All such people benefit from the modular architecture. 
 
 \subsubsection{Agent-based Paradigm}
