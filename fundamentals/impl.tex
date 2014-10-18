@@ -15,13 +15,15 @@ deployment, regional and institutional hierarchies.
 Agent-based modeling is inherently object oriented. 
 
 The core of the simulator creates a set of key classes on which agent plugins 
-are based. In addtion, a set of key tools are also provided, to enrich the API 
+are based. In addtion, a set of key tools are also provided to enrich the API 
 and provide a robust suite of behaviors for the developer.
 
 <diagram of core, modules, toolkit, etc>
 
-Agent plugins utilize the generic core API to interact with one another. 
-Mainly they do this by trading resources. 
+Agent plugins utilize the generic core API to interact with one another.  For 
+example, agents rely on the dynamic loading and paradigm for clean plugin 
+behavior at the start of the simulation. They also use the resource exchange 
+paradigm \gls{API} for trading resources with one another. 
 
 <diagram of black box facilities>
 
