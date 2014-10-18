@@ -5,9 +5,32 @@
 % Equations
 % Figures
 
-A modular, agent-based is an ideal approach for solving complicated
+A modular, agent-based is an ideal approach for solving complex, coupled,
 physics-dependent supply chain problems involving material routing, facility
-deployment, regional and institutional hierarchies.
+deployment, regional and institutional hierarchies. Additionally, the choice to 
+build \Cyclus on open source libraries in modern programming languages enables 
+both remote and mutiprocess execution on a number of platforms.
+
+\subsection{Cluster-Ready Software}
+
+Many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits 
+performance on resource computing infrastructures. This limitation severely 
+increases the wall-clock time necessary to conduct parameterized sensitivity 
+analyses and other multi-simulation studies. 
+
+\Cyclus, on the other hand, is primarily written in \texttt{C++} and relies on 
+libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms. 
+Furthermore, the core infrastructure and related archetypes are free and 
+open-source, BSD-3-clause licsened. No part of \Cyclus is proprietary or based 
+on \gls{COTS}, Windows-based software. Accordingly, it can be easily deployed 
+on large compute systems, such as high-throughput computing (HTC) systems.
+
+Cyclopts (\TODO{cite}), a proof of principle design and implementation of such a
+system, uses UW-Madison's HTCondor HTC infrastructure to perform sensitivity
+studies on \Cyclus' resource exchange optimization solvers. To date, it has been
+used run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
+the \Cyclus library via its resource exchange API.
+
 
 \subsection{Framework Structure}
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
@@ -27,28 +50,15 @@ paradigm \gls{API} for trading resources with one another.
 
 <diagram of black box facilities>
 
-\subsection{Cluster-Ready Software}
-
-\Cyclus is primarily written in \texttt{C++}, and support is currently provided
-for Linux-based (including Ubuntu and OSX) platforms. Furthermore, the core
-infrastructure and related archetypes are free and open-source, BSD-3-clause
-licsened. No part of \Cyclus is proprietary or based on commercial, off the
-shelf (COTS) software. Accordingly, it can be easily deployed on large compute
-systems, such as high-throughput computing (HTC) systems.
-
-Cyclopts (\TODO{cite}), a proof of principle design and implementation of such a
-system, uses UW-Madison's HTCondor HTC infrastructure to perform sensitivity
-studies on \Cyclus' resource exchange optimization solvers. To date, it has been
-used run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
-the \Cyclus library via its resource exchange API.
-
 \subsection{Dynamically Loadable Libraries}
 % (diagram)
 
-A key innovation that has previously not been implemented in nuclear fuel cycle 
-simulators in the literature is implementing this generic API and modular 
-architecture into a suite of dynamically loadable ``plugin'' libraries.
-This is implemented largely through a clean API and a modern build system.
+A key innovation in \Cyclus is implementing this generic API and modular 
+architecture into a suite of dynamically loadable ``plugin'' libraries.  Though 
+common in modern software architecture, such a ``plugin'' pattern has 
+previously not been implemented in nuclear fuel cycle simulators in the 
+literature.  In \Cyclus, this is made possible primarily by the clean, 
+object-oriented \gls{API} and modern build system already described.
 
 Dynamically-loadable libraries are the primary mechanism for extending \Cyclus' capability. 
 This approach provides encapsulation: the core of the code operates
@@ -56,10 +66,11 @@ completely independently from the individual plugin libraries. Thus, any
 customization or extension is implemented only in the loadable
 library. 
 
-This approach allows efficient, targeted contribution to the ecosystem of libraries.  The 
-scientist-developer can focus on generating a model within their
-sphere of expertise, while relying on the model contributions of others to fill 
-in the other technologies.  This strategy also allows individual developers to
+This approach encourages efficient, targeted contribution to the ecosystem of 
+archetype libraries.  The 
+scientist-developer can focus on generating an archetype model within their
+sphere of expertise, while relying on the contributions of others to fill 
+in the other technologies in the simulation.  This strategy also allows individual developers to
 explore different levels of complexity within their archetypes, including
 wrapping other simulation tools as loadable libraries within the \Cyclus
 framework.
@@ -90,12 +101,13 @@ another goal of \Cyclus: ubiquity amongst its potential user base. By
 engineering \Cyclus to easily handle varying levels of complexity, a single
 simulation engine can be used by both users interested in big-picture policy
 questions as well as users focused on more detailed, technical
-analyses.
+analyses. They merely choose their preferred level of fidelity from amongst 
+available libraries. 
 
 \subsection{Agent Interchangability}\label{sec:interchangeability}
 
-A key compontent of the \Cyclus kernel architecture is the ability for
-implementations of actors in a given simulation to be easily
+Due to this ``plugin'' architecture
+implementations of actors in a given simulation can be easily
 interchanged. Critically, this novel functionality enables the comparison
 between agent implementations. For example, a low-physics-fidelity
 implementation of a reactor can be compared to an implementation with higher
@@ -117,18 +129,19 @@ trade with another \Class{Facility}.
 
 \subsection{Regions, Institutions, and Facilities}
 
-\Cyclus provides a novel representation of entities in the nuclear fuel cycle,
+\Cyclus provides a novel representation of entities in the nuclear fuel cycle 
+which mimics the reality in international nuclear power production
 including facilities, institutions managing those facilities, and regions. While
 some simulators (\TODO{cite DESAE}) have provided a notion of static regional
 effects, \Cyclus allows for both regions and institutions to be first-class
 actors in simulated fuel cycles.
 
-The basic interaction models for each entity is implemented by a corresponding
+The fundamental interactions for each entity are implemented in a corresponding
 archetype class in \Cyclus, i.e., the \Class{Region} class, \Class{Institution}
 class, and \Class{Facility} class. Archetype developers can then build on the
-provided functionality by subclassing the appropriate class.
+provided functionality by inheriting from the appropriate class.
 
-\Cyclus implements a Region-Institution-Facility (RIF) relationship through the
+\Cyclus implements a \gls{RIF} relationship through the
 parent-child hierarchy described in \S \ref{sec:interchangeability}, where
 regions are the parents of institutions which are, in turn, the parents of
 facilities. In other words, RIF hierarchies form a directed acyclic graph (DAG),
@@ -178,10 +191,11 @@ decay, etc.) are tracked in detail.  This information includes the creating
 agent for when resources are newly created and introduced into the simulation.
 The parentage of each resource is also tracked. This makes it possible to
 follow the travel history of discrete resource objects as they are transferred
-between agents.
+between agents and powerfully impacts the ability to model 
+non-proliferation-related simulation goals. 
 
 The \Cyclus kernel has built-in experimental support for decay calculations.
-Materials "remember" the time since their last decay and agents are free to
+Materials ``remember'' the time since their last decay and agents are free to
 invoke the decay function on them as desired to decay them to the current
 simulation time.  Cyclus can currently operate in 2 decay modes with 2 other
 modes likely to be added in future releases:
@@ -218,7 +232,8 @@ nuclides.  Agents are free to treat nuclides present in materials any way they
 please - including ignoring them.  It is the responsibility of archetype
 developers to choose how to handle potentially full-fidelity compositions.
 
-In large simulations there may be many material objects changing frequently.
+In large simulations there may be many material objects changing frequently, on 
+the day or month timescale.
 Material decay can also contribute significantly to such changes.  In order to
 help avoid unnecessary runtime performance and database space impacts,
 compositions in Cyclus have some special features.  Compositions in Cyclus are
