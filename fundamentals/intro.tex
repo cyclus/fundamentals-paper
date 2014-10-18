@@ -164,17 +164,18 @@ the creation and exchange ability of custom \Cyclus archetypes at any level of f
 The architecture within the \Cyclus tool allows developers 
 to define nuclear fuel cycle agents and processes independent of the simulation 
 logic. This `encapsulated,' `plug-in'
-design choice achieves two things. First, analysts across 
-research institutions can take advantage of the simulation logic \gls{API} and 
-archetype ecosystem when they apply \Cyclus to their specific problem. This 
-extensibility, magnified by an open source development process, frees the 
-community of users to contribute desired features independen from the team of 
-\Cyclus core developers. This mend-and-extend 
-paradigm, common in modern software development, reduces maintenance overhead 
-and improves code robustness \cite{citation_needed}. Finally, the researcher 
-can therefore focus on creating or customizing 
-nuclear facility, institution, resource, and toolkit models within their 
-specific area of technical expertise. 
+design choice achieves two things. 
+
+First, analysts across research institutions can take advantage of the 
+simulation logic \gls{API} and archetype ecosystem when they apply \Cyclus to 
+their specific problem. This extensibility, magnified by an open source 
+development process, frees the community of users to contribute desired 
+features independen from the team of \Cyclus core developers. This 
+mend-and-extend paradigm, common in modern software development, reduces 
+maintenance overhead and improves code robustness \cite{citation_needed}. 
+Finally, the researcher can therefore focus on creating or customizing nuclear 
+facility, institution, resource, and toolkit models within their specific area 
+of technical expertise. 
 
 % we could use a specific example of Cosi's equivalence method below
 Second, because \Cyclus uses a modular archetype approach, comparing two 
@@ -201,19 +202,22 @@ true to reality, and it takes advantage of modern computing resources.
 Furthermore, agent-based modeling provides an analyst a more natural 
 perspective from which to model a given problem. In the nuclear fuel cycle 
 context for example, an analyst can design an agent with reactor-related logic 
-and a separate agent with fuel fabrication-related logic. In the \Cyclus 
-agent-based context, defining the behavior of both agents according to the 
+and a separate agent with fuel fabrication-related logic. 
+ Defining the behavior of both agents according to the 
 \gls{API} contract is sufficient for them to interact with one another as 
-bonafide actors in the simulation. The two archetype libraries, therefore, need 
+bonafide actors in the simulation.  The two archetype libraries, therefore, need 
 not have any shared knowledge of one another for them to be building blocks in 
 the same simulation.
 
-System dynamics popular approach for modeling nuclear fuel cycles in current
-tools \cite{VISION,CAFCA}. It has been shown in the literature
-\cite{macal_agent-based_2010} that any system dynamics model can be translated
-into an agent-based model. Furthermore, it has been shown that agent-based
-techniques can provide a richer model than can system dynamics. Formally, the
+System dynamics is a popular approach for modeling nuclear fuel cycles in current
+tools \cite{VISION,CAFCA}. However, it has been shown in systems analysis literature
+\cite{macal_agent-based_2010} that, formally, the
 set of system dynamics models is a strict subset of agent-based models.
+That is, any system dynamics model can be translated
+into an agent-based model. Furthermore, agent-based
+techniques can provide a richer model than can system dynamics. To enable the 
+broadest range of simulations in a generic fashion, \gls{ABM} is therefore 
+superior to system dynamics. 
 
 \subsubsection{Discrete Objects}
 % enables more realistic models and metrics
@@ -228,7 +232,7 @@ microscopic extreme, the model is capable of representing arbitrarily small
 material objects at isotopic resolution. In this way, the \Cyclus simulator is 
 applicable across the full range of modeling extremes. 
 
-This generality specifically permits the use cases that cannot be achieved with 
+This generality specifically permits many use cases that cannot be achieved with 
 fleet-based models. That is, some questions require resolution at the level of 
 individual facilities and individual materials.  Since fleet-based, 
 lumped-material models do not distinguish between discrete facility entities or 
