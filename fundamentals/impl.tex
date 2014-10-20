@@ -173,7 +173,7 @@ offered by the \Cyclus kernel.
 
 TODO: add blurb about discrete agent/facility tracking.
 
-In Cyclus, agents can transfer discrete resource objects between each other.
+In \Cyclus, agents can transfer discrete resource objects between each other.
 Cyclus supports two types of resources:
 
 \begin{itemize}
@@ -197,7 +197,7 @@ non-proliferation-related simulation goals.
 The \Cyclus kernel has built-in experimental support for decay calculations.
 Materials ``remember'' the time since their last decay and agents are free to
 invoke the decay function on them as desired to decay them to the current
-simulation time.  Cyclus can currently operate in 2 decay modes with 2 other
+simulation time. \Cyclus can currently operate in 2 decay modes with 2 other
 modes likely to be added in future releases:
 
 \begin{itemize}
@@ -236,7 +236,7 @@ In large simulations there may be many material objects changing frequently, on
 the day or month timescale.
 Material decay can also contribute significantly to such changes.  In order to
 help avoid unnecessary runtime performance and database space impacts,
-compositions in Cyclus have some special features.  Compositions in Cyclus are
+compositions in \Cyclus have some special features.  Compositions in \Cyclus are
 immutable.  This immutability allows multiple material objects to all hold
 references to the same composition object safely.  When operations are
 performed on a material that don't change the composition, any new resulting
@@ -306,8 +306,22 @@ assays.
 \subsection{Cycamore}
 % base modules
 
-Cycamore contains a number of useful facility models that are a mere base-set.
-Additional modules are needed for interesting fuel cycle simulation. However,
-simple, once-through fuel cycles can be generated with Cycamore and Cyclus alone.
+\Cycamore \cite{carlsen_cycamore_2014} contains a number of useful facility, 
+region, and institution archetypes. 
+As future contributions are vetted, the capabilities in \Cycamore may grow. 
+However, the current \Cycamore release provides only 
+basic functionality, enabling simple fuel cycle analyses. 
+\Cycamore is provided so that users can get started quickly with simple 
+analyses.
 
+Figure \ref{fig:cyc_sim} shows an example of a simple, once-through fuel cycle 
+that can be generated with \Cycamore and \Cyclus alone.
+
+\begin{figure}[htbp!]
+\begin{center}
 <diagram of a possible Cycamore-only simulation>
+\end{center}
+\caption{A simple once-through fuel cycle possible with only \Cycamore and 
+\Cyclus.}
+\label{fig:<+label+>}
+\end{figure}<++>
