@@ -23,19 +23,19 @@ libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms.
 Furthermore, the core infrastructure and related archetypes are free and 
 open-source, BSD-3-clause licsened. No part of \Cyclus is proprietary or based 
 on \gls{COTS}, Windows-based software. Accordingly, it can be easily deployed 
-on large compute systems, such as high-throughput computing (HTC) systems.
+on large compute systems, such as \acrlong{HTC} systems.
 
 Cyclopts (\TODO{cite}), a proof of principle design and implementation of such a
 system, uses UW-Madison's HTCondor HTC infrastructure to perform sensitivity
 studies on \Cyclus' resource exchange optimization solvers. To date, it has been
 used run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
-the \Cyclus library via its resource exchange API.
+the \Cyclus library via its resource exchange \gls{API}.
 
 
 \subsection{Framework Structure}
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
 
-Agent-based modeling is inherently object oriented. 
+Agent-based modeling is inherently object oriented. Since agents are  
 
 The core of the simulator creates a set of key classes on which agent plugins 
 are based. In addtion, a set of key tools are also provided to enrich the API 
@@ -57,7 +57,7 @@ A key innovation in \Cyclus is implementing this generic API and modular
 architecture into a suite of dynamically loadable ``plugin'' libraries.  Though 
 common in modern software architecture, such a ``plugin'' pattern has 
 previously not been implemented in nuclear fuel cycle simulators in the 
-literature.  In \Cyclus, this is made possible primarily by the clean, 
+literature.  In \Cyclus, this implementation maximizes the potential of the clean, 
 object-oriented \gls{API} and modern build system already described.
 
 Dynamically-loadable libraries are the primary mechanism for extending \Cyclus' capability. 
@@ -116,10 +116,26 @@ fidelity on a given fuel cycle.
 
 Interchangability is accomplished by providing APIs that define agent-to-agent
 interaction and agent-to-environment interaction, primarily through the
-\Class{Agent} and \Class{Trader} interfaces. The \Class{Agent} interface
+\Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows 
+the ``inheritance'' structure of the \Class{Agent} class in a \gls{UML} diagram 
+format. It shows how the \Class{Agent} interface
 provides a notion of parent-child hierarchichal relationship, where parents can
 choose to \textit{build} child agents and \textit{decommission} child
-agents. The \Class{Trader} interface allows agent-agent interaction through the
+agents. For the archetype developer, this interface provides enormous power, 
+very simply. The \gls{API} exposes \Class{Agent} helpful functionality for 
+interacting with the \Cyclus simulation kernel while abstracting away unnecessary 
+detail.
+
+\begin{figure}[htbp!]
+\begin{center}
+\includegraphics{agent_uml}
+\end{center}
+\caption{The inheritance structure in the \Class{Agent} class abstracts away 
+unneccesary details while exposing powerful functionality.}
+\label{fig:agent_uml}
+\end{figure}
+
+In a similar fasion, the \Class{Trader} interface allows agent-agent interaction through the
 trading of \Class{Resource}s. Usabe archetypes in a \Cyclus simulation must
 implement the \Class{Agent} interface and may optionally implement the
 \Class{Trader} interface. For example, a \Class{Region} implements only the
@@ -295,10 +311,10 @@ $\phi_i$, and costs $c_i$.
 
 The \Cyclus toolkit provides two useful modules for querying \Class{Material}
 objects regarding physical parameters. First the \Class{MatQuery} module
-provides a basic querying API, including the atom and mass fractions of
+provides a basic querying \gls{API}, including the atom and mass fractions of
 nuclides, the number of moles of a nuclide in a material, and also the amount of
 aggregate nuclides, i.e., a \Class{Composition}, in a material. The
-\Class{enrichment} module provides an API for determining enrichment-related
+\Class{enrichment} module provides an \gls{API} for determining enrichment-related
 parameters of a material, including the separative work units (SWU) and natural
 uranium required to enrich a material given provided feed, product, and tails
 assays.
