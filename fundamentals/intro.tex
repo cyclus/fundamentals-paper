@@ -77,20 +77,19 @@ economic feasibility is often measured in \gls{LCOE} while proliferation risk
 can be proportional to total kilograms of separated Pu, and environmental 
 performance might be measured in spent fuel volume, toxicity, or mined uranium.
 
-Historically, researchers create new nuclear fuel cycle simulation tools when 
-existing tools are not available or not sufficiently general to calculate their 
-metrics of interest with their method of choice.
-
 Historically, the national laboratories have driven development and regulated 
 the use of their own tools such as \gls{VISION}\cite{jacobson_verifiable_2010}, 
 \gls{DANESS}\cite{van_den_durpel_daness_2009}, 
 \gls{DYMOND}\cite{modeling_yacout_2005}, and 
-\gls{NFCSim}\cite{schneider_nfcsim:_2005}. With limited access to those tools 
-and a need to customize them for research purposes, 
-universities and private industry researchers ``reinvent the wheel'' by 
-developing tools of their own from scratch and tailored to their own needs (e.g., 
-\gls{CAFCA}\cite{guerin_benchmark_2006} and \gls{COSI}\cite{cosi} 
-respectively). 
+\gls{NFCSim}\cite{schneider_nfcsim:_2005}. 
+Outside of the national laboratories, researchers create new nuclear fuel cycle 
+simulation tools when existing tools are not available or not sufficiently 
+general to calculate their metrics of interest with their method of choice.  
+With limited access to the national laboratory tools and a need to customize 
+them for research purposes, universities and private industry researchers 
+``reinvent the wheel'' by developing tools of their own from scratch and 
+tailored to their own needs (e.g., \gls{CAFCA}\cite{guerin_benchmark_2006} and 
+\gls{COSI}\cite{cosi} respectively). 
 
 This cycle has resulted in a proliferation of specialized
 fuel cycle simulators for the calculation of fuel cycle metrics.  Accordingly, methods 
@@ -105,20 +104,20 @@ others. A simulator created for policy modeling might have excellent
 capability in economics while material isotopics and transmutation detail are 
 neglected.
 
-Accordingly, the \gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code
-was created to provide and extensible interface to facilitate collaboration. 
-The \gls{GENIUSv2} project relied on lessons-learned from an \gls{LDRD} project 
-at \gls{INL}, 
-\gls{GENIUSv1}\cite{dunzik-gougar_global_2007,jain_transitioning_2006}.
-
-The \Cyclus project, in turn, improved upon the \gls{GENIUSv2} project by 
-implementing increased modularity and encapsulation.
-The result is  a dynamic simulator that treats both materials and facilities 
-discretely, with an architecture that permits simulations with multiple and 
-variable levels of fidelity. Its agent-based framework for simulation and 
-tracking of transformation and trade of resources between facilities within 
-institutions and regions greatly improves upon the existing field of fuel cycle 
-simulators.
+The \Cyclus simulator emerged from a line of tools seeking to break that cycle.  
+An \gls{LDRD} project begun at \gls{INL}, 
+\gls{GENIUSv1}\cite{dunzik-gougar_global_2007,jain_transitioning_2006} sought 
+to provide generic regional capability.  Based on lessons learned from 
+\gls{GENIUSv1}, the 
+\gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code sought to 
+provide more generality and an extensible interface to facilitate 
+collaboration.  The \Cyclus project, in turn, improved upon the \gls{GENIUSv2} 
+project by implementing increased modularity and encapsulation.  The result is  
+a dynamic simulator that treats both materials and facilities discretely, with 
+an architecture that permits simulations with multiple and variable levels of 
+fidelity. Its agent-based framework for simulation and tracking of 
+transformation and trade of resources between facilities within institutions 
+and regions greatly improves upon the existing field of fuel cycle simulators.
 
 \subsection{Motivation}
 % Gently reiterate the above need. 
