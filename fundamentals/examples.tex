@@ -1,4 +1,4 @@
-\section{Examples}
+\section{Demonstration}
 % Organize this section according to major topics
 % give each topic a section heading in boldface.
 % try to cover the major common points :
@@ -30,6 +30,14 @@
 % What were the results?
 % How were the measurements made and characterized?
 
+The early success of the \Cyclus simulator can be measured in many ways. 
+The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
+model and of fundamental simulation capability. Nascent, promising growth of the \Cyclus 
+ecosystem at multiple institutions indicates that a fuel cycle simulator can 
+advance in a community-drive development paradigm. Additionally, simple 
+simulations as well as more complex recycling simulations demonstrate that 
+\Cyclus posesses fundamental fuel cycle simulation capabilities.
+
 \subsection{Ecosystem}
 % Cycamore library
 % Cyder?
@@ -44,7 +52,8 @@ repository of additional modules,
 \item isotopic composition data,
 \item historical facility deployment data,
 \item the \Cyclus \gls{GUI} tools, Cycic and Cyclist,
-\item and the tools in the \Cyclus toolkit.
+\item the tools in the \Cyclus toolkit
+\item and other tools for \Cyclus optimization, parallelization, and development.
 \end{itemize}
 All together, these form an `ecosystem' of capabilities. Over time, this 
 ecosystem will grow as archetype-developers, kernel-developers, and 
@@ -56,25 +65,59 @@ Already, the ecosystem is growing. Early cross-institutional contributions to
 the ecosystem demonstrate a significant acheivement by the \Cyclus framework 
 and provide hope for a community-driven development model. 
 
-\subsubsection{The Cyclus Additional Modules Repository}
+\subsubsection{Supplementary Projects}
 
-\Cycamore, the \Cyclus additional modules repository, provides a fundamental 
-set of agent archetypes for basic simulation functionality within \Cyclus.
-Since the \Cyclus framework relies on external archetypes to represent the 
-agents within a simulation, 
-\Cycamore provides the basic archetypes a new user needs to get started running 
-simple simulations. 
-These archetypes support a minimal set of fuel cycle simulation goals and 
-provide, by example, a guide to new developers who would seek to contribute 
-their own archetypes outside of \Cycamore.
+A number of projects and tools outside of the core simulation kernel have been 
+developed which improve the scope and the diversity of the capabilities in the \Cyclus 
+ecosystem. Table \ref{tab:coretools} lists the tools and projects developed 
+under close integration with the \Cyclus kernel.
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{|r|X|r|}
+\hline
+\textbf{Name} & \textbf{Description} & \textbf{Citation} \\
+\hline
+Cycic &  Input control - embedded in Cyclist & \cite{cycic}\\
+Cyclist & Interactive data exploration environment & \cite{cyclist} \\
+Ciclus & Continuous Integration scripts for \Cyclus & \cite{ciclus}\\
+Cycstub & Skeleton for clean slate module development & \cite{cycstub}\\
+Cyan & \Cyclus analysis tool & \cite{cyan}\\
+Cloudlus & Tools for running \Cyclus in a cloud environment & \cite{cloudlus} \\
+\hline
+\end{tabularx}
+\caption{Many tools outside of the scope of the \Cyclus kernel have been 
+developed for improved user, developer, and analyst experinces with \Cyclus.}
+\label{tab:coretools}
+\end{table}
 
-\subsubsection{External Modules}
-External modules have been 
-\cite{cyder,separations,streamblender,mktdriveninst,commodconverter} and are 
-being \cite{britelite,utk} developed for contribution to the cyclus ecosystem 
-of models. 
+\subsubsection{Archetype Contributions}
 
+Many archetypes external to the \Cycamore library  
+have been \cite{huff_cyder_2013,,streamblender,commodconverter} 
+and are being \cite{britelite,utk,mktdriveninst} developed for contribution to the 
+\Cyclus ecosystem. These archetypes provide the first examples of 
+developer-contributed capabilities.
 
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{|r|X|r|}
+\hline
+\textbf{Name} & \textbf{Description} & \textbf{Citation} \\
+\hline
+Brite-lite & A physics-based reactor archetype and fuel fabrication archetype & \cite{brightlite} \\
+Nuclear Fuel Inventory Model & A flexible, ORIGEN-based, reactor analysis module & \cite{NFIM} \\
+CommodConverter & A simple commodity converting storage facility archetype  & \cite{commodconverter} \\
+MktDrivenInst & An institution that controls deployment based on commodity availability & \cite{mktdriveninst} \\
+SeparationsMatrix & A facility for elemental separations of used fuel & \cite{streamblender} \\
+StreamBlender & A facility for fuel fabrication from reprocessed streams & \cite{streamblender} \\
+\hline
+\end{tabularx}
+\caption{A diverse set of archetypes under development reflect the diverse 
+needs of researchers at various institutions. These archetypes, contributed 
+outside of the \Cyclus core and \Cycamore libraries are the first demonstration 
+of community-driven development in a fuel cycle simulator.}
+\label{tab:archetypes}
+\end{table}
 
 
 \subsection{Simulations}

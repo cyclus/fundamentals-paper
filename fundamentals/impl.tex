@@ -361,8 +361,39 @@ adoption into the kernel as toolkit extensions. Likely extensions include:
 \subsection{Cycamore}
 % base modules
 
-\Cycamore \cite{carlsen_cycamore_2014} contains a number of useful facility, 
-region, and institution archetypes. 
+\Cycamore \cite{carlsen_cycamore_2014}, the \Cyclus additional modules 
+repository, provides a fundamental set of agent archetypes for basic simulation 
+functionality within \Cyclus.  Since the \Cyclus framework relies on external 
+archetypes to represent the agents within a simulation, \Cycamore provides the 
+basic archetypes a new user needs to get started running simple simulations.  
+These archetypes support a minimal set of fuel cycle simulation goals and 
+provide, by example, a guide to new developers who would seek to contribute 
+their own archetypes outside of \Cycamore.
+
+As of version 1.0, \Cycamore contains four facility archetypes, one region 
+archetype, and two institution archetypes. Short descriptions of those 
+functions can be found in Table \ref{tab:cycamore}.
+
+
+\begin{table}
+\centering
+\begin{tabularx}{\textwidth}{|r|l|l|}
+\hline
+\textbf{Agent Type} & \textbf{Archetype} & \textbf{Functionality} \\
+\hline
+Facility & BatchReactor & A reactor model that handles batch refuelling, based on pre-determined recipes of compositions. \\
+Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
+Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation \\
+Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
+Institution& ManagerInst & The manager institution manages production of commodiites among its facilities by building new necessary ones \\
+Institution & DeployInst &  This institution deploys specific facilities as defined explicitly in the input file. \\
+Region & GrowthRegion & This region determines whether there is a need to meet a certain capacity (as defined via input) at each time step \\
+\hline
+\end{tabularx}
+\caption{The Archetypes in \Cycamore seek to cover a large range of simple simulation use cases.}
+\label{tab:cycamore}
+\end{table}
+
 As future contributions are vetted, the capabilities in \Cycamore may grow. 
 However, the current \Cycamore release provides only 
 basic functionality, enabling simple fuel cycle analyses. 
@@ -374,9 +405,8 @@ that can be generated with \Cycamore and \Cyclus alone.
 
 \begin{figure}[htbp!]
 \begin{center}
-<diagram of a possible Cycamore-only simulation>
+\includegraphics{./images/simplesim}
 \end{center}
-\caption{A simple once-through fuel cycle possible with only \Cycamore and 
-\Cyclus.}
+\caption{Material flows through a simple dynamic simulation created with only the simplest \Cycamore archetypes, \Class{Sink} and \Class{Source}.}
 \label{fig:simplesim}
 \end{figure}
