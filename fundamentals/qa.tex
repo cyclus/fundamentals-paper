@@ -35,23 +35,25 @@ problem of identifying trustworthy results from the nonsensical and the noise.
 This is epitomized in the Charles Babbage quote, ``On two occasions I have been asked, 
 `Pray, Mr. Babbage, if you put into the machine wrong figures, will the right 
 answers come out?' ... I am not able rightly to apprehend the kind of confusion 
-of ideas that could provoke such a question.'' \cite{babbage2011passages}. 
+of ideas that could provoke such a question.'' \cite{babbage_passages_2011}. 
 The \emph{garbage in, garbage out} phenomenon is not the only scenario which a
 simulator must gaurd against; ensuring correctness is equally important.
 
 Multiple strategies collectively known a \emph{quality assurance} (QA) have 
 been invented over the years to mitigate the structural and algorithmic errors
 on the part of simulators themselves. These include \emph{verification and validation}
-(V\&V) \cite{boehm1989software}, \emph{uncertainty quantification} (UQ) 
-\cite{sacks1989design}, testing, and others. V\&V and UQ come from 
+(V\&V) \cite{boehm_software_1989}, \emph{uncertainty quantification} (UQ) 
+\cite{sacks_design_1989}, testing, and others. V\&V and UQ come from 
 a distinctly computational science background while testing \emph{et al.} come from 
 a software development bent. 
 
 Nuclear enginerering code quality is often governed by NQA-1, an ASME specification 
-whose latest revision appeared in 2009 \cite{NQA-1a-2009}. This is primarily 
+whose latest revision appeared in 2009 \cite{asme_nqa-1a-2009_2009}. This is primarily 
 used for designing reactors. However, it is general enough to apply to 
-cyclus. Cyclus has adopted an \emph{agile} development process \cite{larman2004agile}, 
-interpreting NQA-1 in a manner similar to NEAMS \cite{neams-qa} or PyNE \cite{pyne-vv}. 
+cyclus. Cyclus has adopted an \emph{agile} development process 
+\cite{larman_agile_2004}, 
+interpreting NQA-1 in a manner similar to NEAMS \cite{neams_nuclear_2013} or 
+PyNE \cite{biondo_quality_2014}. 
 
 Cyclus acknowledges that quality assurance is an on-going process throughout the 
 entire life of the code. As a simulator where most modeling descisions are made 
@@ -115,7 +117,7 @@ unit depends on the context of the specific unit in question. While this is
 an ambiquous defintiion, combined with a philosophy of keeping units as small
 as possible it is often clear in practice what needs to be tested.
 
-Cyclus uses the Google Test framework \cite{gtest} as a harness for running unit 
+Cyclus uses the Google Test framework \cite{inc_googletest_2008} as a harness for running unit 
 tests. Sufficient unit tests are required for any proposed change to the cyclus
 code base. Currently cyclus implements over 450 unit tests and cycamore has 
 85.  These cover approximately 65\% of their respective code bases. This number 
@@ -130,7 +132,7 @@ clock (integration) will run smoothly, run at all, or give the correct time.
 In cyclus and cycamore, integration tests are performed by running sample
 simulations and verifying that results are what would be expected ahead of 
 time. Precanned input files have thus been contsructed. Their results 
-are inspected and compared via nose \cite{nosetests}, a Python test framework.
+are inspected and compared via nose \cite{pellerin_nose_2007}, a Python test framework.
 Python will run cyclus as a subprocess for each integration test. In this
 way cyclus code units are tested in the full context that they will
 executed. This category of testing is especially useful for ensuring that 
@@ -167,13 +169,15 @@ goals of an API in prose form. Furure development of the code is then able to
 compare the implemetation versus the documentation to discern whether or not they 
 are in agreement. Documentation is thus a secondary higher-level information 
 stream.  In cyclus, this information is aggregated together into static 
-websites with the doxygen \cite{van2008doxygen} and sphinx \cite{brandl2014sphinx} 
+websites with the doxygen \cite{van_heesch_doxygen:_2008} and sphinx 
+\cite{brandl_sphinx_2014} 
 tools. These websites are placed online at \url{http://fuelcycle.org}.
 
 \subsection{Version Control}
 
 Version control is the history-preserving mechanism by which the provenance of 
-a code is recored. Cyclus uses a well-established tool called git \cite{git_2014}
+a code is recored. Cyclus uses a well-established tool called git 
+\cite{software_freedom_conservancy_git_2014}
 for this purpose. Git is currently the most popular utilty in the recent wave
 of \emph{distributed version control}. Briefly stated, this means that every 
 user has a complete local copy of the \emph{repository} (the version control
@@ -188,7 +192,8 @@ accompanying message. Thus
 it is possible for cyclus to accurarely replay the entirety of who did what to the
 code when.
 
-Cyclus uses a strategy known as \emph{git flow} \cite{kalliamvakou2014code} 
+Cyclus uses a strategy known as \emph{git flow} 
+\cite{kalliamvakou_code-centric_2014} 
 to manage topical branches where individuals develop code, the mainline development
 branch (simply known as develop), and the stable branch (called master).
 In addition to these rules and delineation, cyclus also imposes rules on 
@@ -198,7 +203,7 @@ must have sufficient and passing tests and reasonable documentation. Without
 these core pieces proposed changes are not allowed into cyclus.
 
 The act of proposing a change is known as a \emph{pull request}. The main cyclus is 
-hosted remotely on the GitHub website \cite{dabbish2012social}. The online
+hosted remotely on the GitHub website \cite{dabbish_social_2012}. The online
 mechanism for pull requests allows for code review by a member of the cyclus 
 core team other than the author prior to any change being included. Non-members
 of the cyclus development team are allowed and encouraged to submit and review 
@@ -211,7 +216,7 @@ In any multi-person software project, there is a tension between how individuals
 wish to write code. Every person tends to have their own custom style. To remedy this
 coding style guides are the software analogy to the natural language ones, 
 such as the Chicago Manual of Style. Cyclus strictly enforces the use of the 
-Google C++ Style Guide \cite{weinberger2008google} for all software contributions.
+Google C++ Style Guide \cite{weinberger_google_2008} for all software contributions.
 This means that all developers of cyclus nominally write cyclus code in the same 
 way.  This homogenization may be a hurdle to new developers but ultimately 
 makes the it much more legible. Adoption of a single style guide also settles
@@ -225,11 +230,11 @@ Continuous integration (CI) the idea that software should be tested and validate
 as it is being developed, rather than as a final stage in a longer development 
 cycle.  Under CI every pull request is tested independently immeadiately after 
 it is proposed. Such tests shoudl be run on all officially supported platforms. 
-Cyclus uses a CI platform called Polyphemus \cite{polyphemus_2014}. 
+Cyclus uses a CI platform called Polyphemus \cite{scopatz_polyphemus_2014}. 
 
 Polyphemus serves as an intermediary between GitHub pull requests on the frontend 
 and temporary cyclus servers on the backend. These servers are hosted by 
-the Build \& Test Laboratory (BaTLab) \cite{batlab_2014} at the University of 
+the Build \& Test Laboratory (BaTLab) \cite{uw_batlab_team_batlab_2014} at the University of 
 Wisconsin-Madison. Whenever a pull request is created, Polyphemus performs 
 the following actions:
 

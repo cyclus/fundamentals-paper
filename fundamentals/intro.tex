@@ -46,7 +46,7 @@ insight indicates that dynamic nuclear fuel cycle analysis more realistically
 supports a broader range of simulation goals than static analysis 
 \cite{piet_dynamic_2011}. Similarly, experience in the greater field of systems 
 analysis indicates that agent-based modeling enables more flexible simulation 
-control, without loss of generality \cite{thatpapermattsent}. Finally, openness 
+control, without loss of generality \cite{macal_agent-based_2010}. Finally, openness 
 allows cross-institutional collaboration, increases code robustness, and 
 enables the cultivation of an ecosystem of calculation options, 
 \cite{softwarecarpentryresource}.  The fundamental concepts of the \Cyclus 
@@ -80,7 +80,7 @@ performance might be measured in spent fuel volume, toxicity, or mined uranium.
 Historically, the national laboratories have driven development and regulated 
 the use of their own tools such as \gls{VISION}\cite{jacobson_verifiable_2010}, 
 \gls{DANESS}\cite{van_den_durpel_daness_2009}, 
-\gls{DYMOND}\cite{modeling_yacout_2005}, and 
+\gls{DYMOND}\cite{yacout_modeling_2005}, and 
 \gls{NFCSim}\cite{schneider_nfcsim:_2005}. 
 Outside of the national laboratories, researchers create new nuclear fuel cycle 
 simulation tools when existing tools are not available or not sufficiently 
@@ -88,8 +88,8 @@ general to calculate their metrics of interest with their method of choice.
 With limited access to the national laboratory tools and a need to customize 
 them for research purposes, universities and private industry researchers 
 ``reinvent the wheel'' by developing tools of their own from scratch and 
-tailored to their own needs (e.g., \gls{CAFCA}\cite{guerin_benchmark_2006} and 
-\gls{COSI}\cite{cosi} respectively). 
+tailored to their own needs (e.g., \gls{CAFCA}\cite{guerin_impact_2009} and 
+\gls{COSI}\cite{boucher_cosi_2005,boucher_cosi:_2006,meyer_new_2009,coquelet-pascal_comparison_2011} respectively). 
 
 This cycle has resulted in a proliferation of specialized
 fuel cycle simulators for the calculation of fuel cycle metrics.  Accordingly, methods 
@@ -209,7 +209,8 @@ not have any shared knowledge of one another for them to be building blocks in
 the same simulation.
 
 System dynamics is a popular approach for modeling nuclear fuel cycles in current
-tools \cite{VISION,CAFCA}. However, it has been shown in systems analysis literature
+tools 
+\cite{jacobson_vision_2009,van_den_durpel_daness_2009,guerin_impact_2009,guerin_benchmark_2009}. However, it has been shown in systems analysis literature
 \cite{macal_agent-based_2010} that, formally, the
 set of system dynamics models is a strict subset of agent-based models.
 That is, any system dynamics model can be translated
