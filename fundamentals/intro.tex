@@ -28,7 +28,7 @@ its modeling ecosystem answer this need for a next generation nuclear fuel cycle
 simulator. Dynamic simulation of nuclear fuel cycles with discrete agents 
 and up to isotopic resolution support 
 levels of detail appropriate for a varied community of analysts
-interested in a range of analysis types. Additionally \Cyclus employs an 
+interested in a range of analysis types. Additionally, \Cyclus employs an 
 open development process that supports user access and 
 encourages developer extensions.
 
@@ -48,7 +48,7 @@ supports a broader range of simulation goals than static analysis
 analysis indicates that agent-based modeling enables more flexible simulation 
 control, without loss of generality \cite{macal_agent-based_2010}. Finally, openness 
 allows cross-institutional collaboration, increases code robustness, and 
-enables the cultivation of an ecosystem of calculation options, 
+enables the cultivation of an ecosystem of calculation options 
 \cite{softwarecarpentryresource}.  The fundamental concepts of the \Cyclus 
 nuclear fuel cycle simulator capture these modern insights so that challenges 
 in nuclear fuel cycle analysis can be better addressed. 
@@ -89,9 +89,9 @@ With limited access to the national laboratory tools and a need to customize
 them for research purposes, universities and private industry researchers 
 ``reinvent the wheel'' by developing tools of their own from scratch and 
 tailored to their own needs (e.g., \gls{CAFCA}\cite{guerin_impact_2009} and 
-\gls{COSI}\cite{boucher_cosi_2005,boucher_cosi:_2006,meyer_new_2009,coquelet-pascal_comparison_2011} respectively). 
+\gls{COSI}\cite{boucher_cosi_2005,boucher_cosi:_2006,meyer_new_2009,coquelet-pascal_comparison_2011}, respectively). 
 
-This cycle has resulted in a proliferation of specialized
+This trend has resulted in a proliferation of specialized
 fuel cycle simulators for the calculation of fuel cycle metrics.  Accordingly, methods 
 for calculating those metrics vary among simulators. Some model the 
 system of facilities, economics, and materials at static equilibrium, while 
@@ -100,12 +100,12 @@ Similarly, while some simulators discretely model material and facilities,
 others treat materials in streams and facilities in fleets, in an aggregated 
 fashion. Depending on their intended use, simulators often overspecialize, 
 modeling a single aspect of the fuel cycle in great detail while neglecting 
-others. A simulator created for policy modeling might have excellent 
+others. For example, a simulator created for policy modeling might have excellent 
 capability in economics while material isotopics and transmutation detail are 
 neglected.
 
-The \Cyclus simulator emerged from a line of tools seeking to break that cycle.  
-An \gls{LDRD} project begun at \gls{INL}, 
+The \Cyclus simulator emerged from a line of tools seeking to break this practice.  
+A \gls{LDRD} project that began at \gls{INL}, 
 \gls{GENIUSv1}\cite{dunzik-gougar_global_2007,jain_transitioning_2006} sought 
 to provide generic regional capability.  Based on lessons learned from 
 \gls{GENIUSv1}, the 
@@ -115,9 +115,9 @@ collaboration.  The \Cyclus project, in turn, improved upon the \gls{GENIUSv2}
 project by implementing increased modularity and encapsulation.  The result is  
 a dynamic simulator that treats both materials and facilities discretely, with 
 an architecture that permits simulations with multiple and variable levels of 
-fidelity. Its agent-based framework for simulation and tracking of 
+fidelity. The simulator's agent-based framework for tracking of 
 transformation and trade of resources between facilities within institutions 
-and regions greatly improves upon the existing field of fuel cycle simulators.
+and regions greatly improves upon the existing fuel cycle simulators.
 
 \subsection{Motivation}
 % Gently reiterate the above need. 
@@ -127,7 +127,7 @@ and regions greatly improves upon the existing field of fuel cycle simulators.
 
 In addition to providing the fundamental features expected in fuel cycle 
 simulators, the \Cyclus paradigm enables major capabilities that previous 
-simulators lack. First, its its \emph{modular and open architecture}  facilitates 
+simulators lack. First, its \emph{modular and open architecture}  facilitates 
 targeted contribution and collaboration within the nuclear fuel cycle analysis 
 community.  Additionally, \emph{agent interchangeability} facilitates direct 
 comparison of modeling methodologies. Finally, the flexibility and generality 
@@ -146,13 +146,13 @@ fuel fabrication), rather than also modeling the entirety of the cycle.
 
 Furthermore, modeling the evolution of a physics-dependent, international nuclear fuel supply
 chain is a multiscale problem, but existing tools are not sufficiently 
-multi-scale. Tools have either focused on macro effects, e.g., the fleet-level
+multiscale. Tools have either focused on macro effects, e.g., the fleet-level
 stocks and flows of commodities, or micro effects, e.g., the used fuel
-composition fast reactor fuel. Accordingly, each focus has driven the
+composition of fast reactor fuel. Each focus has driven the
 development of these tools, rendering the task of answering questions between
 the macro and micro levels challenging within a single tool. 
 However, an extensible architecture and discrete object tracking allow 
-the creation and exchange ability of custom \Cyclus archetypes at any level of fidelity.
+the creation and exchangeability of custom \Cyclus archetypes at any level of fidelity.
 
 \subsubsection{Modular Architecture}
 % Motivation for encapsulated plug-in architecture 
@@ -163,31 +163,31 @@ the creation and exchange ability of custom \Cyclus archetypes at any level of f
 The architecture within the \Cyclus tool allows developers 
 to define nuclear fuel cycle agents and processes independent of the simulation 
 logic. This `encapsulated,' `plug-in'
-design choice achieves two things. 
+design choice provides two major benefits. 
 
 First, analysts across research institutions can take advantage of the 
 simulation logic \gls{API} and archetype ecosystem when they apply \Cyclus to 
 their specific problem. This extensibility, magnified by an open source 
 development process, frees the community of users to contribute desired 
-features independen from the team of \Cyclus core developers. This 
+features, independent from the team of \Cyclus core developers. This 
 mend-and-extend paradigm, common in modern software development, reduces 
 maintenance overhead and improves code robustness \cite{citation_needed}. 
-Finally, the researcher can therefore focus on creating or customizing nuclear 
+The researcher can therefore focus on creating or customizing nuclear 
 facility, institution, resource, and toolkit models within their specific area 
 of technical expertise. 
 
 % we could use a specific example of Cosi's equivalence method below
 Second, because \Cyclus uses a modular archetype approach, comparing two 
 archetypes is straightforward. Consider a case in which an analyst would like 
-to compare the effect of using different models to determining input fuel 
-composition for fast reactors. A variety fuel fabrication archetypes can be 
-developed and used interchangeably to analyze the effect of each on a 
-simulation's output.
+to compare the effect of using different models to determine the input fuel 
+composition for fast reactors. A variety of fuel fabrication archetypes can be 
+developed and interchanged to analyze the effect of each on the 
+simulation output.
 
-We expect that there are a number of types of users and developers who will 
+There are a number of types of users and developers who will 
 interact with the \Cyclus framework. National laboratory researchers,
-academic researchers, private-industry economic forcasters, and even students. 
-in engineering courses will benefit from the ease of development and ease of 
+academic researchers, private-industry economic forcasters, and even students 
+in engineering courses may benefit from the ease of development and
 customization provided by the modular architecture of \Cyclus.
 
 \subsubsection{Agent-based Paradigm}
@@ -197,11 +197,11 @@ customization provided by the modular architecture of \Cyclus.
 % note importance of generic resource exchange paradigm
 
 \Cyclus utilizes an \gls{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
-true to reality, and it takes advantage of modern computing resources.  
-Furthermore, agent-based modeling provides an analyst a more natural 
+true to reality, and takes advantage of modern computing resources.  
+Furthermore, \gls{ABM} provides an analyst a more natural 
 perspective from which to model a given problem. In the nuclear fuel cycle 
 context for example, an analyst can design an agent with reactor-related logic 
-entirely independently from a separate agent with fuel fabrication-related 
+entirely independent from a separate agent with fuel fabrication-related 
 logic. Defining the behavior of both agents according to the 
 \gls{API} contract is sufficient for them to interact with one another as 
 bonafide actors in the simulation.  The two archetype libraries, therefore, need 
@@ -234,9 +234,9 @@ applicable across the full range of modeling extremes.
 
 This generality specifically permits many use cases that cannot be achieved with 
 fleet-based models. That is, some questions require resolution at the level of 
-individual facilities and individual materials.  Since fleet-based, 
+individual facilities and materials.  Since fleet-based, 
 lumped-material models do not distinguish between discrete facility entities or 
-discrete materials, many detailed performance metrics cannot be captured with 
+materials, many detailed performance metrics cannot be captured with 
 those tools. 
 
 One example use case seeks to capture system vulnerability to nefarious 
