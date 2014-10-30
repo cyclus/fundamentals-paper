@@ -102,8 +102,8 @@ In cyclus, three categories of tests are defined: unit tests, integration
 tests, and regression tests. 
 
 It is important to note that before a proposed
-code changes is allowed into main stream cyclus, all of the tests must pass
-and the change must be covered by a test, either new or existing. This is 
+code change is allowed into mainline cyclus, all of the tests must pass
+and the change must be covered by a test, either new or existing. This is a
 matter of policy for the developers. Additionally, test code is equally likely 
 as the code it is testing to contain errors. To prevent an infinite recurrsion 
 of testing-the-tests, it is assumed that dilligence and one level of testing 
@@ -125,7 +125,7 @@ is expected to grow over time.
 
 \subsubsection{Integration Tests} 
 
-Intergration tests are any tests that combine multiple elemnents of the 
+Intergration tests are any tests that combine multiple elements of the 
 cyclus interface and test that they work correctly with each other.  By analogy, 
 simply because the gears (units) are made correctly does not imply that the 
 clock (integration) will run smoothly, run at all, or give the correct time.
@@ -134,7 +134,7 @@ simulations and verifying that results are what would be expected ahead of
 time. Precanned input files have thus been contsructed. Their results 
 are inspected and compared via nose \cite{pellerin_nose_2007}, a Python test framework.
 Python will run cyclus as a subprocess for each integration test. In this
-way cyclus code units are tested in the full context that they will
+way cyclus code units are tested in the full context that they will be
 executed. This category of testing is especially useful for ensuring that 
 major cyclus components are functioning as expected.
 
@@ -142,7 +142,8 @@ major cyclus components are functioning as expected.
 
 Regression tests are tests which ensure that significant changes do not 
 occur over the course of cyclus development. Such a change is called a 
-\emph{regression} because the new version is almost always wrong.
+\emph{regression} because the new version is almost always wrong version in the 
+event of a difference.
 Regression tests are implemeneted similarly to integration tests.
 Nose is used to execute fully fledged cyclus simulations whose results
 are then compared. In this category however the comparison is done against 
@@ -159,16 +160,16 @@ for regression testing.
 
 \subsection{Documentation}
 
-All of the public interface (the API) must be documented as part of cyclus
+All of the public interfaces must be documented as part of cyclus
 QA policy. This certifies that the intention for a code unit is communicated 
 in way that is separate from its implementation. This policy is important 
-because implementations are often wrong, hence bugs. They are thus unreliable 
+because implementations are often wrong. Software implementations are unreliable 
 resources about themselves. Truly trustworthy communication about what 
 software should be doing comes from the author explicitly stating the 
 goals of an API in prose form. Furure development of the code is then able to 
 compare the implemetation versus the documentation to discern whether or not they 
 are in agreement. Documentation is thus a secondary higher-level information 
-stream.  In cyclus, this information is aggregated together into static 
+source.  In cyclus, this information is aggregated together into static 
 websites with the doxygen \cite{van_heesch_doxygen:_2008} and sphinx 
 \cite{brandl_sphinx_2014} 
 tools. These websites are placed online at \url{http://fuelcycle.org}.
@@ -186,7 +187,7 @@ Though there and many praises and criticisms of git, one
 feature that the tool performs exceptionally well is the notion of code branches.
 These are distinct pathways in the history that branch out of a mainline source
 tree and then may be \emph{merged} back into the mainline. Multiple simeltaneous
-branches may exist at all point in time. Every change to the code is recorded
+branches may exist at all points in time. Every change to the code is recorded
 in the history, along with metadata such as the author, a timestamp, and an 
 accompanying message. Thus 
 it is possible for cyclus to accurarely replay the entirety of who did what to the
@@ -200,7 +201,7 @@ In addition to these rules and delineation, cyclus also imposes rules on
 when it is accecptable from a quality control standpoint to merge code from 
 the personal topical branches into develop. All software at this stage 
 must have sufficient and passing tests and reasonable documentation. Without
-these core pieces proposed changes are not allowed into cyclus.
+these core pieces, proposed changes are not allowed into cyclus.
 
 The act of proposing a change is known as a \emph{pull request}. The main cyclus is 
 hosted remotely on the GitHub website \cite{dabbish_social_2012}. The online
@@ -226,7 +227,7 @@ there is a common enemy for all developers to dislike equally.
 \subsection{Continuous Integration}
 \label{sec:qa-ci}
 
-Continuous integration (CI) the idea that software should be tested and validated 
+Continuous integration (CI) is the idea that software should be tested and validated 
 as it is being developed, rather than as a final stage in a longer development 
 cycle.  Under CI every pull request is tested independently immeadiately after 
 it is proposed. Such tests shoudl be run on all officially supported platforms. 

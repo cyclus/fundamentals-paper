@@ -30,9 +30,9 @@
 % What were the results?
 % How were the measurements made and characterized?
 
-The early success of the \Cyclus simulator can be measured in many ways. 
+The success of the \Cyclus simulator can be measured in many ways. 
 The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
-model and of fundamental simulation capability. Nascent, promising growth of the \Cyclus 
+model and of fundamental simulation capability. Nascent promising growth of the \Cyclus 
 ecosystem at multiple institutions indicates that a fuel cycle simulator can 
 advance in a community-drive development paradigm. Additionally, simple 
 simulations as well as more complex recycling simulations demonstrate that 
@@ -48,10 +48,10 @@ Members of the ecosystem include:
 \begin{itemize}
 \item the archetypes provided in the \Cycamore \cite{carlsen_cycamore_2014} 
 repository of additional modules,
-\item the archetypes created by user-developers,
+\item the archetypes created by researchers,
 \item isotopic composition data,
 \item historical facility deployment data,
-\item the \Cyclus \gls{GUI} tools, Cycic and Cyclist,
+\item the \Cyclus \gls{GUI} tool Cyclist,
 \item the tools in the \Cyclus toolkit
 \item and other tools for \Cyclus optimization, parallelization, and development.
 \end{itemize}
@@ -131,9 +131,10 @@ of community-driven development in a fuel cycle simulator.}
 % facility parameters and run it again.
 
 Results of some simple recycle scenarios run in \Cyclus follow.  In \Cyclus,
-because material is tracked as discrete objects, single-pass MOX recycle is
+because material is tracked as discrete objects, single-pass mixed-oxide (MOX) 
+recycle is
 easy to implement.  The simulation initially included one provider of fresh
-UOX fuel, one recycled fuel fabrication facility, one reactor, one separations
+uranium oxide (UOX) fuel, one recycled fuel fabrication facility, one reactor, one separations
 facility, and one repository. The simulation duration was set to 1100 months.
 
 The \Class{BatchReactor} archetype from \Cycamore has the ability to accept
@@ -158,7 +159,7 @@ as simple as editing numbers in an input file such as:
   ...
 \end{lstlisting}
 
-The \Class{Source} and \Class{Sink} modules from \Cycamore were also used as a
+The \Class{Source} and \Class{Sink} archetypes from \Cycamore were also used as a
 source of fresh, enriched uranium and a repository respectively. A simple
 custom recycled fuel fabrication facility was used.  This fabrication facility
 mixes fissile and fertile streams to match target fuel compositions as closely
