@@ -21,7 +21,7 @@ analyses and other multi-simulation studies.
 \Cyclus, on the other hand, is primarily written in \texttt{C++} and relies on 
 libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms. 
 Furthermore, the core infrastructure and related archetypes are free and 
-open-source, BSD-3-clause licsened. No part of \Cyclus is proprietary or based 
+open source, BSD-3-clause licensed. No part of \Cyclus is proprietary or based 
 on \gls{COTS}, Windows-based software. It can be easily deployed 
 on large computer systems, such as \acrlong{HTC} systems.
 
@@ -117,7 +117,7 @@ questions as well as users focused on more detailed, technical
 analyses. They merely choose their preferred level of fidelity from the 
 available libraries. 
 
-\subsection{Agent Interchangability}\label{sec:interchangeability}
+\subsection{Agent Interchangeability}\label{sec:interchangeability}
 
 Due to this ``plugin'' architecture,
 implementations of actors in a given simulation can be easily
@@ -127,12 +127,12 @@ implementation of a reactor can be compared to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
 fidelity on a given fuel cycle. 
 
-Interchangability is accomplished by providing \glspl{API} that define agent-to-agent
+Interchangeability is accomplished by providing \glspl{API} that define agent-to-agent
 interaction and agent-to-environment interaction, primarily through the
 \Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows 
 the ``inheritance'' structure of the \Class{Agent} class in a \gls{UML} diagram 
 format. It shows how the \Class{Agent} interface
-provides a notion of parent-child hierarchichal relationship, where parents can
+provides a notion of parent-child hierarchical relationship, where parents can
 choose to \textit{build} child agents and \textit{decommission} child
 agents. For the archetype developer, this interface provides enormous power, 
 very simply. The \gls{API} exposes \Class{Agent} helpful functionality for 
@@ -145,9 +145,9 @@ detail.
 \end{center}
 \caption{The inheritance in \Cyclus classes, such as the \Class{Agent}, 
 \Class{Facility}, \Class{Institution}, and \Class{Region} classes abstract away 
-unneccesary details while exposing powerful functionality. In the above 
+unnecessary details while exposing powerful functionality. In the above 
 example, the \Class{Dummy} archetype simply inherits from \Class{Region} in 
-order to become a bonified Region-type \Class{Agent}.}
+order to become a bona fide Region-type \Class{Agent}.}
 \label{fig:agent_uml}
 \end{figure}
 
@@ -191,8 +191,8 @@ with regions as root nodes and facilities as leaf nodes.
 
 Two primary consequences arise from this structure. First, institutions are
 responsible for building and decommissioning facilities, so advanced
-logic regarding building and decommissioning can be obtained by subclassing the
-\Class{Institution} interface. Second, the \Class{Facility} class implemenets the
+logic regarding building and decommissioning can be obtained by sub-classing the
+\Class{Institution} interface. Second, the \Class{Facility} class implements the
 \Class{Trader} interface, and thus institutions and regions can
 adjust the resource flow preferences of their managed facilities, respectively. Importantly,
 this novel capability allows for the modeling of preferential regional trading
@@ -388,7 +388,7 @@ Facility & BatchReactor & A reactor model that handles batch refuelling, based o
 Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
 Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
 Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
-Institution & ManagerInst & The manager institution manages production of commodiites among its facilities by building new necessary ones. \\
+Institution & ManagerInst & The manager institution manages production of commodities among its facilities by building new necessary ones. \\
 Institution & DeployInst &  This institution deploys specific facilities as defined explicitly in the input file. \\
 Region & GrowthRegion & This region determines whether there is a need to meet a certain capacity (as defined via input) at each time step. \\
 \hline
