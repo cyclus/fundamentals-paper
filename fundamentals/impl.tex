@@ -283,10 +283,10 @@ compositions in \Cyclus have some special features, such as immutability.
 Immutable compositions allow multiple material objects to all hold
 references to the same composition object safely.  When operations are
 performed on a material that do not alter the composition, any new resulting
-materials hold a reference to the same, originating composition object.
+materials hold a reference to the same, original composition object.
 Although the decay operation generates a new, separate composition (preserving
 immutability), a reference to the new composition is placed in a cache shared
-by the new and originating compositions. The next time the originating
+by the new and original compositions. The next time the original
 composition is decayed, this cache will be checked for a prior calculation
 with the same cumulative decay time.  If one exists, the cached composition is
 used.  This cache is shared by all compositions that transitively come from
