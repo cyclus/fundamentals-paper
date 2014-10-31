@@ -28,7 +28,7 @@ on large computer systems, such as \acrlong{HTC} systems.
 Cyclopts (\TODO{cite}), a proof of principle design and implementation of such a
 system, uses UW-Madison's HTCondor HTC infrastructure to perform sensitivity
 studies on \Cyclus' resource exchange optimization solvers. To date, it has been
-used run over $10^4$ jobs, or (\TODO{compute time}) total computer hours, using
+used run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
 the \Cyclus library via its resource exchange \gls{API}.
 The HTC infrastructure has also been utilized to run and collect
 information from full \Cyclus simulations running in parallel on $10^3$
@@ -193,7 +193,7 @@ Two primary consequences arise from this structure. First, institutions are
 responsible for building and decommissioning facilities, so advanced
 logic regarding building and decommissioning can be obtained by subclassing the
 \Class{Institution} interface. Second, the \Class{Facility} class implemenets the
-\Class{Trader} interface, and thus institutions and regions, can
+\Class{Trader} interface, and thus institutions and regions can
 adjust the resource flow preferences of their managed facilities, respectively. Importantly,
 this novel capability allows for the modeling of preferential regional trading
 of resources (e.g., tariffs) as well as preferential institutional trading
@@ -204,7 +204,7 @@ designed to handle hierarchies of arbitrary depth.
 A simulation can proceed without regions and institutions (i.e.,  only facilities)
 or with archetypes that are the parents of regions.  By
 convention, institutions are mainly responsible for facility deployment, but
-any archetype can have access to \Cyclus' agent deployment mechanism.  It straightforward
+any archetype can have access to \Cyclus' agent deployment mechanism.  It is straightforward
 to implement agents that deploy copies of themselves or schedule their
 own decommissioning.  Because regions, institutions, and facilities are all
 agents, they can all be implemented to exercise the full set of features
@@ -337,7 +337,7 @@ $\phi_i$, and costs, $c_i$.
 
 The \Cyclus toolkit provides two useful modules for querying \Class{Material}
 objects regarding physical parameters. First, the \Class{MatQuery} module
-provides a basic querying \gls{API}, including the atomic and mass fractions of
+provides a basic querying \gls{API}, including the atom and mass fractions of
 nuclides, the number of moles of a nuclide in a material, and also the amount of
 aggregate nuclides, i.e., a \Class{Composition}, in a material. The
 \Class{enrichment} module provides an \gls{API} for determining enrichment-related
