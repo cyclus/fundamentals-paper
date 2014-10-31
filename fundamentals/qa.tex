@@ -138,7 +138,7 @@ simulations and verifying that results are what would be expected ahead of
 time. Pre-canned input files have thus been constructed. Their results 
 are inspected and compared via nose \cite{pellerin_nose_2007}, a Python test framework.
 Python will run \Cyclus as a subprocess for each integration test. In this
-way \Cyclus code units are tested in the full context that they will
+way, \Cyclus code units are tested in the full context that they will
 executed. This category of testing is especially useful for ensuring that 
 major \Cyclus components are functioning as expected.
 
@@ -149,7 +149,7 @@ occur over the course of \Cyclus development. Such a change is called a
 \emph{regression} because the new version is almost always wrong.
 Regression tests are implemented similarly to integration tests.
 Nose is used to execute fully fledged \Cyclus simulations whose results
-are then compared. In this category however the comparison is done against 
+are then compared. In this category, however, the comparison is done against 
 the output of the same input file when run with a previous version of \Cyclus, 
 typically the last released version.
 In some sense, regression tests are `dumb' in that they do 
