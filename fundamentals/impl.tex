@@ -42,7 +42,8 @@ machines reliably for order $10^5$ simulations.
 discrete, independently acting objects, object-orientation is the natural 
 paradigm in which to conduct \gls{ABM}.
 
-The core of the \Cyclus simulator creates a set of key classes on which agent plugins 
+The core of the \Cyclus simulator creates a set of key classes on which agent 
+plug-ins 
 are based. In addition, a set of key tools are also provided to enrich the 
 \gls{API} and supply a robust suite of behaviors for the developer.
 
@@ -57,8 +58,8 @@ fashion.}
 \label{fig:framework}
 \end{figure}
 
-Agent plugins utilize the generic core \gls{API} to interact with one another.  For 
-example, agents rely on the dynamic loading and paradigm for clean plugin 
+Agent plug-ins utilize the generic core \gls{API} to interact with one another.  For 
+example, agents rely on the dynamic loading and paradigm for clean plug-in 
 behavior at the start of the simulation. They also use the resource exchange 
 paradigm \gls{API} for trading resources with one another. 
 
@@ -67,15 +68,15 @@ paradigm \gls{API} for trading resources with one another.
 % (diagram)
 
 A key innovation in \Cyclus is implementing this generic \gls{API} and modular 
-architecture into a suite of dynamically loadable ``plugin'' libraries.  Though 
-common in modern software architecture, such a ``plugin'' pattern has 
+architecture into a suite of dynamically loadable plug-in libraries.  Though 
+common in modern software architecture, such a plug-in pattern has 
 previously not been implemented in nuclear fuel cycle simulators in the 
 literature.  In \Cyclus, this implementation maximizes the potential of the clean, 
 object-oriented \gls{API} and modern build system already described.
 
 Dynamically loadable libraries are the primary mechanism for extending \Cyclus' capability. 
 This approach provides encapsulation: the core of the code operates
-completely independently from the individual plugin libraries. Thus, any
+completely independently from the individual plug-in libraries. Thus, any
 customization or extension is implemented only in the loadable
 library. 
 
@@ -103,7 +104,7 @@ closed collaborations\cite{carlsen_cyclus_2014}.}
 \label{fig:modifiedopen}
 \end{figure}
 
-In particular, since the clean plugin architecture loads libraries without any
+In particular, since the clean plug-in architecture loads libraries without any
 modifications to the \Cyclus kernel, closed-source archetypes can be used with
 the simulator alongside open-source archetypes. This architecture
 allows closed-source libraries (e.g., those representing sensitive nuclear
@@ -119,7 +120,7 @@ available libraries.
 
 \subsection{Agent Interchangability}\label{sec:interchangeability}
 
-Due to this ``plugin'' architecture,
+Due to this plug-in architecture,
 implementations of actors in a given simulation can be easily
 interchanged. Critically, this novel functionality enables the comparison
 between agent implementations. For example, a low-physics-fidelity
