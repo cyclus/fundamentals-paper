@@ -227,11 +227,11 @@ there is a common enemy for all developers to dislike equally.
 \subsection{Continuous Integration}
 \label{sec:qa-ci}
 
-Continuous integration (CI) is the idea that software should be tested and validated 
+\gls{CI} is the idea that software should be tested and validated 
 as it is being developed, rather than as a final stage in a longer development 
-cycle.  Under CI every pull request is tested independently immeadiately after 
+cycle.  Under \gls{CI} every pull request is tested independently immeadiately after 
 it is proposed. Such tests shoudl be run on all officially supported platforms. 
-Cyclus uses a CI platform called Polyphemus \cite{scopatz_polyphemus_2014}. 
+Cyclus uses a \gls{CI} platform called Polyphemus \cite{scopatz_polyphemus_2014}. 
 
 Polyphemus serves as an intermediary between GitHub pull requests on the frontend 
 and temporary cyclus servers on the backend. These servers are hosted by 
@@ -252,7 +252,7 @@ cyclus core team to determine whether or not an indivudual pull request
 actually works. This helps identify build and test problems prior to 
 broken code being allowed into the develop branch.
 
-CI has become a neccessary but not sufficient addition to the cyclus QA
+\gls{CI} has become a neccessary but not sufficient addition to the cyclus QA
 system. Its merit is that it keeps bad code out. However, cyclus will always
 require human eyes and human hands to let good code in.
 
