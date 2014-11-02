@@ -36,7 +36,7 @@ model and of fundamental simulation capability. Nascent promising growth of the 
 ecosystem at multiple institutions indicates that a fuel cycle simulator can 
 advance in a community-drive development paradigm. Additionally, simple 
 simulations as well as more complex recycling simulations demonstrate that 
-\Cyclus posesses fundamental fuel cycle simulation capabilities.
+\Cyclus possesses fundamental fuel cycle simulation capabilities.
 
 \subsection{Ecosystem}
 % Cycamore library
@@ -59,10 +59,10 @@ All together, these form an `ecosystem' of capabilities. Over time, this
 ecosystem will grow as archetype-developers, kernel-developers, and 
 even users contribute capabilities developed for their own needs. Indeed, the 
 long-term vision for the \Cyclus framework predicts an ever-expanding ecosystem 
-of both general and specialized capability extensions within that ecosytem. 
+of both general and specialized capability extensions within that ecosystem. 
 
 Already, the ecosystem is growing. Early cross-institutional contributions to 
-the ecosystem demonstrate a significant acheivement by the \Cyclus framework 
+the ecosystem demonstrate a significant achievement by the \Cyclus framework 
 and provide hope for a community-driven development model. 
 
 \subsubsection{Supplementary Projects}
@@ -86,7 +86,7 @@ Cloudlus & Tools for running \Cyclus in a cloud environment & \cite{carlsen_clou
 \hline
 \end{tabularx}
 \caption{Many tools outside of the scope of the \Cyclus kernel have been 
-developed for improved user, developer, and analyst experinces with \Cyclus.}
+developed for improved user, developer, and analyst experiences with \Cyclus.}
 \label{tab:coretools}
 \end{table}
 
@@ -106,7 +106,7 @@ developer-contributed capabilities.
 \hline
 \textbf{Name} & \textbf{Description} & \textbf{Citation} \\
 \hline
-Brite-lite & A physics-based reactor archetype and fuel fabrication archetype & \cite{flanagan_bright-lite_2014} \\
+Bright-lite & A physics-based reactor archetype and fuel fabrication archetype & \cite{flanagan_bright-lite_2014} \\
 Nuclear Fuel Inventory Model & A flexible, ORIGEN-based, reactor analysis module & \cite{skutnik_nuclear_2014} \\
 CommodConverter & A simple commodity converting storage facility archetype  & \cite{huff_commodconverter_2014} \\
 MktDrivenInst & An institution that controls deployment based on commodity availability & \cite{huff_mktdriveninst_2014} \\
@@ -138,7 +138,7 @@ easy to implement.  The simulation initially included one provider of fresh
 facility, and one repository. The simulation duration was set to 1100 months.
 
 The \Class{BatchReactor} archetype from \Cycamore has the ability to accept
-fuel materials from an arbitrary number of different sources dilineated by
+fuel materials from an arbitrary number of different sources delineated by
 commodity. Custom, non-uniform preferences can be set for each different fuel
 commodity.  The dynamic resource exchange makes it easy for a reactor to
 preferrentially accept recycled \gls{MOX} fuel over fresh \gls{UOX} fuel.  The
@@ -164,7 +164,7 @@ source of fresh, enriched uranium and a repository respectively. A simple
 custom recycled fuel fabrication facility was used.  This fabrication facility
 mixes fissile and fertile streams to match target fuel compositions as closely
 as possible.  The method used for this matching is approximately the same as
-that used by the Cosi fuel cycle simulator \TODO{cite COSI equivalence
+that used by the \gls{COSI} fuel cycle simulator \TODO{cite COSI equivalence
 method}. The material flows for this simulation are shown below in figure
 \ref{fig:flowmodopen}.
 
@@ -195,7 +195,8 @@ requires is a one-word change in the input file:
 
 This results in new the material flows in Figure \ref{fig:flowclosed}. Note
 that because the \Class{BatchReactor} always transmutes fuel into the same
-composition, the nuclide level flows are not very realistic for the full, multipass
+composition, the nuclide level flows are not very realistic for the full, 
+multi-pass
 recycle case.
 
 \begin{figure}[H]
