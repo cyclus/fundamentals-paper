@@ -34,7 +34,7 @@ The early success of the \Cyclus simulator can be measured in many ways.
 The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
 model and of fundamental simulation capability. Nascent, promising growth of the \Cyclus 
 ecosystem at multiple institutions indicates that a fuel cycle simulator can 
-advance in a community-drive development paradigm. Additionally, simple 
+advance in a community-driven development paradigm. Simple 
 simulations as well as more complex recycling simulations demonstrate that 
 \Cyclus possesses fundamental fuel cycle simulation capabilities.
 
@@ -55,20 +55,20 @@ repository of additional modules,
 \item the tools in the \Cyclus toolkit
 \item and other tools for \Cyclus optimization, parallelization, and development.
 \end{itemize}
-All together, these form an `ecosystem' of capabilities. Over time, this 
-ecosystem will grow as archetype-developers, kernel-developers, and 
+All together, these form an `ecosystem' of capabilities, 
+which will grow over time as archetype-developers, kernel-developers, and 
 even users contribute capabilities developed for their own needs. Indeed, the 
 long-term vision for the \Cyclus framework predicts an ever-expanding ecosystem 
 of both general and specialized capability extensions within that ecosystem. 
 
 Already, the ecosystem is growing. Early cross-institutional contributions to 
 the ecosystem demonstrate a significant achievement by the \Cyclus framework 
-and provide hope for a community-driven development model. 
+and initiated community-driven development. 
 
 \subsubsection{Supplementary Projects}
 
 A number of projects and tools outside of the core simulation kernel have been 
-developed which improve the scope and the diversity of the capabilities in the \Cyclus 
+developed to improve the scope and capabilities of the \Cyclus 
 ecosystem. Table \ref{tab:coretools} lists the tools and projects developed 
 under close integration with the \Cyclus kernel.
 \begin{table}[h]
@@ -114,7 +114,7 @@ SeparationsMatrix & A facility for elemental separations of used fuel & \cite{hu
 StreamBlender & A facility for fuel fabrication from reprocessed streams & \cite{huff_streamblender_2014} \\
 \hline
 \end{tabularx}
-\caption{A diverse set of archetypes under development reflect the diverse 
+\caption{The range of  archetypes under development reflect the diverse 
 needs of researchers at various institutions. These archetypes, contributed 
 outside of the \Cyclus core and \Cycamore libraries are the first demonstration 
 of community-driven development in a fuel cycle simulator.}
@@ -130,20 +130,21 @@ of community-driven development in a fuel cycle simulator.}
 % reactor models. We could easily use the same demand schedule and enrichment
 % facility parameters and run it again.
 
-Results of some simple recycle scenarios run in \Cyclus follow.  In \Cyclus,
+Results of some simple recycle scenarios simulated via \Cyclus follow.  In \Cyclus,
 because material is tracked as discrete objects, single-pass MOX recycle is
-easy to implement.  The simulation initially included one provider of fresh
-UOX fuel, one recycled fuel fabrication facility, one reactor, one separations
-facility, and one repository. The simulation duration was set to 1100 months.
+easy to implement.  The simulation duration was 1100 months and included one
+of each of the following: fresh
+UOX fuel fabrication, recycled MOX fuel fabrication, reactor, separations
+facility, and repository.
 
-The \Class{BatchReactor} archetype from \Cycamore has the ability to accept
-fuel materials from an arbitrary number of different sources delineated by
-commodity. Custom, non-uniform preferences can be set for each different fuel
-commodity.  The dynamic resource exchange makes it easy for a reactor to
+The \Class{BatchReactor} archetype from \Cycamore accepts
+fuel materials from an arbitrary number of sources delineated by
+commodity. Custom, non-uniform preferences can be set for each fuel
+commodity.  The \gls{DRE} enables reactors to
 preferentially accept recycled MOX fuel over fresh UOX fuel.  The
-\Class{BatchReactor} was configured to run with a 3 batch core on 18 month cycles and
-a 2-month refueling period.  Adjusting and setting parameters such as these is
-as simple as editing numbers in an input file such as:
+\Class{BatchReactor} was configured with a 3-batch core on 18-month cycles and
+a 2-month refueling period.  Adjusting and setting parameters such as these
+simply requires editing input file numbers, as shown below:
 
 \begin{lstlisting}[language=xml]
   ...
@@ -158,26 +159,26 @@ as simple as editing numbers in an input file such as:
   ...
 \end{lstlisting}
 
-The \Class{Source} and \Class{Sink} modules from \Cycamore were also used as a
-source of fresh, enriched uranium and a repository respectively. A simple
-custom recycled fuel fabrication facility was used.  This fabrication facility
-mixes fissile and fertile streams to match target fuel compositions as closely
-as possible.  The method used for this matching is approximately the same as
+The \Class{Source} and \Class{Sink} modules from \Cycamore were chosen to be a
+source of fresh, enriched uranium and a repository, respectively. The simple
+recycled fuel fabrication facility was designed to
+mix fissile and fertile streams to match target fuel compositions as closely
+as possible.  The method used for this matching is similar to
 that used by the \gls{COSI} fuel cycle simulator \TODO{cite COSI equivalence
-method}. The material flows for this simulation are shown below in figure
+method}. The material flows for this simulation are shown below in Figure
 \ref{fig:flowmodopen}.
 
 \begin{figure}[H]
-\label{fig:flowmodopen}
-\caption{Modified open 1-pass MOX recycle fuel cycle material flows.}
 \begin{center}
 \includegraphics{./images/flow-mod-open-1.eps}
 \end{center}
+\caption{Modified open 1-pass MOX recycle fuel cycle material flows.}
+\label{fig:flowmodopen}
 \end{figure}
 
 Simply changing the output commodity name of spent MOX fuel from the 
-\Class{BatchReactor} transforms this simulation into a closed fuel cycle. Only 
-a one-word change in the input file: 
+\Class{BatchReactor} transforms this simulation into a closed fuel cycle.
+The one-word change in the input file is shown below: 
 
 \begin{lstlisting}[language=diff]
   --- mod-open-1.xml	2014-10-08 08:31:33.892523173 -0500
@@ -192,58 +193,58 @@ a one-word change in the input file:
            </fuel>
 \end{lstlisting}
 
-This results in new the material flows in Figure \ref{fig:flowclosed}. Note
+This new simulation results in the material flows seen in Figure \ref{fig:flowclosed}. Note
 that because the \Class{BatchReactor} always transmutes fuel into the same
-composition, the nuclide level flows are not very realistic for the full, 
+composition, the nuclide level flows are not accurate for the full, 
 multi-pass
 recycle case.
 
 \begin{figure}[H]
-\label{fig:flowclosed}
-\caption{Full MOX recycle (multi-pass) fuel cycle material flows.}
 \begin{center}
 \includegraphics{./images/flow-closed-1.eps}
 \end{center}
+\caption{Full MOX recycle (multi-pass) fuel cycle material flows.}
+\label{fig:flowclosed}
 \end{figure}
 
 Figure \ref{fig:puseries1} shows the full-system plutonium buildup for open
 (no recycle), modified open, and closed (infinite-pass recycle) variations of
-the scenario described above (all just a single reactor).  The figure was
+the single-reactor scenario described above.  The figure was
 generated directly from \Cyclus output data. After several batch cycles (near
-month 300) in the modified open and closed cases, enough separated fissile
+month 300) in both the modified open and closed cases, enough separated fissile
 material accumulates in the fuel fabrication facility to generate a full
 recycled batch.  When this batch is transmuted, more plutonium is burned than
 created.  This results in a drop in the total fuel cycle system plutonium
 inventory.  This pattern repeats roughly every 10 cycles (200 months) for the
 modified open case and every 9 cycles (180 months) for the closed case.
-Because the modified open scenario does not re-recycle material, it takes the
-fabrication facility 1 cycle longer to accumulate a full batch worth of
+Because the modified open scenario does not re-recycle material, the
+fabrication facility takes 1 additional cycle to accumulate a full batch of
 fissile material.  Because facilities are represented individually and
-transact discrete materials as discrete events, realistic non-uniform patterns
-in facility behavior can be observed affecting total system behavior in ways
-that are less commonly observed in fleet-based, continuous material flow
+transact materials as discrete events, realistic non-uniform patterns
+in facility behavior can be observed that affect total system behavior in ways
+less commonly observed in fleet-based, continuous material flow
 modeling.
 
 \begin{figure}[H]
-\label{fig:puseries1}
-\caption{System plutonium buildup with one reactor.}
 \begin{center}
 \includegraphics{./images/puseries-1.eps}
 \end{center}
+\caption{System plutonium buildup with one reactor.}
+\label{fig:puseries1}
 \end{figure}
 
-The open, modified open, and closed scenarios can easily be modified to have
-several reactors each with staggered refueling times.  As the number of
-reactors increases, the behavior of the system approaches a more steady
-average reminiscent of continuous material flow models.  The plutonium buildup
+The open, modified open, and closed scenarios can easily be configured to
+stagger the refueling times of the reactors.  As the number of
+reactors increases, the behavior of the system approaches an average behavior,
+reminiscent of continuous material flow models.  The plutonium buildup
 for these three multi-reactor variations is shown in Figure
 \ref{fig:puseriesn}.
 
 \begin{figure}[H]
-\label{fig:puseriesn}
-\caption{System plutonium buildup with staggered refueling for many reactors.}
 \begin{center}
 \includegraphics{./images/puseries-n.eps}
 \end{center}
+\caption{System plutonium buildup with staggered refueling for many reactors.}
+\label{fig:puseriesn}
 \end{figure}
 
