@@ -23,14 +23,14 @@ libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms.
 Furthermore, the core infrastructure and related archetypes are free and 
 open source, BSD-3-clause licensed. No part of \Cyclus is proprietary or based 
 on \gls{COTS}, Windows-based software. It can be easily deployed 
-on large computer systems, such as \acrlong{HTC} systems.
+on large computer systems, such as \gls{HTC} systems.
 
 Cyclopts (\TODO{cite}), a proof of principle design and implementation of such a
-system, uses UW-Madison's HTCondor HTC infrastructure to perform sensitivity
+system, uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
 studies on \Cyclus' resource exchange optimization solvers. To date, it has been
 used run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
 the \Cyclus library via its resource exchange \gls{API}.
-The HTC infrastructure has also been utilized to run and collect
+The \gls{HTC} infrastructure has also been utilized to run and collect
 information from full \Cyclus simulations running in parallel on $10^3$
 machines reliably for order $10^5$ simulations.
 
@@ -42,7 +42,8 @@ machines reliably for order $10^5$ simulations.
 discrete, independently acting objects, object-orientation is the natural 
 paradigm in which to conduct \gls{ABM}.
 
-The core of the \Cyclus simulator creates a set of key classes on which agent plugins 
+The core of the \Cyclus simulator creates a set of key classes on which agent 
+plug-ins 
 are based. In addition, a set of key tools are also provided to enrich the 
 \gls{API} and supply a robust suite of behaviors for the developer.
 
@@ -57,8 +58,8 @@ fashion.}
 \label{fig:framework}
 \end{figure}
 
-Agent plugins utilize the generic core \gls{API} to interact with one another.  For 
-example, agents rely on the dynamic loading and paradigm for clean plugin 
+Agent plug-ins utilize the generic core \gls{API} to interact with one another.  For 
+example, agents rely on the dynamic loading and paradigm for clean plug-in 
 behavior at the start of the simulation. They also use the resource exchange 
 paradigm \gls{API} for trading resources with one another. 
 
@@ -67,15 +68,15 @@ paradigm \gls{API} for trading resources with one another.
 % (diagram)
 
 A key innovation in \Cyclus is implementing this generic \gls{API} and modular 
-architecture into a suite of dynamically loadable ``plugin'' libraries.  Though 
-common in modern software architecture, such a ``plugin'' pattern has 
+architecture into a suite of dynamically loadable plug-in libraries.  Though 
+common in modern software architecture, such a plug-in pattern has 
 previously not been implemented in nuclear fuel cycle simulators in the 
 literature.  In \Cyclus, this implementation maximizes the potential of the clean, 
 object-oriented \gls{API} and modern build system already described.
 
-Dynamically-loadable libraries are the primary mechanism for extending \Cyclus' capability. 
-This approach provides encapsulation. The core of the code operates
-completely independently from the individual plugin libraries. Thus, any
+Dynamically loadable libraries are the primary mechanism for extending \Cyclus' capability. 
+This approach provides encapsulation: the core of the code operates
+completely independently from the individual plug-in libraries. Thus, any
 customization or extension is implemented only in the loadable
 library. 
 
@@ -103,9 +104,9 @@ closed collaborations\cite{carlsen_cyclus_2014}.}
 \label{fig:modifiedopen}
 \end{figure}
 
-In particular, since the clean plugin architecture loads libraries without any
+In particular, since the clean plug-in architecture loads libraries without any
 modifications to the \Cyclus kernel, closed-source archetypes can be used with
-the simulator alongside open-source archetypes. This architecture
+the simulator alongside open source archetypes. This architecture
 allows closed-source libraries (e.g., those representing sensitive nuclear
 processes and subject to export control) to be developed and licensed privately.
 
@@ -119,7 +120,7 @@ available libraries.
 
 \subsection{Agent Interchangeability}\label{sec:interchangeability}
 
-Due to this ``plugin'' architecture,
+Due to this plug-in architecture,
 implementations of actors in a given simulation can be easily
 interchanged. Critically, this novel functionality enables the comparison
 between agent implementations. For example, a low-physics-fidelity
@@ -282,12 +283,12 @@ help avoid unnecessary runtime performance and database space impacts,
 compositions in \Cyclus have some special features, such as immutability.
 Immutable compositions allow multiple material objects to all hold
 references to the same composition object safely.  When operations are
-performed on a material that do not change the composition, any new resulting
-materials hold a reference to the same, originating composition object.
+performed on a material that do not alter the composition, any new resulting
+materials hold a reference to the same, original composition object.
 Although the decay operation generates a new, separate composition (preserving
 immutability), a reference to the new composition is placed in a cache shared
-by the new originating compositions. The next time the originating
-composition is decayed, the cache will be checked for a prior calculation
+by the new and original compositions. The next time the original
+composition is decayed, this cache will be checked for a prior calculation
 with the same cumulative decay time.  If one exists, the cached composition is
 used.  This cache is shared by all compositions that transitively come from
 the same origin.  Composition immutability in concert with decay history
