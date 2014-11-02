@@ -77,16 +77,16 @@ Since \Cyclus is alone in its class as an agent-based fuel cycle simulator, long
 validation is not possible. Still code-to-code comparisons with fuel cycle
 simulators with other modeling paradigms are underway, if nascent. However, such 
 exercises are more likely to bring into relief the differences between the modeling
-paradigms than be useful for QA and validation. 
+paradigms than be useful for \gls{QA} and validation. 
 
-Lastly, uncertainty quantification is a process that is used on specific simulation
+Lastly, \gls{UQ} is a process that is used on specific simulation
 instantiations to statistically determine its quality. Since the \Cyclus 
-kernel requires an input file written by the user, UQ is a process that applies 
+kernel requires an input file written by the user, \gls{UQ} is a process that applies 
 to the running of many \Cyclus simulations. The kernel itself, as a generic fuel cycle 
 simulator, cannot make reliable statements about the uncertainty of a particular fuel 
-cycle. Any UQ results are applicable only to the scenario that is under 
+cycle. Any \gls{UQ} results are applicable only to the scenario that is under 
 analysis. \Cyclus is not a panacea for due dillegence on behalf of the fuel 
-cycle modeler. Thus, UQ is envisioned to be beyond the scope of core development 
+cycle modeler. Thus, \gls{UQ} is envisioned to be beyond the scope of core development 
 and in the domain of the expert user.
 
 Sections \ref{sec:qa-testing}-\ref{sec:qa-ci} discuss in greater detail the software 
@@ -108,12 +108,12 @@ In \Cyclus, three categories of tests are defined: unit tests, integration
 tests, and regression tests. 
 
 It is important to note that before a proposed
-code changes is allowed into main stream \Cyclus, all of the tests must pass
+code change is allowed into \Cyclus, all of the tests must pass
 and the change must be covered by a test, either new or existing. This is 
 matter of policy for the developers. Additionally, test code is equally likely 
 as the code it is testing to contain errors. To prevent an infinite recursion 
 of testing-the-tests, it is assumed that diligence and one level of testing 
-is sufficient to meet the aims of the quality assurance.
+is sufficient to meet the aims of \gls{QA}.
 
 \subsubsection{Unit Tests}
 
@@ -140,13 +140,13 @@ simulations and verifying that results are what would be expected ahead of
 time. Pre-canned input files have thus been constructed. Their results 
 are inspected and compared via nose \cite{pellerin_nose_2007}, a Python test framework.
 Python will run cyclus as a subprocess for each integration test. In this
-way cyclus code units are tested in the full context that they will be
+way, \Cyclus code units are tested in the full context that they will be
 executed. This category of testing is especially useful for ensuring that 
 major \Cyclus components are functioning as expected.
 
 \subsubsection{Regression Tests}
 
-Regression tests are tests which ensure that significant changes do not 
+Regression tests are tests that ensure significant changes do not 
 occur over the course of \Cyclus development. Such a change is called a 
 \emph{regression} because the new version is almost always wrong.
 Regression tests are implemented similarly to integration tests.
@@ -160,7 +160,7 @@ it changed. They thus pick up glaring time-sensitive mistakes that may
 not appear elsewhere though they do not purport to make claims about the
 quality of the physics modeled. The \Cycamore project is the primary location of
 regression tests. This is because the archetypes here are sophisticated enough
-to make interesting input files. Only a handful ($<10$) time steps are needed 
+to make interesting input files. Only a handful ($<10$) of time steps are needed 
 for regression testing.
 
 \subsection{Documentation}
@@ -168,7 +168,7 @@ for regression testing.
 All of the public interface (the \gls{API}) must be documented as part of \Cyclus
 \gls{QA} policy. This certifies that the intention for a code unit is communicated 
 in way that is separate from its implementation. This policy is important 
-because implementations are often wrong. Software implementations are unreliable 
+because implementations are often wrong; software implementations are unreliable 
 resources about themselves. Truly trustworthy communication about what 
 software should be doing comes from the author explicitly stating the 
 goals of an \gls{API} in prose form. Future development of the code is then able to 
@@ -182,7 +182,7 @@ tools. These websites are placed online at \url{http://fuelcycle.org}.
 \subsection{Version Control}
 
 Version control is the history-preserving mechanism by which the provenance of 
-a code is recored. \Cyclus uses a well-established tool called git 
+a code is recorded. \Cyclus uses a well-established tool called git 
 \cite{software_freedom_conservancy_git_2014}
 for this purpose. Git is currently the most popular utility in the recent wave
 of \emph{distributed version control}. Briefly stated, this means that every 
@@ -192,7 +192,7 @@ Though there and many praises and criticisms of git, one
 feature that the tool performs exceptionally well is the notion of code branches.
 These are distinct pathways in the history that branch out of a mainline source
 tree and then may be \emph{merged} back into the mainline. Multiple simultaneous
-branches may exist at all point in time. Every change to the code is recorded
+branches may exist at all points in time. Every change to the code is recorded
 in the history, along with metadata such as the author, a timestamp, and an 
 accompanying message. Thus 
 it is possible for \Cyclus to accurately replay the entirety of who did what to the
@@ -206,7 +206,7 @@ In addition to these rules and delineation, \Cyclus also imposes rules on
 when it is acceptable from a quality control standpoint to merge code from 
 the personal topical branches into develop. All software at this stage 
 must have sufficient and passing tests and comprehensive documentation. Without
-these core pieces proposed changes are not allowed into \Cyclus. A schematic of 
+these core pieces, proposed changes are not allowed into \Cyclus. A schematic of 
 the development stages between reporting a bug and merging the fix is shown in 
 Figure \ref{fig:gitprocess}. 
 
@@ -214,7 +214,7 @@ Figure \ref{fig:gitprocess}.
 \begin{center}
 \includegraphics[height=0.6\textheight]{./images/gitprocess}
 \end{center}
-\caption{A version-control enabled process for finding, reporting, fixing a bug 
+\caption{A version-control enabled process for finding, reporting, and fixing a bug 
 can take place within an issue tracker alongside multiple stages of code 
 testing and review. In the \Cyclus case, the final review stage includes unit, 
 regression, and integration testing as well as manual code inspection.}
@@ -233,12 +233,12 @@ merge in any changes and only after the \gls{QA} standards have been met.
 
 In any multi-person software project, there is a tension between how individuals
 wish to write code. Every person tends to have their own custom style. To remedy this
-coding style guides are the software analogy to the natural language ones, 
+coding style guides are the software analogy to those for written language,
 such as the Chicago Manual of Style. \Cyclus strictly enforces the use of the 
 Google C++ Style Guide \cite{weinberger_google_2008} for all software contributions.
 This means that all developers of \Cyclus nominally write \Cyclus code in the same 
 way.  This homogenization may be a hurdle to new developers but ultimately 
-makes the it much more legible. Adoption of a single style guide also settles
+improves code legibility. Adoption of a single style guide also settles
 timeless arguments over what style is `the best.' Having only one means that 
 there is a common enemy for all developers to dislike equally.
 
@@ -247,7 +247,7 @@ there is a common enemy for all developers to dislike equally.
 
 \emph{\acrfull{CI}} the idea that software should be tested and validated 
 as it is being developed, rather than as a final stage in a longer development 
-cycle.  Under \gls{CI} every pull request is tested independently immediately after 
+cycle.  Under \gls{CI}, every pull request is tested independently immediately after 
 it is proposed. Such tests should be run on all officially supported platforms. 
 \Cyclus uses a \gls{CI} platform called Polyphemus \cite{scopatz_polyphemus_2014}. 
 
@@ -270,8 +270,8 @@ Since these steps are performed for all incoming code, it is easy for the
 actually works. This helps identify build and test problems prior to 
 broken code being allowed into the develop branch.
 
-CI has become a necessary but not sufficient addition to the \Cyclus \gls{QA}
-system. Its merit is that it keeps bad code out. However, \Cyclus will always
-require human eyes and human hands to let good code in.
+\gls{CI} has become a necessary but not sufficient addition to the \Cyclus \gls{QA}
+system. Its merit is that it prevents bad code from being implemeted. However, \Cyclus will always
+require human eyes and hands to let good code in.
 
 
