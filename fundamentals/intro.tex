@@ -26,7 +26,7 @@ validated analysis.
 The \Cyclus Nuclear Fuel Cycle Simulator framework and 
 its modeling ecosystem answer this need for a next generation nuclear fuel cycle 
 simulator. Dynamic simulation of nuclear fuel cycles with discrete agents 
-and up to isotopic resolution support 
+and per nuclide species resolution support 
 levels of detail appropriate for a varied community of analysts
 interested in a range of analysis types. Additionally, \Cyclus employs an 
 open development process that supports user access and 
@@ -35,6 +35,7 @@ encourages developer extensions.
 Historically, nuclear fuel cycle simulators have estimated 
 nuclear fuel cycle performance using software 
 ranging from ad hoc spreadsheet-driven flow calculators to highly specialized 
+system dynamics
 proprietary models. To date, current tools are either static, fleet-based, 
 privately distributed, or all of the above. Each of these qualities present a 
 severe challenge to modeling fidelity, generality, efficiency, robustness, and 
@@ -44,7 +45,7 @@ An alternative to these approaches is a dynamic, agent-based simulator with an
 open platform and an ecosystem of research-driven capabilities.  Modern 
 insight indicates that dynamic nuclear fuel cycle analysis more realistically 
 supports a broader range of simulation goals than static analysis 
-\cite{piet_dynamic_2011}. Similarly, experience in the greater field of systems 
+\cite{piet_dynamic_2011}. Similarly, experience in the broader field of systems 
 analysis indicates that agent-based modeling enables more flexible simulation 
 control, without loss of generality \cite{macal_agent-based_2010}. Finally, openness 
 allows cross-institutional collaboration, increases code robustness, and 
@@ -88,14 +89,14 @@ general to calculate their metrics of interest with their method of choice.
 With limited access to the national laboratory tools and a need to customize 
 them for research purposes, universities and private industry researchers 
 ``reinvent the wheel'' by developing tools of their own from scratch and 
-tailored to their own needs (e.g., \gls{CAFCA}\cite{guerin_impact_2009} and 
-\gls{COSI}\cite{boucher_cosi_2005,boucher_cosi:_2006,meyer_new_2009,coquelet-pascal_comparison_2011}, respectively). 
+tailored to their own needs, for example \gls{CAFCA}\cite{guerin_impact_2009} and 
+\gls{COSI}\cite{boucher_cosi_2005,boucher_cosi:_2006,meyer_new_2009,coquelet-pascal_comparison_2011} respectively. 
 
 This trend has resulted in a proliferation of specialized
 fuel cycle simulators for the calculation of fuel cycle metrics.  Accordingly, methods 
 for calculating those metrics vary among simulators. Some model the 
-system of facilities, economics, and materials at static equilibrium, while 
-others capture its dynamics.  
+system of facilities, economics, and materials at static equilibrium. Meanwhile 
+other simulators capture its dynamics.  
 Similarly, while some simulators discretely model material and facilities, 
 others treat materials in streams and facilities in fleets, in an aggregated 
 fashion. Depending on their intended use, simulators often overspecialize, 
@@ -112,7 +113,7 @@ to provide generic regional capability.  Based on lessons learned from
 \gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code sought to 
 provide more generality and an extensible interface to facilitate 
 collaboration.  The \Cyclus project, in turn, improved upon the \gls{GENIUSv2} 
-project by implementing increased modularity and encapsulation.  The result is  
+effort by implementing increased modularity and encapsulation.  The result is  
 a dynamic simulator that treats both materials and facilities discretely, with 
 an architecture that permits simulations with multiple and variable levels of 
 fidelity. The simulator's agent-based framework for tracking of 
@@ -196,6 +197,9 @@ customization provided by the modular architecture of \Cyclus.
 % describe Region/Institution/Facility hierarchy
 % note importance of generic resource exchange paradigm
 
+\Cyclus implements an \gls{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
+true to reality, and it takes advantage of modern computing resources.  
+Furthermore, agent-based modeling provides an analyst a more natural 
 \Cyclus utilizes an \gls{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
 true to reality, and takes advantage of modern computing resources.  
 Furthermore, \gls{ABM} provides an analyst a more natural 
@@ -208,8 +212,7 @@ bona fide actors in the simulation.  The two archetype libraries, therefore, nee
 not have any shared knowledge of one another for them to be building blocks in 
 the same simulation.
 
-System dynamics is a popular approach for modeling nuclear fuel cycles in current
-tools 
+System dynamics is a popular approach for modeling nuclear fuel cycles 
 \cite{jacobson_vision_2009,van_den_durpel_daness_2009,guerin_impact_2009,guerin_benchmark_2009}. However, it has been shown in systems analysis literature
 \cite{macal_agent-based_2010} that, formally, the
 set of system dynamics models is a strict subset of agent-based models.
