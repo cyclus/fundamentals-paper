@@ -19,7 +19,7 @@ in importance. Appropriate nuclear fuel cycle analysis requires calculation of m
 chemical, industrial, and political phenomena. Nuclear fuel cycle simulators 
 therefore couple complex systems such as nuclear process physics, 
 facility deployment, and material routing. However, most nuclear fuel cycle 
-simulators have not incorporated modern insights into simulation science and 
+simulators have not incorporated modern insights from simulation science and 
 software architecture that can enable more efficient, accurate, robust, and 
 validated analysis. 
 
@@ -74,7 +74,8 @@ quantitative measures of performance that
 can be compared among fuel cycle options. The feasibility of technology 
 strategies, dynamics of transitions between fuel cycles, and many other 
 measures of performance can be expressed in terms of these metrics. For example, 
-economic feasibility is often measured in \gls{LCOE}
+economic feasibility is often measured in \gls{LCOE}, requiring calculation of
+lifetime fuel costs and electricity generation, 
 while environmental performance might be measured in spent fuel volume, 
   toxicity, or mined uranium.
 
@@ -105,13 +106,13 @@ others. For example, a simulator created for policy modeling might have excellen
 capability in economics while material isotopics and transmutation detail are 
 neglected.
 
-The \Cyclus simulator emerged from a line of tools seeking to break this practice.  
+\Cyclus emerged from a line of tools seeking to break this practice.  
 Its precurser, \gls{GENIUSv1}\cite{dunzik-gougar_global_2007,jain_transitioning_2006}, was begun at \gls{LDRD}, began at \gls{INL} and sought 
 to provide generic regional capability.  Based on lessons learned from 
-\gls{GENIUSv1}, the 
-\gls{GENIUSv2}\cite{oliver_studying_2009,huff_geniusv2_2009} code sought to 
+Version 1, the 
+\acrshort{GENIUSv2} Version 2\cite{oliver_studying_2009,huff_geniusv2_2009} code sought to 
 provide more generality and an extensible interface to facilitate 
-collaboration.  The \Cyclus project then improved upon the \gls{GENIUSv2} 
+collaboration.  The \Cyclus project then improved upon the \acrshort{GENIUSv2} 
 effort by implementing increased modularity and encapsulation.  The result is  
 a dynamic simulator that treats both materials and facilities discretely, with 
 an architecture that permits simulations with multiple and variable levels of 
@@ -138,8 +139,8 @@ fidelities, scales, and applications than to other simulators.
 \Cyclus separates the problem of modeling a
 physics-dependent supply chain into two distinct components: a simulation kernel and archetypes that
 interact with the kernel. The kernel is responsible for the
-deployment and interaction logic of entities in the simulation. The archetypes represent 
-individual types of facilities and capture their unique physics.  Accordingly, specialists
+deployment and interaction logic of entities in the simulation.  Physics calculations and 
+customized behaviors are implemented within archetypes. Accordingly, specialists
 in a given field can utilize their time and resources in modeling a specific
 process associated with the nuclear fuel cycle (e.g., reprocessing and advanced
 fuel fabrication), without having to model the entirety of the cycle.
@@ -219,18 +220,18 @@ broadest range of simulations in a generic fashion.
 objects. A discrete resource model allows for a range of modeling granularity. In the
 macroscopic extreme, it is equivalent to time-stepped continuous flow. In the
 microscopic extreme, the model is capable of representing arbitrarily small 
-material objects at isotopic resolution. In this way, the \Cyclus simulator is 
+material objects at isotopic resolution. In this way, \Cyclus is 
 applicable across the full range of modeling extremes. 
 
 Although some questions require resolution at the level of 
 individual facilities and materials, 
 Fleet-based, lumped-material models do not distinguish between discrete
-facility entities or materials.  As a result, detailed performance 
+facility entities or materials.  As a result, many detailed performance 
 metrics cannot be captured with previously existing tools.
 The generality of \Cyclus therefore enables many use cases 
 that cannot be achieved with fleet-based models. 
 
-One such example is the use case that seeks to capture system vulnerability to nefarious 
+One such use case seeks to capture system vulnerability to nefarious 
 material diversion. Provenance and trade-history of distinct materials is the fundamental 
 information unit in such studies, and so this type of analysis requires
  discrete simulation of a 
@@ -238,10 +239,10 @@ target facility and the individual materials modified within it.
 Provenance and trade-history of distinct materials is the fundamental 
 information unit in such studies. 
 Material risk analysis, therefore, demands discretely modeled objects like those 
-in the \Cyclus simulator.
+in \Cyclus.
 
 There are a number of types of users and developers who will 
-interact with the \Cyclus framework. National laboratory researchers,
+interact with \Cyclus. National laboratory researchers,
 academic researchers, private-industry economic forecasters, and even students 
 in engineering courses may benefit from the ease of development and
 customization provided by the discrete, modular, agent-based architecture of \Cyclus.
