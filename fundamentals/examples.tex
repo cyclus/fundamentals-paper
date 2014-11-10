@@ -30,6 +30,11 @@
 % What were the results?
 % How were the measurements made and characterized?
 
+
+The success of the \Cyclus simulator is illustrated by demonstrations
+of its fundamental simulation capabilities and the feasibility the
+ community-driven \Cyclus development model.
+Nascent promising growth of the \Cyclus 
 The success of the \Cyclus simulator can be measured in many ways. 
 The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
 model and of fundamental simulation capability. Nascent promising growth of the \Cyclus 
@@ -47,19 +52,19 @@ archetypes, data, and input files intended for use with the \Cyclus simulator.
 Members of the ecosystem include:
 \begin{itemize}
 \item the archetypes provided in the \Cycamore \cite{carlsen_cycamore_2014} 
-repository of additional modules,
-\item the archetypes created by researchers,
-\item isotopic composition data,
-\item historical facility deployment data,
-\item the \Cyclus \gls{GUI} tool Cyclist,
-\item the tools in the \Cyclus toolkit
-\item and other tools for \Cyclus optimization, parallelization, and development.
+repository
+\item the archetypes created by researchers
+\item isotopic composition data
+\item historical facility deployment data
+\item the \Cyclus \gls{GUI} tool Cyclist
+\item fundamental analysis tools in the \Cyclus toolkit
+\item tools for \Cyclus optimization, parallelization, and development
 \end{itemize}
-All together, these form an `ecosystem' of capabilities. Over time, this 
+Taken together, these form an `ecosystem' of capabilities. Over time, this 
 ecosystem will grow as archetype-developers, kernel-developers, and 
 even users contribute capabilities developed for their own needs. Indeed, the 
 long-term vision for the \Cyclus framework predicts an ever-expanding ecosystem 
-of both general and specialized capability extensions within that ecosystem. 
+of both general and specialized capability extensions. 
 
 Already, the ecosystem is growing. Early cross-institutional contributions to 
 the ecosystem demonstrate a significant achievement by the \Cyclus framework 
@@ -70,7 +75,10 @@ and provide hope for a community-driven development model.
 A number of projects and tools outside of the core simulation kernel have been 
 developed which improve the scope and the diversity of the capabilities in the \Cyclus 
 ecosystem. Table \ref{tab:coretools} lists the tools and projects developed 
-under close integration with the \Cyclus kernel.
+under close integration with the \Cyclus kernel.  These tools are used to ease development
+and simulation design (Cystub, Cycic, Ciclus), data visualization and analysis (Cyclist, Cyan),
+and remote execution (Cloudlus).
+
 \begin{table}[h]
 \centering
 \begin{tabularx}{\textwidth}{|r|X|r|}
@@ -79,26 +87,28 @@ under close integration with the \Cyclus kernel.
 \hline
 Cycic &  Input control - embedded in Cyclist & \cite{flanagan_input_2013}\\
 Cyclist & Interactive data exploration environment & \cite{livnat_cyclist_2014} \\
-Ciclus & Continuous Integration scripts for \Cyclus & \cite{scopatz_ciclus_2014}\\
+Ciclus & Continuous integration scripts for \Cyclus & \cite{scopatz_ciclus_2014}\\
 Cycstub & Skeleton for clean slate module development & \cite{carlsen_cycstub_2014}\\
 Cyan & \Cyclus analysis tool & \cite{carlsen_cyan_2014}\\
 Cloudlus & Tools for running \Cyclus in a cloud environment & \cite{carlsen_cloudlus_2014} \\
 \hline
 \end{tabularx}
-\caption{Many tools outside of the scope of the \Cyclus kernel have been 
-developed for improved user, developer, and analyst experiences with \Cyclus.}
+\caption{Many tools have been developed outside of the scope of the \Cyclus kernel for improved user, developer, and analyst experiences with \Cyclus.}
 \label{tab:coretools}
 \end{table}
 
 \subsubsection{Archetype Contributions}
 
-Many archetypes external to the \Cycamore library  
+Many archetypes external to the \Cycamore library (Table \ref{tab:cycamore})  
 have been 
 \cite{huff_streamblender_2014,huff_commodconverter_2014}
-and are being 
+or are being 
 \cite{flanagan_bright-lite_2014,skutnik_nuclear_2014,huff_mktdriveninst_2014} developed for contribution to the 
 \Cyclus ecosystem. These archetypes provide the first examples of 
-developer-contributed capabilities.
+developer-contributed capabilities.  They add to the fundamental \Cycamore
+archetypes by providing physics-based reactors, separation, fabrication, and storage
+facilities, and expanded institutional paradigms.  These contributed archetypes
+illustrate the power of a community-based development approach.
 
 \begin{table}[h]
 \centering
@@ -130,18 +140,27 @@ of community-driven development in a fuel cycle simulator.}
 % reactor models. We could easily use the same demand schedule and enrichment
 % facility parameters and run it again.
 
-Results of some simple recycle scenarios run in \Cyclus follow.  In \Cyclus,
-because material is tracked as discrete objects, single-pass \gls{MOX} 
-recycle is
-easy to implement.  The simulation initially included one provider of fresh
+Results of some simple recycle scenarios run in \Cyclus follow. Beginning with a single
+reactor simulation, open (no recycle), modified open, and closed (infinite-pass recycle) 
+fuel cycles are compared to illustrate the resolution possible with \Cyclus.  The simulation
+is then expanded to include multiple reactors in the same set of fuel cycles to demonstrate
+the system-scale convergance to continuous material flow models. 
+
+Because material is tracked as discrete objects, single-pass \gls{MOX} 
+recycle is easy to implement in \Cyclus.  The MOX simulation includes one provider of fresh
 \gls{UOX} fuel, one recycled fuel fabrication facility, one reactor, one separations
-facility, and one repository. The simulation duration was set to 1100 months.
+facility, and one repository. The simulation has a duration of 1100 months and a \TODO{??-month stepsize}.
+
+%** full-system plutonium buildup for open
+(no recycle), modified open, and closed (infinite-pass recycle) variations of
+%the scenario described above (all just a single reactor).  **
 
 The \Class{BatchReactor} archetype from \Cycamore has the ability to accept
-fuel materials from an arbitrary number of different sources delineated by
+fuel materials from an arbitrary number of different sources, delineated by
 commodity. Custom, non-uniform preferences can be set for each different fuel
 commodity.  The dynamic resource exchange makes it easy for a reactor to
-preferrentially accept recycled \gls{MOX} fuel over fresh \gls{UOX} fuel.  The
+preferentially accept recycled \gls{MOX} fuel over fresh \gls{UOX} fuel.  In this
+simulation, the
 \Class{BatchReactor} was configured to run with a 3 batch core on 18 month cycles and
 a 2-month refueling period.  Adjusting and setting parameters such as these is
 as simple as editing numbers in an input file such as:
@@ -159,10 +178,10 @@ as simple as editing numbers in an input file such as:
   ...
 \end{lstlisting}
 
-The \Class{Source} and \Class{Sink} archetypes from \Cycamore were also used as a
+The \Class{Source} and \Class{Sink} archetypes from \Cycamore have been used as a
 source of fresh, enriched uranium and a repository respectively. A simple
-custom recycled fuel fabrication facility was used.  This fabrication facility
-mixes fissile and fertile streams to match target fuel compositions as closely
+custom recycled fuel fabrication facility was also used, which mixes fissile 
+and fertile streams to match target fuel compositions as closely
 as possible.  The method used for this matching is approximately the same as
 that used by the \gls{COSI} fuel cycle simulator \TODO{cite COSI equivalence
 method}. The material flows for this simulation are shown below in figure
@@ -177,8 +196,8 @@ method}. The material flows for this simulation are shown below in figure
 \end{figure}
 
 To switch to a fully closed fuel cycle, all that needs to be done is change
-the output commodity for the \Class{BatchReactor}'s spent \gls{MOX} fuel.  All this
-requires is a one-word change in the input file: 
+the output commodity for the spent \gls{MOX} fuel of the \Class{BatchReactor}, 
+requiring only a one-word change in the input file: 
 
 \begin{lstlisting}[language=diff]
   --- mod-open-1.xml	2014-10-08 08:31:33.892523173 -0500
@@ -219,11 +238,12 @@ inventory.  This pattern repeats roughly every 10 cycles (200 months) for the
 modified open case and every 9 cycles (180 months) for the closed case.
 Because the modified open scenario does not re-recycle material, it takes the
 fabrication facility 1 cycle longer to accumulate a full batch worth of
-fissile material.  Because facilities are represented individually and
-transact discrete materials as discrete events, realistic non-uniform patterns
-in facility behavior can be observed affecting total system behavior in ways
-that are less commonly observed in fleet-based, continuous material flow
-modeling.
+fissile material. 
+
+Because facilities are represented individually and
+transact discrete materials as discrete events, realistic non-uniform patterns in facility behavior
+that affect total system behavior are observed using \Cyclus, which is uncommon 
+for fleet-based, continuous material flow models.
 
 \begin{figure}[H]
 \label{fig:puseries1}
@@ -234,11 +254,11 @@ modeling.
 \end{figure}
 
 The open, modified open, and closed scenarios can easily be modified to have
-several reactors each with staggered refueling times.  As the number of
-reactors increases, the behavior of the system approaches a more steady
-average reminiscent of continuous material flow models.  The plutonium buildup
+several reactors each with staggered refueling times. The plutonium buildup
 for these three multi-reactor variations is shown in Figure
-\ref{fig:puseriesn}.
+\ref{fig:puseriesn}. As the number of
+reactors increases, the behavior of the system approaches a more steady
+average reminiscent of continuous material flow models. 
 
 \begin{figure}[H]
 \label{fig:puseriesn}
