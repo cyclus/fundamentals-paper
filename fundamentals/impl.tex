@@ -34,7 +34,7 @@ on large computer systems, such as \gls{HTC} systems.
 Cyclopts (\TODO{cite}), a proof of principle design and implementation of \Cyclus on such a large computer system,
  uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
 studies on \Cyclus' resource exchange optimization solvers. To date, it has been
-used run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
+used to run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
 the \Cyclus library via its resource exchange \gls{API}.
 The \gls{HTC} infrastructure has also been utilized to run and collect
 information from full \Cyclus simulations running in parallel on $10^3$
@@ -124,7 +124,7 @@ implementation of a reactor can be compared to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
 fidelity on a given fuel cycle. 
 
-Interchangeability is accomplished by providing \glspl{API} that define agent-to-agent
+Interchangeability is accomplished by providing \glspl{API} that define canonical agent-to-agent
 interaction and agent-to-environment interaction, primarily through the
 \Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows 
 the ``inheritance'' structure of the \Class{Agent} class in a \gls{UML} diagram 
@@ -162,7 +162,7 @@ simply by exchanging the two corresponding archetypes. That is, two reactor
 archetypes both inheriting from the \Class{Facility} class are indistinguishable 
 from a simulation perspective. Two simulations, one using 
 \Class{DetailedReactor} and the other using \Class{SimpleReactor} can therefore 
-be compared directly to determine the impact of using one or the other model.
+be compared directly to determine the whole-simulation impact of using one or the other model.
 This can be done with any agent type, where agents can be ``Regions,'' 
 ``Institutions,'' or ``Facilities.''
 
@@ -199,10 +199,10 @@ designed to handle hierarchies of arbitrary depth.  It is capable of
 running a simulation without regions and institutions (i.e.  only facilities)
 or a simulation having archetypes that are the parents of regions.  By
 convention, institutions are mainly responsible for facility deployment, but
-any archetype can have access to the \Cyclus agent deployment mechanism.  It is easy
+all archetypes have access to the agent deployment mechanism.  It is easy
 to implement agents that deploy copies of themselves, or that schedule their
 own decommissioning.  Because regions, institutions, and facilities are all
-agents, they can all be implemented to exercise the full set of features
+just agents, they can all be implemented to exercise the full set of features
 offered by the \Cyclus kernel.
 
 \subsection{Resources and Materials}
@@ -224,12 +224,11 @@ Cyclus currently supports two types of resources:
 \end{itemize}
 
 All operations performed on every resource object (splitting, combining,
-decay, etc.) are tracked in detail as they are performed.  This information includes th
-agent that newly created resources are created from  
-when they are introduced into the simulation.
-The parentage of each resource is also tracked. This makes it possible to
-follow the history of resources as they are transferred
-between agents.  This powerfully impacts the ability to model 
+decay, etc.) are tracked in detail as they are performed.  This information
+includes the agent that created each resource when it was introduced into the
+simulation.  The parentage of each resource is also tracked. This makes it
+possible to follow the history of resources as they are transferred between
+agents.  This powerfully impacts the ability to model
 non-proliferation-related simulation goals. 
 
 The \Cyclus kernel has built-in experimental support for decay calculations.
@@ -256,16 +255,16 @@ modes likely to be added in future releases:
 \end{itemize}
 
 In order to avoid excess decay calculations, when decay 
-is invoked, the material checks to see if it contains any nuclides with decay
-constants that are significant with respect to the time delta for the current
+is invoked, a material checks to see if it contains any nuclides with decay
+constants that are significant with respect to the time change since the last
 decay operation.  If none of the decay constants are significant, no decay
 calculation is performed and the material remains unchanged.  This error does
 not accumulate because the next time the material's decay function is invoked,
-the time delta will be larger. \TODO{want more detail on this decay shortcut?}
+the time change will be larger. \TODO{want more detail on this decay shortcut?}
 \TODO{describe decay algorithm and how it might be improved}.
 
-\Cyclus has no notion of ``tracked'' versus ``untracked'' nuclides.  In \Cyclus, the composition of a  material
-composition is represented by an arbitrarily large list (potentially thousands) of
+\Cyclus has no notion of ``tracked'' versus ``untracked'' nuclides.  In \Cyclus, the composition of a material
+is represented by an arbitrarily large list (potentially thousands) of
 nuclides.  Agents are free to treat nuclides present in materials any way they
 please - including ignoring them.  It is the responsibility of archetype
 developers to choose how to handle potentially full-fidelity compositions.
@@ -273,8 +272,8 @@ developers to choose how to handle potentially full-fidelity compositions.
 In large simulations many material objects may be changing frequently.
 Material decay can also contribute significantly to such changes.  In order to
 help avoid unnecessary runtime performance and database space impacts,
-compositions in \Cyclus have some special features, such as immutability.
-Immutable compositions allow multiple material objects to all hold
+compositions in \Cyclus have some special features.
+Immutability of compositions allows multiple material objects to all hold
 references to the same composition object safely.  When operations are
 performed on a material that do not alter the composition, any new resulting
 materials hold a reference to the same, original composition object.
