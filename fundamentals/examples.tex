@@ -31,17 +31,16 @@
 % How were the measurements made and characterized?
 
 
-The success of the \Cyclus simulator is illustrated by demonstrations
+The functionality of the \Cyclus simulator is illustrated by demonstrations
 of its fundamental simulation capabilities and the feasibility the
  community-driven \Cyclus development model.
-Nascent promising growth of the \Cyclus 
 The success of the \Cyclus simulator can be measured in many ways. 
 The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
 model and of fundamental simulation capability. Nascent promising growth of the \Cyclus 
 ecosystem at multiple institutions indicates that a fuel cycle simulator can 
-advance in a community-drive development paradigm. Additionally, simple 
+advance in a community-driven \textbf{collaborative?} development paradigm. Additionally, simple 
 simulations as well as more complex recycling simulations demonstrate that 
-\Cyclus possesses fundamental fuel cycle simulation capabilities.
+\Cyclus possesses fuel cycle simulation capabilities.
 
 \subsection{Ecosystem}
 % Cycamore library
@@ -60,20 +59,20 @@ repository
 \item fundamental analysis tools in the \Cyclus toolkit
 \item tools for \Cyclus optimization, parallelization, and development
 \end{itemize}
-Taken together, these form an `ecosystem' of capabilities. Over time, this 
-ecosystem will grow as archetype-developers, kernel-developers, and 
+Taken together, these form an ecosystem of capabilites. Over time, this 
+ecosystem will grow as archetype developers, kernel developers, and 
 even users contribute capabilities developed for their own needs. Indeed, the 
 long-term vision for the \Cyclus framework predicts an ever-expanding ecosystem 
 of both general and specialized capability extensions. 
 
 Already, the ecosystem is growing. Early cross-institutional contributions to 
 the ecosystem demonstrate a significant achievement by the \Cyclus framework 
-and provide hope for a community-driven development model. 
+and provide the basis for a community-driven development model. 
 
 \subsubsection{Supplementary Projects}
 
 A number of projects and tools outside of the core simulation kernel have been 
-developed which improve the scope and the diversity of the capabilities in the \Cyclus 
+developed to improve the scope and the diversity of the capabilities in the \Cyclus 
 ecosystem. Table \ref{tab:coretools} lists the tools and projects developed 
 under close integration with the \Cyclus kernel.  These tools are used to ease development
 and simulation design (Cystub, Cycic, Ciclus), data visualization and analysis (Cyclist, Cyan),
@@ -106,7 +105,7 @@ or are being
 \cite{flanagan_bright-lite_2014,skutnik_nuclear_2014,huff_mktdriveninst_2014} developed for contribution to the 
 \Cyclus ecosystem. These archetypes provide the first examples of 
 developer-contributed capabilities.  They add to the fundamental \Cycamore
-archetypes by providing physics-based reactors, separation, fabrication, and storage
+archetypes by providing physics-based reactors, separation, fabrication, storage
 facilities, and expanded institutional paradigms.  These contributed archetypes
 illustrate the power of a community-based development approach.
 
@@ -146,19 +145,20 @@ fuel cycles are compared to illustrate the resolution possible with \Cyclus.  Th
 is then expanded to include multiple reactors in the same set of fuel cycles to demonstrate
 the system-scale convergance to continuous material flow models. 
 
-Because material is tracked as discrete objects, single-pass \gls{MOX} 
-recycle is easy to implement in \Cyclus.  The MOX simulation includes one provider of fresh
+Because material is tracked as discrete objects, single-pass recycle using \gls{MOX} 
+fuel is easy to implement in \Cyclus.  The \gls{MOX} simulation includes one provider of fresh
 \gls{UOX} fuel, one recycled fuel fabrication facility, one reactor, one separations
 facility, and one repository. The simulation has a duration of 1100 months and a \TODO{??-month stepsize}.
 
 %** full-system plutonium buildup for open
-(no recycle), modified open, and closed (infinite-pass recycle) variations of
+\TODO{(no recycle), modified open, and closed (infinite-pass recycle)
+variations of}
 %the scenario described above (all just a single reactor).  **
 
 The \Class{BatchReactor} archetype from \Cycamore has the ability to accept
 fuel materials from an arbitrary number of different sources, delineated by
 commodity. Custom, non-uniform preferences can be set for each different fuel
-commodity.  The dynamic resource exchange makes it easy for a reactor to
+commodity.  The dynamic resource exchange \TODO{acro or not?} enables a reactor to
 preferentially accept recycled \gls{MOX} fuel over fresh \gls{UOX} fuel.  In this
 simulation, the
 \Class{BatchReactor} was configured to run with a 3 batch core on 18 month cycles and
@@ -179,7 +179,7 @@ as simple as editing numbers in an input file such as:
 \end{lstlisting}
 
 The \Class{Source} and \Class{Sink} archetypes from \Cycamore have been used as a
-source of fresh, enriched uranium and a repository respectively. A simple
+source of fresh, enriched uranium and a repository, respectively. A simple
 custom recycled fuel fabrication facility was also used, which mixes fissile 
 and fertile streams to match target fuel compositions as closely
 as possible.  The method used for this matching is approximately the same as
@@ -188,16 +188,16 @@ method}. The material flows for this simulation are shown below in Figure
 \ref{fig:flowmodopen}.
 
 \begin{figure}[H]
-\caption{Modified open 1-pass \gls{MOX} recycle fuel cycle material flows.}
 \begin{center}
 \includegraphics{./images/flow-mod-open-1.eps}
 \end{center}
+\caption{Modified open 1-pass \gls{MOX} recycle fuel cycle material flows.}
 \label{fig:flowmodopen}
 \end{figure}
 
-To switch to a fully closed fuel cycle, all that needs to be done is change
-the output commodity for the spent \gls{MOX} fuel of the \Class{BatchReactor}, 
-requiring only a one-word change in the input file: 
+Changing this to a fully closed fuel cycle entails only a one-word change in the input file
+regarding the output commodity for the spent \gls{MOX} fuel of the
+\Class{BatchReactor}: 
 
 \begin{lstlisting}[language=diff]
   --- mod-open-1.xml	2014-10-08 08:31:33.892523173 -0500
@@ -211,33 +211,34 @@ requiring only a one-word change in the input file:
              <outrecipe>mox_spent_fuel</outrecipe>
            </fuel>
 \end{lstlisting}
-
-This results in new the material flows in Figure \ref{fig:flowclosed}. Note
-that because the \Class{BatchReactor} always transmutes fuel into the same
-composition, the nuclide level flows are not very realistic for the full, 
+This results in the material flows in Figure \ref{fig:flowclosed}. Note
+that the \Class{BatchReactor} always transmutes fuel into the same
+composition, so the nuclide level flows are unrealistic for the full, 
 multi-pass
 recycle case.
 
 \begin{figure}[H]
-\caption{Full \gls{MOX} recycle (multi-pass) fuel cycle material flows.}
 \begin{center}
 \includegraphics{./images/flow-closed-1.eps}
 \end{center}
+\caption{Full \gls{MOX} recycle (multi-pass) fuel cycle material flows.}
 \label{fig:flowclosed}
 \end{figure}
 
 Figure \ref{fig:puseries1} shows the full-system plutonium buildup for open
-(no recycle), modified open, and closed (infinite-pass recycle) variations of
+(no recycle), modified open, and closed (infinite-pass recycle) \TODO{whats
+the diff btw closed and the multi-pass from above? It's referred to as fully
+closed multi-pass recycle, which is a bit confusing.} variations of
 the scenario described above (all just a single reactor).  The figure was
 generated directly from \Cyclus output data. After several batch cycles (near
-month 300) in the modified open and closed cases, enough separated fissile
+month 300 \TODO{here and below: month or time step?}) in the modified open and closed cases, enough separated fissile
 material accumulates in the fuel fabrication facility to generate a full
 recycled batch.  When this batch is transmuted, more plutonium is burned than
 created.  This results in a drop in the total fuel cycle system plutonium
 inventory.  This pattern repeats roughly every 10 cycles (200 months) for the
 modified open case and every 9 cycles (180 months) for the closed case.
 Because the modified open scenario does not re-recycle material, it takes the
-fabrication facility 1 cycle longer to accumulate a full batch worth of
+fabrication facility 1 cycle longer to accumulate a full batch of
 fissile material. 
 
 Because facilities are represented individually and
@@ -246,25 +247,25 @@ that affect total system behavior are observed using \Cyclus, which is uncommon
 for fleet-based, continuous material flow models.
 
 \begin{figure}[H]
-\caption{System plutonium buildup with one reactor.}
 \begin{center}
 \includegraphics{./images/puseries-1.eps}
 \end{center}
+\caption{System plutonium buildup with one reactor.}
 \label{fig:puseries1}
 \end{figure}
 
 The open, modified open, and closed scenarios can easily be modified to have
-several reactors each with staggered refueling times. The plutonium buildup
+several reactors with staggered refueling times. The plutonium buildup
 for these three multi-reactor variations is shown in Figure
 \ref{fig:puseriesn}. As the number of
 reactors increases, the behavior of the system approaches a more steady
-average reminiscent of continuous material flow models. 
+average reminiscent of continuous material flow models.
 
 \begin{figure}[H]
-\caption{System plutonium buildup with staggered refueling for many reactors.}
 \begin{center}
 \includegraphics{./images/puseries-n.eps}
 \end{center}
+\caption{System plutonium buildup with staggered refueling for many reactors.}
 \label{fig:puseriesn}
 \end{figure}
 
