@@ -9,15 +9,21 @@ A modular, agent-based approach is ideal for solving complex, coupled,
 physics-dependent supply chain problems involving material routing, facility
 deployment, and regional and institutional hierarchies. Additionally, the choice to 
 build \Cyclus on open source libraries in modern programming languages enables 
-both remote and mutiprocess execution on a number of platforms. This section begins by 
+both remote and multiprocess execution on a number of platforms. This section begins by 
 describing the general design features that make \Cyclus both flexible and powerful:
-cluster-ready software, dynamic libraries, and interchangeable agents. It then introduces
-the specific framework of \Cyclus: the region-institution-facility hierarchy, handling
-of resources and materials, the Cycamore library of agents, and the experimental toolkit.
+cluster-ready software and dynamic libraries.  Next, the framework using an
+\gls{ABM} paradigm, which provides an expansion in performance beyond typical systems dynamics
+capabilities, is described, focusing on agent interchangeability and the 
+implementation of the region-institution-facility heirarchy. 
+Next, the discrete treatment of objects is discussed in terms of both
+resources and materials and time via the \TODO{DRE}.
+Support for users and developers via the Cycamore library of
+agents \TODO{archetypes?} and the experimental toolkit are also presented.
+Lastly, the methods for quality assurance are outlined.
 These features provide a solid foundation on which to build an interconnected community 
 of archetype developers with diverse backgrounds and simulation goals.
 
-\subsection{Modular Architecture}
+\subsection{Software Architecture}
 % Motivation for encapsulated plug-in architecture 
 % enables ecosystem, ease of contribution across institutions
 % enables myriad levels of simulation fidelity
@@ -38,11 +44,34 @@ development process, frees the community of users to contribute desired
 features, independent from the team of \Cyclus core developers. 
 % we could use a specific example of Cosi's equivalence method below
 Second, because \Cyclus uses a modular archetype approach, comparing two 
-archetypes is straightforward. Consider a case in which an analyst would like 
+archetypes is straightforward. For example, if an analyst would like 
 to compare the effect of using different models to determine the input fuel 
-composition for fast reactors. A variety of fuel fabrication archetypes can be 
+composition for fast reactors, a variety of fuel fabrication archetypes can be 
 developed and interchanged while keeping the rest of the fuel cycle fixed
  to compare fuel fabrication designs.
+
+\subsubsection{Cluster-Ready Software}
+
+Many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits 
+performance on resource computing infrastructures. This limitation severely 
+increases the wall-clock time necessary to conduct parameterized sensitivity 
+analyses and other multi-simulation studies. \Cyclus, on the other hand, is 
+primarily written in \texttt{C++} and relies on 
+libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms, 
+which are flexible and support parallelization. 
+Furthermore, the core infrastructure and related archetypes are free and 
+open source, BSD-3-clause licensed. No part of \Cyclus is proprietary or based 
+on \gls{COTS}, Windows-based software. It can be easily deployed 
+on large computer systems, such as \gls{HTC} systems.
+
+Cyclopts (\TODO{cite}), a proof of principle design and implementation of \Cyclus on such a large computer system,
+ uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
+studies on \Cyclus' resource exchange optimization solvers. To date, it has been
+used to run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
+the \Cyclus library via its resource exchange \gls{API}.
+The \gls{HTC} infrastructure has also been utilized to run and collect
+information from full \Cyclus simulations running in parallel on $10^3$
+machines reliably for order $10^5$ simulations.
 
 \subsubsection{Dynamically Loadable Libraries}
 % (diagram)
@@ -98,7 +127,7 @@ available libraries.
 % describe Region/Institution/Facility hierarchy
 % note importance of generic resource exchange paradigm
 
-\Cyclus implements an \gls{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
+\Cyclus implements an \acrlong{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
 true to reality, and it incorporates modern computing resources.  
 Furthermore, \gls{ABM} provides a natural 
 perspective from which to model a given problem. In the nuclear fuel cycle 
@@ -120,6 +149,29 @@ techniques can provide a richer model than can system dynamics, they enable the
 broadest range of simulations in a generic fashion.
 
 \subsubsection{Agent Interchangeability}\label{sec:interchangeability}
+
+% (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
+
+\begin{figure}[htbp!]
+\begin{center}
+\includegraphics[width=\textwidth]{./images/framework}
+\end{center}
+\caption{The \Cyclus core provides \gls{API}s that abstract away the details in 
+the kernel and allow the archetypes to be loaded into the simulation in a modular 
+fashion.}
+\label{fig:framework}
+\end{figure}
+
+\gls{ABM} is inherently object-oriented because agents represent 
+discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
+the modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator 
+creates a set of key classes on which agent plug-ins 
+are based. In addition, a set of key tools are also provided to enrich the 
+\gls{API} and supply a robust suite of behaviors for the developer. 
+Agent plug-ins utilize the generic core \gls{API} to interact with one another.  For 
+example, agents rely on a paradigm of dynamic loading and clean plug-in 
+behavior at the start of the simulation. They also use the resource exchange 
+paradigm \gls{API} for trading resources with one another. 
 
 Due to this plug-in architecture,
 implementations of actors in a given scenario can be easily
@@ -247,6 +299,9 @@ academic researchers, private-industry economic forecasters, and even students
 in engineering courses may benefit from the ease of development and
 customization provided by the discrete, modular, agent-based architecture of \Cyclus.
 
+\TODO{AO Opinion: Move some of the detail from this intro to the main section
+on discrete materials. Then add an intro to the discrete time/DRE as well.}
+
 \subsubsection{Resources and Materials}
 % Resources, Materials (note isotope tracking, decay behavior)
 
@@ -333,58 +388,63 @@ occurs. \TODO{do we want a diagram helping show this composition caching?}
 
 \subsubsection{Dynamic Resource Exchange}
 
+\TODO{This is SO for you, Matt Gidden!}
 Placeholder as a reminder to add more detail about this.
 
-\subsection{Software Decisions}
+\subsection{Simulation Assistance}
+\TODO{section intro needed}
+To assist beginner users and developers in accomplishing working simulations
+in the shortest time possible, 
 
-\subsubsection{Cluster-Ready Software}
+\subsubsection{Cycamore}
+% base modules
 
-Many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits 
-performance on resource computing infrastructures. This limitation severely 
-increases the wall-clock time necessary to conduct parameterized sensitivity 
-analyses and other multi-simulation studies. \Cyclus, on the other hand, is 
-primarily written in \texttt{C++} and relies on 
-libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms, 
-which are flexible and support parallelization. 
-Furthermore, the core infrastructure and related archetypes are free and 
-open source, BSD-3-clause licensed. No part of \Cyclus is proprietary or based 
-on \gls{COTS}, Windows-based software. It can be easily deployed 
-on large computer systems, such as \gls{HTC} systems.
+\Cycamore \cite{carlsen_cycamore_2014}, the \Cyclus additional module
+repository, provides a fundamental set of agent archetypes for basic simulation 
+functionality within \Cyclus.  Since \Cyclus relies on external 
+archetypes to represent the agents within a simulation, \Cycamore provides the 
+basic archetypes a new user needs to get started running simple simulations.  
+These archetypes support a minimal set of fuel cycle simulation goals and 
+provide, by example, a guide to new developers who would seek to contribute 
+their own archetypes outside of \Cycamore.
 
-Cyclopts (\TODO{cite}), a proof of principle design and implementation of \Cyclus on such a large computer system,
- uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
-studies on \Cyclus' resource exchange optimization solvers. To date, it has been
-used to run over $10^4$ jobs, or (\TODO{compute time}) total compute hours, using
-the \Cyclus library via its resource exchange \gls{API}.
-The \gls{HTC} infrastructure has also been utilized to run and collect
-information from full \Cyclus simulations running in parallel on $10^3$
-machines reliably for order $10^5$ simulations.
+As of version 1.0, \Cycamore contains four facility archetypes, one region 
+archetype, and two institution archetypes. Short descriptions of these 
+functions can be found in Table \ref{tab:cycamore}.
 
-\subsubsection{Framework Structure}
-% (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
+
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|r|l|X|}
+\hline
+\textbf{Entity} & \textbf{Archetype} & \textbf{Functionality} \\
+\hline
+Facility & BatchReactor & A reactor model that handles batch refueling, based on pre-determined recipes of compositions. \\
+Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
+Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
+Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
+Institution & ManagerInst & The manager institution manages production of commodities among its facilities by building new ones as needed. \\
+Institution & DeployInst &  This institution deploys specific facilities as defined explicitly in the input file. \\
+Region & GrowthRegion & This region determines whether there is a need to meet a certain capacity (as defined via input) at each time step. \\
+\hline
+\end{tabularx}
+\caption{The Archetypes in \Cycamore seek to cover a large range of simple simulation use cases.}
+\label{tab:cycamore}
+\end{table}
+
+The current \Cycamore release provides only 
+basic functionality, enabling simple fuel cycle analyses. 
+As illustrated in Figure \ref{fig:simplesim}, \Cycamore provides the tools for users
+to get started quickly with simple 
+once-through fuel cycle scenarios. As future contributions are vetted, the capabilities in \Cycamore may grow.
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/framework}
+\includegraphics{./images/simplesim}
 \end{center}
-\caption{The \Cyclus core provides \gls{API}s that abstract away the details in 
-the kernel and allow the archetypes to be loaded into the simulation in a modular 
-fashion.}
-\label{fig:framework}
+\caption{Material flows through a simple dynamic simulation created with only the simplest \Cycamore archetypes, \Class{Sink} and \Class{Source}.}
+\label{fig:simplesim}
 \end{figure}
-
-\acrlong{ABM} is inherently object-oriented because agents represent 
-discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
-the modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator 
-creates a set of key classes on which agent plug-ins 
-are based. In addition, a set of key tools are also provided to enrich the 
-\gls{API} and supply a robust suite of behaviors for the developer. 
-Agent plug-ins utilize the generic core \gls{API} to interact with one another.  For 
-example, agents rely on a paradigm of dynamic loading and clean plug-in 
-behavior at the start of the simulation. They also use the resource exchange 
-paradigm \gls{API} for trading resources with one another. 
-
-\subsection{Simulation Assistance}
 
 \subsubsection{Toolkit}
 
@@ -449,56 +509,6 @@ adoption into the kernel as toolkit extensions. Likely extensions include:
 \item policy models
 \item economic models
 \end{itemize}
-
-\subsubsection{Cycamore}
-% base modules
-
-\Cycamore \cite{carlsen_cycamore_2014}, the \Cyclus additional module
-repository, provides a fundamental set of agent archetypes for basic simulation 
-functionality within \Cyclus.  Since \Cyclus relies on external 
-archetypes to represent the agents within a simulation, \Cycamore provides the 
-basic archetypes a new user needs to get started running simple simulations.  
-These archetypes support a minimal set of fuel cycle simulation goals and 
-provide, by example, a guide to new developers who would seek to contribute 
-their own archetypes outside of \Cycamore.
-
-As of version 1.0, \Cycamore contains four facility archetypes, one region 
-archetype, and two institution archetypes. Short descriptions of these 
-functions can be found in Table \ref{tab:cycamore}.
-
-
-\begin{table}[h]
-\centering
-\begin{tabularx}{\textwidth}{|r|l|X|}
-\hline
-\textbf{Entity} & \textbf{Archetype} & \textbf{Functionality} \\
-\hline
-Facility & BatchReactor & A reactor model that handles batch refueling, based on pre-determined recipes of compositions. \\
-Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
-Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
-Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
-Institution & ManagerInst & The manager institution manages production of commodities among its facilities by building new ones as needed. \\
-Institution & DeployInst &  This institution deploys specific facilities as defined explicitly in the input file. \\
-Region & GrowthRegion & This region determines whether there is a need to meet a certain capacity (as defined via input) at each time step. \\
-\hline
-\end{tabularx}
-\caption{The Archetypes in \Cycamore seek to cover a large range of simple simulation use cases.}
-\label{tab:cycamore}
-\end{table}
-
-The current \Cycamore release provides only 
-basic functionality, enabling simple fuel cycle analyses. 
-As illustrated in Figure \ref{fig:simplesim}, \Cycamore provides the tools for users
-to get started quickly with simple 
-once-through fuel cycle scenarios. As future contributions are vetted, the capabilities in \Cycamore may grow.
-
-\begin{figure}[htbp!]
-\begin{center}
-\includegraphics{./images/simplesim}
-\end{center}
-\caption{Material flows through a simple dynamic simulation created with only the simplest \Cycamore archetypes, \Class{Sink} and \Class{Source}.}
-\label{fig:simplesim}
-\end{figure}
 
 \subsection{Quality Assurance}
 % Organize this section according to major topics
