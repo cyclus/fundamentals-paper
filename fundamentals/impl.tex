@@ -82,7 +82,7 @@ architecture via a suite of dynamically loadable plug-in libraries.  Though
 common in modern software architecture, such a plug-in pattern has 
 not previously been implemented in nuclear fuel cycle simulators.  
 Dynamically loadable libraries are the primary mechanism for extending \Cyclus' capability. This approach provides encapsulation: the core of the code operates
-completely independently from the individual plug-in libraries. Thus, any
+independently from the individual plug-in libraries. Thus, any
 customization or extension is implemented only in the loadable
 library. 
 
@@ -129,7 +129,7 @@ available libraries.
 % note importance of generic resource exchange paradigm
 
 \Cyclus implements an \acrlong{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
-true to reality, and it incorporates modern computing resources.  
+true to reality, and incorporates modern computing resources.
 Furthermore, \gls{ABM} provides a natural 
 perspective from which to model a given problem. In the nuclear fuel cycle 
 context, for example, an analyst can design an agent with reactor-related logic 
@@ -139,7 +139,8 @@ logic. Defining the behavior of both agents according to the
 bona fide actors in the simulation.  The two archetype libraries can be used in the same
 simulation without any shared knowledge.
 
-Furthermore, the \gls{ABM} paradigm is easily comparable to system dynamics models.
+Furthermore, the \gls{ABM} paradigm is superior to system dynamics used in 
+current simulators.
 System dynamics is a popular approach for modeling nuclear fuel cycles 
 \cite{jacobson_vision_2009,van_den_durpel_daness_2009,guerin_impact_2009,guerin_benchmark_2009}. 
 Formally however, system dynamics models are simply a strict subset of agent-based models
@@ -166,8 +167,8 @@ fashion.}
 \gls{ABM} is inherently object-oriented because agents represent 
 discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
 the modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator 
-creates a set of key classes on which agent plug-ins 
-are based. In addition, a set of key tools are also provided to enrich the 
+creates a set of classes on which agent plug-ins 
+are based. In addition, a set of tools are also provided to enrich the 
 \gls{API} and supply a robust suite of behaviors for the developer. 
 Agent plug-ins utilize the generic core \gls{API} to interact with one another.  For 
 example, agents rely on a paradigm of dynamic loading and clean plug-in 
@@ -735,7 +736,8 @@ mechanism for pull requests allows for code review by a member of the \Cyclus
 core team, separate from the author, prior to any change being included. Non-members
 of the \Cyclus development team are allowed and encouraged to submit and review 
 pull requests. However, only members of the \Cyclus core team are allowed to 
-merge in any changes and only after the \gls{QA} standards have been met.
+merge in any changes and only after the \gls{QA} standards have been met. This 
+step has been repeatedly shown to improve code quality \cite{cohen_modern_2010}.
 
 \subsubsection{Style Guide}
 
