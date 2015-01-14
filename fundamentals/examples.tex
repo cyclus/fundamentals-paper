@@ -31,16 +31,17 @@
 % How were the measurements made and characterized?
 
 
-The functionality of the \Cyclus simulator is illustrated by demonstrations
-of its fundamental simulation capabilities and the feasibility the
+The functionality and feasibility of the \Cyclus simulator is illustrated by demonstrations
+of its fundamental simulation capabilities and growth via its
  community-driven \Cyclus development model.
 The success of the \Cyclus simulator can be measured in many ways. 
 The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
 model and of fundamental simulation capability. Nascent promising growth of the \Cyclus 
 ecosystem at multiple institutions indicates that a fuel cycle simulator can 
-advance in a community-driven development paradigm. Additionally, simple 
-simulations as well as more complex recycling simulations demonstrate that 
-\Cyclus possesses fuel cycle simulation capabilities.
+advance in a community-driven development paradigm. Additionally, simulation 
+results for both once-through and more complex recycling scenarios demonstrate that 
+\Cyclus possesses the fundamental fuel cycle simulation capabilities to 
+contribute to the field.
 
 \subsection{Ecosystem}
 % Cycamore library
@@ -59,7 +60,7 @@ repository
 \item fundamental analysis tools in the \Cyclus toolkit
 \item tools for \Cyclus optimization, parallelization, and development
 \end{itemize}
-Taken together, these form an ecosystem of capabilites. Over time, this 
+Taken together, these form an ecosystem of capabilities. Over time, this 
 ecosystem will grow as archetype developers, kernel developers, and 
 even users contribute capabilities developed for their own needs. Indeed, the 
 long-term vision for the \Cyclus framework predicts an ever-expanding ecosystem 
@@ -143,7 +144,7 @@ Results of some simple recycle scenarios run in \Cyclus follow. Beginning with a
 reactor simulation, open (no recycle), modified open, and closed (infinite-pass recycle) 
 fuel cycles are compared to illustrate the resolution possible with \Cyclus.  The simulation
 is then expanded to include multiple reactors in the same set of fuel cycles to demonstrate
-the system-scale convergance to continuous material flow models. 
+the system-scale convergence to continuous material flow models. 
 
 Because material is tracked as discrete objects, single-pass recycle using \gls{MOX} 
 fuel is easy to implement in \Cyclus.  The \gls{MOX} simulation includes one provider of fresh
@@ -211,6 +212,7 @@ regarding the output commodity for the spent \gls{MOX} fuel of the
              <outrecipe>mox_spent_fuel</outrecipe>
            </fuel>
 \end{lstlisting}
+
 This results in the material flows in Figure \ref{fig:flowclosed}. Note
 that the \Class{BatchReactor} always transmutes fuel into the same
 composition, so the nuclide level flows are unrealistic for the full, 
@@ -226,10 +228,8 @@ recycle case.
 \end{figure}
 
 Figure \ref{fig:puseries1} shows the full-system plutonium buildup for open
-(no recycle), modified open, and closed (infinite-pass recycle) \TODO{whats
-the diff btw closed and the multi-pass from above? It's referred to as fully
-closed multi-pass recycle, which is a bit confusing.} variations of
-the scenario described above (all just a single reactor).  The figure was
+(no recycle), modified open, and closed (infinite-pass recycle) variations of
+the one-reactor scenario described above. The figure was
 generated directly from \Cyclus output data. After several batch cycles (near
 month 300) in the modified open and closed cases, enough separated fissile
 material accumulates in the fuel fabrication facility to generate a full
@@ -239,7 +239,7 @@ inventory.  This pattern repeats roughly every 10 cycles (200 months) for the
 modified open case and every 9 cycles (180 months) for the closed case.
 Because the modified open scenario does not re-recycle material, it takes the
 fabrication facility 1 cycle longer to accumulate a full batch of
-fissile material. 
+fissile material.
 
 Because facilities are represented individually and
 transact discrete materials as discrete events, realistic non-uniform patterns in facility behavior

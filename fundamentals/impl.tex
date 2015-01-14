@@ -14,11 +14,11 @@ describing the general design features that make \Cyclus both flexible and power
 cluster-ready software and dynamic libraries.  Next, the framework using an
 \gls{ABM} paradigm, which provides an expansion in performance beyond typical systems dynamics
 capabilities, is described, focusing on agent interchangeability and the 
-implementation of the region-institution-facility heirarchy. 
+implementation of the region-institution-facility hierarchy. 
 Next, the discrete treatment of objects is discussed in terms of both
 resources and materials and time via the \gls{DRE}.
-Support for users and developers via the Cycamore library of
-agents \TODO{archetypes?} and the experimental toolkit are also presented.
+Support for users and developers via the \Cycamore library of
+archetypes and the experimental toolkit are also presented.
 Lastly, the methods for quality assurance are outlined.
 These features provide a solid foundation on which to build an interconnected community 
 of archetype developers with diverse backgrounds and simulation goals.
@@ -36,13 +36,13 @@ design choice provides two major benefits. First, analysts across research insti
 simulation logic \gls{API} and archetype ecosystem when they apply \Cyclus to 
 their specific problem. This 
 mend-and-extend paradigm, common in modern software development, reduces 
-maintenance overhead and improves code robustness \cite{citation_needed}. 
+maintenance overhead and improves code robustness by protecting the core logic 
+from changes in the extensions. 
 The researcher can focus on creating or customizing nuclear 
 facility, institution, resource, and toolkit models within their specific area 
 of technical expertise. This extensibility, magnified by an open source 
 development process, frees the community of users to contribute desired 
 features, independent from the team of \Cyclus core developers. 
-% we could use a specific example of Cosi's equivalence method below
 Second, because \Cyclus uses a modular archetype approach, comparing two 
 archetypes is straightforward. For example, if an analyst would like 
 to compare the effect of using different models to determine the input fuel 
@@ -53,7 +53,7 @@ developed and interchanged while keeping the rest of the fuel cycle fixed
 \subsubsection{Cluster-Ready Software}
 
 Many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits 
-performance on resource computing infrastructures. This limitation severely 
+performance on and compatibility with resource computing infrastructures. This limitation severely 
 increases the wall-clock time necessary to conduct parameterized sensitivity 
 analyses and other multi-simulation studies. \Cyclus, on the other hand, is 
 primarily written in \texttt{C++} and relies on 
@@ -61,7 +61,7 @@ libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms,
 which are flexible and support parallelization. 
 Furthermore, the core infrastructure and related archetypes are free and 
 open source, BSD-3-clause licensed. No part of \Cyclus is proprietary or based 
-on \gls{COTS}, Windows-based software. It can be easily deployed 
+on \gls{COTS}, Windows-only software. \Cyclus can therefore be easily deployed 
 on large computer systems, such as \gls{HTC} systems.
 
 Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
@@ -81,7 +81,7 @@ architecture via a suite of dynamically loadable plug-in libraries.  Though
 common in modern software architecture, such a plug-in pattern has 
 not previously been implemented in nuclear fuel cycle simulators.  
 Dynamically loadable libraries are the primary mechanism for extending \Cyclus' capability. This approach provides encapsulation: the core of the code operates
-completely independently from the individual plug-in libraries. Thus, any
+independently from the individual plug-in libraries. Thus, any
 customization or extension is implemented only in the loadable
 library. 
 
@@ -128,7 +128,7 @@ available libraries.
 % note importance of generic resource exchange paradigm
 
 \Cyclus implements an \acrlong{ABM} paradigm.  \gls{ABM} is modern, sophisticated, 
-true to reality, and it incorporates modern computing resources.  
+true to reality, and incorporates modern computing resources.
 Furthermore, \gls{ABM} provides a natural 
 perspective from which to model a given problem. In the nuclear fuel cycle 
 context, for example, an analyst can design an agent with reactor-related logic 
@@ -138,7 +138,8 @@ logic. Defining the behavior of both agents according to the
 bona fide actors in the simulation.  The two archetype libraries can be used in the same
 simulation without any shared knowledge.
 
-Furthermore, the \gls{ABM} paradigm is easily comparable to system dynamics models.
+Furthermore, the \gls{ABM} paradigm is superior to system dynamics used in 
+current simulators.
 System dynamics is a popular approach for modeling nuclear fuel cycles 
 \cite{jacobson_vision_2009,van_den_durpel_daness_2009,guerin_impact_2009,guerin_benchmark_2009}. 
 Formally however, system dynamics models are simply a strict subset of agent-based models
@@ -165,8 +166,8 @@ fashion.}
 \gls{ABM} is inherently object-oriented because agents represent 
 discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
 the modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator 
-creates a set of key classes on which agent plug-ins 
-are based. In addition, a set of key tools are also provided to enrich the 
+creates a set of classes on which agent plug-ins 
+are based. In addition, a set of tools are also provided to enrich the 
 \gls{API} and supply a robust suite of behaviors for the developer. 
 Agent plug-ins utilize the generic core \gls{API} to interact with one another.  For 
 example, agents rely on a paradigm of dynamic loading and clean plug-in 
@@ -181,14 +182,14 @@ implementation of a reactor can be compared to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
 fidelity on a given fuel cycle. 
 
-Interchangeability is accomplished by providing \glspl{API} that define canonical agent-to-agent
+Interchangeability is accomplished by providing \glspl{API} that define agent-to-agent
 interaction and agent-to-environment interaction, primarily through the
 \Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows 
 the ``inheritance'' structure of the \Class{Agent} class in a \gls{UML} diagram 
 format. It shows how the \Class{Agent} interface
-provides a notion of parent-child hierarchichal relationship, where parents can
+provides a notion of parent-child hierarchical relationship, where parents can
 choose to \textit{deploy} child agents and \textit{decommission} child
-agents. For the archetype developer, this interface provides enormous power, 
+agents. For the archetype developer, this interface provides enormous power
 very simply. The \gls{API} provides the \Class{Agent} with helpful functionality for 
 interacting with the \Cyclus simulation kernel while abstracting away unnecessary 
 detail.
@@ -228,7 +229,7 @@ This can be done with any agent type, where agents can be ``Regions,''
 \Cyclus provides a novel representation of entities in the nuclear fuel cycle 
 that reflects the reality in international nuclear power: production
 encompassing facilities, institutions managing those facilities, and regions. While
-some simulators (\TODO{cite DESAE}) have provided a notion of static regional
+some simulators \cite{adrianova_desae_2008} have provided a notion of static regional
 effects, \Cyclus allows for both regions and institutions to be first-class
 actors in simulated fuel cycles. The fundamental interactions for each entity are implemented in a corresponding
 archetype class in \Cyclus, i.e., the \Class{Region} class, \Class{Institution}
@@ -243,7 +244,8 @@ with regions as root nodes and facilities as leaf nodes.
 Two primary consequences arise from this structure. First, institutions are
 nominally
 responsible for deploying and decommissioning facilities. Accordingly, advanced
-logic regarding building and decommissioning can be obtained by subclassing the
+logic regarding building and decommissioning can be obtained by inheriting 
+those behaviors from the
 \Class{Institution} interface. Second, the \Class{Facility} class implements the
 \Class{Trader} interface, and thus institutions and regions, respectively, can
 adjust the resource flow preferences of their managed facilities. Importantly,
@@ -392,9 +394,12 @@ occurs. \TODO{do we want a diagram helping show this composition caching?}
 Placeholder as a reminder to add more detail about this.
 
 \subsection{Simulation Assistance}
-\TODO{section intro needed}
-To assist beginner users and developers in accomplishing working simulations
-in the shortest time possible, 
+So that users and developers can build working simulations
+in the shortest time possible, the \Cyclus ecosystem provides the fundamental 
+building blocks: basic archetypes and a toolkit of commonly needed functions.
+The \Cycamore library provides a suite of fundamental Region, Institution, and 
+Facility archetypes, while the \Cyclus toolkit provides assistance to 
+developers.
 
 \subsubsection{Cycamore}
 % base modules
@@ -544,7 +549,7 @@ adoption into the kernel as toolkit extensions. Likely extensions include:
 
 Simulation science - like experimental science - has since the beginning had the 
 problem of identifying trustworthy results from nonsensical results or noise.
-This is epitomized by Charles Babbage, ``On two occasions I have been asked, 
+Charles Babbage famously articulated this, ``On two occasions I have been asked, 
 `Pray, Mr. Babbage, if you put into the machine wrong figures, will the right 
 answers come out?' ... I am not able rightly to apprehend the kind of confusion 
 of ideas that could provoke such a question.'' \cite{babbage_passages_2011}. 
@@ -734,7 +739,8 @@ mechanism for pull requests allows for code review by a member of the \Cyclus
 core team, separate from the author, prior to any change being included. Non-members
 of the \Cyclus development team are allowed and encouraged to submit and review 
 pull requests. However, only members of the \Cyclus core team are allowed to 
-merge in any changes and only after the \gls{QA} standards have been met.
+merge in any changes and only after the \gls{QA} standards have been met. This 
+step has been repeatedly shown to improve code quality \cite{cohen_modern_2010}.
 
 \subsubsection{Style Guide}
 
@@ -745,16 +751,14 @@ such as the Chicago Manual of Style. \Cyclus strictly enforces the use of the
 Google C++ Style Guide \cite{weinberger_google_2008} for all software contributions.
 This means that all developers of \Cyclus nominally write \Cyclus code in the same 
 way.  This homogenization may be a hurdle to new developers but ultimately 
-improves code legibility. Adoption of a single style guide also settles
-timeless arguments over what style is `the best.' Having only one means that 
-there is a common enemy for all developers to dislike equally.
+improves code legibility and, therefore, robustness \cite{cohen_modern_2010}.
 
 \subsubsection{Continuous Integration}
 \label{sec:qa-ci}
 
 \emph{\acrfull{CI}} is the idea that software should be tested and validated 
 as it is being developed, rather than as a final stage in a longer development 
-cycle.  Under \gls{CI}, every pull request is tested independently immediately after 
+cycle.  Under \gls{CI}, every pull request (proposed code change) is tested independently immediately after 
 it is proposed. Such tests are run on all officially supported platforms. 
 \Cyclus uses a \gls{CI} platform called Polyphemus \cite{scopatz_polyphemus_2014}. Polyphemus serves as an intermediary between GitHub pull requests on the frontend 
 and temporary \Cyclus servers on the backend. These servers are hosted by 
@@ -763,11 +767,11 @@ Wisconsin-Madison. Whenever a pull request is created, Polyphemus performs
 the following actions:
 
 \begin{enumerate}
-    \item Copies \Cyclus with the pull requested code to BaTLab,
+    \item Copies \Cyclus with the proposed new code to BaTLab,
     \item Initializes Linux and Mac OSX servers,
     \item Builds \Cyclus on all platforms,
     \item Runs the complete \Cyclus test suite, 
-    \item Reports back whether the above steps succeeded or not.
+    \item Reports whether or not the above steps succeeded.
 \end{enumerate}
 
 Since these steps are performed for all incoming code, it is easy for the 
@@ -775,5 +779,5 @@ Since these steps are performed for all incoming code, it is easy for the
 actually works. This helps identify build and test problems prior to 
 broken code being allowed into the develop branch. \gls{CI} is a necessary 
 but not sufficient addition to the \Cyclus \gls{QA}
-system. Its merit is that it prevents bad code from being implemented. However, \Cyclus will always
+system: it keeps bad code out \Cyclus. However, \Cyclus will always
 require human eyes and hands to let good code in.
