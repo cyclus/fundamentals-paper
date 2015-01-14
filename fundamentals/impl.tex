@@ -758,7 +758,7 @@ improves code legibility and, therefore, robustness \cite{cohen_modern_2010}.
 
 \emph{\acrfull{CI}} is the idea that software should be tested and validated 
 as it is being developed, rather than as a final stage in a longer development 
-cycle.  Under \gls{CI}, every pull request is tested independently immediately after 
+cycle.  Under \gls{CI}, every pull request (proposed code change) is tested independently immediately after 
 it is proposed. Such tests are run on all officially supported platforms. 
 \Cyclus uses a \gls{CI} platform called Polyphemus \cite{scopatz_polyphemus_2014}. Polyphemus serves as an intermediary between GitHub pull requests on the frontend 
 and temporary \Cyclus servers on the backend. These servers are hosted by 
@@ -767,11 +767,11 @@ Wisconsin-Madison. Whenever a pull request is created, Polyphemus performs
 the following actions:
 
 \begin{enumerate}
-    \item Copies \Cyclus with the pull requested code to BaTLab,
+    \item Copies \Cyclus with the proposed new code to BaTLab,
     \item Initializes Linux and Mac OSX servers,
     \item Builds \Cyclus on all platforms,
     \item Runs the complete \Cyclus test suite, 
-    \item Reports back whether the above steps succeeded or not.
+    \item Reports whether or not the above steps succeeded.
 \end{enumerate}
 
 Since these steps are performed for all incoming code, it is easy for the 
@@ -779,5 +779,5 @@ Since these steps are performed for all incoming code, it is easy for the
 actually works. This helps identify build and test problems prior to 
 broken code being allowed into the develop branch. \gls{CI} is a necessary 
 but not sufficient addition to the \Cyclus \gls{QA}
-system. Its merit is that it prevents bad code from being implemented. However, \Cyclus will always
+system: it keeps bad code out \Cyclus. However, \Cyclus will always
 require human eyes and hands to let good code in.
