@@ -139,22 +139,24 @@ and regions greatly improves upon the existing fuel cycle simulators.
 
 In addition to providing the fundamental features expected in fuel cycle 
 simulators, the \Cyclus paradigm enables essential capabilities that previous 
-simulators lack. Critically, its \emph{modular and open architecture}  facilitates 
-targeted contribution and collaboration within the nuclear fuel cycle analysis 
-community.  Additionally, \emph{agent interchangeability} facilitates direct 
-comparison of modeling methodologies. Finally, the flexibility and generality 
+simulators lack. Critically, targeted contribution and collaboration within the nuclear fuel cycle analysis 
+community are assisted by the \emph{modular and open architecture} of \Cyclus.
+Additionally, \Cyclus facilitates direct comparison of modeling methodologies with 
+\emph{agent interchangeability}.
+Finally, \Cyclus is applicable to a broader range of 
+fidelities, scales, and applications than other simulators. 
+due to the flexibility and generality 
 of its \emph{\gls{ABM}} paradigm and \emph{discrete, object-oriented approach} 
-enables \Cyclus to be applicable to a broader range of 
-fidelities, scales, and applications than to other simulators. 
 
-\Cyclus separates the problem of modeling a
+Specialists in a given field should utilize their time and resources in 
+modeling the specific processes associated with their area of expertise within 
+thenuclear fuel cycle (e.g., reprocessing and advanced
+fuel fabrication), without having to model the entirety of the cycle.
+\Cyclus supports them by separating the problem of modeling a
 physics-dependent supply chain into two distinct components: a simulation kernel and archetypes that
 interact with the kernel. The kernel is responsible for the
 deployment and interaction logic of entities in the simulation.  Physics calculations and 
-customized behaviors are implemented within archetypes. Accordingly, specialists
-in a given field can utilize their time and resources in modeling a specific
-process associated with the nuclear fuel cycle (e.g., reprocessing and advanced
-fuel fabrication), without having to model the entirety of the cycle.
+customized behaviors are implemented within archetypes. 
 
 Furthermore, modeling the evolution of a physics-dependent, international nuclear fuel supply
 chain is a multiscale problem, and existing tools are not sufficiently 
