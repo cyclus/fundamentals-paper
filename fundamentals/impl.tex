@@ -43,7 +43,6 @@ facility, institution, resource, and toolkit models within their specific area
 of technical expertise. This extensibility, magnified by an open source 
 development process, frees the community of users to contribute desired 
 features, independent from the team of \Cyclus core developers. 
-% we could use a specific example of Cosi's equivalence method below
 Second, because \Cyclus uses a modular archetype approach, comparing two 
 archetypes is straightforward. For example, if an analyst would like 
 to compare the effect of using different models to determine the input fuel 
@@ -188,7 +187,7 @@ interaction and agent-to-environment interaction, primarily through the
 \Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows 
 the ``inheritance'' structure of the \Class{Agent} class in a \gls{UML} diagram 
 format. It shows how the \Class{Agent} interface
-provides a notion of parent-child hierarchichal relationship, where parents can
+provides a notion of parent-child hierarchical relationship, where parents can
 choose to \textit{deploy} child agents and \textit{decommission} child
 agents. For the archetype developer, this interface provides enormous power
 very simply. The \gls{API} provides the \Class{Agent} with helpful functionality for 
@@ -245,7 +244,8 @@ with regions as root nodes and facilities as leaf nodes.
 Two primary consequences arise from this structure. First, institutions are
 nominally
 responsible for deploying and decommissioning facilities. Accordingly, advanced
-logic regarding building and decommissioning can be obtained by subclassing the
+logic regarding building and decommissioning can be obtained by inheriting 
+those behaviors from the
 \Class{Institution} interface. Second, the \Class{Facility} class implements the
 \Class{Trader} interface, and thus institutions and regions, respectively, can
 adjust the resource flow preferences of their managed facilities. Importantly,
