@@ -367,7 +367,7 @@ nuclides.  Agents are free to treat nuclides present in materials any way they
 please - including ignoring them.  It is the responsibility of archetype
 developers to choose how to handle potentially full-fidelity compositions.
 
-In large simulations many material objects may be changing frequently.
+In large simulations, many material objects may change frequently.
 Material decay can also contribute significantly to such changes.  In order to
 help avoid unnecessary runtime performance and database size impacts,
 compositions in \Cyclus have some special features.
@@ -389,8 +389,7 @@ occurs. \TODO{do we want a diagram helping show this composition caching?}
 
 \subsubsection{Dynamic Resource Exchange}
 
-\TODO{This is SO for you, Matt Gidden!}
-Placeholder as a reminder to add more detail about this.
+\TODO{Matt Gidden, please fill in}
 
 \subsection{Simulation Support}
 So that users and developers can build working simulations
@@ -489,7 +488,7 @@ many of each prototype, $y_i$, to build given a demand ($\Phi$), capacities
 
 \paragraph{Nuclear Engineering Tools}
 
-The \Cyclus toolkit provides two useful interfaces for queries referring to physical paramaters of \Class{Material}
+The \Cyclus toolkit provides two useful interfaces for querying physical paramaters of \Class{Material}
 objects. First, the \Class{MatQuery} module
 provides a basic querying \gls{API}, including the atom and mass fractions of
 nuclides, the number of moles of a nuclide in a material, and also the amount of
@@ -502,7 +501,7 @@ assays.
 \paragraph{Toolkit Extensions}
 
 In addition to those that already exist, new tools and computational patterns will 
-emerge from the archetypes that are developed within the community of 
+emerge from the archetypes developed within the community of 
 developers. As these tools gain adoption between projects and demonstrate their 
 utility to the developer community, they will be considered for screening and 
 adoption into the kernel as toolkit extensions. Likely extensions include:
