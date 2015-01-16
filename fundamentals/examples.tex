@@ -31,9 +31,6 @@
 % How were the measurements made and characterized?
 
 
-The functionality and feasibility of the \Cyclus simulator is illustrated by demonstrations
-of its fundamental simulation capabilities and growth via its
- community-driven \Cyclus development model.
 The success of the \Cyclus simulator can be measured in many ways. 
 The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
 model and of fundamental simulation capability. Nascent promising growth of the \Cyclus 
@@ -47,6 +44,11 @@ contribute to the field.
 % Cycamore library
 % Cyder?
 
+The \Cyclus community-driven software development model seeks to break the 
+unproductive proliferation of overspecialized simulators. It instead leverages 
+the collective expertise of fuel cycle researchers toward a single, more 
+extensible, tool. Through the targeted
+contributions of those researchers, an ecosystem of capabilities should emerge.
 The \Cyclus `Ecosystem' is the collection of tools, calculation libraries, 
 archetypes, data, and input files intended for use with the \Cyclus simulator. 
 Members of the ecosystem include:
@@ -99,7 +101,14 @@ Cloudlus & Tools for running \Cyclus in a cloud environment & \cite{carlsen_clou
 
 \subsubsection{Archetype Contributions}
 
-Many archetypes external to the \Cycamore library (Table \ref{tab:cycamore})  
+It is expected that the most common type of contribution to \Cyclus will be 
+contributions of new archetypes. Researchers will be driven to create a new 
+archetype when a need arises to represent a novel reactor type, an innovative 
+reprocessing strategy, or a particular governmental or institutional behavior.  
+The real-world utility of \Cyclus can in part be measured by the breadth and 
+diversity of archetypes being developed in this way.
+
+Early progress has been promising. Many archetypes external to the \Cycamore library (Table \ref{tab:cycamore})  
 have been 
 \cite{huff_streamblender_2014,huff_commodconverter_2014}
 or are being 
@@ -107,8 +116,7 @@ or are being
 \Cyclus ecosystem. These archetypes provide the first examples of 
 developer-contributed capabilities.  They add to the fundamental \Cycamore
 archetypes by providing physics-based reactors, separation, fabrication, storage
-facilities, and expanded institutional paradigms.  These contributed archetypes
-illustrate the power of a community-based development approach.
+facilities, and expanded institutional paradigms.  
 
 \begin{table}[h]
 \centering
@@ -131,6 +139,9 @@ of community-driven development in a fuel cycle simulator.}
 \label{tab:archetypes}
 \end{table}
 
+The existence and diversity of these contributed archetypes
+illustrate the power and potential of the community-based development approach 
+that \Cyclus has taken.
 
 \subsection{Simulations}
 %Inpro example (is this still running or did we deprecate it with 1.0?)
