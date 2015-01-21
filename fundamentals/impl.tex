@@ -20,8 +20,6 @@ resources and materials and time via the \gls{DRE}.
 Support for users and developers via the \Cycamore library of
 archetypes and the experimental toolkit are also presented.
 Lastly, the methods for quality assurance are outlined.
-These features provide a solid foundation on which to build an interconnected community 
-of archetype developers with diverse backgrounds and simulation goals.
 
 \subsection{Modular Software Architecture}
 % Motivation for encapsulated plug-in architecture 
@@ -55,9 +53,11 @@ developed and interchanged while keeping the rest of the fuel cycle fixed
 
 \subsubsection{Cluster-Ready Software}
 
-Many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits 
+Groundbreaking insights and new classes of problems can be investigated by 
+leveraging modern massive computing resources.
+However, many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits 
 performance on and compatibility with resource computing infrastructures. This limitation severely 
-increases the wall-clock time necessary to conduct parameterized sensitivity 
+limits the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity 
 analyses and other multi-simulation studies. \Cyclus, on the other hand, is 
 primarily written in \texttt{C++} and relies on 
 libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms, 
@@ -77,24 +77,23 @@ also been utilized to run and collect information from full \Cyclus simulations
 running in parallel on $10^3$ machines reliably for order $10^5$ simulations.
 
 \subsubsection{Dynamically Loadable Libraries}
-% (diagram)
 
-A key innovation is that \Cyclus  implements this generic \gls{API} and modular 
-architecture via a suite of dynamically loadable plug-in libraries.  Though 
-common in modern software architecture, such a plug-in pattern has 
-not previously been implemented in nuclear fuel cycle simulators.  
-Dynamically loadable libraries are the primary mechanism for extending \Cyclus' capability. This approach provides encapsulation: the core of the code operates
-independently from the individual plug-in libraries. Thus, any
-customization or extension is implemented only in the loadable
-library. 
-
-This approach encourages efficient, targeted contribution to the ecosystem of 
-archetype libraries.  The 
-researcher can focus on generating an archetype model within their
+The \Cyclus architecture encourages efficient, targeted contribution to the ecosystem of 
+archetype libraries.
+With \Cyclus, a researcher can focus on generating an archetype model within their
 sphere of expertise, while relying on the contributions of others to fill 
-in the other technologies in the simulation.  This strategy also allows individual developers to
-explore different levels of complexity within their archetypes, including
+in the other technologies in the simulation.  
+Similarly, individual developers may explore different levels of complexity within their archetypes, including
 wrapping other simulation tools as loadable libraries within \Cyclus.
+
+\Cyclus acheives this behavior by implementing its generic \gls{API} and 
+modular architecture via a suite of dynamically loadable plug-in libraries.  
+Though common in modern software architecture, such a plug-in pattern has not 
+previously been implemented in nuclear fuel cycle simulators.  Dynamically 
+loadable libraries are the primary mechanism for extending \Cyclus' capability. 
+This approach provides encapsulation: the core of the code operates 
+independently from the individual plug-in libraries. Thus, any customization or 
+extension is implemented only in the loadable library.  
 
 \begin{figure}[htbp!]
 \begin{center}
@@ -373,11 +372,11 @@ developers to choose how to handle potentially full-fidelity compositions.
 
 In large simulations, many material objects may change frequently.
 Material decay can also contribute significantly to such changes.  In order to
-help avoid unnecessary runtime performance and database space impacts,
+help avoid unnecessary runtime performance and database size impacts,
 compositions in \Cyclus have some special features.
 Immutability of compositions allows multiple material objects to all hold
-references to the same composition object safely.  When operations are
-performed on a material that do not alter the composition, any new resulting
+references to the same composition object safely.  When operations that do not 
+alter the composition are performed on a material, any new resulting
 materials hold a reference to the same, original composition object.
 Although the decay operation generates a new, separate composition (preserving
 immutability), a reference to the new composition is placed in a cache shared
@@ -395,7 +394,7 @@ occurs. \TODO{do we want a diagram helping show this composition caching?}
 
 \TODO{Matt Gidden, please fill in}
 
-\subsection{Simulation Assistance}
+\subsection{Simulation Support}
 So that users and developers can build working simulations
 in the shortest time possible, the \Cyclus ecosystem provides the fundamental 
 building blocks: basic archetypes and a toolkit of commonly needed functions.
