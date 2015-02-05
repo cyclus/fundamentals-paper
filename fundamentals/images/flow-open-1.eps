@@ -2,7 +2,7 @@
 %%Creator: graphviz version 2.38.0 (20140413.2041)
 %%Title: ResourceFlows
 %%Pages: 1
-%%BoundingBox: 36 36 147 264
+%%BoundingBox: 36 36 445 264
 %%EndComments
 save
 %%BeginProlog
@@ -179,90 +179,134 @@ def
 %%EndSetup
 setupLatin1
 %%Page: 1 1
-%%PageBoundingBox: 36 36 147 264
+%%PageBoundingBox: 36 36 445 264
 %%PageOrientation: Portrait
 0 0 1 beginpage
 gsave
-36 36 111 228 boxprim clip newpath
+36 36 409 228 boxprim clip newpath
 1 1 set_scale 0 rotate 40 40 translate
+% depleted_u_source
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+98.14 202 98.28 18 ellipse_path stroke
+0 0 0 nodecolor
+14 /Times-Roman set_font
+30.64 198.3 moveto 135 (depleted_u_source) alignedtext
+grestore
+% spent_fuel_fab
+gsave
+1 setlinewidth
+0 0 0 nodecolor
+98.14 110 78.79 18 ellipse_path stroke
+0 0 0 nodecolor
+14 /Times-Roman set_font
+45.64 106.3 moveto 105 (spent_fuel_fab) alignedtext
+grestore
+% depleted_u_source->spent_fuel_fab
+gsave
+1 setlinewidth
+0 0 0 edgecolor
+newpath 98.14 183.65 moveto
+98.14 170.82 98.14 153.11 98.14 138.38 curveto
+stroke
+0 0 0 edgecolor
+newpath 101.64 138.3 moveto
+98.14 128.3 lineto
+94.64 138.3 lineto
+closepath fill
+1 setlinewidth
+solid
+0 0 0 edgecolor
+newpath 101.64 138.3 moveto
+98.14 128.3 lineto
+94.64 138.3 lineto
+closepath stroke
+0 0 0 edgecolor
+9 /Times-Roman set_font
+99.14 158.8 moveto 52 (depleted_u) alignedtext
+0 0 0 edgecolor
+9 /Times-Roman set_font
+98.14 148.8 moveto 54 (\(6e+05 kg\)) alignedtext
+grestore
 % enrichment
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-51.35 202 50.89 18 ellipse_path stroke
+332.14 202 64.19 18 ellipse_path stroke
 0 0 0 nodecolor
 14 /Times-Roman set_font
-20.35 198.3 moveto 62 (enrichment) alignedtext
+290.64 198.3 moveto 83 (enrichment) alignedtext
 grestore
 % lwr_reactor
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-51.35 110 51.19 18 ellipse_path stroke
+332.14 110 64.99 18 ellipse_path stroke
 0 0 0 nodecolor
 14 /Times-Roman set_font
-19.85 106.3 moveto 63 (lwr_reactor) alignedtext
+290.14 106.3 moveto 84 (lwr_reactor) alignedtext
 grestore
 % enrichment->lwr_reactor
 gsave
 1 setlinewidth
 0 0 0 edgecolor
-newpath 51.35 183.65 moveto
-51.35 170.82 51.35 153.11 51.35 138.38 curveto
+newpath 332.14 183.65 moveto
+332.14 170.82 332.14 153.11 332.14 138.38 curveto
 stroke
 0 0 0 edgecolor
-newpath 54.85 138.3 moveto
-51.35 128.3 lineto
-47.85 138.3 lineto
+newpath 335.64 138.3 moveto
+332.14 128.3 lineto
+328.64 138.3 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 54.85 138.3 moveto
-51.35 128.3 lineto
-47.85 138.3 lineto
+newpath 335.64 138.3 moveto
+332.14 128.3 lineto
+328.64 138.3 lineto
 closepath stroke
 0 0 0 edgecolor
 9 /Times-Roman set_font
-61.35 158.8 moveto 32 (uox_fuel) alignedtext
+346.64 158.8 moveto 40 (uox_fuel) alignedtext
 0 0 0 edgecolor
 9 /Times-Roman set_font
-51.35 148.8 moveto 52 (\(1.16e+06 kg\)) alignedtext
+332.14 148.8 moveto 69 (\(1.16e+06 kg\)) alignedtext
 grestore
 % repo
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-51.35 18 27 18 ellipse_path stroke
+332.14 18 31.7 18 ellipse_path stroke
 0 0 0 nodecolor
 14 /Times-Roman set_font
-38.85 14.3 moveto 25 (repo) alignedtext
+315.64 14.3 moveto 33 (repo) alignedtext
 grestore
 % lwr_reactor->repo
 gsave
 1 setlinewidth
 0 0 0 edgecolor
-newpath 51.35 91.65 moveto
-51.35 78.82 51.35 61.11 51.35 46.38 curveto
+newpath 332.14 91.65 moveto
+332.14 78.82 332.14 61.11 332.14 46.38 curveto
 stroke
 0 0 0 edgecolor
-newpath 54.85 46.3 moveto
-51.35 36.3 lineto
-47.85 46.3 lineto
+newpath 335.64 46.3 moveto
+332.14 36.3 lineto
+328.64 46.3 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 54.85 46.3 moveto
-51.35 36.3 lineto
-47.85 46.3 lineto
+newpath 335.64 46.3 moveto
+332.14 36.3 lineto
+328.64 46.3 lineto
 closepath stroke
 0 0 0 edgecolor
 9 /Times-Roman set_font
-58.85 66.8 moveto 37 (spent_fuel) alignedtext
+353.14 66.8 moveto 27 (waste) alignedtext
 0 0 0 edgecolor
 9 /Times-Roman set_font
-51.35 56.8 moveto 52 (\(1.08e+06 kg\)) alignedtext
+332.14 56.8 moveto 69 (\(1.08e+06 kg\)) alignedtext
 grestore
 endpage
 showpage

@@ -2,7 +2,7 @@
 set output "puseries-n.svg"
 set terminal svg
 
-set title "Plutonium Buildup: many reactors"
+set title "Plutonium Buildup: 10 Reactors"
 set xlabel "Time (month)"
 set ylabel "Pu (metric tonnes)"
 set key center top
@@ -15,11 +15,12 @@ set output "puseries-n.eps"
 set terminal postscript eps
 
 set auto x
-set xlabel "Time (month)" font ",28"
-set ylabel "Pu (metric tonnes)" font ",28" offset -1,0
-set ytics font ",24"
-set xtics font ",24"
-set key center top font ",24"
+set title "Plutonium Buildup: 10 Reactors" font ",26"
+set xlabel "Time (month)" font ",21"
+set ylabel "Pu (metric tonnes)" font ",21" offset -1,0
+set ytics font ",21"
+set xtics font ",21"
+set key center top font ",21"
 set key spacing 3.0
 
 replot
