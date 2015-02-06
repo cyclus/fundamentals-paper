@@ -159,36 +159,37 @@ others. The three fuel cycles examined are:
 
 \begin{enumerate}
     \item Once through (no recycle) 
-    \item Modified open (1-pass recycle)
-    \item closed (infinite-pass recycle)
+    \item 1-pass MOX recycle
+    \item Infinite-pass MOX recycle
 \end{enumerate}
 
-For each of these fuel cycles, a 1,100 month \Cyclus simulation with only a
-single reactor is run in addition to a simulation with 10 reactors with
-staggered refueling times.  As the number of staggered-cycle reactors
-increases the system converges toward continuous material flow results.
-\Cyclus flexibility allows this transition to be examined.  The facilities
-used in these simulations are:
+For each of these fuel cycles, a 1,100 month single-reactor \Cyclus simulation
+was run in addition to a 10-reactor simulation with staggered refueling times.
+As the number of staggered-cycle reactors increases the system converges
+toward continuous material flow results.  \Cyclus flexibility allows this
+transition to be examined.  The facilities used in these simulations are:
 
 \begin{itemize}
 
     \item \textbf{Reactor} (\Class{cycamore::Reactor}): This is a reactor
-        model that requests any number of input fuel types and uses static
-        compositions to transmute them to after they are burnt and discharged
-        from the core.  Due to the static spent fuel compositions spent fuel
-        compositions become "incorrect" as the input fuel diverges from the
-        fixed, expected input composition. The reactor was configured to model
-        a light water reactor with a 3 batch core (20,000 kg HM per batch)
-        operating on an 18 month cycle with a 2 month refuel time.  The
-        reactor was also configured to take in either enriched UOX fuel or
-        recycled MOX fuel - preferring the latter if available.
+        model that requests any number of input fuel types and transmutes them
+        to static compositions when they are burnt and discharged from the
+        core.  . The reactor was configured to model a light water reactor
+        with a 3 batch core (20,000 kg HM per batch) operating on an 18 month
+        cycle with a 2 month refuel time.  The reactor was also configured to
+        take in either enriched UOX fuel or recycled MOX fuel - preferring the
+        latter if available.
 
     \item \textbf{Recycled Fuel Fabrication} (\Class{cycamore::Fab}): This
         facility requests depleted uranium and separated fissile material and
         mixes them together into recycled MOX fuel that it offers to
-        requesters.  The streams are mixed using a D-factors approach
-        \TODO{add D-factors citation} in an attempt to match simple neutronics
-        properties of an ideal target fuel composition.
+        requesters.  The two streams are mixed in a ratio in order to match
+        simple neutronics properties of the target fuel as closely as
+        possible.  The method used is based on a variation "equivalence
+        method" originally developed by Baker and Ross
+        \cite{baker1963comparison}.  This technique has also been used in the
+        Commelini-Sicart (COSI) fuel cycle simulator developed by the French
+        Commissariat \`{a} l'\'{e}nergie atomique (CEA).
 
     \item \textbf{Separations} (\Class{cycamore::Separations}): This facility
         takes in all kinds of spent fuel and separates it into plutonium and
@@ -200,44 +201,46 @@ used in these simulations are:
         including separations waste streams and spent reactor fuel.
 
     \item \textbf{UOX Fabrication} (\Class{cycamore::Source}): This facility
-        provides enriched UOX fuel as requested with infinite capacity.
+        provides enriched UOX fuel as requested.  This facility has infinite
+        production capacity.
 
-    \item \textbf{DU Source} (\Class{cycamore::Source}): This facility provides
-        depleted uranium as requested with infinite capacity.
+    \item \textbf{DU Source} (\Class{cycamore::Source}): This facility
+        provides depleted uranium as requested. This facility has infinite
+        production capacity.
 
 \end{itemize}
 
 For the once through case, the \Class{Reactor} was set to offer all spent fuel
-as waste.  For the modified open case, the \Class{Reactor} offerred spent UOX
-into a spent fuel market where it is preferrentially sent to separations, but
-spent MOX is still offerred as waste.  In the closed case, the \Class{Reactor}
-offers all spent fuel into a spent fuel market. Because the separations
-facility requests spent fuel with a higher preference than the repository, it
-is sent there if possible.  All these preferences are easy to adjust and
-\Cyclus will dynamically handle supply constraints and non-uniform preference
-resolution.  It is notable that separations and recycle fuel fabrication
-capacity is deployed identically in all simulations.  In the once-through
-case, the recycling loop never acquires material, and so reactors always
-receive fresh UOX fuel.  In the modified open case, the recycle loop only
-acquires spent UOX.  The \gls{DRE} ensures everything operates smoothly in all
-cases.
+as waste.  For the 1-pass recycle case, the \Class{Reactor} offered spent UOX
+into a spent fuel market where it is preferentially sent to separations, but
+spent MOX is still offered as waste.  In the infinite-pass recycle case, the
+\Class{Reactor} offers all spent fuel into a spent fuel market. Because the
+separations facility requests spent fuel with a higher preference than the
+repository, it is sent there if possible.  All these preferences are easy to
+adjust and \Cyclus will dynamically handle supply constraints and non-uniform
+preference resolution.  It is notable that separations and recycle fuel
+fabrication capacity is deployed identically in all simulations.  In the
+once-through case, the recycling loop never acquires material, and so reactors
+always receive fresh UOX fuel.  In the 1-pass recycle case, the recycle loop
+only acquires spent UOX.  The \gls{DRE} ensures everything operates smoothly
+in all cases.
 
 Cyclus' discrete materials make single-pass recycle easy to implement.  The
 reactors keep track of fuel as discrete batches. A reactor remembers where it
 received each batch from.  If a batch was received from the recycled fuel
 fabrication facility, it does not offer it to separations and instead sends it
-to the repository directly.  The material flows for the modified open case are
+to the repository directly.  The material flows for the 1-pass recycle case are
 shown in Figure \ref{fig:flowmodopen}.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics{./images/flow-mod-open-1.eps}
 \end{center}
-\caption{Modified open 1-pass \gls{MOX} recycle scenario material flows.}
+\caption{1-pass \gls{MOX} recycle scenario material flows.}
 \label{fig:flowmodopen}
 \end{figure}
 
-Changing the scenario from a modified open fuel cycle to a closed fuel cycle
+Changing the scenario from a 1-pass fuel cycle to an infinite-pass fuel cycle
 requires only a one-word change in the input file regarding the output
 commodity for the spent \gls{MOX} fuel of the \Class{Reactor}: 
 
@@ -246,16 +249,16 @@ commodity for the spent \gls{MOX} fuel of the \Class{Reactor}:
        <incommodity>mox</incommodity>
   -    <outcommodity>waste</outcommodity>
   +    <outcommodity>spent_fuel</outcommodity>
-       <inrecipe>mox_resh_fuel</inrecipe>
+       <inrecipe>mox_fresh_fuel</inrecipe>
        <outrecipe>mox_spent_fuel</outrecipe>
      </fuel>
 \end{lstlisting}
 
 This results in the material flows in Figure \ref{fig:flowclosed}.  A
-similarly trivial change was used to switch from the once through to a
-modified open fuel cycle.  Note that the \Class{Reactor} always transmutes
-fuel into fixed compositions, so nuclide-specific flows become
-somewhat unrealistic in the fully closed cycle case.
+similarly trivial change was used to switch from the once through to a 1-pass
+fuel cycle.  Note that the \Class{Reactor} always transmutes fuel into fixed
+compositions, the error in isotopic compositions is larger in the
+infinite-pass recycle case.
 
 \begin{figure}[H]
 \begin{center}
@@ -265,18 +268,18 @@ somewhat unrealistic in the fully closed cycle case.
 \label{fig:flowclosed}
 \end{figure}
 
-Figure \ref{fig:puseries1} shows the full-system plutonium buildup for open
-(no recycle), modified open, and closed (infinite-pass recycle) variations of
+Figure \ref{fig:puseries1} shows the full-system plutonium buildup for once
+through (no recycle), 1-pass recycle, and infinite-pass recycle variations of
 the one-reactor scenario described above. The figure was generated directly
 from \Cyclus output data. After several batch cycles (near month 300) in the
-modified open and closed cases, enough separated fissile material accumulates
+1-pass and inifinite-pass cases, enough separated fissile material accumulates
 in the fuel fabrication facility to generate a full recycled batch.  When this
 batch is transmuted, more plutonium is burned than created.  This results in a
 drop in the total fuel cycle system plutonium inventory.  This pattern repeats
-roughly every 10 cycles (200 months) for the modified open case and every 9
-cycles (180 months) for the closed case.  Because the modified open scenario
-does not re-recycle material, it takes the fabrication facility 2 cycles longer
-to accumulate a full batch of fissile material.
+roughly every 10 cycles (200 months) for the 1-pass recycle case and every 9
+cycles (180 months) for the infinite-pass recycle case.  Because the 1-pass
+recycle scenario does not re-recycle material, it takes the fabrication
+facility 2 cycles longer to accumulate a full batch of fissile material.
 
 Because facilities are represented individually and transact discrete
 materials as discrete events, realistic non-uniform patterns in facility
@@ -291,10 +294,10 @@ behavior that affect total system behavior are observed using \Cyclus.
 \end{figure}
 
 Figure \ref{fig:puseriesn} shows plutonium buildup for the 10-reactor
-simulations of the open, modified open, and closed scenarios.  As the number
-of reactors (with staggered refueling) increases, the behavior of the system
-approaches a more steady average reminiscent of continuous material flow
-models.
+simulations of the once through, 1-pass recycle, and infinite-pass recycle
+scenarios.  As the number of reactors (with staggered refueling) increases,
+the behavior of the system approaches a more steady average reminiscent of
+continuous material flow models.
 
 \begin{figure}[H]
 \begin{center}
