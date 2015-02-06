@@ -45,7 +45,6 @@
         <in_commods>
           <val>waste</val>
           <val>spent_fuel</val>
-          <val>spent_mox</val>
         </in_commods>
       </Sink>
     </config>
@@ -108,7 +107,7 @@
         <fuel>         
           <incommodity>mox_fuel</incommodity>
           <inrecipe>lwr_mox_fuel</inrecipe>
-          <outcommodity>spent_mox</outcommodity>
+          <outcommodity>waste</outcommodity>
           <outrecipe>mox_spent_fuel</outrecipe>
         </fuel>
 

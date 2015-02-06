@@ -101,7 +101,7 @@
         <fuel>         
           <incommodity>uox_fuel</incommodity>
           <inrecipe>lwr_fresh_fuel</inrecipe>
-          <outcommodity>spent_fuel</outcommodity>
+          <outcommodity>waste</outcommodity>
           <outrecipe>lwr_spent_fuel</outrecipe>
         </fuel>
 
@@ -143,6 +143,9 @@
       <DeployInst>
         <buildorder> <prototype>lwr_reactor</prototype> <number>1</number> <date>1</date> </buildorder> 
         <buildorder> <prototype>repo</prototype> <number>1</number> <date>1</date> </buildorder> 
+        <buildorder> <prototype>separations</prototype> <number>1</number> <date>1</date> </buildorder> 
+        <buildorder> <prototype>spent_fuel_fab</prototype> <number>1</number> <date>1</date> </buildorder> 
+        <buildorder> <prototype>depleted_u_source</prototype> <number>1</number> <date>1</date> </buildorder> 
         <buildorder> <prototype>enrichment</prototype> <number>1</number> <date>1</date> </buildorder> 
       </DeployInst>
     </config>
