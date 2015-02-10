@@ -31,29 +31,29 @@
 % How were the measurements made and characterized?
 
 
-The success of the \Cyclus simulator can be measured in many ways. 
-The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development 
-model and of fundamental simulation capability. Nascent promising growth of the \Cyclus 
-ecosystem at multiple institutions indicates that a fuel cycle simulator can 
-advance in a community-driven development paradigm. Additionally, simulation 
-results for both once-through and more complex recycling scenarios demonstrate that 
-\Cyclus possesses the fundamental fuel cycle simulation capabilities to 
+The success of the \Cyclus simulator can be measured in many ways.
+The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development
+model and of fundamental simulation capability. Nascent promising growth of the \Cyclus
+ecosystem at multiple institutions indicates that a fuel cycle simulator can
+advance in a community-driven development paradigm. Additionally, simulation
+results for both once-through and more complex recycling scenarios demonstrate that
+\Cyclus possesses the fundamental fuel cycle simulation capabilities to
 contribute to the field.
 
 \subsection{Ecosystem}
 % Cycamore library
 % Cyder?
 
-The \Cyclus community-driven software development model seeks to break the 
-unproductive proliferation of overspecialized simulators. It instead leverages 
-the collective expertise of fuel cycle researchers toward a single, more 
+The \Cyclus community-driven software development model seeks to break the
+unproductive proliferation of overspecialized simulators. It instead leverages
+the collective expertise of fuel cycle researchers toward a single, more
 extensible, tool. Through the targeted
 contributions of those researchers, an ecosystem of capabilities should emerge.
-The \Cyclus `Ecosystem' is the collection of tools, calculation libraries, 
-archetypes, data, and input files intended for use with the \Cyclus simulator. 
+The \Cyclus `Ecosystem' is the collection of tools, calculation libraries,
+archetypes, data, and input files intended for use with the \Cyclus simulator.
 Members of the ecosystem include:
 \begin{itemize}
-\item the archetypes provided in the \Cycamore \cite{carlsen_cycamore_2014} 
+\item the archetypes provided in the \Cycamore \cite{carlsen_cycamore_2014}
 repository
 \item the archetypes created by researchers
 \item isotopic composition data
@@ -62,21 +62,21 @@ repository
 \item fundamental analysis tools in the \Cyclus toolkit
 \item tools for \Cyclus optimization, parallelization, and development
 \end{itemize}
-Taken together, these form an ecosystem of capabilities. Over time, this 
-ecosystem will grow as archetype developers, kernel developers, and 
-even users contribute capabilities developed for their own needs. Indeed, the 
-long-term vision for the \Cyclus framework predicts an ever-expanding ecosystem 
-of both general and specialized capability extensions. 
+Taken together, these form an ecosystem of capabilities. Over time, this
+ecosystem will grow as archetype developers, kernel developers, and
+even users contribute capabilities developed for their own needs. Indeed, the
+long-term vision for the \Cyclus framework predicts an ever-expanding ecosystem
+of both general and specialized capability extensions.
 
-Already, the ecosystem is growing. Early cross-institutional contributions to 
-the ecosystem demonstrate a significant achievement by the \Cyclus framework 
-and provide the basis for a community-driven development model. 
+Already, the ecosystem is growing. Early cross-institutional contributions to
+the ecosystem demonstrate a significant achievement by the \Cyclus framework
+and provide the basis for a community-driven development model.
 
 \subsubsection{Supplementary Projects}
 
-A number of projects and tools outside of the core simulation kernel have been 
-developed to improve the scope and the diversity of the capabilities in the \Cyclus 
-ecosystem. Table \ref{tab:coretools} lists the tools and projects developed 
+A number of projects and tools outside of the core simulation kernel have been
+developed to improve the scope and the diversity of the capabilities in the \Cyclus
+ecosystem. Table \ref{tab:coretools} lists the tools and projects developed
 under close integration with the \Cyclus kernel.  These tools are used to ease development
 and simulation design (Cystub, Cycic, Ciclus), data visualization and analysis (Cyclist, Cyan),
 and remote execution (Cloudlus).
@@ -101,22 +101,22 @@ Cloudlus & Tools for running \Cyclus in a cloud environment & \cite{carlsen_clou
 
 \subsubsection{Archetype Contributions}
 
-It is expected that the most common type of contribution to \Cyclus will be 
-contributions of new archetypes. Researchers will be driven to create a new 
-archetype when a need arises to represent a novel reactor type, an innovative 
-reprocessing strategy, or a particular governmental or institutional behavior.  
-The real-world utility of \Cyclus can in part be measured by the breadth and 
+It is expected that the most common type of contribution to \Cyclus will be
+contributions of new archetypes. Researchers will be driven to create a new
+archetype when a need arises to represent a novel reactor type, an innovative
+reprocessing strategy, or a particular governmental or institutional behavior.
+The real-world utility of \Cyclus can in part be measured by the breadth and
 diversity of archetypes being developed in this way.
 
-Early progress has been promising. Many archetypes external to the \Cycamore library (Table \ref{tab:cycamore})  
-have been 
+Early progress has been promising. Many archetypes external to the \Cycamore library (Table \ref{tab:cycamore})
+have been
 \cite{huff_streamblender_2014,huff_commodconverter_2014}
-or are being 
-\cite{flanagan_bright-lite_2014,skutnik_nuclear_2014,huff_mktdriveninst_2014} developed for contribution to the 
-\Cyclus ecosystem. These archetypes provide the first examples of 
+or are being
+\cite{flanagan_bright-lite_2014,skutnik_nuclear_2014,huff_mktdriveninst_2014} developed for contribution to the
+\Cyclus ecosystem. These archetypes provide the first examples of
 developer-contributed capabilities.  They add to the fundamental \Cycamore
 archetypes by providing physics-based reactors, separation, fabrication, storage
-facilities, and expanded institutional paradigms.  
+facilities, and expanded institutional paradigms.
 
 \begin{table}[h]
 \centering
@@ -132,15 +132,15 @@ SeparationsMatrix & A facility for elemental separations of used fuel & \cite{hu
 StreamBlender & A facility for fuel fabrication from reprocessed streams & \cite{huff_streamblender_2014} \\
 \hline
 \end{tabularx}
-\caption{A diverse set of archetypes under development reflect the diverse 
-needs of researchers at various institutions. These archetypes, contributed 
-outside of the \Cyclus core and \Cycamore libraries are the first demonstration 
+\caption{A diverse set of archetypes under development reflect the diverse
+needs of researchers at various institutions. These archetypes, contributed
+outside of the \Cyclus core and \Cycamore libraries are the first demonstration
 of community-driven development in a fuel cycle simulator.}
 \label{tab:archetypes}
 \end{table}
 
 The existence and diversity of these contributed archetypes
-illustrate the power and potential of the community-based development approach 
+illustrate the power and potential of the community-based development approach
 that \Cyclus has taken.
 
 \subsection{Simulations}
@@ -158,7 +158,7 @@ have been made with respect to material compositions, fuel transmutation, and
 others. The three fuel cycles examined are:
 
 \begin{enumerate}
-    \item Once through (no recycle) 
+    \item Once through (no recycle)
     \item 1-pass MOX recycle
     \item Infinite-pass MOX recycle
 \end{enumerate}
@@ -244,10 +244,10 @@ material flows for the 1-pass recycle case are shown in Figure
 
 Changing the scenario from a 1-pass fuel cycle to an infinite-pass fuel cycle
 requires only a one-word change in the input file regarding the output
-commodity for the spent \gls{MOX} fuel of the \Class{Reactor}: 
+commodity for the spent \gls{MOX} fuel of the \Class{Reactor}:
 
 \begin{lstlisting}[language=diff]
-     <fuel>         
+     <fuel>
        <incommodity>mox</incommodity>
   -    <outcommodity>waste</outcommodity>
   +    <outcommodity>spent_fuel</outcommodity>
@@ -274,7 +274,7 @@ Figure \ref{fig:puseries1} shows the full-system plutonium buildup for once
 through (no recycle), 1-pass recycle, and infinite-pass recycle variations of
 the one-reactor scenario described above. The figure was generated directly
 from \Cyclus output data. After several batch cycles (near month 300) in the
-1-pass and inifinite-pass cases, enough separated fissile material accumulates
+1-pass and infinite-pass cases, enough separated fissile material accumulates
 in the fuel fabrication facility to generate a full recycled batch.  When this
 batch is transmuted, more plutonium is burned than created.  This results in a
 drop in the total fuel cycle system plutonium inventory.  This pattern repeats
@@ -309,3 +309,9 @@ continuous material flow models.
 \label{fig:puseriesn}
 \end{figure}
 
+The fundamental capabilities of demonstrated in these simulations qualify
+\Cyclus and its ecosystem to model the breadth of scenario types expected of
+nuclear fuel cycle simulator tools. These examples further show the flexibility
+provided by the material routing logic within the \Cyclus framework and provide
+an example of the resolution made possible by discrete-facility and
+discrete-material modeling in fuel cycle simulation.
