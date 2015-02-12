@@ -39,13 +39,16 @@ choices made to:
 \item and address a range of analysis types, levels of detail, and analyst sophistication.
 \end{itemize}
 
-Historically, nuclear fuel cycle simulators have calculated
-fuel cycle mass balances and performance metrics derived from them using software
-ranging from ad hoc spreadsheet-driven flow calculators to highly specialized
-system dynamics modeling platforms. To date, current tools are either static, fleet-based,
-privately distributed, or all of the above. Each of these qualities presents a
-challenge to modeling fidelity, generality, efficiency, robustness, and
-scientific transparency.
+The cardinal purpose of a nuclear fuel cycle simulator is to calculate the
+time- and facility-dependent mass flow through all or part the fuel cycle. Many
+architecture choices are discussed in \ref{sec:litrev}.  Historically, nuclear
+fuel cycle simulators have calculated fuel cycle mass balances and performance
+metrics derived from them using software ranging from ad hoc spreadsheet-driven
+flow calculators to highly specialized system dynamics modeling platforms. To
+date, current tools are often static rather than dynamic, rigid rather than
+flexible, fleet-based rather than discrete, or privately distributed rather
+than open source. Each of these choices presents a challenge to modeling
+fidelity, generality, efficiency, robustness, and scientific transparency.
 
 \Cyclus, therefore, is a dynamic, agent-based model, which employs a modular
 architecture, an open development process, discrete agents, discrete time, and
@@ -125,7 +128,6 @@ universities and private industry researchers have ``reinvented the wheel'' by
 developing tools of their own from scratch and tailored to their own needs, for
 example \gls{CAFCA}\cite{guerin_impact_2009}.
 
-\input{fcsreqs}
 
 \Cyclus emerged from a line of tools seeking to break this practice.  Its
 precursor,
@@ -142,6 +144,8 @@ simulator's agent-based framework for tracking the transformation and trade of
 resources between autonomous regional and institutional entities with
 customizable behavior and objectives is an innovation not pursued by any
 existing fuel cycle simulator.
+
+\input{fcsreqs}
 
 \subsection{Motivation}
 % Gently reiterate the above need.
@@ -178,3 +182,4 @@ specialized tools, rendering the task of answering questions between the macro
 and micro levels challenging within a single tool.  In contrast, the extensible
 architecture and discrete object tracking of \Cyclus allow the creation and
 interchangeability of custom archetypes at any level of fidelity.
+
