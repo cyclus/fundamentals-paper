@@ -1,16 +1,49 @@
-Many fuel cycle phenomena have aggregate system-level effects which can only be captured by discrete material tracking \cite{huff_functions_2010}.  \Cyclus tracks materials as discrete objects. Some current fuel cycle simulation tools such as \gls{COSI6}, \gls{DESAE2.1}, \gls{FAMILY21}, \gls{GENIUS} versions 1 and 2, and \gls{NFCSim} also possess the ability to model discrete materials.
 
-Similarly, the ability to model disruptions (i.e. facility shutdowns due to insufficient feed material or insufficient processing and storage capacity) is most readily captured by software capable of tracking the operations status of discrete facilities \cite{huff_functions_2010}.
-Fleet-based models (i.e. \gls{VISION}) are unable to capture this gracefully. All of the software capable of discrete materials have a notion of discrete facilities, however not all handle disruption in the same manner. \gls{DESAE}, for example, does not allow shutdown due to insufficient feedstock, though \Cyclus does. In the event of insufficient fissile material during reprocessing, \gls{DESAE} borrows material from storage, leaving a negative value \macarthy_benchmark_2012}.
+\subsubsection{Discrete Facilities and Materials}
 
-The proprietary concerns of research institutions and security constraints of data within fuel cycle codes often restrict code access. A code's use is therefore often limited to its institution of origin, necessitating effort duplication at other institutions and thereby squandering broader human resources. License agreements and institutional approval are required for most current codes (i.e. \gls{COSI}6, \gls{DANESS}, \gls{DESAE}, \gls{EVOLCODE}, \gls{FAMILY}, and \gls{NFCSIM})\cite{juchau_modeling_2010}. However, \Cyclus and the MIT code, \gls{CAFCA}, provides fully free and open access to all users and developers, foreign and domestic.
+Many fuel cycle phenomena have aggregate system-level effects which can only be
+captured by discrete material tracking \cite{huff_functions_2010}.  \Cyclus
+tracks materials as discrete objects. Some current fuel cycle simulation tools
+such as \gls{COSI6}, \gls{DESAE2.1}, \gls{FAMILY21}, \gls{GENIUS} versions 1
+and 2, and \gls{NFCSim} also possess the ability to model discrete materials.
 
-Uncertainty and Sensitivity Automation
-While uncertainty and sensitivity analysis of input parameters can be conducted at a medium-fidelity level by manual parametric sampling with almost any fuel cycle code [26] [33], automated sampling and propagation of uncertainties and parametric sensitivity has not been achieved by any of the fuel cycle codes discussed here. Furthermore, uncertainty distributions for included data and propagation algorithms are lacking. Many of the missions that the FCS seeks to support would be facilitated by such a capability and this need constitutes a driving factor in the development of the FCS concept.
+Similarly, the ability to model disruptions (i.e. facility shutdowns due to
+insufficient feed material or insufficient processing and storage capacity) is
+most readily captured by software capable of tracking the operations status of
+discrete facilities \cite{huff_functions_2010}.  Fleet-based models (i.e.
+\gls{VISION}) are unable to capture this gracefully.  All of the software
+capable of discrete materials have a notion of discrete facilities, however not
+all handle disruption in the same manner. \gls{DESAE}, for example, does not
+allow shutdown due to insufficient feedstock, though \Cyclus does. In the event
+of insufficient fissile material during reprocessing, \gls{DESAE} borrows
+material from storage, leaving a negative value \cite{macarthy_benchmark_2012}.
 
-Unconventional Reactor Modeling
-Much fuel cycle simulation focus in the recent decade has been driven by specific fuel cycle policy goals. As a result, most fuel cycle models have neglected to model myriad unconventional fuel cycles and reactor models on the research stage today. \Cyclus seeks to offer unconstrained modeling freedom for researchers interested in the impact of unconventional transmutation technologies and uses of reactor heat production on fuel cycle metrics. Such unconventional models may include advanced designs such as small modular reactors and travelling wave reactors.
+\subsubsection{Open Access}
 
-Dynamic Feedback for Economic Analysis
-In addition to recording cost information about deployment and material movements, \Cyclus simulation logic relies on a market paradigm that enables simulation of the dynamic responses within the system to pricing, availability, and other institutional preferences. This capability is an advanced functionality and does not exist in a flexible manner for other fuel cycle simulators.
+The proprietary concerns of research institutions and security constraints of
+data within fuel cycle codes often restrict code access. A code's use is
+therefore often limited to its institution of origin, necessitating effort
+duplication at other institutions and thereby squandering broader human
+resources. License agreements and institutional approval are required for most
+current codes (i.e. \gls{COSI}6, \gls{DANESS}, \gls{DESAE}, \gls{EVOLCODE},
+\gls{FAMILY}, and \gls{NFCSIM})\cite{juchau_modeling_2010}.  Even when, as in
+the case of the MIT \gls{CAFCA} software, the source code is unrestricted, the
+platform on which it relies is oftenrestricted or commercial.  However, \Cyclus
+provide fully free and open access to all users
+and developers, foreign and domestic.
+
+\subsubsection{Flexibility and Extensibility}
+
+In addition to being inaccessible, the vast majority of fuel cycle simulators
+are, effectively, inextensible. Typical fuel cycle simulator evelopment teams are insular, in
+part due to accessiblity issues. Also, however, their frameworks contain
+heuristics and assumptions that constrain developer additions.
+
+For example, where most other simulators describe a finite set of acceptable
+cycle constructions (once through, single-pass, multi-pass), the \Cyclus
+simulation logic relies on a market paradigm that can be easily directed to
+create novel material and economic paths. The simulation of the dynamic
+responses within the system to pricing, availability, and other institutional
+preferences in \Cyclus is an advanced capability and does not exist in a
+flexible manner for other fuel cycle simulators.
 
