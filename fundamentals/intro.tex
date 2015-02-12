@@ -14,11 +14,11 @@
 
 
 As nuclear power expands, technical, economic, political, and environmental
-analyses of nuclear fuel cycles by simulators increases in importance. The
+analyses of nuclear fuel cycles by simulators increases in importance. NucleThe
 merit of advanced nuclear technologies and the fuel cycles they comprise is
 shaped by myriad physical, nuclear, chemical, industrial, and political
 factors. Nuclear fuel cycle simulators must therefore couple complex models of
-nuclear process physics, facility deployment, and material routing.  However,
+nuclear process physics, facility deployment, and material routing. However,
 current fuel cycle simulators rely on closed platforms and inflexible
 architectures which exhibit three main failure modes. First, they discourage
 targeted contribution and collaboration among experts. Next, they hobble
@@ -39,13 +39,16 @@ choices made to:
 \item and address a range of analysis types, levels of detail, and analyst sophistication.
 \end{itemize}
 
-Historically, nuclear fuel cycle simulators have calculated
-fuel cycle mass balances and performance metrics derived from them using software
-ranging from ad hoc spreadsheet-driven flow calculators to highly specialized
-system dynamics modeling platforms. To date, current tools are either static, fleet-based,
-privately distributed, or all of the above. Each of these qualities presents a
-challenge to modeling fidelity, generality, efficiency, robustness, and
-scientific transparency.
+The cardinal purpose of a nuclear fuel cycle simulator is to calculate the
+time- and facility-dependent mass flow through all or part the fuel cycle. Many
+architecture choices are discussed in \ref{sec:litrev}.  Historically, nuclear
+fuel cycle simulators have calculated fuel cycle mass balances and performance
+metrics derived from them using software ranging from ad hoc spreadsheet-driven
+flow calculators to highly specialized system dynamics modeling platforms. To
+date, current tools are often static rather than dynamic, rigid rather than
+flexible, fleet-based rather than discrete, or privately distributed rather
+than open source. Each of these choices presents a challenge to modeling
+fidelity, generality, efficiency, robustness, and scientific transparency.
 
 \Cyclus, therefore, is a dynamic, agent-based model, which employs a modular
 architecture, an open development process, discrete agents, discrete time, and
@@ -85,7 +88,7 @@ options. The feasibility of the technology development and deployment
 strategies which comprise a fuel cycle option, the dynamics of transitions
 between fuel cycles, and many other measures of performance can be expressed in
 terms of these metrics. For example, economic feasibility is often measured in
-levelized cost of electricity (\gls{LCOE}), requiring calculation of lifetime
+\gls{LCOE}, requiring calculation of lifetime
 fuel costs and electricity generation, while environmental performance might be
 measured by spent fuel volume, toxicity, or mined uranium.  A meta-analysis of
 fuel cycle systems studies identified over two dozen unique quantitative
@@ -111,7 +114,7 @@ Historically, domestic national laboratories have driven development and regulat
 the use of their own tools: \gls{VISION}\cite{jacobson_verifiable_2010},
 \gls{DANESS}\cite{van_den_durpel_daness_2009},
 \gls{DYMOND}\cite{yacout_modeling_2005}, and
-\gls{NFCSim}\cite{schneider_nfcsim:_2005}.
+\gls{NFCSim}\cite{schneider_nfcsim:_2005,allan_guidance_2008}.
 Internationally, other laboratories have created their own as well, such as
 \gls{COSI}\cite{boucher_cosi_2005,boucher_cosi:_2006,meyer_new_2009,coquelet-pascal_comparison_2011}
 and
@@ -122,8 +125,9 @@ tools were not available or not sufficiently general to calculate their metrics
 of interest.  With limited access to the national
 laboratory tools and a need to customize them for research purposes,
 universities and private industry researchers have ``reinvented the wheel'' by
-developing tools of their own from scratch and tailored to their own needs, for
-example \gls{CAFCA}\cite{guerin_impact_2009}.
+developing tools of their own from scratch and tailored to their own needs.
+Examples include \gls{CAFCA}\cite{guerin_benchmark_2009} and
+\gls{DESAE}\cite{andrianova_desae_2008,mccarthy_benchmark_2012,allan_guidance_2008}.
 
 \Cyclus emerged from a line of tools seeking to break this practice.  Its
 precursor,
@@ -140,6 +144,8 @@ simulator's agent-based framework for tracking the transformation and trade of
 resources between autonomous regional and institutional entities with
 customizable behavior and objectives is an innovation not pursued by any
 existing fuel cycle simulator.
+
+\input{fcsreqs}
 
 \subsection{Motivation}
 % Gently reiterate the above need.
@@ -176,3 +182,4 @@ specialized tools, rendering the task of answering questions between the macro
 and micro levels challenging within a single tool.  In contrast, the extensible
 architecture and discrete object tracking of \Cyclus allow the creation and
 interchangeability of custom archetypes at any level of fidelity.
+
