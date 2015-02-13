@@ -392,7 +392,51 @@ occurs. \TODO{do we want a diagram helping show this composition caching?}
 
 \subsubsection{Dynamic Resource Exchange}
 
-\TODO{Matt Gidden, please fill in}
+Dynamic Resource Exchange (DRE) is the critical resource-related process on
+which \Cyclus simulations are built. It defines the resource interaction
+mechanisms and methodologies for all agents. As the \Cyclus supply-demand
+resolution framework, the DRE must be able to support arbitrary
+facilities. Supporting the general \Cyclus philosophy, facilities are treated as
+black boxes and a clear supply-demand communication framework is defined.
+
+The DRE consists of three steps: supply-demand information gathering, resource
+exchange solution, and trade execution. Importantly, each step is agnostic with
+respect to the exchange of resources in question, i.e., the same procedure is
+used for both Materials and Products. The information-gathering step consists of
+three phases. First, consumers of commodities denote both the quantity of a
+commodity they need to consume as well as the target isotopics, or quality, by
+posting their demand to the market exchange as a series of \textit{requests}. An
+optional collection of demand constraints are associated with each collection of
+requests. Collections of requests may be grouped together, denoting
+\textit{mutual} requests that represent demand for some common purpose. For
+example, a reactor may request UOX and MOX fuel mutually, indicating that either
+will satisfy its demand for fuel. Suppliers then respond to the series of
+requests with a \textit{bid}. A bid supplies a notion of the quantity and
+quality of a resource to match a request. Suppliers may add an arbitrary number
+of constraints to accomany bids. For example, an enriched UOX supplier may
+supply both a natural Uranium and SWU constraint. Any potential resource
+transfer may be denoted as \textit{exclusive}. An exclusive transfer must either
+be met fully or not at all in order to support concepts such as the the trading
+of individual reactor assemblies. Finally, requesting facilities, institutions
+and regions may apply \textit{preferences} to each potential request-bid pairing
+based on the proposed resource transfer. Therefore, an institution can apply a
+higher preference to a partner to which it is congenial; similarly, a region may
+negate any transfers of material which have a higher Uranium enrichment than is
+allowable.
+
+The DRE may be solved either optimally by a mathematical program or
+approximately by a simulation-based heuristic \TODO{cite}. If any trade is
+denoted as exclusive, e.g., if an analyst desires an assembly-fidelity model,
+then either a heuristic must be used or exchanges must be respresented as
+Mixed-Integer Nonlinear Programs (MILP). If no exclusive trades exist, a Linear
+Programming (LP) model may be used. In practice, LPs solve much faster than
+MILPs. However, the capability to model both exists in \Cyclus in order to
+provide users with the desired level of fidelity.
+
+Trades are initiated by the \Cyclus kernel after a solution to the DRE is
+found. The DRE is executed at each time step. Therefore, if a facility's request
+for a resource is not met at a given time step, it may offer a request in the
+proceeding time step. 
 
 \subsection{Simulation Support}
 So that users and developers can build working simulations
