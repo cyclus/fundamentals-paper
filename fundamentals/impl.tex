@@ -435,12 +435,25 @@ analyst desires an assembly-fidelity model, then either a heuristic must be used
 or exchanges must be represented as a \gls{MILP}. If no exclusive trades exist,
 a \gls{LP} model may be used. In practice, LPs solve much faster than
 \gls{MILP}s. However, the capability to model both exists in \Cyclus in order to
-provide users with the desired level of fidelity.
+provide users with the desired level of fidelity.  
 
-Trades are initiated by the \Cyclus kernel after a solution to the \gls{DRE} is
-found. The \gls{DRE} is executed at each time step. Therefore, if a facility's
-request for a resource is not met at a given time step, it may offer a request
-in the proceeding time step. 
+Trades between agents are initiated by the \Cyclus kernel after a solution to
+the \gls{DRE} is found. For each trade, the supplying agent is notified of its
+matched request and provides an associated resource to the exchange. All
+supplied resources are then sent to the corresponding requesting agents. 
+
+In \Cyclus, the \gls{DRE} is executed at each time step. Therefore, if a
+facility's request for a resource is not met at a given time step, it may offer
+a request in the proceeding time step. Because agent behavior may change
+arbitrarily, the exchange executed at any given time step may be unique in a
+simulation.
+
+The \gls{DRE} is a novel simulation concept in the nuclear fuel cycle domain. It
+provides a flexible supply-demand infrastructure, supporting dynamic flows of
+resources between agents. Trading between agents can be affected by both the
+proposed quality of a resource and agent relationships through the use of
+cardinal preferences. Accordingly, a wide range of possible effects can be
+modeled, from capacitated fuel supply to international trade agreements.
 
 \subsection{Simulation Support}
 So that users and developers can build working simulations
