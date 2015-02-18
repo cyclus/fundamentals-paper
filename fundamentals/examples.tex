@@ -159,8 +159,8 @@ others. The three fuel cycles examined are:
 
 \begin{enumerate}
     \item Once through (no recycle)
-    \item 1-pass MOX recycle
-    \item Infinite-pass MOX recycle
+    \item 1-pass \gls{MOX} recycle
+    \item Infinite-pass \gls{MOX} recycle
 \end{enumerate}
 
 For each of these fuel cycles, a 1,100 month single-reactor \Cyclus simulation
@@ -177,11 +177,11 @@ transition to be examined.  The facilities used in these simulations are:
         core.  . The reactor was configured to model a light water reactor
         with a 3 batch core (20,000 kg HM per batch) operating on an 18 month
         cycle with a 2 month refuel time.  The reactor was also configured to
-        take in either enriched UOX fuel or recycled MOX fuel.
+        take in either enriched \gls{UOX} fuel or recycled \gls{MOX} fuel.
 
     \item \textbf{Recycled Fuel Fabrication} (\Class{cycamore::Fab}): This
         facility requests depleted uranium and separated fissile material and
-        mixes them together into recycled MOX fuel that it offers to
+        mixes them together into recycled \gls{MOX} fuel that it offers to
         requesters.  The two streams are mixed in a ratio in order to match
         simple neutronics properties of the target fuel as closely as
         possible.  The method used is based on a variation "equivalence
@@ -210,11 +210,11 @@ transition to be examined.  The facilities used in these simulations are:
 
 Modifying the input file specification to model each of the 3 fuel cycles was
 done by making simple adjustments to the commodities and trade preferences for
-each of the facilities.  The reactor was configured to request recycled MOX
+each of the facilities.  The reactor was configured to request recycled \gls{MOX}
 fuel with a higher preference then new \gls{UOX} fuel. For the once through case,
 the \Class{Reactor} was set to offer all spent fuel as waste.  For the 1-pass
-recycle case, the \Class{Reactor} offered spent \gls{UOX into a spent fuel market,
-but spent MOX is still offered as waste.  In the infinite-pass recycle case,
+recycle case, the \Class{Reactor} offered spent \gls{UOX} into a spent fuel market,
+but spent \gls{MOX} is still offered as waste.  In the infinite-pass recycle case,
 the \Class{Reactor} offers all burned fuel into a spent fuel market. The
 separations facility requests spent fuel with a higher preference than the
 repository resulting in preferential recycle.  All these preferences are easy
