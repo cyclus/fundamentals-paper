@@ -24,14 +24,14 @@ architectures which exhibit three main failure modes. First, they discourage
 targeted contribution and collaboration among experts. Next, they hobble
 efforts to directly compare modeling methodologies. Finally, they
 over-specialize, rendering most tools applicable to only a subset of desired
-simulation fidelities, scales, and applications.  The \Cyclus nuclear fuel
-cycle simulator framework and its modeling ecosystem incorporate modern
-insights from simulation science and software architecture to solve these
-problems.  These modern methods simultaneously enable more efficient, accurate,
-robust, and validated analysis.
+simulation fidelities, scales, and applications.
 
-The \Cyclus next-generation fuel cycle simulator is the result of design
-choices made to:
+The \Cyclus nuclear fuel cycle simulator framework and its modeling ecosystem
+incorporate modern insights from simulation science and software architecture
+to solve these problems.  These modern methods simultaneously enable more
+efficient, accurate, robust, and validated analysis.  This next-generation fuel
+cycle simulator is the result of design choices made to:
+
 \begin{itemize}
 \item support access to the tool by fuel cycle analysts and other users,
 \item encourage developer extensions,
@@ -40,15 +40,15 @@ choices made to:
 \end{itemize}
 
 The cardinal purpose of a nuclear fuel cycle simulator is to calculate the
-time- and facility-dependent mass flow through all or part the fuel cycle. Many
-architecture choices are discussed in \ref{sec:litrev}.  Historically, nuclear
-fuel cycle simulators have calculated fuel cycle mass balances and performance
-metrics derived from them using software ranging from ad hoc spreadsheet-driven
-flow calculators to highly specialized system dynamics modeling platforms. To
-date, current tools are often static rather than dynamic, rigid rather than
-flexible, fleet-based rather than discrete, or privately distributed rather
-than open source. Each of these choices presents a challenge to modeling
-fidelity, generality, efficiency, robustness, and scientific transparency.
+time- and facility-dependent mass flow through all or part the fuel cycle.
+Historically, nuclear fuel cycle simulators have calculated fuel cycle mass
+balances and performance metrics derived from them using software ranging from
+ad hoc spreadsheet-driven flow calculators to highly specialized system
+dynamics modeling platforms. To date, current tools are often static rather
+than dynamic, rigid rather than flexible, fleet-based rather than discrete, or
+privately distributed rather than open source. Each of these choices presents a
+challenge to modeling fidelity, generality, efficiency, robustness, and
+scientific transparency.
 
 \Cyclus, therefore, is a dynamic, agent-based model, which employs a modular
 architecture, an open development process, discrete agents, discrete time, and
