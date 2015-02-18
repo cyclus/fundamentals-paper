@@ -187,8 +187,7 @@ transition to be examined.  The facilities used in these simulations are:
         possible.  The method used is based on a variation "equivalence
         method" originally developed by Baker and Ross
         \cite{baker_comparison_1963}.  This technique has also been used in the
-        Commelini-Sicart (COSI) fuel cycle simulator developed by the French
-        Commissariat \`{a} l'\'{e}nergie atomique (CEA).
+        \gls{COSI} fuel cycle simulator developed by the French \gls{CEA}.
 
     \item \textbf{Separations} (\Class{cycamore::Separations}): This facility
         takes in all kinds of spent fuel and separates it into plutonium and
@@ -200,7 +199,7 @@ transition to be examined.  The facilities used in these simulations are:
         including separations waste streams and spent reactor fuel.
 
     \item \textbf{UOX Fabrication} (\Class{cycamore::Source}): This facility
-        provides enriched UOX fuel as requested.  This facility has infinite
+        provides enriched \gls{UOX} fuel as requested.  This facility has infinite
         production capacity.
 
     \item \textbf{DU Source} (\Class{cycamore::Source}): This facility
@@ -212,9 +211,9 @@ transition to be examined.  The facilities used in these simulations are:
 Modifying the input file specification to model each of the 3 fuel cycles was
 done by making simple adjustments to the commodities and trade preferences for
 each of the facilities.  The reactor was configured to request recycled MOX
-fuel with a higher preference then new UOX fuel. For the once through case,
+fuel with a higher preference then new \gls{UOX} fuel. For the once through case,
 the \Class{Reactor} was set to offer all spent fuel as waste.  For the 1-pass
-recycle case, the \Class{Reactor} offered spent UOX into a spent fuel market,
+recycle case, the \Class{Reactor} offered spent \gls{UOX into a spent fuel market,
 but spent MOX is still offered as waste.  In the infinite-pass recycle case,
 the \Class{Reactor} offers all burned fuel into a spent fuel market. The
 separations facility requests spent fuel with a higher preference than the
@@ -223,7 +222,7 @@ to adjust and \Cyclus dynamically handles supply constraints and non-uniform
 preference resolution.  It is notable that separations and recycle fuel
 fabrication capacity are deployed identically in all simulations.  In the once
 through case, the recycling loop never acquires material, and so reactors
-always receive fresh UOX fuel.  The \gls{DRE} ensures everything operates
+always receive fresh \gls{UOX} fuel.  The \gls{DRE} ensures everything operates
 smoothly in all cases.
 
 Cyclus' discrete materials make single-pass recycle easy to implement.  The
