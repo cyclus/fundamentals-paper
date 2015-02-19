@@ -146,7 +146,6 @@ resources between autonomous regional and institutional entities with
 customizable behavior and objectives is an innovation not pursued by any
 existing fuel cycle simulator.
 
-\input{fcsreqs}
 
 \subsection{Motivation}
 % Gently reiterate the above need.
@@ -155,9 +154,9 @@ existing fuel cycle simulator.
 % \Cyclus, a hero, came in to fill that gap.
 
 The \Cyclus paradigm enables targeted contribution and collaboration within the
-nuclear fuel cycle analysis community. This essential capability, absent in
+nuclear fuel cycle analysis community. This essential capability is absent in
 previous simulators where user customization and extensibility were not design
-objectives, comes about through the \emph{modular and open architecture} of
+objectives, and was attained by the \emph{modular and open architecture} of
 \Cyclus.  Additionally, \Cyclus facilitates direct comparison of modeling
 methodologies with \emph{agent interchangeability}.  Finally, \Cyclus is
 applicable to a broader range of fidelities, scales, and applications than
@@ -174,13 +173,16 @@ with the kernel. The kernel is responsible for the deployment and interaction
 logic of entities in the simulation.  Physics calculations and customized
 behaviors are implemented within archetypes.
 
-Furthermore, modeling the evolution of a physics-dependent, international
+Ultimately, modeling the evolution of a physics-dependent, international
 nuclear fuel supply chain is a multi-scale problem which existing tools cannot
 support. They have either focused on macro effects, e.g., the fleet-level
 stocks and flows of commodities, or micro effects, e.g., the used-fuel
 composition of fast reactor fuel. Each focus has driven the development of
 specialized tools, rendering the task of answering questions between the macro
-and micro levels challenging within a single tool.  In contrast, the extensible
+and micro levels challenging within a single tool.  In contrast, the open, extensible
 architecture and discrete object tracking of \Cyclus allow the creation and
-interchangeability of custom archetypes at any level of fidelity.
+interchangeability of custom archetypes at any level of fidelity and by any
+fuel cycle analyst.
+
+\input{fcsreqs}
 
