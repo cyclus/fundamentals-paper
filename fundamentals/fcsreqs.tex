@@ -18,9 +18,11 @@ discrete facilities \cite{huff_next_2010}.  Fleet-based models (i.e.
 \gls{VISION}) are unable to capture this gracefully.  All of the software
 capable of discrete materials have a notion of discrete facilities, however not
 all handle disruption in the same manner. \gls{DESAE}, for example, does not
-allow shutdown due to insufficient feedstock, though \Cyclus does. In the event
+allow shutdown due to insufficient feedstock. In the event
 of insufficient fissile material during reprocessing, \gls{DESAE} borrows
 material from storage, leaving a negative value \cite{mccarthy_benchmark_2012}.
+The \Cyclus framework does not dictate such heuristics. Rather, it provides a
+flexible framework on which either method is possible.
 
 \subsubsection{Open Access}
 
@@ -40,14 +42,13 @@ and developers, foreign and domestic.
 
 In addition to being inaccessible, the vast majority of fuel cycle simulators
 are, effectively, inextensible. Typical fuel cycle simulator development teams are insular, in
-part due to accessibility issues. Also, however, their frameworks contain
-heuristics and assumptions that constrain developer additions.
+part due to aforementioned accessibility issues. Accordingly, their frameworks
+typically contain heuristics and assumptions that constrain developer additions.
 
-For example, where most other simulators describe a finite set of acceptable
-cycle constructions (once through, single-pass, multi-pass), the \Cyclus
-simulation logic relies on a market paradigm that can be easily directed to
-create novel material and economic paths. The simulation of the dynamic
-responses within the system to pricing, availability, and other institutional
-preferences in \Cyclus is an advanced capability and does not exist in a
-flexible manner for other fuel cycle simulators.
-
+For example, most current simulators describe a finite set of acceptable
+cycle constructions (once through, single-pass, multi-pass). That limits the
+capability to create novel material flows and economic scenarios. The \Cyclus
+simulation logic relies on a market paradigm, parameterized by the user, which
+flexibly simulates dynamic responses to pricing, availability, and other
+institutional preferences. This is an advanced level of flexibility that does
+not exist in other fuel cycle simulators.
