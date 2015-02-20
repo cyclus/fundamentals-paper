@@ -758,10 +758,10 @@ user to have complete local copy of the \emph{repository} (the version control
 term for the collection of all possible histories).
 One feature that git performs exceptionally well is \emph{branching}.
 Branches are distinct pathways in the history that diverge from a mainline source
-tree and then may be \emph{merged} back into the mainline. Multiple simultaneous
+tree and then may be \emph{merged} back in. Multiple simultaneous
 branches may exist at all points in time. Every change to the code is recorded
 in the history, along with metadata such as the author, a timestamp, and an
-accompanying message. Thus
+accompanying message. Thus,
 it is possible for \Cyclus to accurately replay the entirety of who did what to the
 code when.
 
@@ -830,10 +830,10 @@ the following actions:
     \item Reports whether or not the above steps succeeded.
 \end{enumerate}
 
-Since these steps are performed for all incoming code, it is easy for the
+Since these steps are performed for all incoming code, it is easyi for the
 \Cyclus core team to determine whether or not an individual pull request
 actually works. This helps identify build and test problems prior to
 broken code being allowed into the develop branch. \gls{CI} is a necessary
 but not sufficient addition to the \Cyclus \gls{QA}
-system: it keeps bad code out \Cyclus. However, \Cyclus will always
+system: it keeps bad code out of \Cyclus. However, \Cyclus will always
 require human eyes and hands to let good code in.
