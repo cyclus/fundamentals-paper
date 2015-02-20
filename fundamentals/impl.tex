@@ -56,8 +56,8 @@ developed and interchanged while keeping the rest of the fuel cycle fixed
 Groundbreaking insights and new classes of problems can be investigated by
 leveraging modern massive computing resources.
 However, many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits
-performance on and compatibility with resource computing infrastructures. This limitation severely
-limits the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity
+performance on and compatibility with resource computing infrastructures. This
+severely constrains the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity
 analyses and other multi-simulation studies. \Cyclus, on the other hand, is
 primarily written in \texttt{C++} and relies on
 libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms,
@@ -81,15 +81,16 @@ running in parallel on $10^3$ machines reliably for order $10^5$ simulations.
 The \Cyclus architecture encourages efficient, targeted contribution to the ecosystem of
 archetype libraries.
 With \Cyclus, a researcher can focus on generating an archetype model within their
-sphere of expertise, while relying on the contributions of others to fill
+sphere of expertise while relying on the contributions of others to fill
 in the other technologies in the simulation.
 Similarly, individual developers may explore different levels of complexity within their archetypes, including
 wrapping other simulation tools as loadable libraries within \Cyclus.
 
 \Cyclus acheives this behavior by implementing its generic \gls{API} and
-modular architecture via a suite of dynamically loadable plug-in libraries.
+modular architecture via a suite of dynamically loadable plug-in libraries, as
+pictured in Figure \ref{fig:framework}.
 Though common in modern software architecture, such a plug-in pattern has not
-previously been implemented in nuclear fuel cycle simulators.  Dynamically
+previously been implemented in a nuclear fuel cycle simulator. Dynamically
 loadable libraries are the primary mechanism for extending \Cyclus' capability.
 This approach provides encapsulation: the core framework operates
 independently from the individual plug-in libraries. Thus, any customization or
@@ -97,12 +98,14 @@ extension is implemented only in the loadable library.
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics{./images/modifiedopen.eps}
+\includegraphics[width=\textwidth]{./images/framework}
 \end{center}
-\caption{The \Cyclus framework enables fully open, partially open, and fully
-closed collaborations\cite{carlsen_cyclus_2014}.}
-\label{fig:modifiedopen}
+\caption{The \Cyclus core provides \gls{API}s that abstract away the details in
+the kernel and allow the archetypes to be loaded into the simulation in a modular
+fashion.}
+\label{fig:framework}
 \end{figure}
+
 
 An additional benefit is the ability for
 contributors to choose different distribution and licensing strategies
@@ -115,13 +118,22 @@ the simulator alongside open source archetypes without transfer of sensitive inf
 allows closed-source libraries (e.g., those representing sensitive nuclear
 processes and subject to export control) to be developed and licensed privately.
 
+\begin{figure}[htbp!]
+\begin{center}
+\includegraphics{./images/modifiedopen.eps}
+\end{center}
+\caption{The \Cyclus framework enables fully open, partially open, and fully
+closed collaborations\cite{carlsen_cyclus_2014}.}
+\label{fig:modifiedopen}
+\end{figure}
+
 This last benefit of dynamically loadable libraries addresses
 another goal of \Cyclus: ubiquity amongst its potential user base. By
 engineering \Cyclus to easily handle varying levels of complexity, a single
 simulation engine can be used by both users interested in big-picture policy
 questions as well as users focused on more detailed, technical
-analyses. They merely choose their preferred level of fidelity from the
-available libraries.
+analyses. They merely choose their preferred level of fidelity from among the
+available libraries in the ecosystem.
 
 \subsection{Agent-based Paradigm}
 % superior detail in capturing simulation dynamics
@@ -133,9 +145,8 @@ available libraries.
 true to reality, and incorporates modern computing resources.
 Furthermore, \gls{ABM} provides a natural
 perspective from which to model a given problem. In the nuclear fuel cycle
-context, for example, an analyst can design an agent with reactor-related logic
-that is entirely independent from an agent with fuel fabrication-related
-logic. Defining the behavior of both agents according to the
+context, for example, an analyst can design a reactor agent
+that is entirely independent from a fuel fabrication agent. Defining the behavior of both agents according to the
 \gls{API} contract is sufficient for them to interact with one another as
 bona fide actors in the simulation.  The two archetype libraries can be used in the same
 simulation without any shared knowledge.
@@ -155,15 +166,6 @@ broadest range of simulations in a generic fashion.
 
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
 
-\begin{figure}[htbp!]
-\begin{center}
-\includegraphics[width=\textwidth]{./images/framework}
-\end{center}
-\caption{The \Cyclus core provides \gls{API}s that abstract away the details in
-the kernel and allow the archetypes to be loaded into the simulation in a modular
-fashion.}
-\label{fig:framework}
-\end{figure}
 
 \gls{ABM} is inherently object-oriented because agents represent
 discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
