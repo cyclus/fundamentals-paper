@@ -430,7 +430,7 @@ of material which have a higher uranium enrichment than is allowable.
 
 Given a full definition of supply and demand, the \gls{DRE} may be solved either
 optimally using a mathematical program or approximately by a simulation-based
-heuristic \cite{Gidden2014}. If any trade is denoted as exclusive, e.g., if an
+heuristic \cite{gidden_agent-based_2014}. If any trade is denoted as exclusive, e.g., if an
 analyst desires an assembly-fidelity model, then either a heuristic must be used
 or exchanges must be represented as a \gls{MILP}. If no exclusive trades exist,
 a \gls{LP} model may be used. In practice, LPs solve much faster than
@@ -656,9 +656,9 @@ paradigms than supply substantial \gls{QA} and validation.
 Lastly, \gls{UQ} is a process that is used on specific simulation
 instantiations to statistically determine quality. \gls{UQ} is a process that applies
 to the running of many \Cyclus simulations. The kernel itself, as a generic fuel cycle
-simulator, cannot make reliable statements about the uncertainty of a particular fuel
+simulator, cannot make reliable statements about the uncertainty of metrics for a particular fuel
 cycle. Any \gls{UQ} results are applicable only to the scenario that is under
-analysis by the user. \Cyclus is not a panacea for due diligence on behalf of the fuel
+analysis by the user. \Cyclus is not a substitute for due diligence on behalf of the fuel
 cycle modeler. Thus, \gls{UQ} is envisioned to be beyond the scope of core development
 and in the domain of the expert user.
 
@@ -698,8 +698,8 @@ as possible, it is often clear in practice what needs to be tested.
 
 \Cyclus uses the Google Test framework \cite{inc_googletest_2008} as a harness for running unit
 tests. Sufficient unit tests are required for any proposed change to the \Cyclus
-code base. Currently \Cyclus implements over 450 unit tests and \Cycamore implements
-85.  These cover approximately 65\% of their respective code bases, and their numbers are expected to grow over time.
+code base. Currently, \Cyclus implements over 450 unit tests and \Cycamore implements
+85.  These cover approximately 65\% of their respective code bases, and these numbers are expected to grow over time.
 
 \paragraph{Integration Tests}
 
@@ -717,7 +717,7 @@ major \Cyclus components are functioning as expected.
 
 \paragraph{Regression Tests}
 
-Regression tests ensure significant changes do not
+Regression tests ensure unexpected backwards-incompatible changes do not
 occur over the course of \Cyclus development. Such a change is called a
 \emph{regression} because the new version is almost always wrong.
 Regression tests are implemented similarly to integration tests.
