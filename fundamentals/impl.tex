@@ -136,6 +136,7 @@ analyses. They merely choose their preferred level of fidelity from among the
 available libraries in the ecosystem.
 
 \subsection{Agent-based Paradigm}
+\label{sec:abm}
 % superior detail in capturing simulation dynamics
 % more flexible control over behavior
 % describe Region/Institution/Facility hierarchy
@@ -262,11 +263,11 @@ designed to handle hierarchies of arbitrary depth.  It is capable of
 running a simulation without regions and institutions (i.e.  only facilities)
 or a simulation having archetypes that are the parents of regions.  By
 convention, institutions are mainly responsible for facility deployment, but
-all archetypes have access to the agent deployment mechanism.  It is easy
-to implement agents that deploy copies of themselves, or that schedule their
-own decommissioning.  Because regions, institutions, and facilities are all
-just agents, they can all be implemented to exercise the full set of features
-offered by the \Cyclus kernel.
+all archetypes have access to the agent deployment mechanism. \Cyclus enables
+the developer to to implement agents that deploy copies of themselves, or that
+schedule their own decommissioning.  Because regions, institutions, and
+facilities are all just agents, they can all be implemented to exercise the
+full set of features offered by the \Cyclus kernel.
 
 \subsection{Discrete Objects}
 % enables more realistic models and metrics
@@ -287,6 +288,15 @@ individual facilities and materials.
 As a result, many detailed performance
 metrics cannot be captured with previously existing fleet-based models.
 
+\subsubsection{Resources and Materials}
+% Resources, Materials (note isotope tracking, decay behavior)
+
+For all of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables
+novel simulations, multiple use cases require that these agents, such as the
+regions, institutions, and facilities in \Cyclus, must be represented as
+discrete objects. Furthermore, important use cases are enabled when materials
+and resources are tracked as discrete objects alongside those agents.
+
 One such use case seeks to capture system vulnerability to nefarious
 material diversion. Provenance and trade-history of distinct materials is the fundamental
 information unit in such studies, and so this type of analysis requires
@@ -294,21 +304,11 @@ information unit in such studies, and so this type of analysis requires
 target facility and the individual materials modified within it.
 Provenance and trade-history of distinct materials is the fundamental
 information unit in such studies.
-Material risk analysis, therefore, demands discretely modeled objects like those
-in \Cyclus.
+Material risk analysis, therefore, demands that both facilities and materials
+should be discretely modeled objects like those in \Cyclus.
 
-There are a number of types of users and developers who will
-interact with \Cyclus. National laboratory researchers,
-academic researchers, private-industry economic forecasters, and even students
-in engineering courses may benefit from the ease of development and
-customization provided by the discrete, modular, agent-based architecture of \Cyclus.
 
-\subsubsection{Resources and Materials}
-% Resources, Materials (note isotope tracking, decay behavior)
-
-\TODO{add blurb about discrete agent/facility tracking.}
-
-In \Cyclus, agents can transfer discrete resource objects between each other.
+In \Cyclus, agents can transfer discrete resource objects among one another.
 Cyclus currently supports two types of resources:
 
 \begin{itemize}
@@ -358,8 +358,7 @@ constants that are significant with respect to the time change since the last
 decay operation.  If none of the decay constants are significant, no decay
 calculation is performed and the material remains unchanged.  This error does
 not accumulate because the next time the material's decay function is invoked,
-the time change will be larger. \TODO{want more detail on this decay shortcut?}
-\TODO{describe decay algorithm and how it might be improved}.
+the time change will be larger.
 
 \Cyclus has no notion of ``tracked'' versus ``untracked'' nuclides.  In \Cyclus, the composition of a material
 is represented by an arbitrarily large list (potentially thousands) of
@@ -385,13 +384,16 @@ the same origin.  Composition immutability in concert with decay history
 caching help eliminate many redundant decay calculations in addition to
 reducing the total number of composition objects.  Since each composition
 object is only recorded in the database once, significant space savings also
-occurs. \TODO{do we want a diagram helping show this composition caching?}
+occurs.
+\TODO{do we want a diagram helping show this composition caching?}
 
 \subsubsection{Dynamic Resource Exchange}
 
-The \gls{DRE} is the critical resource-related process on which \Cyclus
-simulations are built. It defines the resource interaction mechanisms and
-methodologies for all agents. As the \Cyclus supply-demand resolution framework,
+Since the \Cyclus simulation paradigm involves both discrete agents and
+discrete resources, the logic engine defining resource interaction mechanisms
+among agents is crucial. The \gls{DRE} is that critical logic engine on which \Cyclus
+simulations are built.
+As the \Cyclus supply-demand resolution framework,
 the DRE must be able to support arbitrary facilities. Supporting the general
 \Cyclus philosophy, facilities are treated as black boxes and a clear
 supply-demand communication framework is defined.
@@ -402,18 +404,19 @@ step is agnostic with respect to the exchange of resources in question, i.e.,
 the same procedure is used for both Materials and Products.
 
 The information-gathering step begins by polling potential consumers. Agents
-denote both the quantity of a commodity they need to consume as well as the
+define both the quantity of a commodity they need to consume as well as the
 target isotopics, or quality, by posting their demand to the market exchange as
-a series of \textit{requests}. An optional collection of demand constraints are
-associated with each collection of requests. Collections of requests may be
-grouped together, denoting \textit{mutual} requests that represent demand for
+a series of \textit{requests}. Users may optionally parameterize the agent to
+associate a collection of demand constraints with each collection of requests.
+Collections of requests may be grouped together, denoting \textit{mutual}
+requests that represent demand for
 some common purpose. For example, a reactor may request \gls{UOX} and \gls{MOX} fuel
 mutually, indicating that either will satisfy its demand for fuel.
 
 Suppliers then respond to the series of requests with a \textit{bid}. A bid
 supplies a notion of the quantity and quality of a resource to match a
 request. Suppliers may add an arbitrary number of constraints to accompany
-bids. For example, an enriched \gls{UOX} supplier may supply both a natural Uranium
+bids. For example, an enriched \gls{UOX} supplier may supply both a natural uranium
 and SWU constraint. Any potential resource transfer may be denoted as
 \textit{exclusive}. An exclusive transfer must either be met fully or not at all
 in order to support concepts such as the trading of individual reactor
@@ -423,7 +426,7 @@ Finally, requesting facilities, institutions and regions may apply
 \textit{preferences} to each potential request-bid pairing based on the proposed
 resource transfer. Therefore, an institution can apply a higher preference to a
 partner to which it is congenial; similarly, a region may negate any transfers
-of material which have a higher Uranium enrichment than is allowable.
+of material which have a higher uranium enrichment than is allowable.
 
 Given a full definition of supply and demand, the \gls{DRE} may be solved either
 optimally using a mathematical program or approximately by a simulation-based
