@@ -11,7 +11,7 @@ deployment, and regional and institutional hierarchies. Additionally, the choice
 build \Cyclus on open source libraries in modern programming languages enables
 both remote and multiprocess execution on a number of platforms. This section begins by
 describing the general design features that make \Cyclus both flexible and powerful:
-cluster-ready software and dynamic libraries.  Next, the framework has an
+cluster-ready software and dynamic libraries.  Next, the framework's
 \gls{ABM} paradigm, which provides an expansion in performance beyond typical system dynamics
 capabilities, is described, focusing on agent interchangeability and the
 implementation of the region-institution-facility hierarchy.
@@ -167,7 +167,6 @@ broadest range of simulations in a generic fashion.
 
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
 
-
 \gls{ABM} is inherently object-oriented because agents represent
 discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
 the modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator
@@ -249,8 +248,8 @@ with regions as root nodes and facilities as leaf nodes.
 Two primary consequences arise from this structure. First, institutions are
 nominally
 responsible for deploying and decommissioning facilities. Accordingly, advanced
-logic regarding building and decommissioning can be obtained by inheriting
-those behaviors from the
+logic regarding building and decommissioning can be implemented on top of  
+those behaviors inherited from the
 \Class{Institution} interface. Second, the \Class{Facility} class implements the
 \Class{Trader} interface, and thus institutions and regions, respectively, can
 adjust the resource flow preferences of their managed facilities. Importantly,
@@ -258,8 +257,12 @@ this capability allows for the modeling of preferential regional trading
 of resources (e.g., tariffs) as well as preferential institutional trading
 (e.g., long-term contracts).
 
-Although concept of the \gls{RIF} hierarchy is provided explicitly, the \Cyclus kernel is
-designed to handle hierarchies of arbitrary depth.  It is capable of
+% the paragraph below muddies the concept of the RIF hierarchy
+% (perhaps an extended footnote?)
+% Either way, I prefer something other than ``provided explicitly''.
+
+Although the \Cyclus kernel is designed around the concept of the \gls{RIF} hierarchy, 
+it can handle hierarchies of arbitrary depth.  It is capable of
 running a simulation without regions and institutions (i.e.  only facilities)
 or a simulation having archetypes that are the parents of regions.  By
 convention, institutions are mainly responsible for facility deployment, but
@@ -302,8 +305,6 @@ material diversion. Provenance and trade-history of distinct materials is the fu
 information unit in such studies, and so this type of analysis requires
  discrete simulation of a
 target facility and the individual materials modified within it.
-Provenance and trade-history of distinct materials is the fundamental
-information unit in such studies.
 Material risk analysis, therefore, demands that both facilities and materials
 should be discretely modeled objects like those in \Cyclus.
 
@@ -387,10 +388,16 @@ object is only recorded in the database once, significant space savings also
 occurs.
 \TODO{do we want a diagram helping show this composition caching?}
 
-\subsubsection{Dynamic Resource Exchange}
+% although this abbreviation is provided by the glossary capability, I think
+% the DRE is so important that it should be redefined here.
 
-Since the \Cyclus simulation paradigm involves both discrete agents and
-discrete resources, the logic engine defining resource interaction mechanisms
+\subsubsection{Dynamic Resource Exchange (DRE)}
+
+Since the \Cyclus simulation paradigm allows discrete agents, based on archetypes
+about which the kernel has no knowledge, to enter 
+the simulation at arbitrary times and
+trade in discrete resources that are not defined \textit{a priori}, 
+the logic engine defining resource interaction mechanisms
 among agents is crucial. The \gls{DRE} is that critical logic engine on which \Cyclus
 simulations are built.
 As the \Cyclus supply-demand resolution framework,
@@ -416,15 +423,19 @@ mutually, indicating that either will satisfy its demand for fuel.
 Suppliers then respond to the series of requests with a \textit{bid}. A bid
 supplies a notion of the quantity and quality of a resource to match a
 request. Suppliers may add an arbitrary number of constraints to accompany
-bids. For example, an enriched \gls{UOX} supplier may supply both a natural uranium
-and SWU constraint. Any potential resource transfer may be denoted as
+bids. For example, an enriched \gls{UOX} supplier may be constrained by its current
+inventory of natural uranium or its total capacity to provide enrichment (SWUs), and
+attach such constraints to its bids. Any potential resource transfer may be denoted as
 \textit{exclusive}. An exclusive transfer must either be met fully or not at all
 in order to support concepts such as the trading of individual reactor
 assemblies.
 
 Finally, requesting facilities, institutions and regions may apply
 \textit{preferences} to each potential request-bid pairing based on the proposed
-resource transfer. Therefore, an institution can apply a higher preference to a
+resource transfer. Facilities can apply arbitrary complex logic to rank the bids 
+that they have received, whether based on the quantity available in each bid or
+on the quality of each bid, and the consequent implications of the physics behavior
+of that facility. In addition, an institution can apply a higher preference to a
 partner to which it is congenial; similarly, a region may negate any transfers
 of material which have a higher uranium enrichment than is allowable.
 
@@ -450,7 +461,9 @@ simulation.
 
 The \gls{DRE} is a novel simulation concept in the nuclear fuel cycle domain. It
 provides a flexible supply-demand infrastructure, supporting dynamic flows of
-resources between agents. Trading between agents can be affected by both the
+resources between agents, even as those agents enter and leave the simulation, and 
+even when those agents are defined by archetypes of arbitrary complexity. Trading 
+between agents can be affected by both the
 proposed quality of a resource and agent relationships through the use of
 preferences. Accordingly, a wide range of possible effects can be
 modeled, from capacitaty-limited fuel supply to international trade agreements.
@@ -499,7 +512,7 @@ Region & GrowthRegion & This region determines whether there is a need to meet a
 \label{tab:cycamore}
 \end{table}
 
-The current \Cycamore release provide basic functionality, As illustrated in
+As illustrated in
 Figure \ref{fig:simplesim}, the current \Cycamore release provides basic
 functionality enabling simple fuel cycle analyses  As future contributions are
 vetted, the capabilities in \Cycamore may grow.
@@ -711,16 +724,17 @@ Integration tests combine multiple elements of the
 simply because the gears (units) are made correctly does not imply that the
 clock (integration) will run smoothly, run at all, or give the correct time.
 In \Cyclus and \Cycamore, integration tests are performed by running sample
-simulations and verifying that results are what would be expected ahead of
-time. A set of standard input files have thus been constructed.
-Python is used to run the same set of \Cyclus simulations as a subprocess for each integration test.  The results are then inspected and compared via Nose \cite{pellerin_nose_2007}, a Python test framework.
+simulations for scenarios that are sufficiently simple to predict the results and verifying 
+that results match those predictions. A set of standard input files have thus been constructed.
+Python is used to run the same set of \Cyclus simulations as a subprocess for each integration test. 
+ The results are then inspected and compared via Nose \cite{pellerin_nose_2007}, a Python test framework.
 In this way, \Cyclus code units are tested in the full context that they will be
 executed. This category of testing is especially useful for ensuring that
 major \Cyclus components are functioning as expected.
 
 \paragraph{Regression Tests}
 
-Regression tests ensure significant changes do not
+Regression tests ensure significant unintended changes do not
 occur over the course of \Cyclus development. Such a change is called a
 \emph{regression} because the new version is almost always wrong.
 Regression tests are implemented similarly to integration tests.
