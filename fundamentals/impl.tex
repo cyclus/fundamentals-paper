@@ -349,27 +349,6 @@ nuclides.  Agents are free to treat nuclides present in materials any way they
 please - including ignoring them.  It is the responsibility of archetype
 developers to choose how to handle potentially full-fidelity compositions.
 
-In large simulations, many material objects may change frequently.
-Material decay can also contribute significantly to such changes.  In order to
-help avoid unnecessary runtime performance and database size impacts,
-compositions in \Cyclus have some special features.
-Immutability of compositions allows multiple material objects to all hold
-references to the same composition object safely.  When operations that do not
-alter the composition are performed on a material, any new resulting
-materials hold a reference to the same, original composition object.
-Although the decay operation generates a new, separate composition (preserving
-immutability), a reference to the new composition is placed in a cache shared
-by the new and original compositions. The next time the original
-composition is decayed, this cache will be checked for a prior calculation
-with the same cumulative decay time.  If one exists, the cached composition is
-used.  This cache is shared by all compositions that transitively come from
-the same origin.  Composition immutability in concert with decay history
-caching help eliminate many redundant decay calculations in addition to
-reducing the total number of composition objects.  Since each composition
-object is only recorded in the database once, significant space savings also
-occurs.
-\TODO{do we want a diagram helping show this composition caching?}
-
 \subsubsection{Dynamic Resource Exchange}
 
 Since the \Cyclus simulation paradigm involves both discrete agents and
