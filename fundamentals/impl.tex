@@ -178,6 +178,7 @@ implementation of a reactor can be compared to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
 fidelity on a given fuel cycle.
 
+
 Interchangeability is accomplished by providing \glspl{API} that define agent-to-agent
 interaction and agent-to-environment interaction, primarily through the
 \Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows
@@ -189,6 +190,12 @@ agents. For the archetype developer, this interface provides enormous power
 very simply. The \gls{API} provides the \Class{Agent} with helpful functionality for
 interacting with the \Cyclus simulation kernel while abstracting away unnecessary
 detail.
+
+% I don't think this figure actually shows what it purports to show.
+% Moreover, I'm not sure that it shows anything.  Should we have a different
+% figure, or a different purpose for this figure, or entirely different text?
+% This is hinting at the archetypes paper (which I note we don't refer to
+% anywhere) and might be reimagined as a concise summary of that?
 
 \begin{figure}[htbp!]
 \begin{center}
