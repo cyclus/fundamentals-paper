@@ -27,29 +27,21 @@ Lastly, the methods for quality assurance are outlined.
 % enables myriad levels of simulation fidelity
 % enables FC analyses that can compare ‘apples to apples'
 
-The architecture of \Cyclus allows developers
-to define nuclear fuel cycle agents and processes independent of the simulation
-logic. To achieve this, agents are developed using the \Cyclus framework \gls{API}, a set of functions and protocols
-which
-assist in agent development and specify how agents should be defined.
-This encapsulated `plug-in'
-design choice provides two major benefits. First, analysts across research institutions can take advantage of the
+The architecture of \Cyclus allows developers to define nuclear fuel cycle
+agents and processes independent of the simulation logic. To achieve this,
+agents are developed using the \Cyclus framework \gls{API}, a set of functions
+and protocols which assist in agent development and specify how agents should be
+defined.  This encapsulated `plug-in' design choice provides two major
+benefits. First, analysts across research institutions can take advantage of the
 simulation logic \gls{API} and archetype ecosystem when they apply \Cyclus to
-their specific problem. This
-mend-and-extend paradigm, common in modern software development, reduces
-maintenance overhead and improves software robustness by protecting the core logic
-from changes in the extensions.
-The researcher can focus on creating or customizing nuclear
-facility, institution, resource, and toolkit models within their specific area
-of technical expertise. This extensibility, magnified by an open source
-development process, frees the community of users to contribute desired
-features, independent from the team of \Cyclus core developers.
-Second, because \Cyclus uses a modular archetype approach, comparing two
-archetypes is straightforward. For example, if an analyst would like
-to compare the effect of using different models to determine the input fuel
-composition for fast reactors, a variety of fuel fabrication archetypes can be
-developed and interchanged while keeping the rest of the fuel cycle fixed
- to compare fuel fabrication designs.
+their specific problem.  A researcher can focus on creating or customizing
+nuclear facility, institution, resource, and toolkit models within their
+specific area of technical expertise. Second, because \Cyclus uses a modular
+archetype approach, comparing two archetypes is straightforward. For example, if
+an analyst would like to compare the effect of using different models to
+determine the input fuel composition for fast reactors, a variety of fuel
+fabrication archetypes can be developed and interchanged while keeping the rest
+of the fuel cycle fixed to compare fuel fabrication designs.
 
 \subsubsection{Cluster-Ready Software}
 
@@ -63,8 +55,7 @@ primarily written in \texttt{C++} and relies on
 libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms,
 which are flexible and support parallelization.
 Furthermore, the core infrastructure and related archetypes are free and
-open source, BSD-3-clause licensed. No part of \Cyclus is proprietary or based
-on \gls{COTS}, Windows-only software. \Cyclus can therefore be easily deployed
+open source, BSD-3-clause licensed.  \Cyclus can therefore be easily deployed
 on large computer systems, such as \gls{HTC} systems.
 
 Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
@@ -210,14 +201,6 @@ example, the \Class{Dummy} archetype simply inherits from \Class{Region} in
 order to become a bona fide Region-type \Class{Agent}.}
 \label{fig:agent_uml}
 \end{figure}
-
-In a similar fashion, the \Class{Trader} interface allows agent-agent interaction through the
-trading of \Class{Resource}s. Archetypes in a \Cyclus simulation must
-implement the \Class{Agent} interface and may optionally implement the
-\Class{Trader} interface. For example, a \Class{Region} implements only the
-\Class{Agent} interface, whereas a \Class{Facility} implements both the
-\Class{Agent} and \Class{Trader} interface, allowing any \Class{Facility} to
-trade with another \Class{Facility}.
 
 In this way, a researcher can directly compare two different reactor modeling
 implementations (perhaps \Class{DetailedReactor} and \Class{SimpleReactor})
@@ -366,25 +349,16 @@ nuclides.  Agents are free to treat nuclides present in materials any way they
 please - including ignoring them.  It is the responsibility of archetype
 developers to choose how to handle potentially full-fidelity compositions.
 
-In large simulations, many material objects may change frequently.
-Material decay can also contribute significantly to such changes.  In order to
-help avoid unnecessary runtime performance and database size impacts,
-compositions in \Cyclus have some special features.
-Immutability of compositions allows multiple material objects to all hold
-references to the same composition object safely.  When operations that do not
-alter the composition are performed on a material, any new resulting
-materials hold a reference to the same, original composition object.
-Although the decay operation generates a new, separate composition (preserving
-immutability), a reference to the new composition is placed in a cache shared
-by the new and original compositions. The next time the original
-composition is decayed, this cache will be checked for a prior calculation
-with the same cumulative decay time.  If one exists, the cached composition is
-used.  This cache is shared by all compositions that transitively come from
-the same origin.  Composition immutability in concert with decay history
-caching help eliminate many redundant decay calculations in addition to
-reducing the total number of composition objects.  Since each composition
-object is only recorded in the database once, significant space savings also
-occurs.
+In large simulations, many material objects may change frequently.  Material
+decay can also contribute significantly to such changes.  In order to help
+avoid unnecessary runtime performance and database size impacts, compositions
+in \Cyclus have some special features.  In particular, compositions are stored
+immutably in the database so that multiple material objects can hold references
+to the same composition safely.  Additionally, when transmutation and decay
+result in new compositions, those are cached for additional avoidance of
+redundancy.Composition immutability in concert with decay history caching help
+eliminate many redundant decay calculations in addition to reducing the total
+number of composition objects recorded in the database.
 \TODO{do we want a diagram helping show this composition caching?}
 
 \subsubsection{Dynamic Resource Exchange}
@@ -766,15 +740,11 @@ it is possible for \Cyclus to accurately replay the entirety of who did what to 
 code when.
 
 \Cyclus uses a strategy known as \emph{git flow}
-\cite{kalliamvakou_code-centric_2014}
-to manage topical branches where individuals develop code: the mainline development
-branch (simply known as develop), and the stable branch (called master).
-In addition to these rules and delineations, \Cyclus also imposes rules on
-when it is acceptable from a quality control standpoint to merge code from
-the personal topical branches into the develop branch. All software at this stage
-must have sufficient successful tests and comprehensive documentation. Without
-these core pieces, proposed changes are not allowed into \Cyclus. As an example, a schematic of
-the development stages between reporting a bug and merging the fix is shown in
+\cite{kalliamvakou_code-centric_2014} to manage topical branches where
+individuals develop code in parallel. All proposed software changes from
+topical branches must have sufficient successful tests and comprehensive
+documentation to be allowed into \Cyclus.  As an example, a schematic of the
+development stages between reporting a bug and merging the fix is shown in
 Figure \ref{fig:gitprocess}.
 
 \begin{figure}[htbp]
