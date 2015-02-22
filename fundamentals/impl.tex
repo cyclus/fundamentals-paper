@@ -265,20 +265,18 @@ microscopic extreme, the model is capable of representing arbitrarily small
 material objects at isotopic resolution. In this way, \Cyclus is
 applicable across the full range of modeling fidelity.
 
-Fleet-based, lumped-material models do not distinguish between discrete
-facility entities or materials. However, some questions require resolution at the level of
-individual facilities and materials.
-As a result, many detailed performance
-metrics cannot be captured with previously existing fleet-based models.
+Fleet-based, lumped-material models do not distinguish between discrete facility
+entities or materials. However, some questions require resolution at the level
+of individual facilities and materials.  As a result, many detailed performance
+metrics cannot be captured with previously existing fleet-based models. For all
+of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables novel
+simulations, multiple use cases require that these agents, such as the regions,
+institutions, and facilities in \Cyclus, must be represented as discrete
+objects. Furthermore, important use cases are enabled when materials and
+resources are tracked as discrete objects alongside those agents.
 
 \subsubsection{Resources and Materials}
 % Resources, Materials (note isotope tracking, decay behavior)
-
-For all of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables
-novel simulations, multiple use cases require that these agents, such as the
-regions, institutions, and facilities in \Cyclus, must be represented as
-discrete objects. Furthermore, important use cases are enabled when materials
-and resources are tracked as discrete objects alongside those agents.
 
 One such use case seeks to capture system vulnerability to nefarious
 material diversion. Provenance and trade-history of distinct materials is the fundamental
