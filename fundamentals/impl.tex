@@ -732,29 +732,6 @@ accompanying message. Thus
 it is possible for \Cyclus to accurately replay the entirety of who did what to the
 code when.
 
-\Cyclus uses a strategy known as \emph{git flow}
-\cite{kalliamvakou_code-centric_2014}
-to manage topical branches where individuals develop code: the mainline development
-branch (simply known as develop), and the stable branch (called master).
-In addition to these rules and delineations, \Cyclus also imposes rules on
-when it is acceptable from a quality control standpoint to merge code from
-the personal topical branches into the develop branch. All software at this stage
-must have sufficient successful tests and comprehensive documentation. Without
-these core pieces, proposed changes are not allowed into \Cyclus. As an example, a schematic of
-the development stages between reporting a bug and merging the fix is shown in
-Figure \ref{fig:gitprocess}.
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[height=0.6\textheight]{./images/gitprocess}
-\end{center}
-\caption{A version-control enabled process for finding, reporting, and fixing a bug
-can take place within an issue tracker alongside multiple stages of software
-testing and review. In the \Cyclus case, the final review stage includes unit,
-regression, and integration testing as well as manual code inspection.}
-\label{fig:gitprocess}
-\end{figure}
-
 The act of proposing a change is known as a \emph{pull request}. The main \Cyclus repository is
 hosted remotely on the GitHub website \cite{dabbish_social_2012}. The online
 mechanism for pull requests allows for code review by a member of the \Cyclus
