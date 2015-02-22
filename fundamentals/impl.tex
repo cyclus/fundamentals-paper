@@ -11,7 +11,7 @@ deployment, and regional and institutional hierarchies. Additionally, the choice
 build \Cyclus on open source libraries in modern programming languages enables
 both remote and multiprocess execution on a number of platforms. This section begins by
 describing the general design features that make \Cyclus both flexible and powerful:
-cluster-ready software and dynamic libraries.  Next, the framework has an
+cluster-ready software and dynamic libraries.  Next, the framework's
 \gls{ABM} paradigm, which provides an expansion in performance beyond typical system dynamics
 capabilities, is described, focusing on agent interchangeability and the
 implementation of the region-institution-facility hierarchy.
@@ -27,29 +27,21 @@ Lastly, the methods for quality assurance are outlined.
 % enables myriad levels of simulation fidelity
 % enables FC analyses that can compare ‘apples to apples'
 
-The architecture of \Cyclus allows developers
-to define nuclear fuel cycle agents and processes independent of the simulation
-logic. To achieve this, agents are developed using the \Cyclus framework \gls{API}, a set of functions and protocols
-which
-assist in agent development and specify how agents should be defined.
-This encapsulated `plug-in'
-design choice provides two major benefits. First, analysts across research institutions can take advantage of the
+The architecture of \Cyclus allows developers to define nuclear fuel cycle
+agents and processes independent of the simulation logic. To achieve this,
+agents are developed using the \Cyclus framework \gls{API}, a set of functions
+and protocols which assist in agent development and specify how agents should be
+defined.  This encapsulated `plug-in' design choice provides two major
+benefits. First, analysts across research institutions can take advantage of the
 simulation logic \gls{API} and archetype ecosystem when they apply \Cyclus to
-their specific problem. This
-mend-and-extend paradigm, common in modern software development, reduces
-maintenance overhead and improves software robustness by protecting the core logic
-from changes in the extensions.
-The researcher can focus on creating or customizing nuclear
-facility, institution, resource, and toolkit models within their specific area
-of technical expertise. This extensibility, magnified by an open source
-development process, frees the community of users to contribute desired
-features, independent from the team of \Cyclus core developers.
-Second, because \Cyclus uses a modular archetype approach, comparing two
-archetypes is straightforward. For example, if an analyst would like
-to compare the effect of using different models to determine the input fuel
-composition for fast reactors, a variety of fuel fabrication archetypes can be
-developed and interchanged while keeping the rest of the fuel cycle fixed
- to compare fuel fabrication designs.
+their specific problem.  A researcher can focus on creating or customizing
+nuclear facility, institution, resource, and toolkit models within their
+specific area of technical expertise. Second, because \Cyclus uses a modular
+archetype approach, comparing two archetypes is straightforward. For example, if
+an analyst would like to compare the effect of using different models to
+determine the input fuel composition for fast reactors, a variety of fuel
+fabrication archetypes can be developed and interchanged while keeping the rest
+of the fuel cycle fixed to compare fuel fabrication designs.
 
 \subsubsection{Cluster-Ready Software}
 
@@ -63,8 +55,7 @@ primarily written in \texttt{C++} and relies on
 libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms,
 which are flexible and support parallelization.
 Furthermore, the core infrastructure and related archetypes are free and
-open source, BSD-3-clause licensed. No part of \Cyclus is proprietary or based
-on \gls{COTS}, Windows-only software. \Cyclus can therefore be easily deployed
+open source, BSD-3-clause licensed.  \Cyclus can therefore be easily deployed
 on large computer systems, such as \gls{HTC} systems.
 
 Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
@@ -167,7 +158,6 @@ broadest range of simulations in a generic fashion.
 
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
 
-
 \gls{ABM} is inherently object-oriented because agents represent
 discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
 the modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator
@@ -211,14 +201,6 @@ order to become a bona fide Region-type \Class{Agent}.}
 \label{fig:agent_uml}
 \end{figure}
 
-In a similar fashion, the \Class{Trader} interface allows agent-agent interaction through the
-trading of \Class{Resource}s. Archetypes in a \Cyclus simulation must
-implement the \Class{Agent} interface and may optionally implement the
-\Class{Trader} interface. For example, a \Class{Region} implements only the
-\Class{Agent} interface, whereas a \Class{Facility} implements both the
-\Class{Agent} and \Class{Trader} interface, allowing any \Class{Facility} to
-trade with another \Class{Facility}.
-
 In this way, a researcher can directly compare two different reactor modeling
 implementations (perhaps \Class{DetailedReactor} and \Class{SimpleReactor})
 simply by exchanging the two corresponding archetypes. That is, two reactor
@@ -249,8 +231,8 @@ with regions as root nodes and facilities as leaf nodes.
 Two primary consequences arise from this structure. First, institutions are
 nominally
 responsible for deploying and decommissioning facilities. Accordingly, advanced
-logic regarding building and decommissioning can be obtained by inheriting
-those behaviors from the
+logic regarding building and decommissioning can be implemented on top of
+those behaviors inherited from the
 \Class{Institution} interface. Second, the \Class{Facility} class implements the
 \Class{Trader} interface, and thus institutions and regions, respectively, can
 adjust the resource flow preferences of their managed facilities. Importantly,
@@ -258,8 +240,12 @@ this capability allows for the modeling of preferential regional trading
 of resources (e.g., tariffs) as well as preferential institutional trading
 (e.g., long-term contracts).
 
-Although concept of the \gls{RIF} hierarchy is provided explicitly, the \Cyclus kernel is
-designed to handle hierarchies of arbitrary depth.  It is capable of
+% the paragraph below muddies the concept of the RIF hierarchy
+% (perhaps an extended footnote?)
+% Either way, I prefer something other than ``provided explicitly''.
+
+Although the \Cyclus kernel is designed around the concept of the \gls{RIF} hierarchy,
+it can handle hierarchies of arbitrary depth.  It is capable of
 running a simulation without regions and institutions (i.e.  only facilities)
 or a simulation having archetypes that are the parents of regions.  By
 convention, institutions are mainly responsible for facility deployment, but
@@ -302,8 +288,6 @@ material diversion. Provenance and trade-history of distinct materials is the fu
 information unit in such studies, and so this type of analysis requires
  discrete simulation of a
 target facility and the individual materials modified within it.
-Provenance and trade-history of distinct materials is the fundamental
-information unit in such studies.
 Material risk analysis, therefore, demands that both facilities and materials
 should be discretely modeled objects like those in \Cyclus.
 
@@ -366,31 +350,28 @@ nuclides.  Agents are free to treat nuclides present in materials any way they
 please - including ignoring them.  It is the responsibility of archetype
 developers to choose how to handle potentially full-fidelity compositions.
 
-In large simulations, many material objects may change frequently.
-Material decay can also contribute significantly to such changes.  In order to
-help avoid unnecessary runtime performance and database size impacts,
-compositions in \Cyclus have some special features.
-Immutability of compositions allows multiple material objects to all hold
-references to the same composition object safely.  When operations that do not
-alter the composition are performed on a material, any new resulting
-materials hold a reference to the same, original composition object.
-Although the decay operation generates a new, separate composition (preserving
-immutability), a reference to the new composition is placed in a cache shared
-by the new and original compositions. The next time the original
-composition is decayed, this cache will be checked for a prior calculation
-with the same cumulative decay time.  If one exists, the cached composition is
-used.  This cache is shared by all compositions that transitively come from
-the same origin.  Composition immutability in concert with decay history
-caching help eliminate many redundant decay calculations in addition to
-reducing the total number of composition objects.  Since each composition
-object is only recorded in the database once, significant space savings also
-occurs.
+In large simulations, many material objects may change frequently.  Material
+decay can also contribute significantly to such changes.  In order to help
+avoid unnecessary runtime performance and database size impacts, compositions
+in \Cyclus have some special features.  In particular, compositions are stored
+immutably in the database so that multiple material objects can hold references
+to the same composition safely.  Additionally, when transmutation and decay
+result in new compositions, those are cached for additional avoidance of
+redundancy.Composition immutability in concert with decay history caching help
+eliminate many redundant decay calculations in addition to reducing the total
+number of composition objects recorded in the database.
 \TODO{do we want a diagram helping show this composition caching?}
 
-\subsubsection{Dynamic Resource Exchange}
+% although this abbreviation is provided by the glossary capability, I think
+% the DRE is so important that it should be redefined here.
 
-Since the \Cyclus simulation paradigm involves both discrete agents and
-discrete resources, the logic engine defining resource interaction mechanisms
+\subsubsection{Dynamic Resource Exchange (DRE)}
+
+Since the \Cyclus simulation paradigm allows discrete agents, based on archetypes
+about which the kernel has no knowledge, to enter
+the simulation at arbitrary times and
+trade in discrete resources that are not defined \textit{a priori},
+the logic engine defining resource interaction mechanisms
 among agents is crucial. The \gls{DRE} is that critical logic engine on which \Cyclus
 simulations are built.
 As the \Cyclus supply-demand resolution framework,
@@ -416,21 +397,25 @@ mutually, indicating that either will satisfy its demand for fuel.
 Suppliers then respond to the series of requests with a \textit{bid}. A bid
 supplies a notion of the quantity and quality of a resource to match a
 request. Suppliers may add an arbitrary number of constraints to accompany
-bids. For example, an enriched \gls{UOX} supplier may supply both a natural uranium
-and SWU constraint. Any potential resource transfer may be denoted as
+bids. For example, an enriched \gls{UOX} supplier may be constrained by its current
+inventory of natural uranium or its total capacity to provide enrichment (SWUs), and
+attach such constraints to its bids. Any potential resource transfer may be denoted as
 \textit{exclusive}. An exclusive transfer must either be met fully or not at all
 in order to support concepts such as the trading of individual reactor
 assemblies.
 
 Finally, requesting facilities, institutions and regions may apply
 \textit{preferences} to each potential request-bid pairing based on the proposed
-resource transfer. Therefore, an institution can apply a higher preference to a
+resource transfer. Facilities can apply arbitrary complex logic to rank the bids
+that they have received, whether based on the quantity available in each bid or
+on the quality of each bid, and the consequent implications of the physics behavior
+of that facility. In addition, an institution can apply a higher preference to a
 partner to which it is congenial; similarly, a region may negate any transfers
 of material which have a higher uranium enrichment than is allowable.
 
 Given a full definition of supply and demand, the \gls{DRE} may be solved either
 optimally using a mathematical program or approximately by a simulation-based
-heuristic \cite{Gidden2014}. If any trade is denoted as exclusive, e.g., if an
+heuristic \cite{gidden_agent-based_2014}. If any trade is denoted as exclusive, e.g., if an
 analyst desires an assembly-fidelity model, then either a heuristic must be used
 or exchanges must be represented as a \gls{MILP}. If no exclusive trades exist,
 a \gls{LP} model may be used. In practice, LPs solve much faster than
@@ -450,7 +435,9 @@ simulation.
 
 The \gls{DRE} is a novel simulation concept in the nuclear fuel cycle domain. It
 provides a flexible supply-demand infrastructure, supporting dynamic flows of
-resources between agents. Trading between agents can be affected by both the
+resources between agents, even as those agents enter and leave the simulation, and
+even when those agents are defined by archetypes of arbitrary complexity. Trading
+between agents can be affected by both the
 proposed quality of a resource and agent relationships through the use of
 preferences. Accordingly, a wide range of possible effects can be
 modeled, from capacitaty-limited fuel supply to international trade agreements.
@@ -499,9 +486,9 @@ Region & GrowthRegion & This region determines whether there is a need to meet a
 \label{tab:cycamore}
 \end{table}
 
-The current \Cycamore release provide basic functionality, As illustrated in
+As illustrated in
 Figure \ref{fig:simplesim}, the current \Cycamore release provides basic
-functionality enabling simple fuel cycle analyses  As future contributions are
+functionality enabling simple fuel cycle analyses. As future contributions are
 vetted, the capabilities in \Cycamore may grow.
 
 \begin{figure}[htbp!]
@@ -516,7 +503,7 @@ vetted, the capabilities in \Cycamore may grow.
 
 In addition to the core functionality of the \Cyclus kernel, which is focused on
 the set of capabilities needed to implement an agent-based simulation
-with \gls{DRE}, a toolkit is provided that assists developers
+with \gls{DRE}, a toolkit is provided to assist developers
 and users with related simulation and nuclear engineering tasks. The toolkit is
 an actively developed part of \Cyclus, with a primarily forward-looking
 focus on supporting interesting \textit{in situ} metric analysis tools.
@@ -524,7 +511,7 @@ focus on supporting interesting \textit{in situ} metric analysis tools.
 \paragraph{Simulation Tools}
 
 A series of utility classes are provided to support demand-constrained agent
-facility deployment. Symbolic function representations of linear,
+facility deployment. For example, symbolic function representations of linear,
 exponential, and piecewise functions are supported via the
 \Class{SymbFunctionFactory} class. Such functions are used with other toolkit
 classes to determine commodity demand (e.g., power demand) from user input. Four
@@ -608,60 +595,57 @@ adoption into the kernel as toolkit extensions. Likely extensions include
 % What were the results?
 % How were the measurements made and characterized?
 
-Simulation science - like experimental science - has since the beginning had the
-problem of identifying trustworthy results from nonsensical results or noise.
+Simulation science - like experimental science - must distinguish trustworthy
+results from untrustworthy ones.
 Charles Babbage famously articulated this, ``On two occasions I have been asked,
 `Pray, Mr. Babbage, if you put into the machine wrong figures, will the right
 answers come out?' ... I am not able rightly to apprehend the kind of confusion
 of ideas that could provoke such a question.'' \cite{babbage_passages_2011}.
-A simulator must both guard against the \emph{garbage in, garbage out} phenomenon, and also assure correctness.
+A simulator must assure correctness and guard against the \emph{garbage
+in, garbage out} phenomenon.
 
 Multiple strategies, collectively known as \emph{\gls{QA}}, have
-been invented over the years to mitigate the structural and algorithmic errors
-on the part of simulators themselves. These include \emph{\gls{VV}}
+been invented to mitigate structural and algorithmic errors
+in software. These include \emph{\gls{VV}}
 \cite{boehm_software_1989}, \emph{\gls{UQ}}
-\cite{sacks_design_1989}, testing, and others. \gls{VV} and \gls{UQ} come from
-a distinctly computational science background while testing \emph{et al.} come from software development.
+\cite{sacks_design_1989}, testing, and others.
 
 Nuclear engineering software quality is often governed by \gls{NQA1}, an
 \gls{ASME} specification
 whose latest revision appeared in 2009 \cite{asme_nqa-1a-2009_2009}.
-Although \gls{NQA1} is primarily
-used for designing reactors, it is general enough to apply to
-\Cyclus. \Cyclus has adopted an \emph{agile} development process
+\Cyclus has adopted an \emph{agile} development process
 \cite{larman_agile_2004},
 interpreting \gls{NQA1} in a manner similar to the process adopted by the
-\gls{DOE} within \gls{NEAMS} \cite{neams_nuclear_2013} or the
-PyNE toolkit \cite{biondo_quality_2014}.
+\gls{DOE} within \gls{NEAMS} \cite{neams_nuclear_2013} or by the PyNE toolkit
+\cite{biondo_quality_2014}.
 
-Quality assurance is an on-going process throughout the
-entire life of the software. As a simulator where most modeling decisions are made
+Since \Cyclus modeling decisions are made
 by third party archetype developers or users, the most important feature of
 \gls{QA} is verification. Validation may be impossible and \gls{UQ} is beyond
 the scope of the kernel.
 
 Verification may be defined as the question, ``Is \Cyclus being built correctly?''
-To answer this question, we turn to the software development of notions of testing,
-documentation, version control, style guidelines, and continuous integration.
-This suite of process controls supplies mechanism for reliable and reproducible
-software. The impetus to implement these controls correctly is particularly strong in a scientific
-context because of the emphasis on reproducibility and provenance. These verification techniques are
+To answer this question, \Cyclus relies on software development best practices
+such as testing,
+documentation, version control, style guidelines, and continuous integration to
+ensure reliability and reproducibility. These verification techniques are
 discussed individually in the sections that follow.
 
 Validation, in contrast,  may be defined as the question,
 ``Is \Cyclus the correct tool?''
 Since \Cyclus is alone in its class as an agent-based fuel cycle simulator, longitudinal
 validation is not possible. Nonetheless, code-to-code comparisons with fuel cycle
-simulators that use other modeling paradigms are underway, if nascent. However, such
+simulators that use other modeling paradigms are underway
+\cite{huff_extensions_2014}. However, such
 exercises are more likely to bring into relief the differences between the modeling
 paradigms than supply substantial \gls{QA} and validation.
 
 Lastly, \gls{UQ} is a process that is used on specific simulation
 instantiations to statistically determine quality. \gls{UQ} is a process that applies
 to the running of many \Cyclus simulations. The kernel itself, as a generic fuel cycle
-simulator, cannot make reliable statements about the uncertainty of a particular fuel
+simulator, cannot make reliable statements about the uncertainty of metrics for a particular fuel
 cycle. Any \gls{UQ} results are applicable only to the scenario that is under
-analysis by the user. \Cyclus is not a panacea for due diligence on behalf of the fuel
+analysis by the user. \Cyclus is not a substitute for due diligence on behalf of the fuel
 cycle modeler. Thus, \gls{UQ} is envisioned to be beyond the scope of core development
 and in the domain of the expert user.
 
@@ -701,8 +685,8 @@ as possible, it is often clear in practice what needs to be tested.
 
 \Cyclus uses the Google Test framework \cite{inc_googletest_2008} as a harness for running unit
 tests. Sufficient unit tests are required for any proposed change to the \Cyclus
-code base. Currently \Cyclus implements over 450 unit tests and \Cycamore implements
-85.  These cover approximately 65\% of their respective code bases, and their numbers are expected to grow over time.
+code base. Currently, \Cyclus implements over 450 unit tests and \Cycamore implements
+85.  These cover approximately 65\% of their respective code bases, and these numbers are expected to grow over time.
 
 \paragraph{Integration Tests}
 
@@ -711,16 +695,17 @@ Integration tests combine multiple elements of the
 simply because the gears (units) are made correctly does not imply that the
 clock (integration) will run smoothly, run at all, or give the correct time.
 In \Cyclus and \Cycamore, integration tests are performed by running sample
-simulations and verifying that results are what would be expected ahead of
-time. A set of standard input files have thus been constructed.
-Python is used to run the same set of \Cyclus simulations as a subprocess for each integration test.  The results are then inspected and compared via Nose \cite{pellerin_nose_2007}, a Python test framework.
+simulations for scenarios that are sufficiently simple to predict the results and verifying
+        that results match those predictions. A set of standard input files have thus been constructed.
+Python is used to run the same set of \Cyclus simulations as a subprocess for each integration test.
+ The results are then inspected and compared via Nose \cite{pellerin_nose_2007}, a Python test framework.
 In this way, \Cyclus code units are tested in the full context that they will be
 executed. This category of testing is especially useful for ensuring that
 major \Cyclus components are functioning as expected.
 
 \paragraph{Regression Tests}
 
-Regression tests ensure significant changes do not
+Regression tests ensure significant unintended changes do not
 occur over the course of \Cyclus development. Such a change is called a
 \emph{regression} because the new version is almost always wrong.
 Regression tests are implemented similarly to integration tests.
@@ -734,8 +719,7 @@ it changed. They pick up glaring time-sensitive mistakes that may
 not appear elsewhere, though they do not purport to make claims about the
 quality of the physics modeled. Regression tests are primarily implemented
 in \Cycamore because its archetypes are sophisticated enough
-to make interesting input files. Only a handful ($<10$) of time steps are needed
-for regression testing.
+to make interesting simulations.
 
 \subsubsection{Documentation}
 
@@ -755,31 +739,26 @@ tools, and can be accessed at \url{http://fuelcycle.org}.
 \subsubsection{Version Control}
 
 Version control preserves the development history, or \emph{provenance}, of
-source code files. \Cyclus uses a well-established tool called git
-\cite{software_freedom_conservancy_git_2014}
-for this purpose. Git is currently the most popular utility in the recent wave
-of \emph{distributed version control}. Briefly stated, this means that every
-user has a complete local copy of the \emph{repository} (the version control
+source code files. \Cyclus uses a well-established \emph{distributed version
+control} tool called git \cite{software_freedom_conservancy_git_2014} for this
+purpose.  Distributed version control allows every
+user to have complete local copy of the \emph{repository} (the version control
 term for the collection of all possible histories).
 One feature that git performs exceptionally well is \emph{branching}.
 Branches are distinct pathways in the history that diverge from a mainline source
-tree and then may be \emph{merged} back into the mainline. Multiple simultaneous
+tree and then may be \emph{merged} back in. Multiple simultaneous
 branches may exist at all points in time. Every change to the code is recorded
 in the history, along with metadata such as the author, a timestamp, and an
-accompanying message. Thus
+accompanying message. Thus,
 it is possible for \Cyclus to accurately replay the entirety of who did what to the
 code when.
 
 \Cyclus uses a strategy known as \emph{git flow}
-\cite{kalliamvakou_code-centric_2014}
-to manage topical branches where individuals develop code: the mainline development
-branch (simply known as develop), and the stable branch (called master).
-In addition to these rules and delineations, \Cyclus also imposes rules on
-when it is acceptable from a quality control standpoint to merge code from
-the personal topical branches into the develop branch. All software at this stage
-must have sufficient successful tests and comprehensive documentation. Without
-these core pieces, proposed changes are not allowed into \Cyclus. As an example, a schematic of
-the development stages between reporting a bug and merging the fix is shown in
+\cite{kalliamvakou_code-centric_2014} to manage topical branches where
+individuals develop code in parallel. All proposed software changes from
+topical branches must have sufficient successful tests and comprehensive
+documentation to be allowed into \Cyclus.  As an example, a schematic of the
+development stages between reporting a bug and merging the fix is shown in
 Figure \ref{fig:gitprocess}.
 
 \begin{figure}[htbp]
@@ -835,10 +814,10 @@ the following actions:
     \item Reports whether or not the above steps succeeded.
 \end{enumerate}
 
-Since these steps are performed for all incoming code, it is easy for the
+Since these steps are performed for all incoming code, it is easyi for the
 \Cyclus core team to determine whether or not an individual pull request
 actually works. This helps identify build and test problems prior to
 broken code being allowed into the develop branch. \gls{CI} is a necessary
 but not sufficient addition to the \Cyclus \gls{QA}
-system: it keeps bad code out \Cyclus. However, \Cyclus will always
+system: it keeps bad code out of \Cyclus. However, \Cyclus will always
 require human eyes and hands to let good code in.
