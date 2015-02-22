@@ -27,29 +27,21 @@ Lastly, the methods for quality assurance are outlined.
 % enables myriad levels of simulation fidelity
 % enables FC analyses that can compare ‘apples to apples'
 
-The architecture of \Cyclus allows developers
-to define nuclear fuel cycle agents and processes independent of the simulation
-logic. To achieve this, agents are developed using the \Cyclus framework \gls{API}, a set of functions and protocols
-which
-assist in agent development and specify how agents should be defined.
-This encapsulated `plug-in'
-design choice provides two major benefits. First, analysts across research institutions can take advantage of the
+The architecture of \Cyclus allows developers to define nuclear fuel cycle
+agents and processes independent of the simulation logic. To achieve this,
+agents are developed using the \Cyclus framework \gls{API}, a set of functions
+and protocols which assist in agent development and specify how agents should be
+defined.  This encapsulated `plug-in' design choice provides two major
+benefits. First, analysts across research institutions can take advantage of the
 simulation logic \gls{API} and archetype ecosystem when they apply \Cyclus to
-their specific problem. This
-mend-and-extend paradigm, common in modern software development, reduces
-maintenance overhead and improves software robustness by protecting the core logic
-from changes in the extensions.
-The researcher can focus on creating or customizing nuclear
-facility, institution, resource, and toolkit models within their specific area
-of technical expertise. This extensibility, magnified by an open source
-development process, frees the community of users to contribute desired
-features, independent from the team of \Cyclus core developers.
-Second, because \Cyclus uses a modular archetype approach, comparing two
-archetypes is straightforward. For example, if an analyst would like
-to compare the effect of using different models to determine the input fuel
-composition for fast reactors, a variety of fuel fabrication archetypes can be
-developed and interchanged while keeping the rest of the fuel cycle fixed
- to compare fuel fabrication designs.
+their specific problem.  A researcher can focus on creating or customizing
+nuclear facility, institution, resource, and toolkit models within their
+specific area of technical expertise. Second, because \Cyclus uses a modular
+archetype approach, comparing two archetypes is straightforward. For example, if
+an analyst would like to compare the effect of using different models to
+determine the input fuel composition for fast reactors, a variety of fuel
+fabrication archetypes can be developed and interchanged while keeping the rest
+of the fuel cycle fixed to compare fuel fabrication designs.
 
 \subsubsection{Cluster-Ready Software}
 
