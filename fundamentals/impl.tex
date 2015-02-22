@@ -362,16 +362,14 @@ number of composition objects recorded in the database.
 
 \subsubsection{Dynamic Resource Exchange (DRE)}
 
-Since the \Cyclus simulation paradigm allows discrete agents, based on archetypes
-about which the kernel has no knowledge, to enter
-the simulation at arbitrary times and
-trade in discrete resources that are not defined \textit{a priori},
-the logic engine defining resource interaction mechanisms
-among agents is crucial. The \gls{DRE} is that critical logic engine on which \Cyclus
-simulations are built.
-As the \Cyclus supply-demand resolution framework,
-the DRE must be able to support arbitrary facilities. Supporting the general
-\Cyclus philosophy, facilities are treated as black boxes and a clear
+The \Cyclus simulation paradigm allows discrete agents, based on archetypes
+about which the kernel has no knowledge, to enter the simulation at arbitrary
+times and trade in discrete resources. These resources are not defined \textit{a
+  priori}. Therefore, the logic engine defining resource interaction mechanisms
+among agents is crucial. The \gls{DRE} is that critical logic engine on which
+\Cyclus simulations are built.  As the \Cyclus supply-demand resolution
+framework, the DRE must be able to support arbitrary facilities. Supporting the
+general \Cyclus philosophy, facilities are treated as black boxes and a clear
 supply-demand communication framework is defined.
 
 The \gls{DRE} consists of three steps: supply-demand information
