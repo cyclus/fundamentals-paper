@@ -1,4 +1,52 @@
 
+\subsubsection{Open Access and Development Practices}
+
+The proprietary concerns of research institutions and security constraints of
+data within fuel cycle simulators often restrict access. Use of a simulator is
+therefore often limited to its institution of origin, necessitating effort
+duplication at other institutions and thereby squandering broader human
+resources. License agreements and institutional approval are required for most
+current simulators (i.e. \gls{COSI}6, \gls{DANESS}, \gls{DESAE}, EVOLCODE,
+FAMILY21, \gls{NFCSim})\cite{juchau_modeling_2010}, ORION, and VISION.  Even when, as in
+the case of the MIT \gls{CAFCA} software, the source code is unrestricted, the
+platform on which it relies is often restricted or costly.  However, \Cyclus
+provides fully free and open access to all users
+and developers, foreign and domestic.
+
+Moreover, both technical and institutional aspects of the software development
+practices employed by the \Cyclus community faciltate collaboration.
+Technically, \Cyclus employs a set of tools commonly used collaborative
+software development that reduce the effort required to comment on, test and
+ultimately merge individual contributions into the main development path.  
+For many of the simulation platforms adopted by previous simulators, there were
+technical obstacles that impeded this kind of collaboration.
+Institutionally, \Cyclus invites all participants to propose, discuss and
+provide input to the final decision making for all important changes.
+
+\subsubsection{Modularity and Extensibility}
+
+Modularity is a key enabler of extending the scope of fuel cycle analysis
+within the \Cyclus framework.  Changes that are required to improve the
+fidelity of modeling a paticular agent, or to introduce entirely new agents,
+are narrowly confined and place no new requirements on the \Cyclus kernel.
+Furthermore, there are very few assumptions or heuristics that would otherwise
+restrict the algorithmic complexity that can be used to model the behavior of
+such agents.
+
+For example, most current simulators describe a finite set of acceptable cycle
+constructions (once through, single-pass, multi-pass). That limits the
+capability to create novel material flows and economic scenarios. The \Cyclus
+simulation logic relies on a market paradigm, parameterized by the user, which
+flexibly simulates dynamic responses to pricing, availability, and other
+institutional preferences.  
+
+This minimal set of mutual dependencies between the kernel and the agents is
+expressed through the \gls{DRE} that provides a level of flexibility that does
+not exist in other fuel cycle simulators.  It creates the potential for novel
+agent archetypes to interact with existing archetypes as they enter and leave
+the simulation over time and seek to trade materials whose specific
+composition may not be known \textit{a priori}.
+
 \subsubsection{Discrete Facilities and Materials}
 
 Many fuel cycle phenomena have aggregate system-level effects which can only be
@@ -15,7 +63,8 @@ Similarly, the ability to model disruptions (i.e. facility shutdowns due to
 insufficient feed material or insufficient processing and storage capacity) is
 most readily captured by software capable of tracking the operations status of
 discrete facilities \cite{huff_next_2010}.  Fleet-based models (i.e.
-\gls{VISION}) are unable to capture this gracefully.  All of the software
+\gls{VISION}) are unable to capture this gracefully, perhaps representing it as 
+a reduction in the capacity of the whole fleet.  All of the software
 capable of discrete materials have a notion of discrete facilities, however not
 all handle disruption in the same manner. \gls{DESAE}, for example, does not
 allow shutdown due to insufficient feedstock. In the event
@@ -23,32 +72,3 @@ of insufficient fissile material during reprocessing, \gls{DESAE} borrows
 material from storage, leaving a negative value \cite{mccarthy_benchmark_2012}.
 The \Cyclus framework does not dictate such heuristics. Rather, it provides a
 flexible framework on which either method is possible.
-
-\subsubsection{Open Access}
-
-The proprietary concerns of research institutions and security constraints of
-data within fuel cycle simulators often restrict access. Use of a simulator is
-therefore often limited to its institution of origin, necessitating effort
-duplication at other institutions and thereby squandering broader human
-resources. License agreements and institutional approval are required for most
-current simulators (i.e. \gls{COSI}6, \gls{DANESS}, \gls{DESAE}, EVOLCODE,
-FAMILY21, \gls{NFCSim})\cite{juchau_modeling_2010}, ORION, and VISION.  Even when, as in
-the case of the MIT \gls{CAFCA} software, the source code is unrestricted, the
-platform on which it relies is often restricted or commercial.  However, \Cyclus
-provides fully free and open access to all users
-and developers, foreign and domestic.
-
-\subsubsection{Flexibility and Extensibility}
-
-In addition to being inaccessible, the vast majority of fuel cycle simulators
-are, effectively, inextensible. Typical fuel cycle simulator development teams are insular, in
-part due to aforementioned accessibility issues. Accordingly, their frameworks
-typically contain heuristics and assumptions that constrain developer additions.
-
-For example, most current simulators describe a finite set of acceptable
-cycle constructions (once through, single-pass, multi-pass). That limits the
-capability to create novel material flows and economic scenarios. The \Cyclus
-simulation logic relies on a market paradigm, parameterized by the user, which
-flexibly simulates dynamic responses to pricing, availability, and other
-institutional preferences. This is an advanced level of flexibility that does
-not exist in other fuel cycle simulators.
