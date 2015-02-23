@@ -349,15 +349,32 @@ full-fidelity compositions.
 In large simulations, many material objects may change frequently.  Material
 decay can also contribute significantly to such changes.  In order to help
 avoid unnecessary runtime performance and database size impacts, compositions
-in \Cyclus have some special features.  In particular, compositions are stored
-immutably in the database so that multiple material objects can hold references
-to the same composition safely.  Additionally, when transmutation and decay
-result in new compositions, those are cached for additional avoidance of
-redundancy. Composition immutability in concert with decay history caching help
-eliminate many redundant decay calculations in addition to reducing the total
-number of composition objects recorded in the database.
+in \Cyclus have some special features.  In particular, compositions are
+immutable once created.  This allows multiple material objects to hold
+references to the same composition safely.  Additionally, new compositions
+resulting from decay are cached and used to avoid redundant decay
+calculations.  Composition immutability in concert with decay history caching
+help eliminate many redundant calculations in addition to reducing the
+total number of composition entries recorded in the database.
 
-\TODO{do we want a diagram helping show this composition caching?}
+Figure \ref{fig:compositions} shows a set of four compositions A, B, C, and a
+yet-uncomputed decayed composition D.  B comes from decaying A 1 time step.  C
+comes from decaying B 2 time steps, etc.  Black represents the decay history
+cache for this particular composition chain. Blue represents decay
+calculations that are satisfied by cache lookups.   If A needs to be decayed 1
+time step (A +1), a lookup is performed on the decay line and B is found and
+returned - no decay calculation is performed and no new compositions need to
+be created or recorded.  Decaying B 3 time steps requires a decay calculation
+to compute D, but subsequent requests such as decaying A 4 time steps will not
+require any recalculation.
+
+\begin{figure}[htbp!]
+\begin{center}
+\includegraphics{./images/compositions}
+\end{center}
+\caption{Composition decay history chain helps avoid redundant decay calculations and reduce duplication in the database.}
+\label{fig:composition}
+\end{figure}
 
 % although this abbreviation is provided by the glossary capability, I think
 % the DRE is so important that it should be redefined here.
