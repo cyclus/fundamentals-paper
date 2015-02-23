@@ -31,14 +31,14 @@
 % How were the measurements made and characterized?
 
 
-The success of the \Cyclus simulator can be measured in many ways.
-The most compelling are demonstrations of the feasibility of the \Cyclus community-driven development
-model and of fundamental simulation capability. Nascent promising growth of the \Cyclus
-ecosystem at multiple institutions indicates that a fuel cycle simulator can
-advance in this community-driven development paradigm. Additionally, simulation
-results for both once-through and more complex recycling scenarios demonstrate that
-\Cyclus possesses the fundamental fuel cycle simulation capabilities to
-contribute to the field.
+The success of the \Cyclus simulator can be measured in many ways.  The most
+compelling are demonstrations of fundamental simulation capability and of the
+feasibility of the \Cyclus community-driven development model. Nascent promising
+growth of the \Cyclus ecosystem at multiple institutions indicates that a fuel
+cycle simulator can advance in this community-driven development
+paradigm. Additionally, simulation results for both once-through and more
+complex recycling scenarios demonstrate that \Cyclus possesses the fundamental
+fuel cycle simulation capabilities to contribute to the field.
 
 \subsection{Ecosystem}
 % Cycamore library
@@ -75,11 +75,11 @@ and provide the basis for a community-driven development model.
 \subsubsection{Supplementary Projects}
 
 A number of projects and tools outside of the core simulation kernel have been
-developed to improve the scope and the diversity of the capabilities in the \Cyclus
-ecosystem. Table \ref{tab:coretools} lists the tools and projects developed
-under close integration with the \Cyclus kernel.  These tools are used to ease development
-and simulation design (Cystub, Cycic, Ciclus), data visualization and analysis (Cyclist, Cyan),
-and remote execution (Cloudlus).
+developed to improve the scope and the diversity of the capabilities in the
+\Cyclus ecosystem. Table \ref{tab:coretools} lists the tools and projects
+developed under close integration with the \Cyclus kernel.  These tools are used
+to ease development and simulation design (Cycstub, Cycic, Ciclus), data
+visualization and analysis (Cyclist, Cyan), and remote execution (Cloudlus).
 
 \begin{table}[h]
 \centering
@@ -109,15 +109,18 @@ reprocessing strategy, or a particular governmental or institutional behavior.
 The real-world utility of \Cyclus can in part be measured by the breadth and
 diversity of archetypes being developed in this way.
 
-Early progress has been promising. Many archetypes external to the \Cycamore library (Table \ref{tab:cycamore})
-have been
-\cite{huff_streamblender_2014,huff_commodconverter_2014}
-or are being
-\cite{flanagan_bright-lite_2014,skutnik_nuclear_2014,huff_mktdriveninst_2014} developed for contribution to the
-\Cyclus ecosystem. These archetypes provide the first examples of
-developer-contributed capabilities.  They add to the fundamental \Cycamore
-archetypes by providing physics-based reactors, separations logic, fuel
-fabrication processing, storage facilities, and expanded institutional paradigms.
+Early progress has been promising. Many archetypes external to the \Cycamore
+library (Table \ref{tab:cycamore}) have been
+\cite{huff_streamblender_2014,huff_commodconverter_2014} or are being
+\cite{flanagan_bright-lite_2014,skutnik_nuclear_2014,huff_mktdriveninst_2014}
+developed for contribution to the \Cyclus ecosystem. These archetypes provide
+the first examples of developer-contributed capabilities.  They add to the
+fundamental \Cycamore archetypes by providing physics-based reactors,
+separations logic, fuel fabrication processing, storage facilities, and expanded
+institutional paradigms.  The existence and diversity of these contributed
+archetypes illustrate the power and potential of the community-based development
+approach that \Cyclus has taken.
+
 
 \begin{table}[h]
 \centering
@@ -140,10 +143,6 @@ of community-driven development in a fuel cycle simulator.}
 \label{tab:archetypes}
 \end{table}
 
-The existence and diversity of these contributed archetypes
-illustrate the power and potential of the community-based development approach
-that \Cyclus has taken.
-
 \subsection{Simulations}
 %Inpro example (is this still running or did we deprecate it with 1.0?)
 
@@ -153,9 +152,9 @@ that \Cyclus has taken.
 % facility parameters and run it again.
 
 This section will discuss the creation and results of a few simple fuel cycle
-simulations to help illustrate the flexibility of \Cyclus. These simulations
-are designed to illustrate Cyclus' capability.  Many simplifying assumptions
-have been made with respect to material compositions, fuel transmutation, and
+simulations to help illustrate the flexibility of \Cyclus. These simulations are
+designed to illustrate Cyclus' capability.  Many simplifying assumptions have
+been made with respect to material compositions, fuel transmutation, among
 others. The three fuel cycles examined are:
 
 \begin{enumerate}
@@ -175,7 +174,7 @@ transition to be examined.  The facilities used in these simulations are:
     \item \textbf{Reactor} (\Class{cycamore::Reactor}): This is a reactor
         model that requests any number of input fuel types and transmutes them
         to static compositions when they are burnt and discharged from the
-        core.  . The reactor was configured to model a light water reactor
+        core. The reactor was configured to model a light water reactor
         with a 3 batch core (20,000 kg HM per batch) operating on an 18 month
         cycle with a 2 month refuel time.  The reactor was also configured to
         take in either enriched \gls{UOX} fuel or recycled \gls{MOX} fuel.
@@ -212,7 +211,7 @@ transition to be examined.  The facilities used in these simulations are:
 Modifying the input file specification to model each of the 3 fuel cycles was
 done by making simple adjustments to the commodities and trade preferences for
 each of the facilities.  The reactor was configured to request recycled \gls{MOX}
-fuel with a higher preference then new \gls{UOX} fuel. For the once through case,
+fuel with a higher preference than new \gls{UOX} fuel. For the once through case,
 the \Class{Reactor} was set to offer all spent fuel as waste.  For the 1-pass
 recycle case, the \Class{Reactor} offered spent \gls{UOX} into a spent fuel market,
 but spent \gls{MOX} is still offered as waste.  In the infinite-pass recycle case,

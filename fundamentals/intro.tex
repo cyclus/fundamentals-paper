@@ -51,16 +51,16 @@ cycle simulator is the result of design choices made to:
 \item and address a range of analysis types, levels of detail, and analyst sophistication.
 \end{itemize}
 
-\Cyclus, therefore, is a dynamic, agent-based model, which employs a modular
-architecture, an open development process, discrete agents, discrete time, and
-arbitrarily detailed isotopic resolution of materials. Experience in the broader
-field of systems analysis indicates that agent-based modeling enables more
-flexible simulation control, without loss of generality
+\Cyclus, is a dynamic, agent-based model, which employs a modular architecture,
+an open development process, discrete agents, discrete time, and arbitrarily
+detailed isotopic resolution of materials. Experience in the broader field of
+systems analysis indicates that agent-based modeling enables more flexible
+simulation control, without loss of generality
 \cite{macal_agent-based_2010}. Furthermore, openness allows cross-institutional
 collaboration, increases software robustness \cite{cohen_modern_2010}, and
-cultivates an ecosystem of modeling and calculation options. Comprised of
-flexible, interchangeable models of fuel cycle components with varying scope,
-depth and fidelity, this ecosystem allows users and developers to customise
+cultivates an ecosystem of modeling and calculation options. This ecosystem is
+comprised of flexible, interchangeable models of fuel cycle components with
+varying scope, depth, and fidelity. It allows users and developers to customise
 \Cyclus to analyze the cases that are of interest to them, rather than those the
 simulator was originally developed to address.  The fundamental concepts of the
 \Cyclus nuclear fuel cycle simulator capture these modern insights so that novel
@@ -130,20 +130,20 @@ Examples include \gls{CAFCA}\cite{guerin_benchmark_2009} and
 \gls{DESAE}\cite{andrianova_desae_2008,mccarthy_benchmark_2012,allan_guidance_2008}.
 
 \Cyclus emerged from a line of tools seeking to break this practice.  Its
-precursor,
-\gls{GENIUS} Version 1 \cite{dunzik-gougar_global_2007,jain_transitioning_2006},
-originated within \gls{INL} and sought to provide generic regional capability.
-Based on lessons learned from \gls{GENIUS} Version 1, the \gls{GENIUS} Version
-2 \cite{oliver_studying_2009,huff_geniusv2_2009} simulator sought to provide more
-generality and an extensible interface to facilitate collaboration.  The
-\Cyclus project then improved upon the \gls{GENIUS} effort by
-implementing increased modularity and encapsulation.  The result is a dynamic
-simulator that treats both materials and facilities discretely, with an
-architecture that permits multiple and variable levels of fidelity. The
-simulator's agent-based framework for tracking the transformation and trade of
-resources between autonomous regional and institutional entities with
-customizable behavior and objectives is an innovation not pursued by any
-existing fuel cycle simulator.
+precursor, \gls{GENIUS} Version 1
+\cite{dunzik-gougar_global_2007,jain_transitioning_2006}, originated within
+\gls{INL} and sought to provide generic regional capability.  Based on lessons
+learned from \gls{GENIUS} Version 1, the \gls{GENIUS} Version 2
+\cite{oliver_studying_2009,huff_geniusv2_2009} simulator sought to provide more
+generality and an extensible interface to facilitate collaboration.  The \Cyclus
+project then improved upon the \gls{GENIUS} effort by implementing increased
+modularity and encapsulation.  The result is a dynamic simulator that treats
+both materials and facilities discretely, with an architecture that permits
+multiple and variable levels of fidelity. Using an agent-based framework, the
+simulator tracks the transformation and trade of resources between autonomous
+regional and institutional entities with customizable behavior and
+objectives. This capability is an innovation not pursued by any existing fuel
+cycle simulator.
 
 
 \subsection{Motivation}
@@ -170,11 +170,11 @@ This structure recognizes that specialists should utilize their time and
 resources in modeling the specific process associated with their area of
 expertise (e.g., reprocessing and advanced fuel fabrication), without having to
 create a model of the entire fuel cycle to serve as its host.  \Cyclus supports
-them by separating the problem of modeling a physics-dependent supply chain
-into two distinct components: a simulation kernel and archetypes that interact
-with the kernel. The kernel is responsible for the deployment and interaction
-logic of entities in the simulation.  Physics calculations and customized
-behaviors are implemented within archetypes.
+them by separating the problem of modeling a physics-dependent supply chain into
+two distinct components: a simulation kernel and archetypes that interact with
+the kernel. The kernel is responsible for supporting the deployment and
+interaction logic of entities in the simulation.  Physics calculations and
+customized behaviors are implemented within archetypes.
 
 Ultimately, modeling the evolution of a physics-dependent, international
 nuclear fuel supply chain is a multi-scale problem which existing tools cannot

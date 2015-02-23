@@ -7,19 +7,17 @@
 
 A modular, \acrfull{ABM} approach is ideal for solving complex, coupled,
 physics-dependent supply chain problems involving material routing, facility
-deployment, and regional and institutional hierarchies. Additionally, the choice to
-build \Cyclus on open source libraries in modern programming languages enables
-both remote and multiprocess execution on a number of platforms. This section begins by
-describing the general design features that make \Cyclus both flexible and powerful:
-cluster-ready software and dynamic libraries.  Next, the framework's
-\gls{ABM} paradigm, which provides an expansion in performance beyond typical system dynamics
-capabilities, is described, focusing on agent interchangeability and the
-implementation of the region-institution-facility hierarchy.
-Next, the discrete treatment of objects is discussed in terms of both
-resources and materials and time via the \gls{DRE}.
-Support for users and developers via the \Cycamore library of
-archetypes and the experimental toolkit are also presented.
-Lastly, the methods for quality assurance are outlined.
+deployment, and regional and institutional hierarchies. Additionally, the choice
+to build \Cyclus on open source libraries in modern programming languages
+enables both remote and multiprocess execution on a number of platforms. This
+section begins by describing the general design features that make \Cyclus both
+flexible and powerful: cluster-ready software and dynamic libraries.  The
+\gls{ABM} framework is then described, focusing on how \gls{ABM} is implemented
+in a fuel cycle context and the relative benefits thereof. A discussion of the
+time-dependent treatement of discrete resources follow, focusing on the
+\gls{DRE}. Support for users and developers via the \Cycamore library of
+archetypes and the experimental toolkit are also presented.  Lastly, the methods
+for quality assurance are outlined.
 
 \subsection{Modular Software Architecture}
 % Motivation for encapsulated plug-in architecture
@@ -59,13 +57,14 @@ open source, BSD-3-clause licensed.  \Cyclus can therefore be easily deployed
 on large computer systems, such as \gls{HTC} systems.
 
 Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
-implementation of \Cyclus on such a large computer system, uses UW-Madison's
-HTCondor \gls{HTC} infrastructure to perform sensitivity studies on \Cyclus'
-resource exchange optimization solvers. To date, it has been used to run over
-$10^4$ jobs, or (\TODO{compute time}) total compute hours, using the \Cyclus
-library via its resource exchange \gls{API}.  The \gls{HTC} infrastructure has
-also been utilized to run and collect information from full \Cyclus simulations
-running in parallel on $10^3$ machines reliably for order $10^5$ simulations.
+implementation of a \Cyclus-enabled application on such a large computer system,
+uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
+studies on \Cyclus' resource exchange optimization solvers. To date, it has been
+used to run over $10^5$ jobs, comprising more than 60,000 total compute hours,
+using the \Cyclus library via its resource exchange \gls{API}.  The \gls{HTC}
+infrastructure has separately been utilized to run and collect information from
+full \Cyclus simulations running in parallel on $10^3$ machines reliably for
+order $10^5$ simulations.
 
 \subsubsection{Dynamically Loadable Libraries}
 
@@ -158,16 +157,14 @@ broadest range of simulations in a generic fashion.
 
 % (OO, cpp, xml, backends, inheritances, mixins, generic apis, etc.)
 
-\gls{ABM} is inherently object-oriented because agents represent
-discrete, independently acting objects.  Figure \ref{fig:framework} illustrates
-the modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator
-creates a set of classes on which agent plug-ins
-are based. In addition, a set of tools are also provided to enrich the
-\gls{API} and supply a robust suite of behaviors for the developer.
-Agent plug-ins utilize the generic core \gls{API} to interact with one another.  For
-example, agents rely on a paradigm of dynamic loading and clean plug-in
-behavior at the start of the simulation. They also use the resource exchange
-paradigm \gls{API} for trading resources with one another.
+\gls{ABM} is inherently object-oriented because agents represent discrete,
+independently acting objects.  Figure \ref{fig:framework} illustrates the
+modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator creates
+a set of classes on which agent plug-ins are based. In addition, a set of tools
+are also provided to enrich the \gls{API} and supply a robust suite of behaviors
+for the developer.  Agent plug-ins utilize the generic core \gls{API} to
+interact with one another.  For example, they use the resource exchange paradigm
+\gls{API} for trading resources with one another.
 
 Due to this plug-in architecture,
 implementations of actors in a given scenario can be easily
@@ -266,22 +263,20 @@ objects. A discrete resource model allows for a range of modeling granularity. I
 macroscopic extreme, it is equivalent to time-stepped continuous flow. In the
 microscopic extreme, the model is capable of representing arbitrarily small
 material objects at isotopic resolution. In this way, \Cyclus is
-applicable across the full range of modeling extremes.
+applicable across the full range of modeling fidelity.
 
-Fleet-based, lumped-material models do not distinguish between discrete
-facility entities or materials. However, some questions require resolution at the level of
-individual facilities and materials.
-As a result, many detailed performance
-metrics cannot be captured with previously existing fleet-based models.
+Fleet-based, lumped-material models do not distinguish between discrete facility
+entities or materials. However, some questions require resolution at the level
+of individual facilities and materials.  As a result, many detailed performance
+metrics cannot be captured with previously existing fleet-based models. For all
+of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables novel
+simulations, multiple use cases require that these agents, such as the regions,
+institutions, and facilities in \Cyclus, must be represented as discrete
+objects. Furthermore, important use cases are enabled when materials and
+resources are tracked as discrete objects alongside those agents.
 
 \subsubsection{Resources and Materials}
 % Resources, Materials (note isotope tracking, decay behavior)
-
-For all of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables
-novel simulations, multiple use cases require that these agents, such as the
-regions, institutions, and facilities in \Cyclus, must be represented as
-discrete objects. Furthermore, important use cases are enabled when materials
-and resources are tracked as discrete objects alongside those agents.
 
 One such use case seeks to capture system vulnerability to nefarious
 material diversion. Provenance and trade-history of distinct materials is the fundamental
@@ -336,10 +331,10 @@ modes likely to be added in future releases:
 
 \end{itemize}
 
-In order to avoid excess decay calculations, when decay
-is invoked, a material checks to see if it contains any nuclides with decay
-constants that are significant with respect to the time change since the last
-decay operation.  If none of the decay constants are significant, no decay
+
+When decay is invoked, a material checks to see if it contains any nuclides with
+decay constants that are significant with respect to the time change since the
+last decay operation.  If none of the decay constants are significant, no decay
 calculation is performed and the material remains unchanged.  This error does
 not accumulate because the next time the material's decay function is invoked,
 the time change will be larger.
@@ -357,7 +352,7 @@ in \Cyclus have some special features.  In particular, compositions are stored
 immutably in the database so that multiple material objects can hold references
 to the same composition safely.  Additionally, when transmutation and decay
 result in new compositions, those are cached for additional avoidance of
-redundancy.Composition immutability in concert with decay history caching help
+redundancy. Composition immutability in concert with decay history caching help
 eliminate many redundant decay calculations in addition to reducing the total
 number of composition objects recorded in the database.
 \TODO{do we want a diagram helping show this composition caching?}
@@ -367,17 +362,14 @@ number of composition objects recorded in the database.
 
 \subsubsection{Dynamic Resource Exchange (DRE)}
 
-Since the \Cyclus simulation paradigm allows discrete agents, based on archetypes
-about which the kernel has no knowledge, to enter
-the simulation at arbitrary times and
-trade in discrete resources that are not defined \textit{a priori},
-the logic engine defining resource interaction mechanisms
-among agents is crucial. The \gls{DRE} is that critical logic engine on which \Cyclus
-simulations are built.
-As the \Cyclus supply-demand resolution framework,
-the DRE must be able to support arbitrary facilities. Supporting the general
-\Cyclus philosophy, facilities are treated as black boxes and a clear
-supply-demand communication framework is defined.
+The \Cyclus simulation paradigm allows discrete agents, based on archetypes
+about which the kernel has no knowledge, to enter the simulation at arbitrary
+times and trade in discrete resources. These resources are not defined \textit{a
+  priori}. Therefore, the logic engine defining resource interaction mechanisms
+among agents is crucial. The \gls{DRE} is that critical logic engine on which
+\Cyclus simulations are built.  Supporting the general \Cyclus philosophy,
+facilities are treated as black boxes and a clear supply-demand communication
+framework is defined.
 
 The \gls{DRE} consists of three steps: supply-demand information
 gathering, resource exchange solution, and trade execution. Importantly, each
@@ -399,10 +391,13 @@ supplies a notion of the quantity and quality of a resource to match a
 request. Suppliers may add an arbitrary number of constraints to accompany
 bids. For example, an enriched \gls{UOX} supplier may be constrained by its current
 inventory of natural uranium or its total capacity to provide enrichment (SWUs), and
-attach such constraints to its bids. Any potential resource transfer may be denoted as
+attach such constraints to its bids. 
+
+Any potential resource transfer, i.e., a bid or a request, may be denoted as
 \textit{exclusive}. An exclusive transfer must either be met fully or not at all
 in order to support concepts such as the trading of individual reactor
-assemblies.
+assemblies. In combination with the notion of mutual requests, complex instances
+of supply and demand are enabled.
 
 Finally, requesting facilities, institutions and regions may apply
 \textit{preferences} to each potential request-bid pairing based on the proposed
@@ -443,12 +438,11 @@ preferences. Accordingly, a wide range of possible effects can be
 modeled, from capacitaty-limited fuel supply to international trade agreements.
 
 \subsection{Simulation Support}
-So that users and developers can build working simulations
-in the shortest time possible, the \Cyclus ecosystem provides the fundamental
-building blocks: basic archetypes and a toolkit of commonly needed functions.
-The \Cycamore library provides a suite of fundamental Region, Institution, and
-Facility archetypes, while the \Cyclus toolkit provides assistance to
-developers.
+So that users and developers can build working simulations in the shortest time
+possible, the \Cyclus ecosystem provides fundamental building blocks: basic
+archetypes and a toolkit of commonly needed functions.  The \Cycamore library
+provides a suite of fundamental Region, Institution, and Facility archetypes,
+while the \Cyclus toolkit provides assistance to developers.
 
 \subsubsection{Cycamore}
 % base modules
@@ -462,9 +456,9 @@ These archetypes support a minimal set of fuel cycle simulation goals and
 provide, by example, a guide to new developers who would seek to contribute
 their own archetypes outside of \Cycamore.
 
-As of version 1.0, \Cycamore contains four facility archetypes, one region
-archetype, and two institution archetypes. Short descriptions of these
-functions can be found in Table \ref{tab:cycamore}.
+As of version 1.0, \Cycamore contains one region archetype, two institution
+archetypes, and four facility archetypes. Short descriptions of these functions
+can be found in Table \ref{tab:cycamore}.
 
 
 \begin{table}[h]
@@ -532,7 +526,7 @@ many of each prototype, $y_i$, to build given a demand ($\Phi$), capacities
 \begin{aligned}
  \min & \sum_{i=1}^{N}c_i y_i \\
  s.t. & \sum_{i=1}^{N}\phi_i y_i \ge \Phi \\
-      & n_i \in [0,\infty) \:\: \forall i \in I, \:\: y_i \:\: \text{integer}
+      & y_i \in [0,\infty) \:\: \forall i \in I, \:\: y_i \:\: \text{integer}
 \end{aligned}
 \end{equation}
 
