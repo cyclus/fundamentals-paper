@@ -5,7 +5,7 @@ digraph ResourceFlows {
     "DU Source" -> "Spent Fuel Fab" [label="depleted U\n(7e+05 kg)"];
     "Enrichment" -> "LWR" [label="UOX fuel\n(1.06e+06 kg)"];
     "LWR" -> "Repository" [label="waste\n(8e+04 kg)"];
-    "LWR" -> "Separations" [label="wpent Fuel\n(1e+06 kg)"];
+    "LWR" -> "Separations" [label="spent Fuel\n(1e+06 kg)"];
     "Separations" -> "Repository" [label="waste\n(9.89e+05 kg)"];
     "Separations" -> "Spent Fuel Fab" [label="Pu stream\n(1.08e+04 kg)"];
     "Spent Fuel Fab" -> "LWR" [label="MOX fuel\n(1e+05 kg)"];
