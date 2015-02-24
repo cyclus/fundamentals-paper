@@ -311,8 +311,8 @@ non-proliferation-related simulation goals.
 The \Cyclus kernel has built-in experimental support for decay calculations.
 Materials store the time since their last decay and agents are free to
 invoke the decay function on them as desired to decay them to the current
-simulation time. \Cyclus can currently operate in 2 decay modes, with 2 additional
-modes likely to be added in future releases:
+simulation time. \Cyclus can currently operate in 3 decay modes, with 1 additional
+mode likely to be added in a future release:
 
 \begin{itemize}
 
@@ -322,12 +322,12 @@ modes likely to be added in future releases:
     \item "never" (currently implemented) globally turns off all decay.
         The Material decay function does nothing.
 
+    \item "lazy" (currently implemented) decays any material whenever its
+        composition is observed (e.g. when an agent queries information about
+        a material's $^{239}$Pu content).
+
     \item "periodic" (future) automatically decays all materials in a
         simulation with some fixed frequency.
-
-    \item "lazy" (future) decays any material whenever its composition is
-        viewed (e.g. when an agent queries information about a material's
-        $^{239}$Pu content).
 
 \end{itemize}
 
@@ -339,23 +339,42 @@ calculation is performed and the material remains unchanged.  This error does
 not accumulate because the next time the material's decay function is invoked,
 the time change will be larger.
 
-\Cyclus has no notion of ``tracked'' versus ``untracked'' nuclides.  In \Cyclus, the composition of a material
-is represented by an arbitrarily large list (potentially thousands) of
-nuclides.  Agents are free to treat nuclides present in materials any way they
-please - including ignoring them.  It is the responsibility of archetype
-developers to choose how to handle potentially full-fidelity compositions.
+\Cyclus has no notion of ``tracked'' versus ``untracked'' nuclides.  In
+\Cyclus, the composition of a material is represented by an arbitrarily large
+list (potentially thousands) of nuclides.  Agents are free to treat nuclides
+present in materials any way they please - including ignoring them.  It is the
+responsibility of archetype developers to choose how to handle potentially
+full-fidelity compositions.
 
 In large simulations, many material objects may change frequently.  Material
 decay can also contribute significantly to such changes.  In order to help
 avoid unnecessary runtime performance and database size impacts, compositions
-in \Cyclus have some special features.  In particular, compositions are stored
-immutably in the database so that multiple material objects can hold references
-to the same composition safely.  Additionally, when transmutation and decay
-result in new compositions, those are cached for additional avoidance of
-redundancy. Composition immutability in concert with decay history caching help
-eliminate many redundant decay calculations in addition to reducing the total
-number of composition objects recorded in the database.
-\TODO{do we want a diagram helping show this composition caching?}
+in \Cyclus have some special features.  In particular, compositions are
+immutable once created.  This allows multiple material objects to hold
+references to the same composition safely.  Additionally, new compositions
+resulting from decay are cached and used to avoid redundant decay
+calculations.  Figure \ref{fig:compositions} illustrates how this decay
+history cache works. Composition immutability in concert with decay history
+caching help eliminate many redundant calculations in addition to reducing the
+total number of composition entries recorded in the database.
+
+
+\begin{figure}[htbp!]
+\begin{center}
+\includegraphics{./images/compositions}
+\end{center}
+\caption{
+A simple decay line cache holding compositions A, B, C, and a
+yet-uncomputed composition D.  B comes from decaying A 1 time step.  C comes
+from decaying B 2 time steps, etc.  Black represents the cache for this
+particular composition chain. Blue indicates decay operations that can be
+satisfied by cache lookups.   If A needs to be decayed 1 time step (A +1), a
+quick lookup returns the previously computed B.  Decaying B 3 time steps
+requires a decay calculation to compute a new composition D, but subsequent
+requests such as decaying A 4 time steps will not require any recalculation.
+}
+\label{fig:compositions}
+\end{figure}
 
 % although this abbreviation is provided by the glossary capability, I think
 % the DRE is so important that it should be redefined here.

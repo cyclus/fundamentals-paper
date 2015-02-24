@@ -1,0 +1,29 @@
+digraph CompositionDecay {
+    overlap = false;
+    rankdir=TB;
+    clusterrank=local;
+    edge [fontsize=12];
+    node [fontsize=18];
+
+    {
+        node [style=dashed];
+        D;
+    }
+
+    subgraph cluster_main {
+        rank=same;
+        labelloc=b;
+        edge [fontsize=16];
+        A -> B [weight=1000, label=" dt=1"];
+        B -> C [weight=1000, label=" dt=2"];
+        C -> D [weight=1000, label=" dt=1", style="dashed"];
+        style="invis";
+    }
+
+    edge [fontcolor=blue, color=blue];
+    A -> B [label=" decay A +1"];
+    A -> C [label=" decay A +3"];
+    B -> C [label=" decay B +2"];
+    B -> D [label=" decay B +3", weight=100, fontcolor=red, color=red, penwidth=3];
+    A -> D [label=" decay A +4"];
+}

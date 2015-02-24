@@ -1,0 +1,12 @@
+digraph ResourceFlows {
+    overlap = false;
+    nodesep=1.0;
+    edge [fontsize=9];
+    "DU Source" -> "Spent Fuel Fab" [label="depleted U\n(7.11e+05 kg)"];
+    "Enrichment" -> "LWR" [label="UOX fuel\n(1.04e+06 kg)"];
+    "LWR" -> "Separations" [label="spent fuel\n(1.08e+06 kg)"];
+    "LWR" -> "Repository" [label="waste\n(0 kg)" style="dashed"];
+    "Separations" -> "Repository" [label="waste\n(1.07e+06 kg)"];
+    "Separations" -> "Spent Fuel Fab" [label="Pu stream\n(1.38e+04 kg)"];
+    "Spent Fuel Fab" -> "LWR" [label="MOX fuel\n(1.2e+05 kg)"];
+}

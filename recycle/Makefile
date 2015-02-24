@@ -31,4 +31,6 @@ clean:
 	rm -f *.pudat
 	rm -f *.eps *.svg
 
+.PRECIOUS: %.dot
+
 .PHONY: all clean update

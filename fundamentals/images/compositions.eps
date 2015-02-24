@@ -1,8 +1,8 @@
 %!PS-Adobe-3.0 EPSF-3.0
 %%Creator: graphviz version 2.38.0 (20140413.2041)
-%%Title: ResourceFlows
+%%Title: CompositionDecay
 %%Pages: 1
-%%BoundingBox: 36 36 423 448
+%%BoundingBox: 36 36 503 396
 %%EndComments
 save
 %%BeginProlog
@@ -179,249 +179,246 @@ def
 %%EndSetup
 setupLatin1
 %%Page: 1 1
-%%PageBoundingBox: 36 36 423 448
+%%PageBoundingBox: 36 36 503 396
 %%PageOrientation: Portrait
 0 0 1 beginpage
 gsave
-36 36 387 412 boxprim clip newpath
+36 36 467 360 boxprim clip newpath
 1 1 set_scale 0 rotate 40 40 translate
-% DU Source
+% cluster_main
+gsave
+grestore
+% D
+gsave
+1 setlinewidth
+dashed
+0 0 0 nodecolor
+235 35.8 27 19.6 ellipse_path stroke
+0 0 0 nodecolor
+18 /Times-Roman set_font
+227.5 31.4 moveto 15 (D) alignedtext
+grestore
+% A
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-81.24 386 60.39 18 ellipse_path stroke
+235 316.59 27 19.6 ellipse_path stroke
 0 0 0 nodecolor
-14 /Times-Roman set_font
-42.74 382.3 moveto 77 (DU Source) alignedtext
+18 /Times-Roman set_font
+228.5 312.19 moveto 13 (A) alignedtext
 grestore
-% Spent Fuel Fab
+% A->D
+gsave
+1 setlinewidth
+0.66667 1 1 edgecolor
+newpath 210.03 308.35 moveto
+155.45 291.01 32.44 242.8 59 167.2 curveto
+76.66 116.9 90.69 104.67 134 73.6 curveto
+153.46 59.64 178.79 50.43 199.21 44.71 curveto
+stroke
+0.66667 1 1 edgecolor
+newpath 200.31 48.04 moveto
+209.09 42.11 lineto
+198.53 41.27 lineto
+closepath fill
+1 setlinewidth
+solid
+0.66667 1 1 edgecolor
+newpath 200.31 48.04 moveto
+209.09 42.11 lineto
+198.53 41.27 lineto
+closepath stroke
+0.66667 1 1 edgecolor
+12 /Times-Roman set_font
+59 173.1 moveto 75 ( decay A +4) alignedtext
+grestore
+% B
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-81.24 294 81.49 18 ellipse_path stroke
+235 222.99 27 19.6 ellipse_path stroke
 0 0 0 nodecolor
-14 /Times-Roman set_font
-26.74 290.3 moveto 109 (Spent Fuel Fab) alignedtext
+18 /Times-Roman set_font
+228 218.59 moveto 14 (B) alignedtext
 grestore
-% DU Source->Spent Fuel Fab
+% A->B
 gsave
 1 setlinewidth
 0 0 0 edgecolor
-newpath 81.24 367.65 moveto
-81.24 354.82 81.24 337.11 81.24 322.38 curveto
+newpath 235 296.61 moveto
+235 284.09 235 267.43 235 253.22 curveto
 stroke
 0 0 0 edgecolor
-newpath 84.74 322.3 moveto
-81.24 312.3 lineto
-77.74 322.3 lineto
+newpath 238.5 252.95 moveto
+235 242.95 lineto
+231.5 252.95 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 84.74 322.3 moveto
-81.24 312.3 lineto
-77.74 322.3 lineto
+newpath 238.5 252.95 moveto
+235 242.95 lineto
+231.5 252.95 lineto
 closepath stroke
 0 0 0 edgecolor
-9 /Times-Roman set_font
-82.24 342.8 moveto 52 (depleted U) alignedtext
-0 0 0 edgecolor
-9 /Times-Roman set_font
-81.24 332.8 moveto 54 (\(7e+05 kg\)) alignedtext
+16 /Times-Roman set_font
+235 265.99 moveto 45 ( dt=1) alignedtext
 grestore
-% LWR
+% A->B
+gsave
+1 setlinewidth
+0.66667 1 1 edgecolor
+newpath 256.61 304.21 moveto
+265.93 298.04 275.86 289.49 281 278.79 curveto
+284.47 271.58 284.47 268 281 260.79 curveto
+277.39 253.28 271.41 246.81 264.93 241.5 curveto
+stroke
+0.66667 1 1 edgecolor
+newpath 266.74 238.48 moveto
+256.61 235.38 lineto
+262.6 244.12 lineto
+closepath fill
+1 setlinewidth
+solid
+0.66667 1 1 edgecolor
+newpath 266.74 238.48 moveto
+256.61 235.38 lineto
+262.6 244.12 lineto
+closepath stroke
+0.66667 1 1 edgecolor
+12 /Times-Roman set_font
+283 266.69 moveto 75 ( decay A +1) alignedtext
+grestore
+% C
 gsave
 1 setlinewidth
 0 0 0 nodecolor
-260.24 202 33.6 18 ellipse_path stroke
+235 129.4 27 19.6 ellipse_path stroke
 0 0 0 nodecolor
-14 /Times-Roman set_font
-242.24 198.3 moveto 36 (LWR) alignedtext
+18 /Times-Roman set_font
+228 125 moveto 14 (C) alignedtext
 grestore
-% Spent Fuel Fab->LWR
+% A->C
+gsave
+1 setlinewidth
+0.66667 1 1 edgecolor
+newpath 262.03 316.46 moveto
+291.94 315.76 338.97 309.44 362 278.79 curveto
+391.79 239.14 391.79 206.85 362 167.2 curveto
+341.49 139.9 301.94 131.9 272.4 129.99 curveto
+stroke
+0.66667 1 1 edgecolor
+newpath 272.17 126.47 moveto
+262.03 129.53 lineto
+271.86 133.47 lineto
+closepath fill
+1 setlinewidth
+solid
+0.66667 1 1 edgecolor
+newpath 272.17 126.47 moveto
+262.03 129.53 lineto
+271.86 133.47 lineto
+closepath stroke
+0.66667 1 1 edgecolor
+12 /Times-Roman set_font
+384 219.89 moveto 75 ( decay A +3) alignedtext
+grestore
+% B->D
+gsave
+3 setlinewidth
+0 1 1 edgecolor
+newpath 210.71 214 moveto
+183.95 203.72 142.29 183.06 124 149.2 curveto
+115.64 133.71 115.64 125.08 124 109.6 curveto
+140.22 79.57 174.81 59.92 201.1 48.69 curveto
+stroke
+0 1 1 edgecolor
+newpath 202.76 51.8 moveto
+210.71 44.8 lineto
+200.13 45.31 lineto
+closepath fill
+3 setlinewidth
+solid
+0 1 1 edgecolor
+newpath 202.76 51.8 moveto
+210.71 44.8 lineto
+200.13 45.31 lineto
+closepath stroke
+0 1 1 edgecolor
+12 /Times-Roman set_font
+124 126.3 moveto 75 ( decay B +3) alignedtext
+grestore
+% B->C
 gsave
 1 setlinewidth
 0 0 0 edgecolor
-newpath 112.42 277.32 moveto
-144.6 261.14 194.6 236 227.39 219.52 curveto
+newpath 235 203.02 moveto
+235 190.49 235 173.83 235 159.62 curveto
 stroke
 0 0 0 edgecolor
-newpath 229.2 222.53 moveto
-236.56 214.91 lineto
-226.05 216.27 lineto
+newpath 238.5 159.35 moveto
+235 149.35 lineto
+231.5 159.35 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 229.2 222.53 moveto
-236.56 214.91 lineto
-226.05 216.27 lineto
+newpath 238.5 159.35 moveto
+235 149.35 lineto
+231.5 159.35 lineto
 closepath stroke
 0 0 0 edgecolor
-9 /Times-Roman set_font
-191.74 250.8 moveto 45 (MOX fuel) alignedtext
-0 0 0 edgecolor
-9 /Times-Roman set_font
-187.24 240.8 moveto 54 (\(1e+05 kg\)) alignedtext
+16 /Times-Roman set_font
+235 172.4 moveto 45 ( dt=2) alignedtext
 grestore
-% Enrichment
+% B->C
 gsave
 1 setlinewidth
-0 0 0 nodecolor
-313.24 294 65.79 18 ellipse_path stroke
-0 0 0 nodecolor
-14 /Times-Roman set_font
-270.74 290.3 moveto 85 (Enrichment) alignedtext
+0.66667 1 1 edgecolor
+newpath 256.61 210.61 moveto
+265.93 204.45 275.86 195.89 281 185.2 curveto
+284.47 177.99 284.47 174.41 281 167.2 curveto
+277.39 159.68 271.41 153.21 264.93 147.9 curveto
+stroke
+0.66667 1 1 edgecolor
+newpath 266.74 144.88 moveto
+256.61 141.78 lineto
+262.6 150.53 lineto
+closepath fill
+1 setlinewidth
+solid
+0.66667 1 1 edgecolor
+newpath 266.74 144.88 moveto
+256.61 141.78 lineto
+262.6 150.53 lineto
+closepath stroke
+0.66667 1 1 edgecolor
+12 /Times-Roman set_font
+283 173.1 moveto 75 ( decay B +2) alignedtext
 grestore
-% Enrichment->LWR
+% C->D
 gsave
 1 setlinewidth
+dashed
 0 0 0 edgecolor
-newpath 303.27 276.07 moveto
-295.38 262.66 284.22 243.72 275.25 228.48 curveto
+newpath 235 109.42 moveto
+235 96.89 235 80.23 235 66.03 curveto
 stroke
 0 0 0 edgecolor
-newpath 278.08 226.39 moveto
-269.99 219.55 lineto
-272.05 229.94 lineto
+newpath 238.5 65.75 moveto
+235 55.75 lineto
+231.5 65.75 lineto
 closepath fill
 1 setlinewidth
 solid
 0 0 0 edgecolor
-newpath 278.08 226.39 moveto
-269.99 219.55 lineto
-272.05 229.94 lineto
+newpath 238.5 65.75 moveto
+235 55.75 lineto
+231.5 65.75 lineto
 closepath stroke
 0 0 0 edgecolor
-9 /Times-Roman set_font
-305.24 250.8 moveto 43 (UOX fuel) alignedtext
-0 0 0 edgecolor
-9 /Times-Roman set_font
-292.24 240.8 moveto 69 (\(1.06e+06 kg\)) alignedtext
-grestore
-% Repository
-gsave
-1 setlinewidth
-0 0 0 nodecolor
-198.24 18 61.19 18 ellipse_path stroke
-0 0 0 nodecolor
-14 /Times-Roman set_font
-159.24 14.3 moveto 78 (Repository) alignedtext
-grestore
-% LWR->Repository
-gsave
-1 setlinewidth
-0 0 0 edgecolor
-newpath 260.11 183.65 moveto
-259.22 155.05 254.54 96.87 232.24 54 curveto
-230.16 50 227.48 46.16 224.54 42.57 curveto
-stroke
-0 0 0 edgecolor
-newpath 227.12 40.21 moveto
-217.8 35.17 lineto
-221.95 44.92 lineto
-closepath fill
-1 setlinewidth
-solid
-0 0 0 edgecolor
-newpath 227.12 40.21 moveto
-217.8 35.17 lineto
-221.95 44.92 lineto
-closepath stroke
-0 0 0 edgecolor
-9 /Times-Roman set_font
-268.74 112.8 moveto 27 (waste) alignedtext
-0 0 0 edgecolor
-9 /Times-Roman set_font
-255.24 102.8 moveto 54 (\(8e+04 kg\)) alignedtext
-grestore
-% Separations
-gsave
-1 setlinewidth
-0 0 0 nodecolor
-68.24 110 65.79 18 ellipse_path stroke
-0 0 0 nodecolor
-14 /Times-Roman set_font
-25.74 106.3 moveto 85 (Separations) alignedtext
-grestore
-% LWR->Separations
-gsave
-1 setlinewidth
-0 0 0 edgecolor
-newpath 232.78 191.5 moveto
-214.52 184.93 190.14 175.66 169.24 166 curveto
-146.87 155.66 122.59 142.5 103.44 131.65 curveto
-stroke
-0 0 0 edgecolor
-newpath 105.18 128.61 moveto
-94.76 126.69 lineto
-101.7 134.69 lineto
-closepath fill
-1 setlinewidth
-solid
-0 0 0 edgecolor
-newpath 105.18 128.61 moveto
-94.76 126.69 lineto
-101.7 134.69 lineto
-closepath stroke
-0 0 0 edgecolor
-9 /Times-Roman set_font
-170.24 158.8 moveto 52 (wpent Fuel) alignedtext
-0 0 0 edgecolor
-9 /Times-Roman set_font
-169.24 148.8 moveto 54 (\(1e+06 kg\)) alignedtext
-grestore
-% Separations->Spent Fuel Fab
-gsave
-1 setlinewidth
-0 0 0 edgecolor
-newpath 69.47 128.21 moveto
-71.73 159.85 76.56 227.49 79.28 265.54 curveto
-stroke
-0 0 0 edgecolor
-newpath 75.82 266.15 moveto
-80.02 275.88 lineto
-82.8 265.65 lineto
-closepath fill
-1 setlinewidth
-solid
-0 0 0 edgecolor
-newpath 75.82 266.15 moveto
-80.02 275.88 lineto
-82.8 265.65 lineto
-closepath stroke
-0 0 0 edgecolor
-9 /Times-Roman set_font
-86.74 204.8 moveto 48 (Pu stream) alignedtext
-0 0 0 edgecolor
-9 /Times-Roman set_font
-76.24 194.8 moveto 69 (\(1.08e+04 kg\)) alignedtext
-grestore
-% Separations->Repository
-gsave
-1 setlinewidth
-0 0 0 edgecolor
-newpath 91.18 93.12 moveto
-112.26 78.53 143.66 56.79 167.01 40.62 curveto
-stroke
-0 0 0 edgecolor
-newpath 169.3 43.29 moveto
-175.53 34.72 lineto
-165.32 37.54 lineto
-closepath fill
-1 setlinewidth
-solid
-0 0 0 edgecolor
-newpath 169.3 43.29 moveto
-175.53 34.72 lineto
-165.32 37.54 lineto
-closepath stroke
-0 0 0 edgecolor
-9 /Times-Roman set_font
-166.24 66.8 moveto 27 (waste) alignedtext
-0 0 0 edgecolor
-9 /Times-Roman set_font
-145.24 56.8 moveto 69 (\(9.89e+05 kg\)) alignedtext
+16 /Times-Roman set_font
+235 78.8 moveto 45 ( dt=1) alignedtext
 grestore
 endpage
 showpage
