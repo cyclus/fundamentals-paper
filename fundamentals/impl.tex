@@ -381,9 +381,10 @@ inventory of natural uranium or its total capacity to provide enrichment (SWUs),
 attach such constraints to its bids.
 
 Any potential resource transfer, i.e., a bid or a request, may be denoted as
-\textit{exclusive}. An exclusive transfer must either be met fully or not at all
-in order to support concepts such as the trading of individual reactor
-assemblies.  In combination with the notion of mutual requests, complex instances
+\textit{exclusive}. An exclusive transfer excludes partial fulfilment; it must
+either be met fully or not at all. This mode supports concepts such as the
+trading of individual reactor assemblies.  In combination with the notion of
+mutual requests, complex instances
 of supply and demand are enabled.
 
 Finally, requesting facilities, institutions and regions may apply
@@ -400,8 +401,8 @@ optimally using a mathematical program or approximately by a simulation-based
 heuristic \cite{gidden_agent-based_2014}. If any trade is denoted as exclusive, e.g., if an
 analyst desires an assembly-fidelity model, then either a heuristic must be used
 or exchanges must be represented as a \gls{MILP}. If no exclusive trades exist,
-a \gls{LP} model may be used. In practice, LPs solve much faster than
-\gls{MILP}s. However, both capabilities exist in \Cyclus in order to
+a \gls{LP} model may be used. In practice, \glspl{LP} solve much faster than
+\glspl{MILP}. However, both capabilities exist in \Cyclus in order to
 provide users with the desired level of fidelity.
 
 Trades between agents are initiated by the \Cyclus kernel after a solution to
