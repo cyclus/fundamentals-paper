@@ -579,8 +579,7 @@ in, garbage out} phenomenon.
 Multiple strategies, collectively known as \emph{\gls{QA}}, have
 been invented to mitigate structural and algorithmic errors
 in software. These include \emph{\gls{VV}}
-\cite{boehm_software_1989}, \emph{\gls{UQ}}
-\cite{sacks_design_1989}, testing, and others.
+\cite{boehm_software_1989}, testing, and others.
 
 Nuclear engineering software quality is often governed by \gls{NQA1}, an
 \gls{ASME} specification
@@ -590,10 +589,6 @@ whose latest revision appeared in 2009 \cite{asme_nqa-1a-2009_2009}.
 interpreting \gls{NQA1} in a manner similar to the process adopted by the
 \gls{DOE} within \gls{NEAMS} \cite{neams_nuclear_2013} or by the PyNE toolkit
 \cite{biondo_quality_2014}.
-
-Since \Cyclus modeling decisions are made
-by third party archetype developers or users, the most important feature of
-\gls{QA} is verification. Validation of the \Cyclus core in a general sense is infeasible as it is contingent on the archetypes comprising a simulation, and to be meaningful \gls{UQ} must likewise extend beyond the kernel.
 
 Verification may be defined as the question, ``Is \Cyclus being built correctly?''
 To answer this question, \Cyclus relies on software development best practices
@@ -611,15 +606,6 @@ simulators that use other modeling paradigms are underway
 exercises are more likely to bring into relief the differences between the modeling
 paradigms than supply substantial \gls{QA} and validation.
 
-Lastly, \gls{UQ} is a process that is used on specific simulation
-instantiations to statistically determine quality. \gls{UQ} is a process that applies
-to the running of many \Cyclus simulations. The kernel itself, as a generic fuel cycle
-simulator, cannot make reliable statements about the uncertainty of metrics for a particular fuel
-cycle. Any \gls{UQ} results are applicable only to the scenario that is under
-analysis by the user. \Cyclus is not a substitute for due diligence on behalf of the fuel
-cycle modeler. Thus, \gls{UQ} is envisioned to be beyond the scope of core development
-and in the domain of the expert user.
-
 Sections \ref{sec:qa-testing}-\ref{sec:qa-ci} discuss in greater detail the software
 development components that comprise the \Cyclus verification strategy.
 Each of these on its own is a valuable addition to \gls{QA} but is cannot be the
@@ -636,27 +622,18 @@ simulator does not work as intended on a new system.
 Testing serves a critical role in \gls{QA} because it directly compares the
 results of running software versus the expected behavior of the software.
 In \Cyclus, three categories of tests are defined: unit tests, integration
-tests, and regression tests.
-
-It is important to note that before a proposed
-code change is allowed into \Cyclus,  the change must be covered by a test, either new or existing, and all tests must pass.  Of course, test code is
-just as likely to contain errors as the code it is designed to test.
-However, it is assumed that diligence and one level of testing
-is sufficient to meet the aims of \gls{QA} and prevent an infinite recursion
-of testing-the-tests.
+tests, and regression tests.  It is important to note that before a proposed
+code change is allowed into \Cyclus,  the change must be covered by a test, either new or existing, and all tests must pass.
 
 \paragraph{Unit Tests}
 
-Unit tests compare the results of the smallest code \emph{unit},
-typically a single function or a class. What constitutes the smallest code
-unit depends on the context of the specific unit in question. While this is
-an ambiguous definition, when combined with a philosophy of keeping units as small
-as possible, it is often clear in practice what needs to be tested.
-
-\Cyclus uses the Google Test framework \cite{inc_googletest_2008} as a harness for running unit
-tests. Sufficient unit tests are required for any proposed change to the \Cyclus
-code base. Currently, \Cyclus implements over 450 unit tests and \Cycamore implements
-85.  These cover approximately 65\% of their respective code bases, and these numbers are expected to grow over time.
+Unit tests compare the results of the smallest code \emph{unit}, typically a
+single function or a class.  \Cyclus uses the Google Test framework
+\cite{inc_googletest_2008} as a harness for running unit tests. Sufficient unit
+tests are required for any proposed change to the \Cyclus code base. Currently,
+\Cyclus implements over 450 unit tests and \Cycamore implements 85.  These
+cover approximately 65\% of their respective code bases, and these numbers are
+expected to grow over time.
 
 \paragraph{Integration Tests}
 
@@ -665,11 +642,11 @@ Integration tests combine multiple elements of the
 simply because the gears (units) are made correctly does not imply that the
 clock (integration) will run smoothly, run at all, or give the correct time.
 In \Cyclus and \Cycamore, integration tests are performed by running sample
-simulations for scenarios that are sufficiently simple to predict the results and verifying
-        that results match those predictions. A set of standard input files have thus been constructed.
-Python is used to run the same set of \Cyclus simulations as a subprocess for each integration test.
- The results are then inspected and compared via Nose \cite{pellerin_nose_2007}, a Python test framework.
-In this way, \Cyclus code units are tested in the full context that they will be
+simulations for scenarios that are sufficiently simple to predict the results
+and verifying that results match those predictions. A set of standard input
+files are run, then the output is inspected and compared via Nose
+\cite{pellerin_nose_2007}, a Python test framework.  In this way, \Cyclus code
+units are tested in the full context that they will be
 executed. This category of testing is especially useful for ensuring that
 major \Cyclus components are functioning as expected.
 
@@ -679,32 +656,21 @@ Regression tests ensure significant unintended changes do not
 occur over the course of \Cyclus development. Such a change is called a
 \emph{regression} because the new version is almost always wrong.
 Regression tests are implemented similarly to integration tests.
-Nose is used to execute full \Cyclus simulations whose results
-are then compared. In this category, however, the comparison is done against
+In this category, however, the comparison is done against
 the output of the same input file when run with a previous version of \Cyclus,
 typically the last released version.
 In some sense, regression tests are `dumb' in that they do
 not care about the contents of a simulation being correct, only whether or not
-it changed. They pick up glaring time-sensitive mistakes that may
-not appear elsewhere, though they do not purport to make claims about the
-quality of the physics modeled. Regression tests are primarily implemented
-in \Cycamore because its archetypes are sophisticated enough
-to make interesting simulations.
+it changed.
 
 \subsubsection{Documentation}
 
-All of the public interface (the \gls{API}) must be documented as required by the \Cyclus
-\gls{QA} policy. This certifies that the intention for a code unit is communicated
-in way that is separate from its implementation. This policy is important
-because implementations are often wrong and do not reliably communicate their intent. Truly trustworthy communication about what
-software should be doing occurs when the author explicitly states the
-goals of an \gls{API} in prose form. Future developers are then able to
-compare the implementation versus the documentation to discern whether or not
-these are in agreement. Documentation is thus a secondary higher-level information
-stream.  In \Cyclus, this information is aggregated together into static
-websites with the Doxygen \cite{van_heesch_doxygen:_2008} and Sphinx
-\cite{brandl_sphinx_2014}
-tools, and can be accessed at \url{http://fuelcycle.org}.
+All of the public interface (the \gls{API}) must be documented as required by
+the \Cyclus \gls{QA} policy. This certifies that the intended goals of an
+\gls{API} are communicated explicitly by the author in prose form.  In \Cyclus,
+this information is aggregated together into static websites with the Doxygen
+\cite{van_heesch_doxygen:_2008} and Sphinx \cite{brandl_sphinx_2014} tools, and
+can be accessed at \url{http://fuelcycle.org}.
 
 \subsubsection{Version Control}
 
@@ -765,7 +731,7 @@ improves code legibility and, therefore, robustness \cite{cohen_modern_2010}.
 \subsubsection{Continuous Integration}
 \label{sec:qa-ci}
 
-\emph{\acrfull{CI}} is the idea that software should be tested and validated
+\emph{Continuous integration (CI)} is the idea that software should be tested and validated
 as it is being developed, rather than as a final stage in a longer development
 cycle.  Under \gls{CI}, every pull request (proposed code change) is tested independently immediately after
 it is proposed. Such tests are run on all officially supported platforms.
