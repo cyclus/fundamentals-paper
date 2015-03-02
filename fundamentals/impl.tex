@@ -649,11 +649,11 @@ Integration tests combine multiple elements of the
 simply because the gears (units) are made correctly does not imply that the
 clock (integration) will run smoothly, run at all, or give the correct time.
 In \Cyclus and \Cycamore, integration tests are performed by running sample
-simulations for scenarios that are sufficiently simple to predict the results and verifying
-        that results match those predictions. A set of standard input files have thus been constructed.
-Python is used to run the same set of \Cyclus simulations as a subprocess for each integration test.
- The results are then inspected and compared via Nose \cite{pellerin_nose_2007}, a Python test framework.
-In this way, \Cyclus code units are tested in the full context that they will be
+simulations for scenarios that are sufficiently simple to predict the results
+and verifying that results match those predictions. A set of standard input
+files are run, then the output is inspected and compared via Nose
+\cite{pellerin_nose_2007}, a Python test framework.  In this way, \Cyclus code
+units are tested in the full context that they will be
 executed. This category of testing is especially useful for ensuring that
 major \Cyclus components are functioning as expected.
 
