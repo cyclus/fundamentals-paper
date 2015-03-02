@@ -586,8 +586,7 @@ in, garbage out} phenomenon.
 Multiple strategies, collectively known as \emph{\gls{QA}}, have
 been invented to mitigate structural and algorithmic errors
 in software. These include \emph{\gls{VV}}
-\cite{boehm_software_1989}, \emph{\gls{UQ}}
-\cite{sacks_design_1989}, testing, and others.
+\cite{boehm_software_1989}, testing, and others.
 
 Nuclear engineering software quality is often governed by \gls{NQA1}, an
 \gls{ASME} specification
@@ -613,15 +612,6 @@ simulators that use other modeling paradigms are underway
 \cite{huff_extensions_2014}. However, such
 exercises are more likely to bring into relief the differences between the modeling
 paradigms than supply substantial \gls{QA} and validation.
-
-Lastly, \gls{UQ} is a process that is used on specific simulation
-instantiations to statistically determine quality. \gls{UQ} is a process that applies
-to the running of many \Cyclus simulations. The kernel itself, as a generic fuel cycle
-simulator, cannot make reliable statements about the uncertainty of metrics for a particular fuel
-cycle. Any \gls{UQ} results are applicable only to the scenario that is under
-analysis by the user. \Cyclus is not a substitute for due diligence on behalf of the fuel
-cycle modeler. Thus, \gls{UQ} is envisioned to be beyond the scope of core development
-and in the domain of the expert user.
 
 Sections \ref{sec:qa-testing}-\ref{sec:qa-ci} discuss in greater detail the software
 development components that comprise the \Cyclus verification strategy.
