@@ -154,13 +154,13 @@ cycle simulator.
 
 The \Cyclus paradigm enables targeted contribution and collaboration within the
 nuclear fuel cycle analysis community to achieve two important goals: lower the
-barrier for innvoative nuclear technologies to be included in fuel cycle analysis 
+barrier for innvoative nuclear technologies to be included in fuel cycle analysis
 while improving the ability to compare simulations with and without those innovative
 concepts.  This essential capability is absent in
 previous simulators where user customization and extensibility were not design
 objectives.  While the \emph{modular and open architecture} of
-\Cyclus is necessary to meet these goals, it is not sufficient.  
-\emph{Agent interchangeability} is required to facilitates direct comparison 
+\Cyclus is necessary to meet these goals, it is not sufficient.
+\emph{Agent interchangeability} is required to facilitates direct comparison
 of alternative modeling methodologies and facility concepts.  Finally, \Cyclus is
 applicable to a broader range of fidelities, scales, and applications than
 other simulators, due to the flexibility and generality of its
@@ -172,9 +172,10 @@ expertise (e.g., reprocessing and advanced fuel fabrication), without having to
 create a model of the entire fuel cycle to serve as its host.  \Cyclus supports
 them by separating the problem of modeling a physics-dependent supply chain into
 two distinct components: a simulation kernel and archetypes that interact with
-the kernel. The kernel is responsible for supporting the deployment and
+it. The kernel is responsible for supporting the deployment and
 interaction logic of entities in the simulation.  Physics calculations and
-customized behaviors are implemented within archetypes.
+customized behaviors of those entities are implemented within \emph{archetype}
+classes.
 
 Ultimately, modeling the evolution of a physics-dependent, international
 nuclear fuel supply chain is a multi-scale problem which existing tools cannot
