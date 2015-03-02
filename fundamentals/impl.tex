@@ -5,16 +5,16 @@
 % Equations
 % Figures
 
-A modular, \acrfull{ABM} approach is ideal for solving complex, coupled,
+A modular, \acrfull{ABM} approach is ideal for solving the coupled,
 physics-dependent supply chain problems involving material routing, facility
-deployment, and regional and institutional hierarchies. Additionally, the choice
+deployment, and regional and institutional hierarchies which arise in \Cyclus. Additionally, the choice
 to build \Cyclus on open source libraries in modern programming languages
 enables both remote and multiprocess execution on a number of platforms. This
 section begins by describing the general design features that make \Cyclus both
 flexible and powerful: cluster-ready software and dynamic libraries.  The
-\gls{ABM} framework is then described, focusing on how \gls{ABM} is implemented
-in a fuel cycle context and the relative benefits thereof. A discussion of the
-time-dependent treatement of discrete resources follows, focusing on the
+\gls{ABM} framework is then described, focusing on its implementation and benefits
+in a fuel cycle context. A discussion of the
+time-dependent treatment of discrete resources follows, focusing on the
 \gls{DRE}. Support for users and developers via the \Cycamore library of
 archetypes and the experimental toolkit are also presented.  Lastly, the methods
 for quality assurance are outlined.
@@ -26,28 +26,28 @@ for quality assurance are outlined.
 % enables FC analyses that can compare ‘apples to apples'
 
 The architecture of \Cyclus allows developers to define nuclear fuel cycle
-agents and processes independent of the simulation logic. To achieve this,
-agents are developed using the \Cyclus framework \gls{API}, a set of functions
-and protocols which assist in agent development and specify how agents should be
-defined.  This encapsulated `plug-in' design choice provides two major
-benefits. First, analysts across research institutions can take advantage of the
+processes independent of the simulation logic. To achieve this, \emph{agents} are
+developed which represent facilities, institutions, and regions comprising the
+nuclear fuel cycle. These agents are created using the \Cyclus framework
+\gls{API}, a set of functions and protocols which assist in agent development
+and specify how agents should be defined.  This encapsulated `plug-in' design
+choice provides two major benefits. First, analysts can take advantage of the
 simulation logic \gls{API} and archetype ecosystem when they apply \Cyclus to
-their specific problem.  A researcher can focus on creating or customizing
+their specific problem.  A modeler can focus on creating or customizing
 nuclear facility, institution, resource, and toolkit models within their
 specific area of technical expertise. Second, because \Cyclus uses a modular
 archetype approach, comparing two archetypes is straightforward. For example, if
 an analyst would like to compare the effect of using different models to
-determine the input fuel composition for fast reactors, a variety of fuel
+determine the input fuel composition for fast reactors, fuel
 fabrication archetypes can be developed and interchanged while keeping the rest
-of the fuel cycle fixed to compare fuel fabrication designs.
+of the models used in the simulation fixed.
 
 \subsubsection{Cluster-Ready Software}
 
-Groundbreaking insights and new classes of problems can be investigated by
-leveraging modern massive computing resources.
+Innovative approaches to designing and optimizing robust fuel cycle strategies can become available by leveraging modern parallel computing resources.  For example, large scale sensitivity analyses to quantify the dependence of fuel cycle outcomes on potentially hundreds of uncertain parameters would only be feasible in a massively parallelized environment.
 However, many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits
 performance on and compatibility with resource computing infrastructures. This
-severely constrains the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity
+constrains the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity
 analyses and other multi-simulation studies. \Cyclus, on the other hand, is
 primarily written in \texttt{C++} and relies on
 libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms,
@@ -59,12 +59,10 @@ on large computer systems, such as \gls{HTC} systems.
 Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
 implementation of a \Cyclus-enabled application on such a large computer system,
 uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
-studies on \Cyclus' resource exchange optimization solvers. To date, it has been
-used to run over $10^5$ jobs, comprising more than 60,000 total compute hours,
-using the \Cyclus library via its resource exchange \gls{API}.  The \gls{HTC}
-infrastructure has separately been utilized to run and collect information from
-full \Cyclus simulations running in parallel on $10^3$ machines reliably for
-order $10^5$ simulations.
+studies. Cyclopts has run over $10^5$ jobs, comprising more than 60,000 total
+compute hours. The \gls{HTC} infrastructure has separately been utilized to
+run and collect information from full \Cyclus simulations running in parallel
+on $10^3$ machines reliably for order $10^5$ simulations.
 
 \subsubsection{Dynamically Loadable Libraries}
 
@@ -76,21 +74,23 @@ in the other technologies in the simulation.
 Similarly, individual developers may explore different levels of complexity within their archetypes, including
 wrapping other simulation tools as loadable libraries within \Cyclus.
 
-\Cyclus acheives this behavior by implementing its generic \gls{API} and
-modular architecture via a suite of dynamically loadable plug-in libraries, as
-pictured in Figure \ref{fig:framework}.
-Though common in modern software architecture, such a plug-in pattern has not
-previously been implemented in a nuclear fuel cycle simulator. Dynamically
-loadable libraries are the primary mechanism for extending \Cyclus' capability.
-This approach provides encapsulation: the core framework operates
-independently from the individual plug-in libraries. Thus, any customization or
-extension is implemented only in the loadable library.
+\Cyclus achieves this behavior by implementing generic \glspl{API} and a
+modular architecture via a suite of dynamically loadable plug-in libraries
+(pictured in Figure \ref{fig:framework}). By anticipating the possible classes of
+information required by the simulation kernel, the \Cyclus \glspl{API}
+facilitate information passing between the plug-in agents and the core
+framework.
+Though common in modern software architecture, such a plug-in paradigm has not
+previously been implemented in a nuclear fuel cycle simulator.
+It allows the core \Cyclus framework to operate independently from the plug-in libraries, and the
+dynamically loadable plug-ins to be the primary mechanism for extending \Cyclus'
+capabilities independent of the core.
 
 \begin{figure}[htbp!]
 \begin{center}
 \includegraphics[width=\textwidth]{./images/framework}
 \end{center}
-\caption{The \Cyclus core provides \gls{API}s that abstract away the details in
+\caption{The \Cyclus core provides \glspl{API} that abstract away the details in
 the kernel and allow the archetypes to be loaded into the simulation in a modular
 fashion.}
 \label{fig:framework}
@@ -99,9 +99,7 @@ fashion.}
 
 An additional benefit is the ability for
 contributors to choose different distribution and licensing strategies
-for their contributions. By allowing models to have varied
-availability, the security concerns of developers can be
-assuaged (See Figure \ref{fig:modifiedopen}).
+for their contributions. Users and modelers control the accessibility of their archetypes and data sets (See Figure \ref{fig:modifiedopen}).
 In particular, since the clean plug-in architecture loads libraries without any
 modifications to the \Cyclus kernel, closed-source archetypes can be used with
 the simulator alongside open source archetypes without transfer of sensitive information. This architecture
@@ -117,12 +115,10 @@ closed collaborations\cite{carlsen_cyclus_2014}.}
 \label{fig:modifiedopen}
 \end{figure}
 
-This last benefit of dynamically loadable libraries addresses
-another goal of \Cyclus: ubiquity amongst its potential user base. By
-engineering \Cyclus to easily handle varying levels of complexity, a single
+Finally, dynamically loadable libraries enable \Cyclus to easily handle varying levels of simulation complexity. Hence a single
 simulation engine can be used by both users interested in big-picture policy
-questions as well as users focused on more detailed, technical
-analyses. They merely choose their preferred level of fidelity from among the
+questions as well as users focused on detailed technical
+analyses. They merely choose their preferred level of modeling depth from among the
 available libraries in the ecosystem.
 
 \subsection{Agent-based Paradigm}
@@ -132,26 +128,26 @@ available libraries in the ecosystem.
 % describe Region/Institution/Facility hierarchy
 % note importance of generic resource exchange paradigm
 
-\Cyclus implements an \acrlong{ABM} paradigm.  \gls{ABM} is modern, sophisticated,
-true to reality, and incorporates modern computing resources.
-Furthermore, \gls{ABM} provides a natural
-perspective from which to model a given problem. In the nuclear fuel cycle
-context, for example, an analyst can design a reactor agent
-that is entirely independent from a fuel fabrication agent. Defining the behavior of both agents according to the
+\Cyclus implements an \acrlong{ABM} paradigm. \gls{ABM} enables model
+development to take place at an agent level rather than a system level. In the
+nuclear fuel cycle context, for example, an analyst can design a reactor agent
+that is entirely independent from a fuel fabrication agent. Defining the
+behavior of both agents according to the
 \gls{API} contract is sufficient for them to interact with one another as
-bona fide actors in the simulation.  The two archetype libraries can be used in the same
-simulation without any shared knowledge.
+bona fide agents in the simulation.  The two archetype libraries can be used in
+the same simulation without any shared knowledge, allowing modelers to
+construct a simulation from building blocks of many types and origins.
 
-Furthermore, the \gls{ABM} paradigm is superior to system dynamics used in
+Furthermore, the \gls{ABM} paradigm is superior to the system dynamic approach used in
 current simulators.
 System dynamics is a popular approach for modeling nuclear fuel cycles
 \cite{jacobson_vision_2009,van_den_durpel_daness_2009,guerin_impact_2009,guerin_benchmark_2009}.
 Formally however, system dynamics models are simply a strict subset of agent-based models
 \cite{macal_agent-based_2010}.
 That is, any system dynamics model can be translated
-into an agent-based model. Furthermore, because agent-based
-techniques can provide a richer model than can system dynamics, they enable the
-broadest range of simulations in a generic fashion.
+into an agent-based model.
+\gls{ABM} techniques therefore enable a broader range of simulations in a more
+generic fashion.
 
 \subsubsection{Agent Interchangeability}\label{sec:interchangeability}
 
@@ -160,38 +156,32 @@ broadest range of simulations in a generic fashion.
 \gls{ABM} is inherently object-oriented because agents represent discrete,
 independently acting objects.  Figure \ref{fig:framework} illustrates the
 modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator creates
-a set of classes on which agent plug-ins are based. In addition, a set of tools
-are also provided to enrich the \gls{API} and supply a robust suite of behaviors
-for the developer.  Agent plug-ins utilize the generic core \gls{API} to
-interact with one another.  For example, they use the resource exchange paradigm
-\gls{API} for trading resources with one another.
+a set of classes on which agent plug-ins are based.  Agent plug-ins utilize the
+generic core \gls{API} to interact with one another.  For example, they use the
+resource exchange paradigm \gls{API} for trading resources with one another.
 
 Due to this plug-in architecture,
-implementations of actors in a given scenario can be easily
+implementations of agents in a given scenario can be easily
 interchanged. Critically, this novel functionality enables the comparison
 between agent implementations. For example, a low-physics-fidelity
 implementation of a reactor can be compared to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
 fidelity on a given fuel cycle.
 
-Interchangeability is accomplished by providing \glspl{API} that define agent-to-agent
-interaction and agent-to-environment interaction, primarily through the
-\Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows
-the ``inheritance'' structure of the \Class{Agent} class in a \gls{UML} diagram
-format. It shows how the \Class{Agent} interface
-provides a notion of parent-child hierarchical relationship, where parents can
-choose to \textit{deploy} child agents and \textit{decommission} child
-agents. For the archetype developer, this interface provides enormous power
-very simply. The \gls{API} provides the \Class{Agent} with helpful functionality for
-interacting with the \Cyclus simulation kernel while abstracting away unnecessary
-detail.
+Interchangeability is accomplished by providing inheritable \glspl{API} that define agent-to-agent
+interaction and agent-to-environment interaction. For example,
+an archetype that inherits the \Class{Region} interface, as in Figure
+\ref{fig:agent_uml}, is interchangeable with any other Region agent.
+For the archetype developer, this interface provides enormous power
+very simply. The \gls{API} abstracts away unnecessary detail while providing
+all necessary functionality for interacting with the \Cyclus simulation kernel.
 
 \begin{figure}[htbp!]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{./images/agent_uml}
 \end{center}
-\caption{The inheritance in \Cyclus classes, such as the \Class{Agent},
-\Class{Facility}, \Class{Institution}, and \Class{Region} classes, abstract away
+\caption{Inheriting \Cyclus class interfaces, such as the \Class{Agent},
+\Class{Facility}, \Class{Institution}, and \Class{Region} classes, abstracts away
 unnecessary details while exposing powerful functionality. In the above
 example, the \Class{Dummy} archetype simply inherits from \Class{Region} in
 order to become a bona fide Region-type \Class{Agent}.}
@@ -199,23 +189,18 @@ order to become a bona fide Region-type \Class{Agent}.}
 \end{figure}
 
 In this way, a researcher can directly compare two different reactor modeling
-implementations (perhaps \Class{DetailedReactor} and \Class{SimpleReactor})
+implementations (perhaps the imaginary classes \Class{DetailedReactor} and \Class{SimpleReactor})
 simply by exchanging the two corresponding archetypes. That is, two reactor
 archetypes both inheriting from the \Class{Facility} class are indistinguishable
-from a simulation perspective. Two simulations, one using
-\Class{DetailedReactor} and the other using \Class{SimpleReactor} can therefore
-be compared directly to determine the whole-simulation impact of using one or the other model.
-This can be done with any agent type, where agents can be ``Regions,''
-``Institutions,'' or ``Facilities.''
+from a simulation perspective.  This can be done with any agent type, where agents can be ``Regions,'' ``Institutions,'' or ``Facilities.''
 
 \subsubsection{Regions, Institutions, and Facilities}
 
 \Cyclus provides a novel representation of entities in the nuclear fuel cycle
-that reflects the reality in international nuclear power: production
-encompassing facilities, institutions managing those facilities, and regions. While
+that reflects the reality in international nuclear power: facilities implementing individual fuel cycle technologies, institutions managing those facilities, and regions providing geographical and political context for institutions and facilities. While
 few simulators have provided any notion of static regional
 effects \cite{huff_next_2010,juchau_modeling_2010}, \Cyclus allows for both regions and institutions to be first-class
-actors in simulated fuel cycles. The fundamental interactions for each entity are implemented in a corresponding
+agents in simulated fuel cycles. The fundamental interactions for each entity are implemented in a corresponding
 archetype class in \Cyclus, i.e., the \Class{Region} class, \Class{Institution}
 class, and \Class{Facility} class. Archetype developers can then build on the
 provided functionality by inheriting from the appropriate class.
@@ -226,8 +211,7 @@ facilities. In other words, \gls{RIF} hierarchies form a directed acyclic graph 
 with regions as root nodes and facilities as leaf nodes.
 
 Two primary consequences arise from this structure. First, institutions are
-nominally
-responsible for deploying and decommissioning facilities. Accordingly, advanced
+nominally responsible for deploying and decommissioning facilities. Accordingly, advanced
 logic regarding building and decommissioning can be implemented on top of
 those behaviors inherited from the
 \Class{Institution} interface. Second, the \Class{Facility} class implements the
@@ -236,21 +220,6 @@ adjust the resource flow preferences of their managed facilities. Importantly,
 this capability allows for the modeling of preferential regional trading
 of resources (e.g., tariffs) as well as preferential institutional trading
 (e.g., long-term contracts).
-
-% the paragraph below muddies the concept of the RIF hierarchy
-% (perhaps an extended footnote?)
-% Either way, I prefer something other than ``provided explicitly''.
-
-Although the \Cyclus kernel is designed around the concept of the \gls{RIF} hierarchy,
-it can handle hierarchies of arbitrary depth.  It is capable of
-running a simulation without regions and institutions (i.e.  only facilities)
-or a simulation having archetypes that are the parents of regions.  By
-convention, institutions are mainly responsible for facility deployment, but
-all archetypes have access to the agent deployment mechanism. \Cyclus enables
-the developer to to implement agents that deploy copies of themselves, or that
-schedule their own decommissioning.  Because regions, institutions, and
-facilities are all just agents, they can all be implemented to exercise the
-full set of features offered by the \Cyclus kernel.
 
 \subsection{Discrete Objects}
 % enables more realistic models and metrics
@@ -272,13 +241,13 @@ metrics cannot be captured with previously existing fleet-based models. For all
 of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables novel
 simulations, multiple use cases require that these agents, such as the regions,
 institutions, and facilities in \Cyclus, must be represented as discrete
-objects. Furthermore, important use cases are enabled when materials and
-resources are tracked as discrete objects alongside those agents.
+objects. For instance, tracking of individual shipments is only viable if materials and
+resources are tracked as discrete objects.
 
 \subsubsection{Resources and Materials}
 % Resources, Materials (note isotope tracking, decay behavior)
 
-One such use case seeks to capture system vulnerability to nefarious
+Another such use case seeks to capture system vulnerability to
 material diversion. Provenance and trade-history of distinct materials is the fundamental
 information unit in such studies, and so this type of analysis requires
  discrete simulation of a
@@ -286,17 +255,16 @@ target facility and the individual materials modified within it.
 Material risk analysis, therefore, demands that both facilities and materials
 should be discretely modeled objects like those in \Cyclus.
 
-
 In \Cyclus, agents can transfer discrete resource objects among one another.
-Cyclus currently supports two types of resources:
+Cyclus supports two types of resources:
 
 \begin{itemize}
 
-  \item Materials: These represent typical nuclear materials with
-      nuclide compositions.
+  \item materials: these represent typical nuclear materials with
+      nuclide compositions;
 
-  \item Products: These can represent any user-defined measure - e.g. carbon
-      credits, build permits, employees, etc.
+  \item products: these can represent any user-defined measure: carbon
+      credits, build permits, employees, etc..
 
 \end{itemize}
 
@@ -305,8 +273,7 @@ decay, etc.) are tracked in detail as they are performed.  This information
 includes the agent that created each resource when it was introduced into the
 simulation.  The parentage of each resource is also tracked. This makes it
 possible to follow the history of resources as they are transferred between
-agents.  This powerfully impacts the ability to model
-non-proliferation-related simulation goals.
+agents.
 
 The \Cyclus kernel has built-in experimental support for decay calculations.
 Materials store the time since their last decay and agents are free to
@@ -315,20 +282,15 @@ simulation time. \Cyclus can currently operate in 3 decay modes, with 1 addition
 mode likely to be added in a future release:
 
 \begin{itemize}
-
     \item "manual" (currently implemented) is the default mode
-        where agents decay materials as needed.
-
+        where agents decay materials when requested by an archetype,
     \item "never" (currently implemented) globally turns off all decay.
-        The Material decay function does nothing.
-
-    \item "lazy" (currently implemented) decays any material whenever its
-        composition is observed (e.g. when an agent queries information about
-        a material's $^{239}$Pu content).
-
+        The Material decay function does nothing,
+    \item "lazy" (currently implemented) decays material automatically whenever
+         its composition is observed (e.g. when an agent queries information
+         about a material's $^{239}$Pu content),
     \item "periodic" (future) automatically decays all materials in a
         simulation with some fixed frequency.
-
 \end{itemize}
 
 
@@ -350,7 +312,7 @@ In large simulations, many material objects may change frequently.  Material
 decay can also contribute significantly to such changes.  In order to help
 avoid unnecessary runtime performance and database size impacts, compositions
 in \Cyclus have some special features.  In particular, compositions are
-immutable once created.  This allows multiple material objects to hold
+immutable once created. This allows multiple material objects to hold
 references to the same composition safely.  Additionally, new compositions
 resulting from decay are cached and used to avoid redundant decay
 calculations.  Figure \ref{fig:compositions} illustrates how this decay
@@ -387,7 +349,7 @@ times and trade in discrete resources. These resources are not defined \textit{a
   priori}. Therefore, the logic engine defining resource interaction mechanisms
 among agents is crucial. The \gls{DRE} is that critical logic engine on which
 \Cyclus simulations are built.  Supporting the general \Cyclus philosophy,
-facilities are treated as black boxes and a clear supply-demand communication
+facilities are treated as black boxes and a supply-demand communication
 framework is defined.
 
 The \gls{DRE} consists of three steps: supply-demand information
@@ -410,12 +372,13 @@ supplies a notion of the quantity and quality of a resource to match a
 request. Suppliers may add an arbitrary number of constraints to accompany
 bids. For example, an enriched \gls{UOX} supplier may be constrained by its current
 inventory of natural uranium or its total capacity to provide enrichment (SWUs), and
-attach such constraints to its bids. 
+attach such constraints to its bids.
 
 Any potential resource transfer, i.e., a bid or a request, may be denoted as
-\textit{exclusive}. An exclusive transfer must either be met fully or not at all
-in order to support concepts such as the trading of individual reactor
-assemblies. In combination with the notion of mutual requests, complex instances
+\textit{exclusive}. An exclusive transfer excludes partial fulfilment; it must
+either be met fully or not at all. This mode supports concepts such as the
+trading of individual reactor assemblies.  In combination with the notion of
+mutual requests, complex instances
 of supply and demand are enabled.
 
 Finally, requesting facilities, institutions and regions may apply
@@ -432,8 +395,8 @@ optimally using a mathematical program or approximately by a simulation-based
 heuristic \cite{gidden_agent-based_2014}. If any trade is denoted as exclusive, e.g., if an
 analyst desires an assembly-fidelity model, then either a heuristic must be used
 or exchanges must be represented as a \gls{MILP}. If no exclusive trades exist,
-a \gls{LP} model may be used. In practice, LPs solve much faster than
-\gls{MILP}s. However, both capabilities exist in \Cyclus in order to
+a \gls{LP} model may be used. In practice, \glspl{LP} solve much faster than
+\glspl{MILP}. However, both capabilities exist in \Cyclus in order to
 provide users with the desired level of fidelity.
 
 Trades between agents are initiated by the \Cyclus kernel after a solution to
@@ -443,7 +406,7 @@ supplied resources are then sent to the corresponding requesting agents.
 
 In \Cyclus, the \gls{DRE} is executed at each time step. Therefore, if a
 facility's request for a resource is not met at a given time step, it may offer
-a request in the proceeding time step. Because agent behavior may change
+a request in the following time step. Because agent behavior may change
 arbitrarily, the exchange executed at any given time step may be unique in a
 simulation.
 
@@ -454,7 +417,7 @@ even when those agents are defined by archetypes of arbitrary complexity. Tradin
 between agents can be affected by both the
 proposed quality of a resource and agent relationships through the use of
 preferences. Accordingly, a wide range of possible effects can be
-modeled, from capacitaty-limited fuel supply to international trade agreements.
+modeled, from capacity-limited fuel supply to international trade agreements.
 
 \subsection{Simulation Support}
 So that users and developers can build working simulations in the shortest time
@@ -476,8 +439,9 @@ provide, by example, a guide to new developers who would seek to contribute
 their own archetypes outside of \Cycamore.
 
 As of version 1.0, \Cycamore contains one region archetype, two institution
-archetypes, and four facility archetypes. Short descriptions of these functions
-can be found in Table \ref{tab:cycamore}.
+archetypes, and four facility archetypes. Three additional facilities were
+added in version 1.3 . Short descriptions of these functions can be found in
+Table \ref{tab:cycamore}.
 
 
 \begin{table}[h]
@@ -487,30 +451,26 @@ can be found in Table \ref{tab:cycamore}.
 \textbf{Entity} & \textbf{Archetype} & \textbf{Functionality} \\
 \hline
 Facility & BatchReactor & A reactor model that handles batch refueling, based on pre-determined recipes of compositions. \\
-Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
-Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
 Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
+Facility & Fab$^*$ & This facility fabricates fuel material based on separated streams. \\
+Facility & Reactor$^*$ & This facility, based on BatchReactor, requests any number of input fuel types and transmutes them to static compositions upon discharge.\\
+Facility & Separations$^*$ & This facility separates an incoming material into specified streams. \\
+Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
+Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
 Institution & ManagerInst & The manager institution manages production of commodities among its facilities by building new ones as needed. \\
 Institution & DeployInst &  This institution deploys specific facilities as defined explicitly in the input file. \\
 Region & GrowthRegion & This region determines whether there is a need to meet a certain capacity (as defined via input) at each time step. \\
 \hline
 \end{tabularx}
-\caption{The Archetypes in \Cycamore seek to cover a large range of simple simulation use cases \cite{carlsen_cycamore_2014}.}
+\caption{The Archetypes in \Cycamore seek to cover a large range of simple
+simulation use cases \cite{carlsen_cycamore_2014}. Facilities added in version
+1.3 are marked with $^*$.}
 \label{tab:cycamore}
 \end{table}
 
-As illustrated in
-Figure \ref{fig:simplesim}, the current \Cycamore release provides basic
-functionality enabling simple fuel cycle analyses. As future contributions are
-vetted, the capabilities in \Cycamore may grow.
-
-\begin{figure}[htbp!]
-\begin{center}
-\includegraphics{./images/simplesim}
-\end{center}
-\caption{Material flows through a simple dynamic simulation created with only the simplest \Cycamore archetypes, \Class{Sink} and \Class{Source}.}
-\label{fig:simplesim}
-\end{figure}
+Section \ref{sec:simulations} will demonstrate how the current \Cycamore
+release provides basic functionality enabling simple fuel cycle analyses. As
+future contributions are vetted, the capabilities in \Cycamore may grow.
 
 \subsubsection{Toolkit}
 
@@ -532,14 +492,14 @@ mix-in classes provide the basis for in-simulation deployment determination:
 \Class{CommodityProducer}, \Class{CommodityProducerManager}, \Class{Builder},
 \Class{BuildingManager}. The \Class{CommodityProducer} class provides an
 interface for querying the \textit{prototypes} which have the
-capacity to produce a given commdity. The \Class{CommodityProducerManager}
+capacity to produce a given commodity. The \Class{CommodityProducerManager}
 provides an interface for registering \Class{CommodityProducer}s and querying
 the current capacity (supply) of a commodity. The \Class{Builder} class provides
 an interface for querying which prototypes can be built and interacts with the
 \Class{BuildingManager}, which orders prototypes to be built. The
 \Class{BuildingManager} uses a simple minimum cost algorithm to determine how
 many of each prototype, $y_i$, to build given a demand ($\Phi$), capacities
-($\phi_i$), and costs ($c_i$).
+($\phi_i$), and costs ($c_i$). Here $i$ indexes $I$ available prototypes which perform a similar function, and the demand, capacity and cost carry prototype-specific units which are defined by the developer.
 
 \begin{equation}
 \begin{aligned}
@@ -551,11 +511,11 @@ many of each prototype, $y_i$, to build given a demand ($\Phi$), capacities
 
 \paragraph{Nuclear Engineering Tools}
 
-The \Cyclus toolkit provides two useful interfaces for querying physical paramaters of \Class{Material}
+The \Cyclus toolkit provides two useful interfaces for querying physical parameters of \Class{Material}
 objects. First, the \Class{MatQuery} module
 provides a basic querying \gls{API}, including the atom and mass fractions of
-nuclides, the number of moles of a nuclide in a material, and also the amount of
-aggregate nuclides, i.e., a \Class{Composition}, in a material. The
+nuclides, the number of moles of a nuclide in a material, etc. (i.e., a
+\Class{Composition}), in a material. The
 \Class{Enrichment} module provides an \gls{API} for determining enrichment-related
 parameters of a material, including the separative work units (SWU) and natural
 uranium required to enrich a material provided knowledge of feed, product, and tails
@@ -563,9 +523,8 @@ assays.
 
 \paragraph{Toolkit Extensions}
 
-In addition to those that already exist, new tools and computational patterns will
-emerge from the archetypes developed within the community of
-developers. As these tools gain adoption between projects and demonstrate their
+In addition to those that already exist, new tools will
+emerge from the archetypes developed by the community. As these tools gain adoption between projects and demonstrate their
 utility to the developer community, they will be considered for screening and
 adoption into the kernel as toolkit extensions. Likely extensions include
 
@@ -634,8 +593,7 @@ interpreting \gls{NQA1} in a manner similar to the process adopted by the
 
 Since \Cyclus modeling decisions are made
 by third party archetype developers or users, the most important feature of
-\gls{QA} is verification. Validation may be impossible and \gls{UQ} is beyond
-the scope of the kernel.
+\gls{QA} is verification. Validation of the \Cyclus core in a general sense is infeasible as it is contingent on the archetypes comprising a simulation, and to be meaningful \gls{UQ} must likewise extend beyond the kernel.
 
 Verification may be defined as the question, ``Is \Cyclus being built correctly?''
 To answer this question, \Cyclus relies on software development best practices
@@ -681,8 +639,7 @@ In \Cyclus, three categories of tests are defined: unit tests, integration
 tests, and regression tests.
 
 It is important to note that before a proposed
-code change is allowed into \Cyclus,  the change must be covered by a test, either new or existing, and all of the tests must pass.  This is a
-matter of policy for the developers. Of course, test code is
+code change is allowed into \Cyclus,  the change must be covered by a test, either new or existing, and all tests must pass.  Of course, test code is
 just as likely to contain errors as the code it is designed to test.
 However, it is assumed that diligence and one level of testing
 is sufficient to meet the aims of \gls{QA} and prevent an infinite recursion
@@ -827,7 +784,7 @@ the following actions:
     \item Reports whether or not the above steps succeeded.
 \end{enumerate}
 
-Since these steps are performed for all incoming code, it is easyi for the
+Since these steps are performed for all incoming code, it is easy for the
 \Cyclus core team to determine whether or not an individual pull request
 actually works. This helps identify build and test problems prior to
 broken code being allowed into the develop branch. \gls{CI} is a necessary

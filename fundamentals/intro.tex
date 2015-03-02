@@ -26,7 +26,7 @@ efforts to directly compare modeling methodologies. Finally, they
 over-specialize, rendering most tools applicable to only a subset of desired
 simulation fidelities, scales, and applications.
 
-The cardinal purpose of a dyamic nuclear fuel cycle simulator is to calculate
+The cardinal purpose of a dynamic nuclear fuel cycle simulator is to calculate
 the time- and facility-dependent mass flow through all or part the fuel cycle.
 Dynamic nuclear fuel cycle analysis more realistically supports a range of
 simulation goals than static analysis \cite{piet_dynamic_2011}. Historically,
@@ -103,7 +103,7 @@ some simulators discretely model batches of material and individual facilities,
 others aggregate facilities into fleets and materials into streams. Simulators
 can model a single aspect of the fuel cycle in great detail while neglecting
 others. For example, a simulator created for policy modeling might have
-excellent capability in economics while capabailities for tracking transformations in
+excellent capability in economics while capabilities for tracking transformations in
 material isotopics and the effects of isotopics on technology performance are
 neglected.  The \gls{CAFCA}\cite{guerin_impact_2009} simulator is problem-oriented
 in this way, having elected to neglect isotopic resolution in favor of
@@ -153,13 +153,13 @@ cycle simulator.
 
 The \Cyclus paradigm enables targeted contribution and collaboration within the
 nuclear fuel cycle analysis community to achieve two important goals: lower the
-barrier for innvoative nuclear technologies to be included in fuel cycle analysis 
+barrier for innovative nuclear technologies to be included in fuel cycle analysis
 while improving the ability to compare simulations with and without those innovative
 concepts.  This essential capability is absent in
 previous simulators where user customization and extensibility were not design
 objectives.  While the \emph{modular and open architecture} of
-\Cyclus is necessary to meet these goals, it is not sufficient.  
-\emph{Agent interchangeability} is required to facilitates direct comparison 
+\Cyclus is necessary to meet these goals, it is not sufficient.
+\emph{Agent interchangeability} is required to facilitates direct comparison
 of alternative modeling methodologies and facility concepts.  Finally, \Cyclus is
 applicable to a broader range of fidelities, scales, and applications than
 other simulators, due to the flexibility and generality of its
@@ -171,9 +171,10 @@ expertise (e.g., reprocessing and advanced fuel fabrication), without having to
 create a model of the entire fuel cycle to serve as its host.  \Cyclus supports
 them by separating the problem of modeling a physics-dependent supply chain into
 two distinct components: a simulation kernel and archetypes that interact with
-the kernel. The kernel is responsible for supporting the deployment and
+it. The kernel is responsible for supporting the deployment and
 interaction logic of entities in the simulation.  Physics calculations and
-customized behaviors are implemented within archetypes.
+customized behaviors of those entities are implemented within \emph{archetype}
+classes.
 
 Ultimately, modeling the evolution of a physics-dependent, international
 nuclear fuel supply chain is a multi-scale problem which existing tools cannot
