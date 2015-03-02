@@ -74,14 +74,17 @@ in the other technologies in the simulation.
 Similarly, individual developers may explore different levels of complexity within their archetypes, including
 wrapping other simulation tools as loadable libraries within \Cyclus.
 
-\Cyclus achieves this behavior by implementing its generic \gls{API} and
-modular architecture via a suite of dynamically loadable plug-in libraries as
-pictured in Figure \ref{fig:framework}.
+\Cyclus achieves this behavior by implementing generic \glspl{API} and a
+modular architecture via a suite of dynamically loadable plug-in libraries
+(pictured in Figure \ref{fig:framework}). By anticipating the possible classes of
+information required by the simulation kernel, the \Cyclus \glspl{API}
+facilitate information passing between the plug-in agents and the core
+framework.
 Though common in modern software architecture, such a plug-in paradigm has not
-previously been implemented in a nuclear fuel cycle simulator. Dynamically
-loadable libraries are the primary mechanism for extending \Cyclus' capability.
-The core framework operates
-independently from the plug-in libraries, and the APIs are designed to provide archetype developers with the tools needed to collect inputs required by their archetype as well as return outputs. Hence the libraries enable customization and extension of \Cyclus' capabilities independent of the core.
+previously been implemented in a nuclear fuel cycle simulator.
+It allows the core \Cyclus framework to operate independently from the plug-in libraries, and the
+dynamically loadable plug-ins to be the primary mechanism for extending \Cyclus'
+capabilities independent of the core.
 
 \begin{figure}[htbp!]
 \begin{center}
