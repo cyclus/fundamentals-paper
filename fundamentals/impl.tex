@@ -26,8 +26,8 @@ for quality assurance are outlined.
 % enables FC analyses that can compare ‘apples to apples'
 
 The architecture of \Cyclus allows developers to define nuclear fuel cycle
-processes independent of the simulation logic. To achieve this, agents are
-developed to represent facilities, institutions, and regions comprising the
+processes independent of the simulation logic. To achieve this, \emph{agents} are
+developed which represent facilities, institutions, and regions comprising the
 nuclear fuel cycle. These agents are created using the \Cyclus framework
 \gls{API}, a set of functions and protocols which assist in agent development
 and specify how agents should be defined.  This encapsulated `plug-in' design
@@ -59,11 +59,10 @@ on large computer systems, such as \gls{HTC} systems.
 Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
 implementation of a \Cyclus-enabled application on such a large computer system,
 uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
-studies on \Cyclus' resource exchange optimization solvers. Cyclopts has run over $10^5$ jobs, comprising more than 60,000 total compute hours,
-using the \Cyclus library via its resource exchange \gls{API}.  The \gls{HTC}
-infrastructure has separately been utilized to run and collect information from
-full \Cyclus simulations running in parallel on $10^3$ machines reliably for
-order $10^5$ simulations.
+studies. Cyclopts has run over $10^5$ jobs, comprising more than 60,000 total
+compute hours. The \gls{HTC} infrastructure has separately been utilized to
+run and collect information from full \Cyclus simulations running in parallel
+on $10^3$ machines reliably for order $10^5$ simulations.
 
 \subsubsection{Dynamically Loadable Libraries}
 
