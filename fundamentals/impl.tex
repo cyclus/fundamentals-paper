@@ -134,7 +134,7 @@ nuclear fuel cycle context, for example, an analyst can design a reactor agent
 that is entirely independent from a fuel fabrication agent. Defining the
 behavior of both agents according to the
 \gls{API} contract is sufficient for them to interact with one another as
-bona fide actors in the simulation.  The two archetype libraries can be used in
+bona fide agents in the simulation.  The two archetype libraries can be used in
 the same simulation without any shared knowledge, allowing modelers to
 construct a simulation from building blocks of many types and origins.
 
@@ -206,7 +206,7 @@ from a simulation perspective.  This can be done with any agent type, where agen
 that reflects the reality in international nuclear power: facilities implementing individual fuel cycle technologies, institutions managing those facilities, and regions providing geographical and political context for institutions and facilities. While
 few simulators have provided any notion of static regional
 effects \cite{huff_next_2010,juchau_modeling_2010}, \Cyclus allows for both regions and institutions to be first-class
-actors in simulated fuel cycles. The fundamental interactions for each entity are implemented in a corresponding
+agents in simulated fuel cycles. The fundamental interactions for each entity are implemented in a corresponding
 archetype class in \Cyclus, i.e., the \Class{Region} class, \Class{Institution}
 class, and \Class{Facility} class. Archetype developers can then build on the
 provided functionality by inheriting from the appropriate class.
