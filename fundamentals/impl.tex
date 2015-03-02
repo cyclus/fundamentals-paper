@@ -168,17 +168,13 @@ implementation of a reactor can be compared to an implementation with higher
 physics fidelity, allowing an analyst to discern the effect of reactor physical
 fidelity on a given fuel cycle.
 
-Interchangeability is accomplished by providing \glspl{API} that define agent-to-agent
-interaction and agent-to-environment interaction, primarily through the
-\Class{Agent} and \Class{Trader} interfaces. Figure \ref{fig:agent_uml} shows
-the ``inheritance'' structure of the \Class{Agent} class in a \gls{UML} diagram
-format. It shows how the \Class{Agent} interface
-provides a notion of parent-child hierarchical relationship, where parents can
-choose to \textit{deploy} child agents and \textit{decommission} child
-agents. For the archetype developer, this interface provides enormous power
-very simply. The \gls{API} provides the \Class{Agent} with helpful functionality for
-interacting with the \Cyclus simulation kernel while abstracting away unnecessary
-detail.
+Interchangeability is accomplished by providing inheritable \glspl{API} that define agent-to-agent
+interaction and agent-to-environment interaction. For example,
+an archetype that inherits the \Class{Region} interface, as in Figure
+\ref{fig:agent_uml}, is interchangeable with any other Region agent.
+For the archetype developer, this interface provides enormous power
+very simply. The \gls{API} abstracts away unnecessary detail while providing
+all necessary functionality for interacting with the \Cyclus simulation kernel.
 
 \begin{figure}[htbp!]
 \begin{center}
