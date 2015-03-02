@@ -454,9 +454,12 @@ can be found in Table \ref{tab:cycamore}.
 \textbf{Entity} & \textbf{Archetype} & \textbf{Functionality} \\
 \hline
 Facility & BatchReactor & A reactor model that handles batch refueling, based on pre-determined recipes of compositions. \\
-Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
-Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
 Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
+Facility & Fab & This facility fabricates fuel material based on separated streams. \\
+Facility & Reactor & This facility, based on BatchReactor, requests any number of input fuel types and transmutes them to static compositions upon discharge.\\
+Facility & Separations & This facility separates an incoming material into specified streams. \\
+Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
+Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
 Institution & ManagerInst & The manager institution manages production of commodities among its facilities by building new ones as needed. \\
 Institution & DeployInst &  This institution deploys specific facilities as defined explicitly in the input file. \\
 Region & GrowthRegion & This region determines whether there is a need to meet a certain capacity (as defined via input) at each time step. \\
