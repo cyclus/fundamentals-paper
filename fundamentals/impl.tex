@@ -634,16 +634,13 @@ code change is allowed into \Cyclus,  the change must be covered by a test, eith
 
 \paragraph{Unit Tests}
 
-Unit tests compare the results of the smallest code \emph{unit},
-typically a single function or a class. What constitutes the smallest code
-unit depends on the context of the specific unit in question. While this is
-an ambiguous definition, when combined with a philosophy of keeping units as small
-as possible, it is often clear in practice what needs to be tested.
-
-\Cyclus uses the Google Test framework \cite{inc_googletest_2008} as a harness for running unit
-tests. Sufficient unit tests are required for any proposed change to the \Cyclus
-code base. Currently, \Cyclus implements over 450 unit tests and \Cycamore implements
-85.  These cover approximately 65\% of their respective code bases, and these numbers are expected to grow over time.
+Unit tests compare the results of the smallest code \emph{unit}, typically a
+single function or a class.  \Cyclus uses the Google Test framework
+\cite{inc_googletest_2008} as a harness for running unit tests. Sufficient unit
+tests are required for any proposed change to the \Cyclus code base. Currently,
+\Cyclus implements over 450 unit tests and \Cycamore implements 85.  These
+cover approximately 65\% of their respective code bases, and these numbers are
+expected to grow over time.
 
 \paragraph{Integration Tests}
 
