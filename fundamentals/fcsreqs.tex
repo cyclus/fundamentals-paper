@@ -14,7 +14,7 @@ restricted or costly.  However, \Cyclus provides fully free and open access to
 all users and developers, foreign and domestic.
 
 Moreover, both technical and institutional aspects of the software development
-practices employed by the \Cyclus community faciltate collaboration.
+practices employed by the \Cyclus community facilitate collaboration.
 Technically, \Cyclus employs a set of tools commonly used collaborative
 software development that reduce the effort required to comment on, test and
 ultimately merge individual contributions into the main development path.
@@ -27,7 +27,7 @@ provide input to the final decision making for all important changes.
 
 Modularity is a key enabler of extending the scope of fuel cycle analysis
 within the \Cyclus framework.  Changes that are required to improve the
-fidelity of modeling a paticular agent, or to introduce entirely new agents,
+fidelity of modeling a particular agent, or to introduce entirely new agents,
 are narrowly confined and place no new requirements on the \Cyclus kernel.
 Furthermore, there are very few assumptions or heuristics that would otherwise
 restrict the algorithmic complexity that can be used to model the behavior of
@@ -48,14 +48,16 @@ the simulation over time and seek to trade materials whose specific
 composition may not be known \textit{a priori}.
 
 \subsubsection{Discrete Facilities and Materials}
-
 Many fuel cycle phenomena have aggregate system-level effects which can only be
 captured by discrete material tracking \cite{huff_next_2010}.  \Cyclus
 tracks materials as discrete objects. Some current fuel cycle simulation tools
 such as \gls{COSI}
 \cite{mccarthy_benchmark_2012,grasso_nea-wpfc/fcts_2009,guerin_benchmark_2009},
-\gls{DESAE}
-\cite{andrianova_desae_2008}, FAMILY21\cite{mccarthy_benchmark_2012},
+\DIFdelbegin 
+\DIFdel{\mbox{%DIFAUXCMD
+\gls{DESAE} \cite{andrianova_desae_2008}
+}%DIFAUXCMD
+, }\DIFdelend FAMILY21\cite{mccarthy_benchmark_2012},
 \gls{GENIUS} version 1, \gls{GENIUS} version 2, and \gls{NFCSim} also possess the ability to
 model discrete materials.
 
