@@ -450,10 +450,10 @@ Table \ref{tab:cycamore}.
 \hline
 \textbf{Entity} & \textbf{Archetype} & \textbf{Functionality} \\
 \hline
-Facility & BatchReactor & A reactor model that handles batch refueling, based on pre-determined recipes of compositions. \\
+Facility & BatchReactor$^{**}$ & A reactor model that handles batch refueling, based on pre-determined recipes of compositions.\\
 Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
 Facility & Fab$^*$ & This facility fabricates fuel material based on separated streams. \\
-Facility & Reactor$^*$ & This facility, based on BatchReactor, requests any number of input fuel types and transmutes them to static compositions upon discharge.\\
+Facility & Reactor$^*$ & This facility has capabilities of BatchReactor (above), and requests any number of input fuel types and transmutes them to static compositions upon discharge.\\
 Facility & Separations$^*$ & This facility separates an incoming material into specified streams. \\
 Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
 Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
@@ -464,7 +464,8 @@ Region & GrowthRegion & This region determines whether there is a need to meet a
 \end{tabularx}
 \caption{The Archetypes in \Cycamore seek to cover a large range of simple
 simulation use cases \cite{carlsen_cycamore_2014}. Facilities added in version
-1.3 are marked with $^*$.}
+1.3 are marked with $^*$. Facilities deprecated in version 1.3 are marked with 
+$^{**}$.}
 \label{tab:cycamore}
 \end{table}
 
