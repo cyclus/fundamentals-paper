@@ -450,10 +450,9 @@ Table \ref{tab:cycamore}.
 \hline
 \textbf{Entity} & \textbf{Archetype} & \textbf{Functionality} \\
 \hline
-Facility & BatchReactor$^{**}$ & A reactor model that handles batch refueling, based on pre-determined recipes of compositions.\\
 Facility & EnrichmentFacility & This facility enriches uranium at a specified capacity. \\
 Facility & Fab$^*$ & This facility fabricates fuel material based on separated streams. \\
-Facility & Reactor$^*$ & This facility has capabilities of BatchReactor (above), and requests any number of input fuel types and transmutes them to static compositions upon discharge.\\
+Facility & Reactor$^*$ & A reactor model that handles batch refueling, based on pre-determined recipes of compositions. It requests any number of input fuel types and transmutes them to static compositions upon discharge.\\
 Facility & Separations$^*$ & This facility separates an incoming material into specified streams. \\
 Facility & Sink & This facility is capable of accepting a finite or infinite quantity of some commodity produced in the simulation. \\
 Facility & Source & This facility generates material of the composition and commodity type specified as input.  \\
