@@ -38,7 +38,8 @@ flexible, fleet-based rather than discrete, or privately distributed rather
 than open source. Each of these choices presents a challenge to modeling
 fidelity, generality, efficiency, robustness, and scientific transparency.
 
-The \Cyclus nuclear fuel cycle simulator framework and its modeling ecosystem
+The \Cyclus nuclear fuel cycle simulator framework and its modeling ecosystem, 
+the suite of agents and other physics plugins compatible with it,
 incorporate modern insights from simulation science and software architecture
 to solve these problems.  These modern methods simultaneously enable more
 efficient, accurate, robust, and validated analysis.  This next-generation fuel
@@ -83,19 +84,22 @@ challenges in nuclear fuel cycle analysis can be better addressed.
 
 Nuclear fuel cycle simulators drive \gls{RDD} by calculating `metrics',
 quantitative measures of performance that can be compared among fuel cycle
-options. The feasibility of the technology development and deployment
-strategies which comprise a fuel cycle option, the dynamics of transitions
-between fuel cycles, and many other measures of performance can be expressed in
-terms of these metrics. For example, economic feasibility is often measured in
-\gls{LCOE}, requiring calculation of lifetime
-fuel costs and electricity generation, while environmental performance might be
-measured by spent fuel volume, toxicity, or mined uranium.  A meta-analysis of
-fuel cycle systems studies identified over two dozen unique quantitative
-metrics spanning economics and cost, environmental sustainability and waste
-management impacts, safety, security and nonproliferation, resource adequacy
-and utilization, among others. With few exceptions, these metrics are derived
-from mass balances calculated by a fuel cycle simulator.
-\cite{flicker_evaluation_2014}.
+options.  The feasibility of the technology development and deployment
+strategies which comprise a fuel cycle option, the operational features of
+nuclear energy systems, the dynamics of transitions between fuel cycles, and
+many other measures of performance can be expressed in terms of these metrics.
+For example, economic feasibility is often measured in \gls{LCOE}, requiring
+calculation of lifetime fuel costs and electricity generation, while
+environmental performance might be measured by spent fuel volume, toxicity, or
+mined uranium.  A meta-analysis of fuel cycle systems studies identified over
+two dozen unique quantitative metrics spanning economics and cost,
+environmental sustainability and waste management impacts, safety, security and
+nonproliferation, resource adequacy and utilization, among others
+\cite{flicker_evaluation_2014}. With few exceptions these metrics are derived from 
+mass balances and facility operation history calculated by a fuel cycle 
+simulator. For example, where nuclear waste repository burden is derived from 
+ejected fuel masses, water pollution or land use can be derived from facility 
+operational histories (as in \cite{poinssot_assessment_2014}).
 
 However, methods for calculating those metrics vary among simulators. Some
 model the system of facilities, economics, and materials in static equilibrium,
