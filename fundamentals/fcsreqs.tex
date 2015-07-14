@@ -55,19 +55,37 @@ tracks materials as discrete objects. Some current fuel cycle simulation tools
 such as \gls{COSI}
 \cite{mccarthy_benchmark_2012,grasso_nea-wpfc/fcts_2009,guerin_benchmark_2009},
 FAMILY21\cite{mccarthy_benchmark_2012},
-\gls{GENIUS} version 1, \gls{GENIUS} version 2, \gls{NFCSim}, and ORION also 
-possess the ability to model discrete materials.
+\gls{GENIUS} version 1, \gls{GENIUS} version 2, \gls{NFCSim}, and ORION also
+possess the ability to model discrete materials. However, even among these, the ability to model reactor facilities individually is not equivalent to the ability to model distinct activities. \gls{COSI}, for example,
+has some support for modeling reactors individually, but according to a recent benchmark \cite{oecd_benchmark_2012}, it models many reactors operating in sync. That is, refuelling and discharging occur simultaneously for all reactors.
+While \Cyclus allows this type of fleet-based aggregation of reactor behavior, \Cyclus also enables operations in each facility to vary independently of any others in the simulation.
 
 Similarly, the ability to model disruptions (i.e. facility shutdowns due to
 insufficient feed material or insufficient processing and storage capacity) is
 most readily captured by software capable of tracking the operations status of
 discrete facilities \cite{huff_next_2010}.  Fleet-based models (e.g.
-\gls{VISION}) are unable to capture this gracefully, perhaps representing it as
-a reduction in the capacity of the whole fleet.  All of the software
-capable of discrete materials have a notion of discrete facilities, however not
-all handle disruption in the same manner. \gls{DESAE}, for example, does not
-allow shutdown due to insufficient feedstock. In the event
-of insufficient fissile material during reprocessing, \gls{DESAE} borrows
-material from storage, leaving a negative value \cite{mccarthy_benchmark_2012}.
-The \Cyclus framework does not dictate such heuristics. Rather, it provides a
+\gls{VISION}) are unable to capture this gracefully, since supply disruptions
+are modeled as a reduction in the capacity of the whole fleet.  All of the
+software capable of discrete materials have a notion of discrete facilities,
+however not all handle disruption in the same manner. \gls{DESAE}, for example,
+does not allow shutdown due to insufficient feedstock. In the event of
+insufficient fissile material during reprocessing, \gls{DESAE} borrows material
+from storage, leaving a negative value \cite{mccarthy_benchmark_2012}.  The
+\Cyclus framework does not dictate such heuristics. Rather, it provides a
 flexible framework on which either method is possible.
+
+A final benefit of the discreteness of facilities and materials is their power
+when combined. The ability to track a material's history as it moves from one
+facility to another is unique to \Cyclus. While some current simulators track
+materials in chunks, they do not necessarily preserve chunk identity as the
+materials move around the fuel cycle. When coupled with \Cyclus' individual
+facility modeling, this capacity becomes distinct from what other fuel cycle
+simulators are able to do. So, while FAMILY21 and \gls{COSI} can identify
+whether a batch being discharged from a reactor originated in \gls{MOX}
+fabrication rather than fresh \gls{UOX} fabrication, \Cyclus can go further,
+tracking which of the fresh batches contained material from a particular
+discharged batch. By extension, \Cyclus can also report which individual
+facilities the batch passed through and in which it originated. The
+nonproliferation-related applications of this analysis capability are
+significant - allowing \Cyclus to answer questions that previous simulators
+have been unable to ask.
