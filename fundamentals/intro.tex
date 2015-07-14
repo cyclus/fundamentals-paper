@@ -33,12 +33,13 @@ simulation goals than static analysis \cite{piet_dynamic_2011}. Historically,
 dynamic nuclear fuel cycle simulators have calculated fuel cycle mass balances
 and performance metrics derived from them using software ranging from
 spreadsheet-driven flow calculators to highly specialized system dynamics
-modeling platforms. To date, current tools are often fleet-based rather than
-discrete and privately distributed rather than open source. These choices both
-present challenges to modeling fidelity, generality, efficiency, robustness,
-and scientific transparency.
+modeling platforms. To date, current tools are typically privately distributed
+rather than open source and most acheive only fleet-level resolution of
+facilities and materials rather than discrete resolution of those agents and
+objects. Both choices present challenges to modeling fidelity, generality,
+efficiency, robustness, and scientific transparency.
 
-The \Cyclus nuclear fuel cycle simulator framework and its modeling ecosystem, 
+The \Cyclus nuclear fuel cycle simulator framework and its modeling ecosystem,
 the suite of agents and other physics plugins compatible with it,
 incorporate modern insights from simulation science and software architecture
 to solve these problems.  These modern methods simultaneously enable more
@@ -95,10 +96,10 @@ mined uranium.  A meta-analysis of fuel cycle systems studies identified over
 two dozen unique quantitative metrics spanning economics and cost,
 environmental sustainability and waste management impacts, safety, security and
 nonproliferation, resource adequacy and utilization, among others
-\cite{flicker_evaluation_2014}. With few exceptions these metrics are derived from 
-mass balances and facility operation history calculated by a fuel cycle 
-simulator. For example, where nuclear waste repository burden is derived from 
-ejected fuel masses, water pollution or land use can be derived from facility 
+\cite{flicker_evaluation_2014}. With few exceptions these metrics are derived from
+mass balances and facility operation history calculated by a fuel cycle
+simulator. For example, where nuclear waste repository burden is derived from
+ejected fuel masses, water pollution or land use can be derived from facility
 operational histories (as in \cite{poinssot_assessment_2014}).
 
 However, methods for calculating those metrics vary among simulators. Some
