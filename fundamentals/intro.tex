@@ -18,29 +18,32 @@ analyses of nuclear fuel cycles by simulators increase in importance. The
 merits of advanced nuclear technologies and fuel cycles are
 shaped by myriad physical, nuclear, chemical, industrial, and political
 factors. Nuclear fuel cycle simulators must therefore couple complex models of
-nuclear process physics, facility deployment, and material routing. However,
-current fuel cycle simulators rely on closed platforms and inflexible
-architectures which exhibit three main failure modes. First, they discourage
-targeted contribution and collaboration among experts. Next, they hobble
-efforts to directly compare modeling methodologies. Finally, they
-over-specialize, rendering most tools applicable to only a subset of desired
-simulation fidelities, scales, and applications.
+nuclear process physics, facility deployment, and material routing.
 
-The cardinal purpose of a dynamic nuclear fuel cycle simulator is to calculate
+Indeed, the cardinal purpose of a dynamic nuclear fuel cycle simulator is to calculate
 the time- and facility-dependent mass flow through all or part the fuel cycle.
 Dynamic nuclear fuel cycle analysis more realistically supports a range of
 simulation goals than static analysis \cite{piet_dynamic_2011}. Historically,
 dynamic nuclear fuel cycle simulators have calculated fuel cycle mass balances
 and performance metrics derived from them using software ranging from
 spreadsheet-driven flow calculators to highly specialized system dynamics
-modeling platforms. To date, current tools are typically privately distributed
-rather than open source and most acheive only fleet-level resolution of
-facilities and materials rather than discrete resolution of those agents and
-objects. Both choices present challenges to modeling fidelity, generality,
-efficiency, robustness, and scientific transparency.
+modeling platforms.
 
-The \Cyclus nuclear fuel cycle simulator framework and its modeling ecosystem,
-the suite of agents and other physics plugins compatible with it,
+To date, current tools are typically privately distributed rather than open
+source, having been developed in industrial contexts.  Additionally, having
+often been developed for customized applications, many possess inflexible
+architectures. Finally, many model only fleet-level dynamics of facilities and
+materials rather than discrete resolution of those individual agents and
+objects.  Those software choices exhibit three main failure modes which present
+significant challenges to modeling fidelity, generality, efficiency,
+robustness, and scientific transparency. First, they discourage targeted
+contribution and collaboration among experts. Next, they hobble efforts to
+directly compare modeling methodologies. Finally, they over-specialize,
+rendering most tools applicable to only a subset of desired simulation
+fidelities, scales, and applications.
+
+The \Cyclus nuclear fuel cycle simulator framework and its \emph{modeling
+ecosystem}, the suite of agents and other physics plugins compatible with it,
 incorporate modern insights from simulation science and software architecture
 to solve these problems.  These modern methods simultaneously enable more
 efficient, accurate, robust, and validated analysis.  This next-generation fuel
@@ -53,7 +56,7 @@ cycle simulator is the result of design choices made to:
 \item and address a range of analysis types, levels of detail, and analyst sophistication.
 \end{itemize}
 
-\Cyclus, is a dynamic, agent-based model, which employs a modular architecture,
+\Cyclus is a dynamic, agent-based model, which employs a modular architecture,
 an open development process, discrete agents, discrete time, and arbitrarily
 detailed isotopic resolution of materials. Experience in the broader field of
 systems analysis indicates that agent-based modeling enables more flexible
