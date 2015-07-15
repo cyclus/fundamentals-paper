@@ -11,7 +11,8 @@ deployment, and regional and institutional hierarchies which arise in \Cyclus. A
 to build \Cyclus on open source libraries in modern programming languages
 enables both remote and multiprocess execution on a number of platforms. This
 section begins by describing the general design features that make \Cyclus both
-flexible and powerful: cluster-ready software and dynamic libraries.  The
+flexible and powerful: \emph{cluster-ready software} and \emph{dynamically
+loadable libraries}.  The
 \gls{ABM} framework is then described, focusing on its implementation and benefits
 in a fuel cycle context. A discussion of the
 time-dependent treatment of discrete resources follows, focusing on the
@@ -430,7 +431,8 @@ while the \Cyclus toolkit provides assistance to developers.
 % base modules
 
 \Cycamore \cite{carlsen_cycamore_2014}, the \Cyclus additional module
-repository, provides a fundamental set of agent archetypes for basic simulation
+repository, provides a fundamental set of dynamically loadable libraries
+providing agent archetypes for basic simulation
 functionality within \Cyclus.  Since \Cyclus relies on external
 archetypes to represent the agents within a simulation, \Cycamore provides the
 basic archetypes a new user needs to get started running simple simulations.
@@ -511,11 +513,11 @@ many of each prototype, $y_i$, to build given a demand ($\Phi$), capacities
 \paragraph{Nuclear Engineering Tools}
 
 The \Cyclus toolkit provides two useful interfaces for querying physical parameters of \Class{Material}
-objects. First, the \Class{MatQuery} module
+objects. First, the \Class{MatQuery} tool
 provides a basic querying \gls{API}, including the atom and mass fractions of
 nuclides, the number of moles of a nuclide in a material, etc. (i.e., a
 \Class{Composition}), in a material. The
-\Class{Enrichment} module provides an \gls{API} for determining enrichment-related
+\Class{Enrichment} tool provides an \gls{API} for determining enrichment-related
 parameters of a material, including the \gls{SWU} and natural
 uranium required to enrich a material provided knowledge of feed, product, and tails
 assays.
