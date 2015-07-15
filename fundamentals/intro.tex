@@ -30,17 +30,21 @@ spreadsheet-driven flow calculators to highly specialized system dynamics
 modeling platforms.
 
 To date, current tools are typically privately distributed rather than open
-source, having been developed in industrial contexts.  Additionally, having
+source, having been developed in industrial contexts. Additionally, having
 often been developed for customized applications, many possess inflexible
 architectures. Finally, many model only fleet-level dynamics of facilities and
 materials rather than discrete resolution of those individual agents and
-objects.  Those software choices exhibit three main failure modes which present
-significant challenges to modeling fidelity, generality, efficiency,
-robustness, and scientific transparency. First, they discourage targeted
+objects. When the DOE-NE Fuel Cycles Technologies Systems Analysis Campaign
+developed requirements necessary in a next generation fuel cycle simulator,
+three main failure modes were associated with those software choices.
+First, they discourage targeted
 contribution and collaboration among experts. Next, they hobble efforts to
 directly compare modeling methodologies. Finally, they over-specialize,
 rendering most tools applicable to only a subset of desired simulation
-fidelities, scales, and applications.
+fidelities, scales, and applications. Those three constraints were identified
+as presenting significant challenges to modeling fidelity, generality, efficiency,
+robustness, and scientific transparency in the field of fuel cycle analysis
+\cite{huff_next_2010}.
 
 The \Cyclus nuclear fuel cycle simulator framework and its \emph{modeling
 ecosystem}, the suite of agents and other physics plug-in libraries compatible with it,
