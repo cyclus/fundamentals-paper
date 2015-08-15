@@ -255,10 +255,10 @@ As described in Table \ref{tab:facconfigs}, the facilities used in these simulat
 Modifying the input file specification to model each of the 3 fuel cycles was
 done by making simple adjustments to the commodities and trade preferences for
 each of the facilities.  The reactor was configured to request recycled \gls{MOX}
-fuel with a higher preference than new \gls{UOX} fuel. For the once through case,
+fuel with a higher preference than new \gls{UOX} fuel. For the No Recycle case,
 the \Class{Reactor} was set to offer all spent fuel as waste.  For the 1-pass
 recycle case, the \Class{Reactor} offered spent \gls{UOX} into a spent fuel market,
-but spent \gls{MOX} is still offered as waste.  In the infinite-pass recycle case,
+but spent \gls{MOX} is still offered as waste.  In the Infinite-Pass Recycle case,
 the \Class{Reactor} offers all burned fuel into a spent fuel market. The
 separations facility requests spent fuel with a higher preference than the
 repository resulting in preferential recycle.  All these preferences are easy
@@ -274,7 +274,7 @@ reactors keep track of fuel as discrete batches. A reactor remembers where it
 received each batch from.  If a batch was received from the recycled fuel
 fabrication facility, it does not offer it to separations and instead offers
 it as a waste commodity which is only requested by the repository.  The
-material flows for the 1-pass recycle case are shown in Figure
+material flows for the Single-Pass Recycle case are shown in Figure
 \ref{fig:flowmodopen}.
 
 \begin{figure}[H]
@@ -300,10 +300,10 @@ commodity for the spent \gls{MOX} fuel of the \Class{Reactor}:
 \end{lstlisting}
 
 This results in the material flows in Figure \ref{fig:flowclosed}.  A
-similarly trivial change was used to switch from the once through to a 1-pass
+similarly trivial change was used to switch from the No Recycle to a 1-pass
 fuel cycle.  Note that because the reactors always transmute fuel into fixed
 compositions, the error in isotopic compositions is larger for the
-infinite-pass recycle case.
+Infinite-Pass Recycle case.
 
 \begin{figure}[H]
 \begin{center}
@@ -313,16 +313,16 @@ infinite-pass recycle case.
 \label{fig:flowclosed}
 \end{figure}
 
-Figure \ref{fig:puseries1} shows the full-system plutonium buildup for once
-through (no recycle), 1-pass recycle, and infinite-pass recycle variations of
+Figure \ref{fig:puseries1} shows the full-system plutonium buildup for No 
+Recycle (once through), Single-Pass Recycle, and Infinite-Pass Recycle variations of
 the one-reactor scenario described above. The figure was generated directly
 from \Cyclus output data. After several batch cycles (near month 300) in the
 1-pass and infinite-pass cases, enough separated fissile material accumulates
 in the fuel fabrication facility to generate a full recycled batch.  When this
 batch is transmuted, more plutonium is burned than created.  This results in a
 drop in the total fuel cycle system plutonium inventory.  This pattern repeats
-roughly every 10 cycles (200 months) for the 1-pass recycle case and every 9
-cycles (180 months) for the infinite-pass recycle case.  Because the 1-pass
+roughly every 10 cycles (200 months) for the Single-Pass Recycle case and every 9
+cycles (180 months) for the Infinite-Pass Recycle case.  Because the 1-pass
 recycle scenario does not re-recycle material, it takes the fabrication
 facility 2 cycles longer to accumulate a full batch of fissile material.
 
@@ -339,7 +339,7 @@ behavior that affect total system behavior are observed using \Cyclus.
 \end{figure}
 
 Figure \ref{fig:puseriesn} shows plutonium buildup for the 10-reactor
-simulations of the once through, 1-pass recycle, and infinite-pass recycle
+simulations of the No Recycle, Single-Pass Recycle, and Infinite-Pass Recycle
 scenarios.  As the number of reactors (with staggered refueling) increases,
 the behavior of the system approaches a more steady average reminiscent of
 continuous material flow models.
