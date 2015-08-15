@@ -32,8 +32,8 @@
 
 
 The success of the \Cyclus simulator can be measured in many ways.  The most
-compelling are demonstrations of fundamental simulation capability and of the
-feasibility of the \Cyclus community-driven development model. Promising
+compelling are early successes of the community-driven development model and 
+demonstrations of its fundamental simulation capabilities. Promising
 growth of the \Cyclus ecosystem at multiple institutions indicates that a fuel
 cycle simulator can advance in this community-driven development
 paradigm. Additionally, simulation results for both once-through and more
@@ -157,22 +157,62 @@ simulations to help illustrate the flexibility of \Cyclus. These examples are
 not the limit of \Cyclus' capabilities, which are extended with each new
 addition to the ecosystem, as discussed above.  Rather, these simulations are
 designed to illustrate that \Cyclus has capabilities matching those of any
-recipe-based simulator.  Accordingly, many simplifying assumptions have been
+recipe-based simulator. Accordingly, many simplifying assumptions have been
 made with respect to material compositions, fuel transmutation, among others.
 The three fuel cycles examined are:
 
 \begin{enumerate}
-    \item Once through (no recycle)
-    \item 1-pass \gls{MOX} recycle
-    \item Infinite-pass \gls{MOX} recycle
+    \item No Recycle (once through)
+    \item 1-pass \gls{MOX} Recycle
+    \item Infinite-pass \gls{MOX} Recycle
 \end{enumerate}
 
 For each of these fuel cycles, a 1,100 month single-reactor \Cyclus simulation
 was run in addition to a 10-reactor simulation with staggered refueling times.
 As the number of staggered-cycle reactors increases the system converges
 toward continuous material flow results.  \Cyclus flexibility allows this
-transition to be examined.  The facilities used in these simulations are:
+transition to be examined.  
 
+\begin{table}[h]
+\centering
+\begin{tabularx}{\textwidth}{|X|r|X|}
+\hline
+\textbf{Facility} &\textbf{Parameter} & \textbf{Value}\\
+\hline
+\textbf{LWR} & type & LWR\\
+\Class{cycamore::Reactor} & batches & $3$ [batches/cycle]\\
+                  & batch size & $20000$ [kg HM]\\
+                  & cycle length & $18$ [months]\\
+                  & refuelling time & $2$ [months]\\
+                  & requests & recycled MOX (1st preference)\\
+                  & requests & enriched UOX (2nd preference)\\
+\hline
+\textbf{Recycled Fuel Fabrication} & requests & depleted uranium\\
+\Class{cycamore::Fab} & requests & separated fissile material\\
+                      & offers & recycled MOX\\
+\hline
+\textbf{Separations} & requests & all spent fuel types \\
+\Class{cycamore::Separations} & offers & separated fissile material\\
+                      & efficiency & 0.99\\
+                      & Pu separation capacity & $6.0E4$ [kg/month] \\
+\hline
+\textbf{Repository} & requests & all waste\\
+\Class{cycamore::Sink} & capacity & $\infty$\\
+\hline
+\textbf{UOX Fabrication} & fffers & UOX\\
+\Class{cycamore::Source} & capacity & $\infty$\\
+\hline
+\textbf{DU Source} & offers & depleted U\\
+\Class{cycamore::Source} & capacity & $\infty$\\
+\hline
+\end{tabularx}
+\caption{Facility Configurations for Example Simulations}
+\label{tab:facconfigs}
+\end{table}
+
+
+
+As described in Table \ref{tab:facconfigs}, the facilities used in these simulations are:
 \begin{itemize}
 
     \item \textbf{Reactor} (\Class{cycamore::Reactor}): This is a reactor
