@@ -21,9 +21,8 @@ alternative to existing fuel cycle simulators. Where previous nuclear fuel
 cycle simulators have had limited distribution, constrained simulation
 capabilities, and restricted customizability, \Cyclus emphasizes an open
 strategy for access and development.  This open strategy not only improves
-accessibility, but also enables transparency and community oversight.
-
-The object-oriented \gls{ABM} simulation paradigm ensures more generic
+accessibility, but also enables transparency and community oversight. 
+Furthermore, the object-oriented \gls{ABM} simulation paradigm ensures more generic
 simulation capability. It allows \Cyclus to address common analyses in a more
 flexible fashion and enables analyses that are impossible with system dynamics
 simulators.
@@ -31,13 +30,15 @@ simulators.
 Similarly, the fidelity-agnostic, modular \Cyclus architecture facilitates simulations
 at every level of detail. Simulations relying on arbitrarily complex isotopic
 compositions are possible in \Cyclus, as are simulations not employing any
-physics at all (though the user must explicitly turn off radioactive decay of 
-materials if that is desired). To support this, the \Cycamore library provides models 
-employing basic physics for core fuel cycle facilities and extension libraries 
-from the community support more detailed simulations. Indeed, agents of such 
-varying fidelity can even exist in the same simulation. Researchers no longer 
-need to reinvent the underlying simulator framework in order to model a simulation 
-focused on the aspects of the fuel cycle relevant to their research.
+physics at all. Physics is introduced through optional system-wide radioactive 
+decay of materials and through the use of physics-enabled facility libraries.  
+To support calculation of physical processes in nuclear facilities, the 
+\Cycamore library provides models employing basic physics for core fuel cycle 
+facilities and extension libraries from the community support more detailed 
+simulations. Indeed, agents of such varying fidelity can even exist in the same 
+simulation. Researchers no longer need to reinvent the underlying simulator 
+framework in order to model a simulation focused on the aspects of the fuel 
+cycle relevant to their research.
 
 Furthermore, when the capabilities within \Cyclus, \Cycamore, and the rest of
 the ecosystem are insufficient, adding custom functionality is simplified by a
