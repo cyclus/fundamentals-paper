@@ -58,12 +58,26 @@ open source, BSD-3-clause licensed.  \Cyclus can therefore be easily deployed
 on large computer systems, such as \gls{HTC} systems.
 
 Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
-implementation of a \Cyclus-enabled application on such a large computer system,
-uses UW-Madison's HTCondor \gls{HTC} infrastructure to perform sensitivity
-studies. Cyclopts has run over $10^5$ jobs, comprising more than 60,000 total
-compute hours. The \gls{HTC} infrastructure has separately been utilized to
-run and collect information from full \Cyclus simulations running in parallel
-on $10^3$ machines reliably for order $10^5$ simulations.
+implementation of a \Cyclus-enabled application on such a large compute system,
+uses UW-Madison's HTCondor \gls{HTC} infrastructure to study DRE performance and
+outcomes. For example, an investigation of the effect of solution degeneracy, a
+commonly observed phenomenon in scenarios with individual facilities and basic
+(e.g., commodity-only) preference definitions, was performed for three different
+fuel cycles: once-through, \gls{MOX} fast reactor-thermal reactor cycles, and
+\gls{MOX}-\gls{ThOX} recycle in fast reactors-thermal reactor cycles. Objective
+coefficients were generated based on two factors: commodity-facility pairings
+and facility location. The population of the possible values of
+commodity-facility pairings is always small ($\mathcal{O}(10)$). The size of the
+population of possible values of the location effect was investigated for values
+of zero, ten, and infinity (i.e., any real number). The study additionally
+included an investigation of problem-scaling behavior in order to quantify the
+magnitude and rate-of-increase of DRE solution times as a function of the
+simulation-entity population for each fuel
+cycle\cite{gidden_agent-based_2015}. In total, Cyclopts has run over $10^5$
+jobs, comprising more than 60,000 compute hours. The \gls{HTC} infrastructure
+has separately been utilized to run and collect information from full \Cyclus
+simulations running in parallel on $10^3$ machines reliably for order $10^5$
+simulations.
 
 \subsubsection{Dynamically Loadable Libraries}
 
@@ -350,10 +364,11 @@ The \Cyclus simulation paradigm allows discrete agents, based on archetypes
 about which the kernel has no knowledge, to enter the simulation at arbitrary
 times and trade in discrete resources. These resources are not defined \textit{a
   priori}. Therefore, the logic engine defining resource interaction mechanisms
-among agents is crucial. The \gls{DRE} is that critical logic engine on which
-\Cyclus simulations are built.  Supporting the general \Cyclus philosophy,
-facilities are treated as black boxes and a supply-demand communication
-framework is defined.
+among agents is crucial. The \gls{DRE}, described in detail in
+\cite{gidden_agent-based_2015}, is that critical logic engine on which \Cyclus
+simulations are built.  Supporting the general \Cyclus philosophy, facilities
+are treated as black boxes and a supply-demand communication framework is
+defined.
 
 The \gls{DRE} consists of three steps: supply-demand information
 gathering, resource exchange solution, and trade execution. Importantly, each
