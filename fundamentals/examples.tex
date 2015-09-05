@@ -81,7 +81,7 @@ developed under close integration with the \Cyclus kernel.  These tools are used
 to ease development and simulation design (Cycstub, Cycic, Ciclus), data
 visualization and analysis (Cyclist, Cyan), and remote execution (Cloudlus).
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\textwidth}{|r|X|r|}
 \hline
@@ -122,7 +122,7 @@ archetypes illustrate the power and potential of the community-based development
 approach that \Cyclus has taken.
 
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\textwidth}{|r|X|r|}
 \hline
@@ -152,12 +152,14 @@ of community-driven development in a fuel cycle simulator.}
 % reactor models. We could easily use the same demand schedule and enrichment
 % facility parameters and run it again.
 
-This section will discuss the creation and results of a few simple fuel cycle
-simulations to help illustrate the flexibility of \Cyclus. These examples are
-not the limit of \Cyclus' capabilities, which are extended with each new
+To illustrate the flexibility of \Cyclus, this section will discuss the 
+creation and results of a range of representative fuel cycle simulations.
+These examples are not the limit of \Cyclus' capabilities, which are extended with each new
 addition to the ecosystem, as discussed above.  Rather, these simulations are
-designed to illustrate that \Cyclus has capabilities matching those of any
-recipe-based simulator. Accordingly, many simplifying assumptions have been
+designed to illustrate that \Cyclus matches the capabilities of any
+recipe-based simulator and that variations on a single \Cyclus simulations can 
+be run with small changes to the input specification. For simplicity of the 
+demonstration, many simplifying assumptions have been
 made with respect to material compositions, fuel transmutation, among others.
 The three fuel cycles examined are:
 
@@ -173,7 +175,7 @@ As the number of staggered-cycle reactors increases the system converges
 toward continuous material flow results.  \Cyclus flexibility allows this
 transition to be examined.  
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \begin{tabularx}{\textwidth}{|X|r|X|}
 \hline
@@ -209,7 +211,6 @@ transition to be examined.
 \caption{Facility Configurations for Example Simulations}
 \label{tab:facconfigs}
 \end{table}
-
 
 
 As described in Table \ref{tab:facconfigs}, the facilities used in these simulations are:
@@ -252,9 +253,12 @@ As described in Table \ref{tab:facconfigs}, the facilities used in these simulat
 
 \end{itemize}
 
-Modifying the input file specification to model each of the 3 fuel cycles was
-done by making simple adjustments to the commodities and trade preferences for
-each of the facilities.  The reactor was configured to request recycled \gls{MOX}
+To model each of the three fuel cycles, only simple 
+adjustments to the input file specification were necessary. Specifically,  
+only the commodity types and trade preferences for
+each of the facilities needed to be altered from one simulation to another. 
+
+For all cases, the reactor was configured to request recycled \gls{MOX}
 fuel with a higher preference than new \gls{UOX} fuel. For the No Recycle case,
 the \Class{Reactor} was set to offer all spent fuel as waste.  For the 1-pass
 recycle case, the \Class{Reactor} offered spent \gls{UOX} into a spent fuel market,
@@ -279,7 +283,7 @@ material flows for the Single-Pass Recycle case are shown in Figure
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics{./images/flow-mod-open-1.eps}
+\includegraphics[width=\textwidth]{./images/flow-mod-open-1.eps}
 \end{center}
 \caption{1-pass \gls{MOX} recycle scenario material flows.}
 \label{fig:flowmodopen}
@@ -307,7 +311,7 @@ Infinite-Pass Recycle case.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics{./images/flow-closed-1.eps}
+\includegraphics[width=\textwidth]{./images/flow-closed-1.eps}
 \end{center}
 \caption{Full \gls{MOX} recycle (multi-pass) fuel cycle material flows.}
 \label{fig:flowclosed}
@@ -332,7 +336,7 @@ behavior that affect total system behavior are observed using \Cyclus.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics{./images/puseries-1.eps}
+\includegraphics[width=\textwidth]{./images/puseries-1.eps}
 \end{center}
 \caption{System plutonium buildup with one reactor.}
 \label{fig:puseries1}

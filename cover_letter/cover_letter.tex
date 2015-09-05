@@ -1,3 +1,4 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plain Cover Letter
 % LaTeX Template
 %
@@ -13,82 +14,69 @@
 %       PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[10pt]{letter} % Default font size of the document, change to 10pt to fit more text
+\documentclass[11pt]{letter} % Default font size of the document, change to 10pt to fit more text
 \usepackage{graphicx}
 %\usepackage{newcent} % Default font is the New Century Schoolbook PostScript font
 %\usepackage{helvet} % Uncomment this (while commenting the above line) to use the Helvetica font
 
 % Margins
-\topmargin=-1in % Moves the top of the document 1 inch above the default
-\textheight=10in % Total height of the text on the page before text goes on to the next page, this can be increased in a longer letter
-%\oddsidemargin=-10pt % Position of the left margin, can be negative or positive if you want more or less room
-%\textwidth=6.5in % Total width of the text, increase this if the left margin was decreased and vice-versa
-
+\usepackage[left=1.25in,right=1.25in,top=1.5in,bottom=1.25in]{geometry}
 %\let\raggedleft\raggedright % Pushes the date (at the top) to the left, comment this line to have the date on the right
-%\usepackage{wallpaper}
-%\ULCornerWallPaper{0.97}{bk_logo.eps}
 
-
-\begin{document}
+\usepackage{eso-pic,graphicx}
+ \begin{document}
+\AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{background.pdf}}
 
 %----------------------------------------------------------------------------------------
 %       ADDRESSEE SECTION
 %----------------------------------------------------------------------------------------
 
-\begin{letter}{N. Tsoulfanidis and A. Klein\\
-Editors\\
-Nuclear Technology}
-
+\begin{letter}{Professor A.K. Noor\\
+Professor B.H.V. Topping\\
+Editors, Advances in Engineering Software}
 %----------------------------------------------------------------------------------------
 %       YOUR NAME & ADDRESS SECTION
 %----------------------------------------------------------------------------------------
 
-\begin{center}
-\includegraphics[width=\textwidth]{bk_logo.eps}
-\end{center}
+\address{Kathryn D. Huff\\
+2150 Shattuck Ave.\\
+Suite 230\\
+Berkeley, CA 94720}
 
-\address{Department of Nuclear Engineering\\
-4155 Etcheverry Hall\\
-MC 1730\\
-University of California, Berkeley\\
-Berkeley, CA 94720-1730}
-
-\name{\vspace{5mm}
-Kathryn Huff\\
-Postdoctoral Scholar\\
-huff@berkeley.edu}
 
 %----------------------------------------------------------------------------------------
 %       LETTER CONTENT SECTION
 %----------------------------------------------------------------------------------------
 
-\opening{Dear Dr. Klein and Dr. Tsoulfanidis:}
+\opening{Dear Professors Noor and Topping,}
 
-Please find enclosed a manuscript entitled: ``Fundamental Concepts in the
-Cyclus Fuel Cycle Simulator Framework and Modeling Ecosystem'' which I am
-submitting for exclusive consideration of publication as a research article in
-Nuclear Technology.
+Please find enclosed a manuscript entitled: ``Fundamental Concepts in the 
+Cyclus Fuel Cycle Simulator Framework'' which I am submitting for exclusive 
+consideration of publication as a research article in Advances in Engineering 
+Software.
 
-This manuscript describes the fundamental concepts in the Cyclus fuel cycle
-simulator framework and its modeling ecosystem. These concepts and their
-implementations are described in the context of motivating challenges in
-nuclear fuel cycle simulation. Additionally, the current capabilities of Cyclus
-are demonstrated for both an open and a closed fuel cycle.
-
-We request that this manuscript be considered for joint publication alongside
-Scopatz et al., ``Cyclus Archetypes.'' These two papers are complementary, and we
-believe it would be ideal for both manuscripts to be published together in the
-same issue of Nuclear Technology.
+This manuscript describes the fundamental concepts in the Cyclus nuclear fuel 
+cycle simulator framework and its modeling ecosystem. This software was 
+developed by the authors of this paper and is currently being actively used and 
+extended by a growing community of researchers.  These concepts and their implementations 
+are motivated by and described in the context of challenges in nuclear fuel 
+cycle simulation.  Accordingly, the current capabilities of Cyclus are 
+demonstrated for a range of representative fuel cycle scenarios including open 
+(no recycling), closed (complete recycling), and modified open (some recycling) 
+material routing schemes.
 
 Thank you for your consideration of this work. I expect it will be of interest
-to a broad readership concerned with nuclear fuel cycle simulation and
-computational methods. Please address all correspondence concerning this
-manuscript to me at UC Berkeley and feel free to correspond with me by e-mail.
+to a broad readership concerned with applications of object-oriented simulation 
+to engineering problems nuclear engineering, algorithms for engineering systems 
+analysis, and agent-based computational methods. Please address all 
+correspondence concerning this manuscript to me at UC Berkeley and feel free to 
+correspond with me by e-mail.
 
-\closing{Sincere regards,%
-\\
-\vspace{-20mm}\includegraphics[height=1.5cm]{signature.eps}
+\closing{Sincere regards,
+\includegraphics[height=2cm]{signature}\\
+\fromsig{Kathryn Huff}
 }
+
 %----------------------------------------------------------------------------------------
 
 \end{letter}
