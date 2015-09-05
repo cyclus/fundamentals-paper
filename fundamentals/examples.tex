@@ -152,12 +152,14 @@ of community-driven development in a fuel cycle simulator.}
 % reactor models. We could easily use the same demand schedule and enrichment
 % facility parameters and run it again.
 
-This section will discuss the creation and results of a few simple fuel cycle
-simulations to help illustrate the flexibility of \Cyclus. These examples are
-not the limit of \Cyclus' capabilities, which are extended with each new
+To illustrate the flexibility of \Cyclus, this section will discuss the 
+creation and results of a range of representative fuel cycle simulations.
+These examples are not the limit of \Cyclus' capabilities, which are extended with each new
 addition to the ecosystem, as discussed above.  Rather, these simulations are
-designed to illustrate that \Cyclus has capabilities matching those of any
-recipe-based simulator. Accordingly, many simplifying assumptions have been
+designed to illustrate that \Cyclus matches the capabilities of any
+recipe-based simulator and that variations on a single \Cyclus simulations can 
+be run with small changes to the input specification. For simplicity of the 
+demonstration, many simplifying assumptions have been
 made with respect to material compositions, fuel transmutation, among others.
 The three fuel cycles examined are:
 
@@ -211,7 +213,6 @@ transition to be examined.
 \end{table}
 
 
-
 As described in Table \ref{tab:facconfigs}, the facilities used in these simulations are:
 \begin{itemize}
 
@@ -252,9 +253,12 @@ As described in Table \ref{tab:facconfigs}, the facilities used in these simulat
 
 \end{itemize}
 
-Modifying the input file specification to model each of the 3 fuel cycles was
-done by making simple adjustments to the commodities and trade preferences for
-each of the facilities.  The reactor was configured to request recycled \gls{MOX}
+To model each of the three fuel cycles, only simple 
+adjustments to the input file specification were necessary. Specifically,  
+only the commodity types and trade preferences for
+each of the facilities needed to be altered from one simulation to another. 
+
+For all cases, the reactor was configured to request recycled \gls{MOX}
 fuel with a higher preference than new \gls{UOX} fuel. For the No Recycle case,
 the \Class{Reactor} was set to offer all spent fuel as waste.  For the 1-pass
 recycle case, the \Class{Reactor} offered spent \gls{UOX} into a spent fuel market,
