@@ -1,41 +1,15 @@
-\documentclass{ntmanuscript}
+\documentclass[review]{elsarticle}
+
 \usepackage[acronym,toc]{glossaries}
 \include{acros}
 \makeglossaries
 
-\usepackage[printwatermark]{xwatermark}
-\usepackage{xcolor}
-\usepackage{graphicx}
-
-\newwatermark[allpages,color=black!5,angle=45,scale=6,xpos=-40,ypos=40]{DRAFT}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Fundamental Concepts in the Cyclus Fuel Cycle Simulator Framework}
-
-% Authors. Separated by commas
-\input{authors}
-
-% Institutes of the authors
-\input{institutions}
-
-% Information concerning the person submitting the manuscript
-\submitter{Kathryn D. Huff}
-\submitteraddress{2150 Shattuck Ave., Suite 230, Berkeley, CA 94704}
-\submitteremail{huff@berkeley.edu}
-
-
-% No more than three keywords, though each can be a phrase
-\keywords{nuclear fuel cycle, simulation, software}
-
-\usepackage{cite} % order citations correctly
-
 \usepackage{float} % used to help position figures with the H modifier
 
-%%%%%%%%%%%%% stuff for syntax highlighting and code blocks %%%%%%%%%%%%%%%%
+%%%%%%%%%%% stuff for syntax highlighting and code blocks %%%%%%%%%%%%%%
 \usepackage{listings} % for highlighted code blocks
 \usepackage{color}
 
-% create listings pkg definition of diff language
 \lstdefinelanguage{diff}{
   morecomment=[l][\color{blue}]{@@},     % group identifier
   morecomment=[l][\color{red}]-,         % deleted lines
@@ -61,19 +35,81 @@
 \newcommand{\Cycamore}{\textsc{Cycamore}\xspace}%
 \newcommand{\Class}[1] {\texttt{#1}}%
 \newcommand{\TODO}[1] {{\color{red}\textbf{TODO: #1}}}%
-\date{}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% watermark
+%\usepackage[printwatermark]{xwatermark}
+%\usepackage{xcolor}
+%\usepackage{graphicx}
+%\newwatermark[allpages,color=black!5,angle=45,scale=6,xpos=-40,ypos=40]{DRAFT}
+
+
+\usepackage{lineno,hyperref}
+\modulolinenumbers[5]
+
+\journal{Journal of \LaTeX\ Templates}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+%\bibliographystyle{model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+\bibliographystyle{elsarticle-num}
+%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
+
+\begin{frontmatter}
+
+\title{Fundamental Concepts in the Cyclus Fuel Cycle Simulator Framework}
+
+%% Authors
+\input{authors}
+
+% Institutes of the authors
+\input{institutions}
+
+% Abstract
 \input{abs}
+
+\begin{keyword}
+nuclear fuel cycle \sep simulation \sep agent based modeling
+\end{keyword}
+
+\end{frontmatter}
+
+\linenumbers
+
 \input{intro}
 \input{impl}
 \input{examples}
 \input{conclusion}
 \input{acks}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{ans}
 \bibliography{fundamentals}
+
 \end{document}
-
-
