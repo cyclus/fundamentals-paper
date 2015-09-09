@@ -172,24 +172,20 @@ generic fashion.
 independently acting objects.  Figure \ref{fig:framework} illustrates the
 modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator creates
 a set of classes on which agent plug-ins are based.  Agent plug-ins utilize the
-generic core \gls{API} to interact with one another.  For example, they use the
-resource exchange paradigm \gls{API} for trading resources with one another.
-
-Due to this plug-in architecture,
-implementations of agents in a given scenario can be easily
-interchanged. Critically, this novel functionality enables the comparison
-between agent implementations. For example, a low-physics-fidelity
-implementation of a reactor can be compared to an implementation with higher
-physics fidelity, allowing an analyst to discern the effect of reactor physical
-fidelity on a given fuel cycle.
-
-Interchangeability is accomplished by providing inheritable \glspl{API} that define agent-to-agent
-interaction and agent-to-environment interaction. For example,
-an archetype that inherits the \Class{Region} interface, as in Figure
-\ref{fig:agent_uml}, is interchangeable with any other Region agent.
-For the archetype developer, this interface provides enormous power
+generic core \glspl{API} that define agent-to-agent interaction as well as agent-to-environment interaction.
+For example, they use the
+resource exchange paradigm \gls{API} for trading resources with one another.  
+For the archetype developer, these interfaces provide enormous power
 very simply. The \gls{API} abstracts away unnecessary detail while providing
 all necessary functionality for interacting with the \Cyclus simulation kernel.
+For the user, multiple archetypes that inherit the same \glspl{API} are interchangeable
+in a simulation.
+
+Critically, this novel functionality enables the comparison
+between agent implementations. For example, 
+an archetype that inherits the \Class{Region} interface, as in Figure
+\ref{fig:agent_uml}, is interchangeable with any other Region agent.
+
 
 \begin{figure}[htbp!]
 \begin{center}
@@ -220,8 +216,8 @@ agents in simulated fuel cycles. The fundamental interactions for each entity ar
 archetype class in \Cyclus, i.e., the \Class{Region} class, \Class{Institution}
 class, and \Class{Facility} class. Archetype developers can then build on the
 provided functionality by inheriting from the appropriate class.
-\Cyclus implements a \gls{RIF} relationship through the
-parent-child hierarchy described in \S \ref{sec:interchangeability}, where
+\Cyclus implements a \gls{RIF} relationship through a
+parent-child hierarchy where
 regions are the parents of institutions which are, in turn, the parents of
 facilities. In other words, \gls{RIF} hierarchies form a directed acyclic graph (DAG),
 with regions as root nodes and facilities as leaf nodes.
@@ -231,7 +227,7 @@ nominally responsible for deploying and decommissioning facilities. Accordingly,
 logic regarding building and decommissioning can be implemented on top of
 those behaviors inherited from the
 \Class{Institution} interface. Second, the \Class{Facility} class implements the
-\Class{Trader} interface, and thus institutions and regions, respectively, can
+\Class{Trader} interface to participate in resource exchange, and institutions and regions, respectively, can
 adjust the resource flow preferences of their managed facilities. Importantly,
 this capability allows for the modeling of preferential regional trading
 of resources (e.g., tariffs) as well as preferential institutional trading
