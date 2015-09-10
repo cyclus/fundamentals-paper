@@ -172,28 +172,24 @@ generic fashion.
 independently acting objects.  Figure \ref{fig:framework} illustrates the
 modular nature of \Cyclus archetypes.  The core of the \Cyclus simulator creates
 a set of classes on which agent plug-ins are based.  Agent plug-ins utilize the
-generic core \gls{API} to interact with one another.  For example, they use the
-resource exchange paradigm \gls{API} for trading resources with one another.
-
-Due to this plug-in architecture,
-implementations of agents in a given scenario can be easily
-interchanged. Critically, this novel functionality enables the comparison
-between agent implementations. For example, a low-physics-fidelity
-implementation of a reactor can be compared to an implementation with higher
-physics fidelity, allowing an analyst to discern the effect of reactor physical
-fidelity on a given fuel cycle.
-
-Interchangeability is accomplished by providing inheritable \glspl{API} that define agent-to-agent
-interaction and agent-to-environment interaction. For example,
-an archetype that inherits the \Class{Region} interface, as in Figure
-\ref{fig:agent_uml}, is interchangeable with any other Region agent.
-For the archetype developer, this interface provides enormous power
+generic core \glspl{API} that define agent-to-agent interaction as well as agent-to-environment interaction.
+For example, they use the
+resource exchange paradigm \gls{API} for trading resources with one another.  
+For the archetype developer, these interfaces provide enormous power
 very simply. The \gls{API} abstracts away unnecessary detail while providing
 all necessary functionality for interacting with the \Cyclus simulation kernel.
+For the user, multiple archetypes that inherit the same \glspl{API} are interchangeable
+in a simulation.
+
+Critically, this novel functionality enables the comparison
+between agent implementations. For example, 
+an archetype that inherits the \Class{Region} interface, as in Figure
+\ref{fig:agent_uml}, is interchangeable with any other Region agent.
+
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{./images/foo}
+\includegraphics[width=0.5\textwidth]{./images/agent_uml}
 \end{center}
 \caption{Inheriting \Cyclus class interfaces, such as the \Class{Agent},
 \Class{Facility}, \Class{Institution}, and \Class{Region} classes, abstracts away
@@ -220,8 +216,8 @@ agents in simulated fuel cycles. The fundamental interactions for each entity ar
 archetype class in \Cyclus, i.e., the \Class{Region} class, \Class{Institution}
 class, and \Class{Facility} class. Archetype developers can then build on the
 provided functionality by inheriting from the appropriate class.
-\Cyclus implements a \gls{RIF} relationship through the
-parent-child hierarchy described in \S \ref{sec:interchangeability}, where
+\Cyclus implements a \gls{RIF} relationship through a
+parent-child hierarchy where
 regions are the parents of institutions which are, in turn, the parents of
 facilities. In other words, \gls{RIF} hierarchies form a directed acyclic graph (DAG),
 with regions as root nodes and facilities as leaf nodes.
@@ -231,7 +227,7 @@ nominally responsible for deploying and decommissioning facilities. Accordingly,
 logic regarding building and decommissioning can be implemented on top of
 those behaviors inherited from the
 \Class{Institution} interface. Second, the \Class{Facility} class implements the
-\Class{Trader} interface, and thus institutions and regions, respectively, can
+\Class{Trader} interface to participate in resource exchange, and institutions and regions, respectively, can
 adjust the resource flow preferences of their managed facilities. Importantly,
 this capability allows for the modeling of preferential regional trading
 of resources (e.g., tariffs) as well as preferential institutional trading
@@ -554,82 +550,60 @@ adoption into the kernel as toolkit extensions. Likely extensions include
 \end{itemize}
 
 \subsection{Quality Assurance}
-% Organize this section according to major topics
-% give each topic a section heading in boldface.
-% try to cover the major common points :
-%
-% problem design
-% methods of measurement
-% supporting models
-% supporting data
-% simulations run
-% results
 
-% Just write the section headings for each part and indicate what goes in that
-% section with words :
-%
-% heading
-% figures (with captions)
-% schematics (with captions and footnotes)
-% equations
-% tables
 
-% What does it mean?
-% What did I actually test?
-% What were the results?
-% Did the work yield a new method?
-% Did the work yield new knowledge?
-% What measurements did I make?
-% How were these measurements characterized?
-% What methods were used?
-% What were the results?
-% How were the measurements made and characterized?
+% topics:
+%  - version control
+%  - PR policy
+%  - style guide
+%  - testing
+%  - CI 
 
-Simulation science - like experimental science - must distinguish trustworthy
-results from untrustworthy ones.
-Charles Babbage famously articulated this, ``On two occasions I have been asked,
-`Pray, Mr. Babbage, if you put into the machine wrong figures, will the right
-answers come out?' ... I am not able rightly to apprehend the kind of confusion
-of ideas that could provoke such a question.'' \cite{babbage_passages_2011}.
-A simulator must assure correctness and guard against the \emph{garbage
-in, garbage out} phenomenon.
-
-Multiple strategies, collectively known as \emph{\gls{QA}}, have
-been invented to mitigate structural and algorithmic errors
-in software. These include \emph{\gls{VV}}
-\cite{boehm_software_1989}, testing, and others.
+To garner the trust of a broad user and archetype developer community, the
+\Cyclus project must implement a strategy to assure the ongoing quality of the
+software it provides.  Multiple strategies, collectively known as
+\emph{\gls{QA}}, have been developed by the scientific software development
+community to mitigate structural and algorithmic errors in software. These
+include \emph{\gls{VV}} \cite{boehm_software_1989}, testing, and others.
 
 Nuclear engineering software quality is often governed by \gls{NQA1}, an
-\gls{ASME} specification
-whose latest revision appeared in 2009 \cite{asme_nqa-1a-2009_2009}.
-\Cyclus has adopted an \emph{agile} development process
-\cite{larman_agile_2004},
-interpreting \gls{NQA1} in a manner similar to the process adopted by the
-\gls{DOE} within \gls{NEAMS} \cite{neams_nuclear_2013} or by the PyNE toolkit
-\cite{biondo_quality_2014}.
+\gls{ASME} specification whose latest revision appeared in 2009
+\cite{asme_nqa-1a-2009_2009}.  \Cyclus has adopted an \emph{agile} development
+process \cite{larman_agile_2004}, interpreting \gls{NQA1} in a manner similar
+to the process adopted by the \gls{DOE} within \gls{NEAMS}
+\cite{neams_nuclear_2013} or by the PyNE toolkit \cite{biondo_quality_2014}.
 
-Verification may be defined as the question, ``Is \Cyclus being built correctly?''
-To answer this question, \Cyclus relies on software development best practices
-such as testing,
-documentation, version control, style guidelines, and continuous integration to
-ensure reliability and reproducibility. These verification techniques are
-discussed individually in the sections that follow.
+Validation of simulators like \Cyclus, that are intended to give forecasts of
+system behavior in uncertain futures, is not well defined as there are no
+experimental benchmarks upon which to rely.  Instead, code-to-code comparisons
+with fuel cycle simulators that use other modeling paradigms are underway as
+the best approach to establish confidence that \Cyclus produces correct
+answers. \cite{huff_extensions_2014}
 
-Validation, in contrast,  may be defined as the question,
-``Is \Cyclus the correct tool?''
-Since \Cyclus is alone in its class as an agent-based fuel cycle simulator, longitudinal
-validation is not possible. Nonetheless, code-to-code comparisons with fuel cycle
-simulators that use other modeling paradigms are underway
-\cite{huff_extensions_2014}.
+Verficiation of \Cyclus implementation relies on software development best
+practices such as version control, testing, continuous integration,
+documentation, and style guidelines to ensure reliability and
+reproducibility. Sections \ref{sec:qa-vc}-\ref{sec:qa-review} discuss in
+greater detail the software development components that comprise the \Cyclus
+verification strategy, which allows the simulation kernel and physics models
+to be tested explicitly and separately. Each of these approaches on its own is
+a valuable addition to \gls{QA} but it cannot be the entire answer to the
+requirements imposed by \gls{NQA1}. Taken together and strictly adhered to,
+they present a fortress to protect against poorly designed or otherwise
+undesirable code.
 
-Sections \ref{sec:qa-testing}-\ref{sec:qa-ci} discuss in greater detail the software
-development components that comprise the \Cyclus verification strategy, which 
-allows the simulation kernel and physics models to be tested explicitly and 
-separately.
-Each of these approaches on its own is a valuable addition to \gls{QA} but it cannot be the
-entire answer to the requirements imposed by \gls{NQA1}. Taken together and strictly
-adhered to, they present a fortress to protect against poorly designed or otherwise undesirable code.
+\subsubsection{Version Control}
+\label{sec:qa-vc}
 
+Automated version control, provided by the well-established \emph{distributed
+  version control} tool git \cite{software_freedom_conservancy_git_2014}, is
+at the heart of the QA strategy because it records the full history of any
+change, along with metadata such as the author, a timestamp, and an
+accompanying message. This makes it possible to identify when changes were
+introduced, how they are related to other changes, and who made those changes.  If
+necessary, it also facilitates reversing individual changes from a long and
+intricate set of changes.  Version control also enables a code review process
+descried in section \ref{sec:qa-review} below.
 
 \subsubsection{Testing}
 \label{sec:qa-testing}
@@ -656,9 +630,7 @@ expected to grow over time.
 \paragraph{Integration Tests}
 
 Integration tests combine multiple elements of the
-\Cyclus interface and test that they work correctly with each other.  By analogy,
-simply because the gears (units) are made correctly does not imply that the
-clock (integration) will run smoothly, run at all, or give the correct time.
+\Cyclus interface and test that they work correctly with each other. 
 In \Cyclus and \Cycamore, integration tests are performed by running sample
 simulations for scenarios that are sufficiently simple to predict the results
 and verifying that results match those predictions. A set of standard input
@@ -681,7 +653,59 @@ In some sense, regression tests are `dumb' in that they do
 not care about the contents of a simulation being correct, only whether or not
 it changed.
 
-\subsubsection{Documentation}
+\paragraph{Continuous Integration}
+
+\Gls{CI} is the idea that software should be tested
+and validated as it is being developed, rather than as a final stage in a
+longer development cycle.  Under \gls{CI}, every pull request is automatically
+tested independently, immediately as it is proposed. The results of this
+testing are shown to code reviewers prior to reviewing the software changes themselves.  The \Cyclus
+project currently uses the CircleCI \cite{circleci} service for continuous integration.
+Whenever a pull request is created, CircleCI builds a version of the \Cyclus
+source code that includes the requested changes and runs the complete test
+suite, reporting back whether or not those steps were successful. If \gls{CI}
+was not successful, the code author(s) must first identify and resolve the
+problems.
+
+Since these steps are performed for all incoming code, it is easy for the
+\Cyclus core team to determine whether or not an individual pull request
+actually works. This helps identify build and test problems prior to broken
+code being allowed into the main software development branch.  
+
+\subsubsection{Code Review}
+\label{sec:qa-review}
+
+Autmoated testing including \gls{CI} is a necessary but not sufficient
+component of the \Cyclus \gls{QA} system: it keeps bad code out of
+\Cyclus. However, \Cyclus will always require human eyes and hands to let good
+code in.  
+
+The main \Cyclus repository is hosted remotely and publicly on the GitHub
+website \cite{dabbish_social_2012}, in part because it provides tools that
+facilitate a culture of frequent and thorough code review.  A number of
+policies exist to ensure that a proposed set of changes, known as a \emph{pull
+  request}, adhere to the projects \gls{QA} standards. Every pull request must
+be reviewed and accepted by a member of the \Cyclus core team that was not
+involved in authoring the changes.  In addition to reviewing the algoirthmic
+design in the source code, the reviewer relies on tests to ensure correct
+behavior, and requires the authors to adhere to the style guide and provide
+sufficient documentation.  Only after the \gls{QA} standards have been met are
+the proposed changes merged into the software. This step has been repeatedly
+shown to improve code quality \cite{cohen_modern_2010}.
+
+Once \gls{CI} is successful, a code reviewer inspects not only the
+changes that are proposed to the software itself, but also the changes that
+have been proposed to tests.  It is important that the subset of tests that
+are relevant to the software change has a scope and completeness that will
+ensure that incorrect behavior will be automatically detected.  If there are
+sufficent tests and \gls{CI} is successful, the reviewer can proceed to
+considering the actual software changes themselves.
+
+Because of their role in facilitating code review during the change process,
+as well as their long term benefit to the maintainability of the project,
+documentation and coding style are also reviewed as part of this process.
+
+\paragraph{Documentation}
 
 All of the public interface (the \gls{API}) must be documented as required by
 the \Cyclus \gls{QA} policy. This certifies that the intended goals of an
@@ -690,52 +714,7 @@ this information is aggregated together into static websites with the Doxygen
 \cite{van_heesch_doxygen:_2008} and Sphinx \cite{brandl_sphinx_2014} tools, and
 can be accessed at \url{http://fuelcycle.org}.
 
-\subsubsection{Version Control}
-
-Version control preserves the development history, or \emph{provenance}, of
-source code files. \Cyclus uses a well-established \emph{distributed version
-control} tool called git \cite{software_freedom_conservancy_git_2014} for this
-purpose.  Distributed version control allows every
-user to have complete local copy of the \emph{repository} (the version control
-term for the collection of all possible histories).
-One feature that git performs exceptionally well is \emph{branching}.
-Branches are distinct pathways in the history that diverge from a mainline source
-tree and then may be \emph{merged} back in. Multiple simultaneous
-branches may exist at all points in time. Every change to the code is recorded
-in the history, along with metadata such as the author, a timestamp, and an
-accompanying message. Thus,
-it is possible for \Cyclus to accurately replay the entirety of who did what to the
-code when.
-
-\Cyclus uses a strategy known as \emph{git flow}
-\cite{kalliamvakou_code-centric_2014} to manage topical branches where
-individuals develop code in parallel. All proposed software changes from
-topical branches must have sufficient successful tests and comprehensive
-documentation to be allowed into \Cyclus.  As an example, a schematic of the
-development stages between reporting a bug and merging the fix is shown in
-Figure \ref{fig:gitprocess}.
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[height=0.6\textheight]{./images/gitprocess}
-\end{center}
-\caption{A version-control enabled process for finding, reporting, and fixing a bug
-can take place within an issue tracker alongside multiple stages of software
-testing and review. In the \Cyclus case, the final review stage includes unit,
-regression, and integration testing as well as manual code inspection.}
-\label{fig:gitprocess}
-\end{figure}
-
-The act of proposing a change is known as a \emph{pull request}. The main \Cyclus repository is
-hosted remotely on the GitHub website \cite{dabbish_social_2012}. The online
-mechanism for pull requests allows for code review by a member of the \Cyclus
-core team, separate from the author, prior to any change being included. Non-members
-of the \Cyclus development team are allowed and encouraged to submit and review
-pull requests. However, only members of the \Cyclus core team are allowed to
-merge in any changes and only after the \gls{QA} standards have been met. This
-step has been repeatedly shown to improve code quality \cite{cohen_modern_2010}.
-
-\subsubsection{Style Guide}
+\paragraph{Style Guide}
 
 In any multi-person software project, there is a tension between how individuals
 wish to write code. Every person tends to have their own custom style. To remedy this,
@@ -746,32 +725,3 @@ This means that all developers of \Cyclus nominally write \Cyclus code in the sa
 way.  This homogenization may be a hurdle to new developers but ultimately
 improves code legibility and, therefore, robustness \cite{cohen_modern_2010}.
 
-\subsubsection{Continuous Integration}
-\label{sec:qa-ci}
-
-\emph{Continuous integration (CI)} is the idea that software should be tested and validated
-as it is being developed, rather than as a final stage in a longer development
-cycle.  Under \gls{CI}, every pull request (proposed code change) is tested independently immediately after
-it is proposed. Such tests are run on all officially supported platforms.
-\Cyclus uses a \gls{CI} platform called Polyphemus
-\cite{scopatz_polyphemus_2014}. Polyphemus serves as an intermediary between GitHub pull requests on the front-end
-and temporary \Cyclus servers on the back-end. These servers are hosted by
-the Build \& Test Laboratory (BaTLab) \cite{uw_batlab_team_batlab_2014} at the University of
-Wisconsin-Madison. Whenever a pull request is created, Polyphemus performs
-the following actions:
-
-\begin{enumerate}
-    \item Copies \Cyclus with the proposed new code to BaTLab,
-    \item Initializes Linux and Mac OSX servers,
-    \item Builds \Cyclus on all platforms,
-    \item Runs the complete \Cyclus test suite,
-    \item Reports whether or not the above steps succeeded.
-\end{enumerate}
-
-Since these steps are performed for all incoming code, it is easy for the
-\Cyclus core team to determine whether or not an individual pull request
-actually works. This helps identify build and test problems prior to
-broken code being allowed into the develop branch. \gls{CI} is a necessary
-but not sufficient addition to the \Cyclus \gls{QA}
-system: it keeps bad code out of \Cyclus. However, \Cyclus will always
-require human eyes and hands to let good code in.
