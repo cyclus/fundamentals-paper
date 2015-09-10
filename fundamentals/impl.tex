@@ -600,7 +600,7 @@ Automated version control, provided by the well-established \emph{distributed
 at the heart of the QA strategy because it records the full history of any
 change, along with metadata such as the author, a timestamp, and an
 accompanying message. This makes it possible to identify when changes were
-introduced, how they related to other changes, and who made those changes.  If
+introduced, how they are related to other changes, and who made those changes.  If
 necessary, it also facilitates reversing individual changes from a long and
 intricate set of changes.  Version control also enables a code review process
 descried in section \ref{sec:qa-review} below.
@@ -655,12 +655,12 @@ it changed.
 
 \paragraph{Continuous Integration}
 
-\emph{Continuous integration (CI)} is the idea that software should be tested
+\Gls{CI} is the idea that software should be tested
 and validated as it is being developed, rather than as a final stage in a
 longer development cycle.  Under \gls{CI}, every pull request is automatically
-tested independently immediately as it is proposed. The results of this
-testing are shown to code reviewers in the GitHub interface.  The \Cyclus
-project currently uses the CircleCI service for continuous integration.
+tested independently, immediately as it is proposed. The results of this
+testing are shown to code reviewers prior to reviewing the software changes themselves.  The \Cyclus
+project currently uses the CircleCI \cite{circleci} service for continuous integration.
 Whenever a pull request is created, CircleCI builds a version of the \Cyclus
 source code that includes the requested changes and runs the complete test
 suite, reporting back whether or not those steps were successful. If \gls{CI}
