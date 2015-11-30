@@ -176,7 +176,8 @@ generic core \glspl{API} that define agent-to-agent interaction as well as agent
 For example, they use the
 resource exchange paradigm \gls{API} for trading resources with one another.  
 For the archetype developer, these interfaces provide enormous power
-very simply. The \gls{API} abstracts away unnecessary detail while providing
+very simply. The \gls{API} abstracts away details unnecessary to specifying the 
+archetype behavior, while providing
 all necessary functionality for interacting with the \Cyclus simulation kernel.
 For the user, multiple archetypes that inherit the same \glspl{API} are interchangeable
 in a simulation.
@@ -189,7 +190,7 @@ an archetype that inherits the \Class{Region} interface, as in Figure
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{./images/agent_uml}
+\includegraphics[width=\textwidth]{./images/agent_uml}
 \end{center}
 \caption{Inheriting \Cyclus class interfaces, such as the \Class{Agent},
 \Class{Facility}, \Class{Institution}, and \Class{Region} classes, abstracts away
