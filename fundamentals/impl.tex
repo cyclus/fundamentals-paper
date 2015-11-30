@@ -220,7 +220,7 @@ provided functionality by inheriting from the appropriate class.
 \Cyclus implements a \gls{RIF} relationship through a
 parent-child hierarchy where
 regions are the parents of institutions which are, in turn, the parents of
-facilities. In other words, \gls{RIF} hierarchies form a directed acyclic graph (DAG),
+facilities. In other words, \gls{RIF} hierarchies form a \gls{DAG},
 with regions as root nodes and facilities as leaf nodes.
 
 Two primary consequences arise from this structure. First, institutions are
@@ -249,8 +249,13 @@ applicable across the full range of modeling fidelity.
 
 Fleet-based, lumped-material models do not distinguish between discrete facility
 entities or materials. However, some questions require resolution at the level
-of individual facilities and materials.  As a result, many detailed performance
-metrics cannot be captured with previously existing fleet-based models. For all
+of individual facilities and materials. As a result, many detailed performance
+metrics cannot be captured with previously existing fleet-based models. For 
+example, to meaningfully optimize the cost and environmental impact of spent 
+nuclear fuel storage, transport, and disposal strategies, discrete casks and 
+their varying isotopic compositions must be taken into account.
+
+For all
 of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables novel
 simulations, multiple use cases require that these agents, such as the regions,
 institutions, and facilities in \Cyclus, must be represented as discrete
