@@ -89,7 +89,11 @@ whether a batch being discharged from a reactor originated in \gls{MOX}
 fabrication rather than fresh \gls{UOX} fabrication, \Cyclus can go further,
 tracking which of the fresh batches contained material from a particular
 discharged batch. By extension, \Cyclus can also report which individual
-facilities the batch passed through and in which it originated. The
-nonproliferation-related applications of this analysis capability are
-significant - allowing \Cyclus to answer questions that previous simulators
-have been unable to ask.
+facilities the batch passed through and in which it originated. 
+The ability to track a single material through the simulation, 
+though it might be split, transmuted, or merged with other materials along the 
+way, allows \Cyclus to answer more data-rich questions that previous simulators
+have been unable to ask. For example, it allows precise tracking of 
+specific material diversions, so queries about nonproliferation 
+robustness in a facility can be levied either in the context of a single event or 
+a series of nefarious acts.
