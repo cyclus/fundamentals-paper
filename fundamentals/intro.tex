@@ -29,10 +29,12 @@ and performance metrics derived from them using software ranging from
 spreadsheet-driven flow calculators to highly specialized system dynamics
 modeling platforms.
 
-To date, current tools are typically privately distributed rather than open
-source, having been developed in industrial contexts. Additionally, having
+To date, current tools are typically distributed under restrictive rather than open
+source licenses, having been developed in industrial contexts or using 
+commercial software platforms. Additionally, having
 often been developed for customized applications, many possess inflexible
-architectures. Finally, many model only fleet-level dynamics of facilities and
+architectures, never having been designed to enable new features or extensions.
+Finally, many model only fleet-level dynamics of facilities and
 materials rather than discrete resolution of those individual agents and
 objects. When the DOE-NE Fuel Cycles Technologies Systems Analysis Campaign
 developed requirements necessary in a next generation fuel cycle simulator,
@@ -104,8 +106,9 @@ nuclear energy systems, the dynamics of transitions between fuel cycles, and
 many other measures of performance can be expressed in terms of these metrics.
 For example, economic feasibility is often measured in \gls{LCOE}, a
 combination of fuel and operating costs normalized by electricity generation, while
-environmental performance might be measured by spent fuel volume, toxicity, or
-mined uranium.  A meta-analysis of fuel cycle systems studies identified over
+environmental performance might be measured by spent fuel volume, radiotoxicity, or
+mined uranium requirements. A meta-analysis of fuel cycle systems studies 
+identified over
 two dozen unique quantitative metrics spanning economics and cost,
 environmental sustainability and waste management impacts, safety, security and
 nonproliferation, resource adequacy and utilization, among others
@@ -175,13 +178,14 @@ beyond that pursued by any existing fuel cycle simulator.
 
 The \Cyclus paradigm enables targeted contribution and collaboration within the
 nuclear fuel cycle analysis community to achieve two important goals: lower the
-barrier for users to include custom nuclear technologies in their fuel cycle
+barrier for users to include custom nuclear technologies and facility types in 
+their fuel cycle
 analyses while improving the ability to compare simulations with and without
 those custom concepts.  This essential capability is absent in
 previous simulators where user customization and extensibility were not design
 objectives.  While the \emph{modular and open architecture} of
 \Cyclus is necessary to meet these goals, it is not sufficient.
-\emph{Agent interchangeability} is also required to facilitates direct comparison
+\emph{Agent interchangeability} is also required to facilitate direct comparison
 of alternative modeling methodologies and facility concepts. With this concept
 at its core, \Cyclus provides a platform for users to quickly develop the
 capabilities at a level of detail and validation necessary for their

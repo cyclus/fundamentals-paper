@@ -8,10 +8,13 @@ duplication at other institutions and thereby squandering broader human
 resources. License agreements and institutional approval are required for most
 current simulators (e.g. \gls{COSI}6, \gls{DANESS}, \gls{DESAE}, EVOLCODE,
 FAMILY21, \gls{NFCSim})\cite{juchau_modeling_2010}, including ORION,
-and \gls{VISION}.  Even when, as in the case of the MIT \gls{CAFCA} software,
-the source code is unrestricted, the platform on which it relies is often
-restricted or costly.  However, \Cyclus provides fully free and open access to
-all users and developers, foreign and domestic.
+and \gls{VISION}.  Even when the source code is unrestricted, the platform on which it relies (e.g. VENSIM) 
+is often restricted or costly. The MIT \gls{CAFCA} software, for example, 
+relies on the commercially licensed VENSIM product as a platform.
+\Cyclus, on the other hand, is written in C++ for which freely available 
+developement tools and an open standard are available. Further, \Cyclus relies 
+only on open source, freely available libraries. As such, it provides fully 
+free and open access to all users and developers, foreign and domestic.
 
 Moreover, both technical and institutional aspects of the software development
 practices employed by the \Cyclus community facilitate collaboration.
@@ -86,7 +89,11 @@ whether a batch being discharged from a reactor originated in \gls{MOX}
 fabrication rather than fresh \gls{UOX} fabrication, \Cyclus can go further,
 tracking which of the fresh batches contained material from a particular
 discharged batch. By extension, \Cyclus can also report which individual
-facilities the batch passed through and in which it originated. The
-nonproliferation-related applications of this analysis capability are
-significant - allowing \Cyclus to answer questions that previous simulators
-have been unable to ask.
+facilities the batch passed through and in which it originated. 
+The ability to track a single material through the simulation, 
+though it might be split, transmuted, or merged with other materials along the 
+way, allows \Cyclus to answer more data-rich questions that previous simulators
+have been unable to ask. For example, it allows precise tracking of 
+specific material diversions, so queries about nonproliferation 
+robustness in a facility can be levied either in the context of a single event or 
+a series of nefarious acts.

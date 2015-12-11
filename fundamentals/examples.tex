@@ -110,7 +110,7 @@ The real-world utility of \Cyclus can in part be measured by the breadth and
 diversity of archetypes being developed in this way.
 
 Early progress has been promising. Many archetypes external to the \Cycamore
-library (Table \ref{tab:cycamore}) have been
+library (Table \ref{tab:archetypes}) have been
 \cite{huff_streamblender_2014,huff_commodconverter_2014} or are being
 \cite{flanagan_bright-lite_2014,skutnik_development_2015,huff_mktdriveninst_2014}
 developed for contribution to the \Cyclus ecosystem. These archetypes provide
@@ -183,7 +183,7 @@ transition to be examined.
 \hline
 \textbf{LWR} & type & LWR\\
 \Class{cycamore::Reactor} & batches & $3$ [batches/cycle]\\
-                  & batch size & $20000$ [kg HM]\\
+                  & batch size & $20$ [MTHM]\\
                   & cycle length & $18$ [months]\\
                   & refuelling time & $2$ [months]\\
                   & requests & recycled MOX (1st preference)\\
@@ -220,8 +220,10 @@ As described in Table \ref{tab:facconfigs}, the facilities used in these simulat
         model that requests any number of input fuel types and transmutes them
         to static compositions when they are burnt and discharged from the
         core. The reactor was configured to model a light water reactor
-        with a 3 batch core (20,000 kg HM per batch) operating on an 18 month
-        cycle with a 2 month refuel time.  The reactor was also configured to
+        with a 3 batch core operating on an 18 month
+        cycle with a 2 month refuel time.  The batches in the core each contain 
+        20 \gls{MTHM}, where heavy metals are actinide elements like thorium, 
+        uranium, and plutonium. The reactor was also configured to
         take in either enriched \gls{UOX} fuel or recycled \gls{MOX} fuel.
 
     \item \textbf{Recycled Fuel Fabrication} (\Class{cycamore::Fab}): This

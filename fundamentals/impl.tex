@@ -47,7 +47,8 @@ of the models used in the simulation fixed.
 
 Innovative approaches to designing and optimizing robust fuel cycle strategies can become available by leveraging modern parallel computing resources.  For example, large scale sensitivity analyses to quantify the dependence of fuel cycle outcomes on potentially hundreds of uncertain parameters would only be feasible in a massively parallelized environment.
 However, many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits
-performance on and compatibility with resource computing infrastructures. This
+performance on and compatibility with resource computing infrastructures (e.g. 
+cluster or cloud computing). This
 constrains the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity
 analyses and other multi-simulation studies. \Cyclus, on the other hand, is
 primarily written in \texttt{C++} and relies on
@@ -57,7 +58,7 @@ Furthermore, the core infrastructure and related archetypes are free and
 open source, BSD-3-clause licensed.  \Cyclus can therefore be easily deployed
 on large computer systems, such as \gls{HTC} systems.
 
-Cyclopts \cite{gidden_cyclopts_2015}, a proof of principle design and
+Cyclopts \cite{gidden_cyclopts_2015}, a proof-of-principle design and
 implementation of a \Cyclus-enabled application on such a large compute system,
 uses UW-Madison's HTCondor \gls{HTC} infrastructure to study DRE performance and
 outcomes. For example, an investigation of the effect of solution degeneracy, a
@@ -153,8 +154,7 @@ bona fide agents in the simulation.  The two archetype libraries can be used in
 the same simulation without any shared knowledge, allowing modelers to
 construct a simulation from building blocks of many types and origins.
 
-Furthermore, the \gls{ABM} paradigm is superior to the system dynamic approach used in
-current simulators.
+Furthermore, the \gls{ABM} paradigm is more flexible and intuitive (from both a developer and user perspective) than the system dynamic approach used in current simulators.
 System dynamics is a popular approach for modeling nuclear fuel cycles
 \cite{jacobson_vision_2009,van_den_durpel_daness_2009,guerin_impact_2009,guerin_benchmark_2009}.
 Formally however, system dynamics models are simply a strict subset of agent-based models
@@ -176,7 +176,8 @@ generic core \glspl{API} that define agent-to-agent interaction as well as agent
 For example, they use the
 resource exchange paradigm \gls{API} for trading resources with one another.  
 For the archetype developer, these interfaces provide enormous power
-very simply. The \gls{API} abstracts away unnecessary detail while providing
+very simply. The \gls{API} abstracts away details unnecessary to specifying the 
+archetype behavior, while providing
 all necessary functionality for interacting with the \Cyclus simulation kernel.
 For the user, multiple archetypes that inherit the same \glspl{API} are interchangeable
 in a simulation.
@@ -189,7 +190,7 @@ an archetype that inherits the \Class{Region} interface, as in Figure
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{./images/agent_uml}
+\includegraphics[width=\textwidth]{./images/agent_uml}
 \end{center}
 \caption{Inheriting \Cyclus class interfaces, such as the \Class{Agent},
 \Class{Facility}, \Class{Institution}, and \Class{Region} classes, abstracts away
@@ -219,7 +220,11 @@ provided functionality by inheriting from the appropriate class.
 \Cyclus implements a \gls{RIF} relationship through a
 parent-child hierarchy where
 regions are the parents of institutions which are, in turn, the parents of
-facilities. In other words, \gls{RIF} hierarchies form a directed acyclic graph (DAG),
+facilities. In other words, \gls{RIF} hierarchies form a \gls{DAG}\footnote{
+\gls{DAG}s are common graph theoretic structures whose most important feature is a 
+lack of \emph{cycles}, i.e., there is a single path from the root node to any other 
+node in the graph. 
+},
 with regions as root nodes and facilities as leaf nodes.
 
 Two primary consequences arise from this structure. First, institutions are
@@ -248,8 +253,13 @@ applicable across the full range of modeling fidelity.
 
 Fleet-based, lumped-material models do not distinguish between discrete facility
 entities or materials. However, some questions require resolution at the level
-of individual facilities and materials.  As a result, many detailed performance
-metrics cannot be captured with previously existing fleet-based models. For all
+of individual facilities and materials. As a result, many detailed performance
+metrics cannot be captured with previously existing fleet-based models. For 
+example, meaningful models of spent nuclear fuel storage transport, and
+disposal strategies, require representation of discrete casks and their varying
+isotopic compositions.
+
+For all
 of the reasons that the \gls{ABM} paradigm in \ref{sec:abm} enables novel
 simulations, multiple use cases require that these agents, such as the regions,
 institutions, and facilities in \Cyclus, must be represented as discrete
@@ -595,8 +605,8 @@ undesirable code.
 \subsubsection{Version Control}
 \label{sec:qa-vc}
 
-Automated version control, provided by the well-established \emph{distributed
-  version control} tool git \cite{software_freedom_conservancy_git_2014}, is
+Automated version control, provided by git, a well-established \emph{distributed
+  version control} tool \cite{software_freedom_conservancy_git_2014}, is
 at the heart of the QA strategy because it records the full history of any
 change, along with metadata such as the author, a timestamp, and an
 accompanying message. This makes it possible to identify when changes were
@@ -643,8 +653,7 @@ major \Cyclus components are functioning as expected.
 \paragraph{Regression Tests}
 
 Regression tests ensure significant unintended changes do not
-occur over the course of \Cyclus development. Such a change is called a
-\emph{regression} because the new version is almost always wrong.
+occur over the course of \Cyclus development.
 Regression tests are implemented similarly to integration tests.
 In this category, however, the comparison is done against
 the output of the same input file when run with a previous version of \Cyclus,
@@ -675,7 +684,7 @@ code being allowed into the main software development branch.
 \subsubsection{Code Review}
 \label{sec:qa-review}
 
-Autmoated testing including \gls{CI} is a necessary but not sufficient
+Automated testing including \gls{CI} is a necessary but not sufficient
 component of the \Cyclus \gls{QA} system: it keeps bad code out of
 \Cyclus. However, \Cyclus will always require human eyes and hands to let good
 code in.  
