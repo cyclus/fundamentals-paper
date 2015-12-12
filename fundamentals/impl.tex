@@ -176,7 +176,7 @@ generic core \glspl{API} that define agent-to-agent interaction as well as agent
 For example, they use the
 resource exchange paradigm \gls{API} for trading resources with one another.  
 For the archetype developer, these interfaces provide enormous power
-very simply. The \gls{API} abstracts away details unnecessary to specifying the 
+simply. The \gls{API} abstracts away details unnecessary to specifying the 
 archetype behavior, while providing
 all necessary functionality for interacting with the \Cyclus simulation kernel.
 For the user, multiple archetypes that inherit the same \glspl{API} are interchangeable
@@ -301,7 +301,7 @@ agents.
 The \Cyclus kernel has built-in experimental support for decay calculations.
 Materials store the time since their last decay and agents are free to
 invoke the decay function on them as desired to decay them to the current
-simulation time. \Cyclus can currently operate in 3 decay modes, with 1 additional
+simulation time. \Cyclus can operate in 3 decay modes, with 1 additional
 mode likely to be added in a future release:
 
 \begin{itemize}
@@ -669,7 +669,7 @@ and validated as it is being developed, rather than as a final stage in a
 longer development cycle.  Under \gls{CI}, every pull request is automatically
 tested independently, immediately as it is proposed. The results of this
 testing are shown to code reviewers prior to reviewing the software changes themselves.  The \Cyclus
-project currently uses the CircleCI \cite{biggar_circleci_2015} service for continuous integration.
+project uses the CircleCI \cite{biggar_circleci_2015} service for continuous integration.
 Whenever a pull request is created, CircleCI builds a version of the \Cyclus
 source code that includes the requested changes and runs the complete test
 suite, reporting back whether or not those steps were successful. If \gls{CI}
