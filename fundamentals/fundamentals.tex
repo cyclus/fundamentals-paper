@@ -1,4 +1,4 @@
-\documentclass[5p]{elsarticle}
+\documentclass[3p,twocolumn]{elsarticle}
 
 \usepackage[acronym,toc]{glossaries}
 \include{acros}
@@ -10,14 +10,17 @@
 \usepackage{listings} % for highlighted code blocks
 \usepackage{color}
 
+\lstset{basicstyle=\footnotesize\ttfamily}
+
+\definecolor{dkgreen}{rgb}{0.13, 0.55, 0.13}
 \lstdefinelanguage{diff}{
   morecomment=[l][\color{blue}]{@@},     % group identifier
   morecomment=[l][\color{red}]-,         % deleted lines
-  morecomment=[l][\color{green}]+,       % added lines
+  morecomment=[l][\color{dkgreen}]+,       % added lines
   morecomment=[l][\color{magenta}]{---}, % Diff header lines (must appear after +,-)
   morecomment=[l][\color{magenta}]{+++},
 }
-\definecolor{bkggray}{rgb}{0.93,0.93,0.93}
+\definecolor{bkggray}{rgb}{0.95,0.95,0.95}
 \lstset{
     backgroundcolor=\color{bkggray}
 }

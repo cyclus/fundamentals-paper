@@ -81,11 +81,11 @@ developed under close integration with the \Cyclus kernel.  These tools are used
 to ease development and simulation design (Cycstub, Cycic, Ciclus), data
 visualization and analysis (Cyclist, Cyan), and remote execution (Cloudlus).
 
-\begin{table}[H]
+\begin{table*}[htb]
 \centering
-\begin{tabularx}{\columnwidth}{|r|X|r|}
+\begin{tabularx}{\textwidth}{rXr}
 \hline
-\textbf{Name} & \textbf{Description} & \textbf{Citation} \\
+\textbf{Name} & \textbf{Description} & \textbf{Ref.} \\
 \hline
 Cycic &  Input control embedded in Cyclist & \cite{flanagan_input_2013}\\
 Cyclist & Interactive data exploration environment & \cite{livnat_cyclist_2014} \\
@@ -97,7 +97,7 @@ Cloudlus & Tools for running \Cyclus in a cloud environment & \cite{carlsen_clou
 \end{tabularx}
 \caption{Many tools have been developed outside of the scope of the \Cyclus kernel for improved user, developer, and analyst experiences with \Cyclus.}
 \label{tab:coretools}
-\end{table}
+\end{table*}
 
 \subsubsection{Archetype Contributions}
 
@@ -121,12 +121,11 @@ institutional paradigms.  The existence and diversity of these contributed
 archetypes illustrate the power and potential of the community-based development
 approach that \Cyclus has taken.
 
-
-\begin{table*}[H]
+\begin{table*}[htb]
 \centering
-\begin{tabularx}{\columnwidth}{|r|X|r|}
+\begin{tabularx}{\textwidth}{rXr}
 \hline
-\textbf{Name} & \textbf{Description} & \textbf{Citation} \\
+\textbf{Name} & \textbf{Description} & \textbf{Ref.} \\
 \hline
 Bright-lite & A physics-based reactor archetype and fuel fabrication archetype & \cite{flanagan_bright-lite_2014} \\
 Nuclear Fuel Inventory Model & A flexible, ORIGEN-based, reactor analysis module & \cite{skutnik_development_2015} \\
@@ -175,9 +174,9 @@ As the number of staggered-cycle reactors increases the system converges
 toward continuous material flow results.  \Cyclus flexibility allows this
 transition to be examined.  
 
-\begin{table*}[H]
+\begin{table*}[htb]
 \centering
-\begin{tabularx}{\columnwidth}{|X|r|X|}
+\begin{tabularx}{\textwidth}{XrX}
 \hline
 \textbf{Facility} &\textbf{Parameter} & \textbf{Value}\\
 \hline
@@ -211,6 +210,7 @@ transition to be examined.
 \caption{Facility Configurations for Example Simulations}
 \label{tab:facconfigs}
 \end{table*}
+\twocolumn
 
 
 As described in Table \ref{tab:facconfigs}, the facilities used in these simulations are:
@@ -283,7 +283,7 @@ it as a waste commodity which is only requested by the repository.  The
 material flows for the Single-Pass Recycle case are shown in Figure
 \ref{fig:flowmodopen}.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 \begin{center}
 \includegraphics[width=\columnwidth]{./images/flow-mod-open-1.eps}
 \end{center}
@@ -296,13 +296,13 @@ requires only a one-word change in the input file regarding the output
 commodity for the spent \gls{MOX} fuel of the \Class{Reactor}:
 
 \begin{lstlisting}[language=diff]
-     <fuel>
-       <incommodity>mox</incommodity>
-  -    <outcommodity>waste</outcommodity>
-  +    <outcommodity>spent_fuel</outcommodity>
-       <inrecipe>mox_fresh_fuel</inrecipe>
-       <outrecipe>mox_spent_fuel</outrecipe>
-     </fuel>
+  <fuel>
+    <incommodity>mox</incommodity>
+-   <outcommodity>waste</outcommodity>
++   <outcommodity>spent_fuel</outcommodity>
+    <inrecipe>mox_fresh_fuel</inrecipe>
+    <outrecipe>mox_spent_fuel</outrecipe>
+  </fuel>
 \end{lstlisting}
 
 This results in the material flows in Figure \ref{fig:flowclosed}.  A
@@ -311,7 +311,7 @@ fuel cycle.  Note that because the reactors always transmute fuel into fixed
 compositions, the error in isotopic compositions is larger for the
 Infinite-Pass Recycle case.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 \begin{center}
 \includegraphics[width=\columnwidth]{./images/flow-closed-1.eps}
 \end{center}
@@ -336,7 +336,7 @@ Because facilities are represented individually and transact discrete
 materials as discrete events, realistic non-uniform patterns in facility
 behavior that affect total system behavior are observed using \Cyclus.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 \begin{center}
 \includegraphics[width=\columnwidth]{./images/puseries-1.eps}
 \end{center}
@@ -350,7 +350,7 @@ scenarios.  As the number of reactors (with staggered refueling) increases,
 the behavior of the system approaches a more steady average reminiscent of
 continuous material flow models.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 \begin{center}
 \includegraphics[width=\columnwidth]{./images/puseries-n.eps}
 \end{center}
