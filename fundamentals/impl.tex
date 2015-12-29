@@ -46,22 +46,20 @@ of the models used in the simulation fixed.
 
 \subsubsection{Cluster-Ready Software}
 
-Innovative approaches to designing and optimizing robust fuel cycle strategies can become available by leveraging modern parallel computing resources.  For example, large scale sensitivity analyses to quantify the dependence of fuel cycle outcomes on potentially hundreds of uncertain parameters would only be feasible in a massively parallelized environment.
-However, many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits
-performance on and compatibility with resource computing infrastructures (e.g. 
-cluster or cloud computing). This
-constrains the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity
-analyses and other multi-simulation studies. \Cyclus, on the other hand, is
-primarily written in \texttt{C++} and relies on
-libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms,
-which are flexible and support parallelization.
-Furthermore, the core infrastructure and related archetypes are free and
-open source, BSD-3-clause licensed.  \Cyclus can therefore be easily deployed
-on large computer systems, such as \gls{HTC} systems.
+Many fuel cycle simulators rely on \gls{COTS} and Windows-only software that 
+limits performance on and compatibility with resource computing infrastructures 
+(e.g.  cluster or cloud computing). This constrains the possible scope of 
+simulations and increases the wall-clock time necessary to conduct 
+parameterized sensitivity analyses and other multi-simulation studies.  For 
+example, large scale sensitivity analyses to quantify the dependence of fuel 
+cycle outcomes are only feasible in a massively parallelized environment.  
+To enable such research, \Cyclus, is primarily written in \texttt{C++} and 
+relies on libraries supported by Linux and UNIX (including Ubuntu and OSX) 
+platforms, which are flexible and support parallelization.
 
-Cyclopts \cite{gidden_cyclopts_2015}, a proof-of-principle design and
-implementation of a \Cyclus-enabled application on such a large compute system,
-uses UW-Madison's HTCondor \gls{HTC} infrastructure to study DRE performance and
+Cyclopts \cite{gidden_cyclopts_2015}, a proof-of-principle \Cyclus-enabled 
+application on such a large compute system,
+uses UW-Madison's HTCondor \gls{HTC} infrastructure to study \gls{DRE} performance and
 outcomes. For example, an investigation of the effect of solution degeneracy, a
 commonly observed phenomenon in scenarios with individual facilities and basic
 (e.g., commodity-only) preference definitions, was performed for three different
@@ -105,11 +103,11 @@ capabilities independent of the core.
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/framework}
-\end{center}
+\includegraphics[width=\columnwidth]{./images/framework}
 \caption{The \Cyclus core provides \glspl{API} that abstract away the details in
 the kernel and allow the archetypes to be loaded into the simulation in a modular
 fashion.}
+\end{center}
 \label{fig:framework}
 \end{figure}
 
@@ -125,10 +123,10 @@ processes and subject to export control) to be developed and licensed privately.
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{./images/modifiedopen.eps}
-\end{center}
+\includegraphics[width=\columnwidth]{./images/modifiedopen.eps}
 \caption{The \Cyclus framework enables fully open, partially open, and fully
 closed collaborations\cite{carlsen_cyclus_2014}.}
+\end{center}
 \label{fig:modifiedopen}
 \end{figure}
 
@@ -191,7 +189,7 @@ an archetype that inherits the \Class{Region} interface, as in Figure
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/agent_uml}
+\includegraphics[width=\columnwidth]{./images/agent_uml}
 \end{center}
 \caption{Inheriting \Cyclus class interfaces, such as the \Class{Agent},
 \Class{Facility}, \Class{Institution}, and \Class{Region} classes, abstracts away
@@ -347,7 +345,7 @@ total number of composition entries recorded in the database.
 
 \begin{figure}[htbp!]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/compositions}
+\includegraphics[width=\columnwidth]{./images/compositions}
 \end{center}
 \caption{
 A simple decay line cache holding compositions A, B, C, and a
@@ -470,7 +468,7 @@ added in version 1.3 . Short descriptions of these functions can be found in
 Table \ref{tab:cycamore}.
 
 
-\begin{table}[H]
+\begin{table*}[H]
 \centering
 \begin{tabularx}{\textwidth}{|r|l|X|}
 \hline
@@ -491,7 +489,7 @@ Region & GrowthRegion & This region determines whether there is a need to meet a
 simulation use cases \cite{carlsen_cycamore_2014}. Facilities added in version
 1.3 are marked with $^*$.}
 \label{tab:cycamore}
-\end{table}
+\end{table*}
 
 Section \ref{sec:simulations} will demonstrate how the current \Cycamore
 release provides basic functionality enabling simple fuel cycle analyses. As

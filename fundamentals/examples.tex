@@ -83,7 +83,7 @@ visualization and analysis (Cyclist, Cyan), and remote execution (Cloudlus).
 
 \begin{table}[H]
 \centering
-\begin{tabularx}{\textwidth}{|r|X|r|}
+\begin{tabularx}{\columnwidth}{|r|X|r|}
 \hline
 \textbf{Name} & \textbf{Description} & \textbf{Citation} \\
 \hline
@@ -122,9 +122,9 @@ archetypes illustrate the power and potential of the community-based development
 approach that \Cyclus has taken.
 
 
-\begin{table}[H]
+\begin{table*}[H]
 \centering
-\begin{tabularx}{\textwidth}{|r|X|r|}
+\begin{tabularx}{\columnwidth}{|r|X|r|}
 \hline
 \textbf{Name} & \textbf{Description} & \textbf{Citation} \\
 \hline
@@ -141,7 +141,7 @@ needs of researchers at various institutions. These archetypes, contributed
 outside of the \Cyclus core and \Cycamore libraries are the first demonstration
 of community-driven development in a fuel cycle simulator.}
 \label{tab:archetypes}
-\end{table}
+\end{table*}
 
 \subsection{Simulations}
 \label{sec:simulations}
@@ -175,9 +175,9 @@ As the number of staggered-cycle reactors increases the system converges
 toward continuous material flow results.  \Cyclus flexibility allows this
 transition to be examined.  
 
-\begin{table}[H]
+\begin{table*}[H]
 \centering
-\begin{tabularx}{\textwidth}{|X|r|X|}
+\begin{tabularx}{\columnwidth}{|X|r|X|}
 \hline
 \textbf{Facility} &\textbf{Parameter} & \textbf{Value}\\
 \hline
@@ -189,7 +189,7 @@ transition to be examined.
                   & requests & recycled MOX (1st preference)\\
                   & requests & enriched UOX (2nd preference)\\
 \hline
-\textbf{Recycled Fuel Fabrication} & requests & depleted uranium\\
+\textbf{Spent Fuel Fabrication} & requests & depleted uranium\\
 \Class{cycamore::Fab} & requests & separated fissile material\\
                       & offers & recycled MOX\\
 \hline
@@ -210,7 +210,7 @@ transition to be examined.
 \end{tabularx}
 \caption{Facility Configurations for Example Simulations}
 \label{tab:facconfigs}
-\end{table}
+\end{table*}
 
 
 As described in Table \ref{tab:facconfigs}, the facilities used in these simulations are:
@@ -226,7 +226,7 @@ As described in Table \ref{tab:facconfigs}, the facilities used in these simulat
         uranium, and plutonium. The reactor was also configured to
         take in either enriched \gls{UOX} fuel or recycled \gls{MOX} fuel.
 
-    \item \textbf{Recycled Fuel Fabrication} (\Class{cycamore::Fab}): This
+    \item \textbf{Spent Fuel Fabrication} (\Class{cycamore::Fab}): This
         facility requests depleted uranium and separated fissile material and
         mixes them together into recycled \gls{MOX} fuel that it offers to
         requesters.  The two streams are mixed in a ratio in order to match
@@ -285,7 +285,7 @@ material flows for the Single-Pass Recycle case are shown in Figure
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/flow-mod-open-1.eps}
+\includegraphics[width=\columnwidth]{./images/flow-mod-open-1.eps}
 \end{center}
 \caption{1-pass \gls{MOX} recycle scenario material flows.}
 \label{fig:flowmodopen}
@@ -313,7 +313,7 @@ Infinite-Pass Recycle case.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/flow-closed-1.eps}
+\includegraphics[width=\columnwidth]{./images/flow-closed-1.eps}
 \end{center}
 \caption{Full \gls{MOX} recycle (multi-pass) fuel cycle material flows.}
 \label{fig:flowclosed}
@@ -338,7 +338,7 @@ behavior that affect total system behavior are observed using \Cyclus.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/puseries-1.eps}
+\includegraphics[width=\columnwidth]{./images/puseries-1.eps}
 \end{center}
 \caption{System plutonium buildup with one reactor.}
 \label{fig:puseries1}
@@ -352,7 +352,7 @@ continuous material flow models.
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/puseries-n.eps}
+\includegraphics[width=\columnwidth]{./images/puseries-n.eps}
 \end{center}
 \caption{System plutonium buildup with staggered refueling for many reactors.}
 \label{fig:puseriesn}
