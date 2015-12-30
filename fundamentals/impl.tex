@@ -71,7 +71,7 @@ commodity-facility pairings is always small ($\mathcal{O}(10)$). The size of the
 population of possible values of the location effect was investigated for values
 of zero, ten, and infinity (i.e., any real number). The study additionally
 included an investigation of problem-scaling behavior in order to quantify the
-magnitude and rate-of-increase of DRE solution times as a function of the
+magnitude and rate-of-increase of \gls{DRE} solution times as a function of the
 simulation-entity population for each fuel
 cycle\cite{gidden_agent-based_2015}. In total, Cyclopts has run over $10^5$
 jobs, comprising more than 60,000 compute hours. The \gls{HTC} infrastructure
@@ -413,12 +413,54 @@ of that facility. In addition, an institution can apply a higher preference to a
 partner to which it is congenial; similarly, a region may negate any transfers
 of material which have a higher uranium enrichment than is allowable.
 
-Given a full definition of supply and demand, the \gls{DRE} may be solved either
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\columnwidth]{./images/bid_req}
+\end{center}
+\caption{The flow graph representing three suppliers (left), two requesters (right), 
+and the potential flows of various commodities among them. 
+The second consumer makes two different requests.
+Meanwhile, the second supplier can supply the commodities 
+requested by both consumers and has provided two bids accordingly 
+\cite{gidden_agent-based_2015}.}
+\label{fig:bid_req}
+\end{figure}
+
+Given a full definition of supply and demand, represented in Figure 
+\ref{fig:bid_req} as a flow graph, the \gls{DRE} may be solved either
 optimally using a mathematical program or approximately by a simulation-based
 heuristic \cite{gidden_agent-based_2015}. If any trade is denoted as exclusive, e.g., if an
 analyst desires an assembly-fidelity model, then either a heuristic must be used
 or exchanges must be represented as a \gls{MILP}. If no exclusive trades exist,
-a \gls{LP} model may be used. In practice, \glspl{LP} solve much faster than
+a \gls{LP} model may be used. The \gls{LP} formulation in \Cyclus is of the 
+form given by Gidden \cite{gidden_agent-based_2015}:
+
+\begin{align}
+\min_{x} z &= \sum_{i\in I}\sum_{j\in J} c_{i,j}x_{i,j}& &\\
+s.t & \sum_{i\in I_s}\sum_{j\in J} a_{i,j}^k x_{i,j} \le b_s^k & & \forall k\in K_s, \forall s\in S\\
+    & \sum_{J\in J_r}\sum_{i\in I} a_{i,j}^k x_{i,j} \le b_r^k & & \forall k\in K_r, \forall r\in R\\
+    & x_{i,j} \in [0,x_j] & & \forall i\in I, \forall j\in J
+\end{align}
+\begin{align}
+\intertext{where}
+S &= \mbox{suppliers}\nonumber\\
+R &= \mbox{requesters}\nonumber\\
+I_s &= \mbox{supply nodes for a supplier s}\nonumber\\
+J_r &= \mbox{all request nodes for a requester r}\nonumber\\
+K_s &= \mbox{constraints for a supplier s}\nonumber\\
+K_r &= \mbox{constraints for a requester r}\nonumber\\
+X &= \mbox{potential commodity flows}\nonumber\\
+c_{i,j} &= \mbox{unit cost of flow from i to j}\nonumber\\
+x_{i,j} &= \mbox{flow from node i to node j}\nonumber\\
+a^k_{i,j} &= \mbox{constraint coeffiecient between i and j}\nonumber\\
+b^k_s  &= \mbox{constraint k of supplier s}\nonumber\\
+b^k_r &= \mbox{constraint k of requester r}\nonumber\\
+\tilde{x}_j &= \mbox{requested quantity of request node j.}\nonumber
+\end{align}
+
+
+
+In practice, \glspl{LP} solve much faster than
 \glspl{MILP}. However, both capabilities exist in \Cyclus in order to
 provide users with the desired level of fidelity.
 
