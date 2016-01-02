@@ -7,7 +7,8 @@
 
 A modular, \acrfull{ABM} approach is ideal for solving the coupled,
 physics-dependent supply chain problems involving material routing, facility
-deployment, and regional and institutional hierarchies which arise in \Cyclus. Additionally, the choice
+deployment, and regional and institutional hierarchies which arise in fuel 
+cycle analysis. Additionally, the choice
 to build \Cyclus on open source libraries in modern programming languages
 enables both remote and multiprocess execution on a number of platforms. This
 section begins by describing the general design features that make \Cyclus both
@@ -45,22 +46,20 @@ of the models used in the simulation fixed.
 
 \subsubsection{Cluster-Ready Software}
 
-Innovative approaches to designing and optimizing robust fuel cycle strategies can become available by leveraging modern parallel computing resources.  For example, large scale sensitivity analyses to quantify the dependence of fuel cycle outcomes on potentially hundreds of uncertain parameters would only be feasible in a massively parallelized environment.
-However, many fuel cycle simulators rely on \gls{COTS} and Windows-only software that limits
-performance on and compatibility with resource computing infrastructures (e.g. 
-cluster or cloud computing). This
-constrains the possible scope of simulations and increases the wall-clock time necessary to conduct parameterized sensitivity
-analyses and other multi-simulation studies. \Cyclus, on the other hand, is
-primarily written in \texttt{C++} and relies on
-libraries supported by Linux and UNIX (including Ubuntu and OSX) platforms,
-which are flexible and support parallelization.
-Furthermore, the core infrastructure and related archetypes are free and
-open source, BSD-3-clause licensed.  \Cyclus can therefore be easily deployed
-on large computer systems, such as \gls{HTC} systems.
+Many fuel cycle simulators rely on \gls{COTS} and Windows-only software that 
+limits performance on and compatibility with resource computing infrastructures 
+(e.g.  cluster or cloud computing). This constrains the possible scope of 
+simulations and increases the wall-clock time necessary to conduct 
+parameterized sensitivity analyses and other multi-simulation studies.  For 
+example, large scale sensitivity analyses to quantify the dependence of fuel 
+cycle outcomes are only feasible in a massively parallelized environment.  
+To enable such research, \Cyclus, is primarily written in \texttt{C++} and 
+relies on libraries supported by Linux and UNIX (including Ubuntu and OSX) 
+platforms, which are flexible and support parallelization.
 
-Cyclopts \cite{gidden_cyclopts_2015}, a proof-of-principle design and
-implementation of a \Cyclus-enabled application on such a large compute system,
-uses UW-Madison's HTCondor \gls{HTC} infrastructure to study DRE performance and
+Cyclopts \cite{gidden_cyclopts_2015}, a proof-of-principle \Cyclus-enabled 
+application on such a large compute system,
+uses UW-Madison's HTCondor \gls{HTC} infrastructure to study \gls{DRE} performance and
 outcomes. For example, an investigation of the effect of solution degeneracy, a
 commonly observed phenomenon in scenarios with individual facilities and basic
 (e.g., commodity-only) preference definitions, was performed for three different
@@ -72,7 +71,7 @@ commodity-facility pairings is always small ($\mathcal{O}(10)$). The size of the
 population of possible values of the location effect was investigated for values
 of zero, ten, and infinity (i.e., any real number). The study additionally
 included an investigation of problem-scaling behavior in order to quantify the
-magnitude and rate-of-increase of DRE solution times as a function of the
+magnitude and rate-of-increase of \gls{DRE} solution times as a function of the
 simulation-entity population for each fuel
 cycle\cite{gidden_agent-based_2015}. In total, Cyclopts has run over $10^5$
 jobs, comprising more than 60,000 compute hours. The \gls{HTC} infrastructure
@@ -102,13 +101,13 @@ It allows the core \Cyclus framework to operate independently from the plug-in l
 dynamically loadable plug-ins to be the primary mechanism for extending \Cyclus'
 capabilities independent of the core.
 
-\begin{figure}[htbp!]
+\begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/framework}
-\end{center}
+\includegraphics[width=\columnwidth]{./images/framework}
 \caption{The \Cyclus core provides \glspl{API} that abstract away the details in
 the kernel and allow the archetypes to be loaded into the simulation in a modular
 fashion.}
+\end{center}
 \label{fig:framework}
 \end{figure}
 
@@ -122,12 +121,12 @@ the simulator alongside open source archetypes without transfer of sensitive inf
 allows closed-source libraries (e.g., those representing sensitive nuclear
 processes and subject to export control) to be developed and licensed privately.
 
-\begin{figure}[htbp!]
+\begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{./images/modifiedopen.eps}
-\end{center}
+\includegraphics[width=0.8\columnwidth]{./images/modifiedopen.eps}
 \caption{The \Cyclus framework enables fully open, partially open, and fully
 closed collaborations\cite{carlsen_cyclus_2014}.}
+\end{center}
 \label{fig:modifiedopen}
 \end{figure}
 
@@ -188,9 +187,9 @@ an archetype that inherits the \Class{Region} interface, as in Figure
 \ref{fig:agent_uml}, is interchangeable with any other Region agent.
 
 
-\begin{figure}[htbp!]
+\begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/agent_uml}
+\includegraphics[width=\columnwidth]{./images/agent_uml}
 \end{center}
 \caption{Inheriting \Cyclus class interfaces, such as the \Class{Agent},
 \Class{Facility}, \Class{Institution}, and \Class{Region} classes, abstracts away
@@ -344,9 +343,9 @@ caching help eliminate many redundant calculations in addition to reducing the
 total number of composition entries recorded in the database.
 
 
-\begin{figure}[htbp!]
+\begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/compositions}
+\includegraphics[width=\columnwidth]{./images/compositions}
 \end{center}
 \caption{
 A simple decay line cache holding compositions A, B, C, and a
@@ -414,12 +413,47 @@ of that facility. In addition, an institution can apply a higher preference to a
 partner to which it is congenial; similarly, a region may negate any transfers
 of material which have a higher uranium enrichment than is allowable.
 
-Given a full definition of supply and demand, the \gls{DRE} may be solved either
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=\columnwidth]{./images/bid_req}
+\end{center}
+\caption{The flow graph representing three suppliers (left), two requesters (right), 
+and the potential flows of various commodities among them. 
+The second consumer makes two different requests.
+Meanwhile, the second supplier can supply the commodities 
+requested by both consumers and has provided two bids accordingly 
+\cite{gidden_agent-based_2015}.}
+\label{fig:bid_req}
+\end{figure}
+
+Given a full definition of supply and demand, represented in Figure 
+\ref{fig:bid_req} as a flow graph, the \gls{DRE} may be solved either
 optimally using a mathematical program or approximately by a simulation-based
 heuristic \cite{gidden_agent-based_2015}. If any trade is denoted as exclusive, e.g., if an
 analyst desires an assembly-fidelity model, then either a heuristic must be used
 or exchanges must be represented as a \gls{MILP}. If no exclusive trades exist,
-a \gls{LP} model may be used. In practice, \glspl{LP} solve much faster than
+a \gls{LP} model may be used. The \gls{LP} formulation in \Cyclus is of the 
+form given by Gidden \cite{gidden_agent-based_2015}:
+
+\begin{align}
+\min_{x} \: \: & z = c^\top x \\
+\text{s.t.} \: \:  & A x \leq b \\
+    & x_{i,j} \in [0, \tilde{x}_j] \: \:  \forall i \in I, \forall j \in J
+\end{align}
+\begin{align}
+\intertext{where}
+I &= \mbox{set of supply nodes}\nonumber\\
+J &= \mbox{set of request nodes}\nonumber\\
+c_{i,j} &= \mbox{unit cost of flow from i to j}\nonumber\\
+x_{i,j} &= \mbox{flow from node i to node j}\nonumber\\
+a^k_{i,j} &= \mbox{coefficient for constraint k between i and j}\nonumber\\
+b^k_{s \mid r} &= \mbox{RHS for constraint k for a given supplier or requester}\nonumber\\
+\tilde{x}_j &= \mbox{requested quantity of request node j.}\nonumber
+\end{align}
+
+
+
+In practice, \glspl{LP} solve much faster than
 \glspl{MILP}. However, both capabilities exist in \Cyclus in order to
 provide users with the desired level of fidelity.
 
@@ -468,10 +502,9 @@ archetypes, and four facility archetypes. Three additional facilities were
 added in version 1.3 . Short descriptions of these functions can be found in
 Table \ref{tab:cycamore}.
 
-
-\begin{table}[H]
+\begin{table*}[htb]
 \centering
-\begin{tabularx}{\textwidth}{|r|l|X|}
+\begin{tabularx}{\textwidth}{rlX}
 \hline
 \textbf{Entity} & \textbf{Archetype} & \textbf{Functionality} \\
 \hline
@@ -490,7 +523,7 @@ Region & GrowthRegion & This region determines whether there is a need to meet a
 simulation use cases \cite{carlsen_cycamore_2014}. Facilities added in version
 1.3 are marked with $^*$.}
 \label{tab:cycamore}
-\end{table}
+\end{table*}
 
 Section \ref{sec:simulations} will demonstrate how the current \Cycamore
 release provides basic functionality enabling simple fuel cycle analyses. As
@@ -619,17 +652,16 @@ descried in section \ref{sec:qa-review} below.
 \label{sec:qa-testing}
 
 Automated software \emph{testing} is the first line of defense against
-errors in implementation. It also acts as an early warning sign if the
-simulator does not work as intended on a new system.
-Testing serves a critical role in \gls{QA} because it directly compares the
-results of running software versus the expected behavior of the software.
+errors in implementation. Testing directly compares the
+actual results of running software versus the expected behavior of the software.
 In \Cyclus, three categories of tests are defined: unit tests, integration
-tests, and regression tests.  It is important to note that before a proposed
-code change is allowed into \Cyclus,  the change must be covered by a test, either new or existing, and all tests must pass.
+tests, and regression tests.  Before a proposed code change is allowed into 
+\Cyclus,  the change must be covered by a test, either new or existing, and all 
+tests must pass.
 
 \paragraph{Unit Tests}
 
-Unit tests compare the results of the smallest code \emph{unit}, typically a
+Unit tests verify behavior of the smallest code \emph{unit}, typically a
 single function or a class.  \Cyclus uses the Google Test framework
 \cite{inc_googletest_2008} as a harness for running unit tests. Sufficient unit
 tests are required for any proposed change to the \Cyclus code base. Currently,
@@ -642,13 +674,9 @@ expected to grow over time.
 Integration tests combine multiple elements of the
 \Cyclus interface and test that they work correctly with each other. 
 In \Cyclus and \Cycamore, integration tests are performed by running sample
-simulations for scenarios that are sufficiently simple to predict the results
-and verifying that results match those predictions. A set of standard input
+simulations for scenarios verifying that results match predictions. A set of standard input
 files are run, then the output is inspected and compared via Nose
-\cite{pellerin_nose_2007}, a Python test framework.  In this way, \Cyclus code
-units are tested in the full context that they will be
-executed. This category of testing is especially useful for ensuring that
-major \Cyclus components are functioning as expected.
+\cite{pellerin_nose_2007}, a Python test framework.  
 
 \paragraph{Regression Tests}
 
@@ -664,22 +692,17 @@ it changed.
 
 \paragraph{Continuous Integration}
 
-\Gls{CI} is the idea that software should be tested
+\Gls{CI} is the idea that software should be automatically tested
 and validated as it is being developed, rather than as a final stage in a
-longer development cycle.  Under \gls{CI}, every pull request is automatically
-tested independently, immediately as it is proposed. The results of this
+longer development cycle.  The results of this
 testing are shown to code reviewers prior to reviewing the software changes themselves.  The \Cyclus
 project currently uses the CircleCI \cite{biggar_circleci_2015} service for continuous integration.
-Whenever a pull request is created, CircleCI builds a version of the \Cyclus
+When a code change is submitted for review, CircleCI builds a version of the \Cyclus
 source code that includes the requested changes and runs the complete test
 suite, reporting back whether or not those steps were successful. If \gls{CI}
-was not successful, the code author(s) must first identify and resolve the
-problems.
-
-Since these steps are performed for all incoming code, it is easy for the
-\Cyclus core team to determine whether or not an individual pull request
-actually works. This helps identify build and test problems prior to broken
-code being allowed into the main software development branch.  
+was not successful, the code author(s) must first identify and resolve the 
+problems.  These steps are performed for all incoming code prior to inclusion, 
+so broken code never enters the main software development branch.
 
 \subsubsection{Code Review}
 \label{sec:qa-review}
@@ -702,35 +725,19 @@ sufficient documentation.  Only after the \gls{QA} standards have been met are
 the proposed changes merged into the software. This step has been repeatedly
 shown to improve code quality \cite{cohen_modern_2010}.
 
-Once \gls{CI} is successful, a code reviewer inspects not only the
-changes that are proposed to the software itself, but also the changes that
-have been proposed to tests.  It is important that the subset of tests that
-are relevant to the software change has a scope and completeness that will
-ensure that incorrect behavior will be automatically detected.  If there are
-sufficent tests and \gls{CI} is successful, the reviewer can proceed to
-considering the actual software changes themselves.
+Once \gls{CI} is successful, a code reviewer inspects not only the changes that 
+are proposed to the software itself, but also the changes that have been 
+proposed to tests.  
 
-Because of their role in facilitating code review during the change process,
-as well as their long term benefit to the maintainability of the project,
-documentation and coding style are also reviewed as part of this process.
-
-\paragraph{Documentation}
-
-All of the public interface (the \gls{API}) must be documented as required by
-the \Cyclus \gls{QA} policy. This certifies that the intended goals of an
-\gls{API} are communicated explicitly by the author in prose form.  In \Cyclus,
-this information is aggregated together into static websites with the Doxygen
-\cite{van_heesch_doxygen:_2008} and Sphinx \cite{brandl_sphinx_2014} tools, and
-can be accessed at \url{http://fuelcycle.org}.
-
-\paragraph{Style Guide}
-
-In any multi-person software project, there is a tension between how individuals
-wish to write code. Every person tends to have their own custom style. To remedy this,
-coding style guides are the software analogy to those for written language,
-such as the Chicago Manual of Style. \Cyclus strictly enforces the use of the
-Google C++ Style Guide \cite{weinberger_google_2008} for all software contributions.
-This means that all developers of \Cyclus nominally write \Cyclus code in the same
-way.  This homogenization may be a hurdle to new developers but ultimately
-improves code legibility and, therefore, robustness \cite{cohen_modern_2010}.
+Because of their long term benefit to the maintainability of the project, 
+documentation and coding style are also reviewed as part of this process.  The 
+\gls{API} must be documented as required by the \Cyclus \gls{QA} policy.  In 
+\Cyclus, this information is aggregated together into static websites with the 
+Doxygen \cite{van_heesch_doxygen:_2008} and Sphinx \cite{brandl_sphinx_2014} 
+tools, and can be accessed at \url{http://fuelcycle.org}. \Cyclus also strictly 
+enforces the use of the Google C++ Style Guide \cite{weinberger_google_2008} 
+for all software contributions.  This means that all developers of \Cyclus 
+write \Cyclus code in the same way.  This homogenization may be a hurdle to new 
+developers but ultimately improves code legibility and, therefore, robustness 
+\cite{cohen_modern_2010}.
 
