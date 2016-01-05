@@ -81,13 +81,13 @@ developed under close integration with the \Cyclus kernel.  These tools are used
 to ease development and simulation design (Cycstub, Cycic, Ciclus), data
 visualization and analysis (Cyclist, Cyan), and remote execution (Cloudlus).
 
-\begin{table}[H]
+\begin{table*}[htb]
 \centering
-\begin{tabularx}{\textwidth}{|r|X|r|}
+\begin{tabularx}{\textwidth}{rXr}
 \hline
-\textbf{Name} & \textbf{Description} & \textbf{Citation} \\
+\textbf{Name} & \textbf{Description} & \textbf{Ref.} \\
 \hline
-Cycic &  Input control - embedded in Cyclist & \cite{flanagan_input_2013}\\
+Cycic &  Input control embedded in Cyclist & \cite{flanagan_input_2013}\\
 Cyclist & Interactive data exploration environment & \cite{livnat_cyclist_2014} \\
 Ciclus & Continuous integration scripts for \Cyclus & \cite{scopatz_ciclus_2014}\\
 Cycstub & Skeleton for clean slate module development & \cite{carlsen_cycstub_2014}\\
@@ -97,7 +97,7 @@ Cloudlus & Tools for running \Cyclus in a cloud environment & \cite{carlsen_clou
 \end{tabularx}
 \caption{Many tools have been developed outside of the scope of the \Cyclus kernel for improved user, developer, and analyst experiences with \Cyclus.}
 \label{tab:coretools}
-\end{table}
+\end{table*}
 
 \subsubsection{Archetype Contributions}
 
@@ -121,12 +121,11 @@ institutional paradigms.  The existence and diversity of these contributed
 archetypes illustrate the power and potential of the community-based development
 approach that \Cyclus has taken.
 
-
-\begin{table}[H]
+\begin{table*}[htb]
 \centering
-\begin{tabularx}{\textwidth}{|r|X|r|}
+\begin{tabularx}{\textwidth}{rXr}
 \hline
-\textbf{Name} & \textbf{Description} & \textbf{Citation} \\
+\textbf{Name} & \textbf{Description} & \textbf{Ref.} \\
 \hline
 Bright-lite & A physics-based reactor archetype and fuel fabrication archetype & \cite{flanagan_bright-lite_2014} \\
 Nuclear Fuel Inventory Model & A flexible, ORIGEN-based, reactor analysis module & \cite{skutnik_development_2015} \\
@@ -141,7 +140,7 @@ needs of researchers at various institutions. These archetypes, contributed
 outside of the \Cyclus core and \Cycamore libraries are the first demonstration
 of community-driven development in a fuel cycle simulator.}
 \label{tab:archetypes}
-\end{table}
+\end{table*}
 
 \subsection{Simulations}
 \label{sec:simulations}
@@ -154,12 +153,17 @@ of community-driven development in a fuel cycle simulator.}
 
 To illustrate the flexibility of \Cyclus, this section will discuss the 
 creation and results of a range of representative fuel cycle simulations.
-These examples are not the limit of \Cyclus' capabilities, which are extended with each new
+Previous benchmarks between 
+\Cyclus and system dynamics simulators for more complex problems, including 
+transition analyses, have been reported 
+elsewhere and \Cyclus has demonstrated satisfactory performance
+\cite{djokic_application_2015,scopatz_non-judgemental_2015,gidden_agent-based_2015,gidden_once-through_2012} . 
+The examples presented here are not the limit of \Cyclus' capabilities, which are extended with each new
 addition to the ecosystem, as discussed above.  Rather, these simulations are
 designed to illustrate that \Cyclus matches the capabilities of any
 recipe-based simulator and that variations on a single \Cyclus simulations can 
-be run with small changes to the input specification. For simplicity of the 
-demonstration, many simplifying assumptions have been
+be run with small changes to the input specification. 
+For simplicity of the current demonstration, many simplifying assumptions have been
 made with respect to material compositions, fuel transmutation, among others.
 The three fuel cycles examined are:
 
@@ -175,9 +179,9 @@ As the number of staggered-cycle reactors increases the system converges
 toward continuous material flow results.  \Cyclus flexibility allows this
 transition to be examined.  
 
-\begin{table}[H]
+\begin{table*}[htb]
 \centering
-\begin{tabularx}{\textwidth}{|X|r|X|}
+\begin{tabularx}{\textwidth}{XrX}
 \hline
 \textbf{Facility} &\textbf{Parameter} & \textbf{Value}\\
 \hline
@@ -189,7 +193,7 @@ transition to be examined.
                   & requests & recycled MOX (1st preference)\\
                   & requests & enriched UOX (2nd preference)\\
 \hline
-\textbf{Recycled Fuel Fabrication} & requests & depleted uranium\\
+\textbf{Spent Fuel Fabrication} & requests & depleted uranium\\
 \Class{cycamore::Fab} & requests & separated fissile material\\
                       & offers & recycled MOX\\
 \hline
@@ -210,7 +214,8 @@ transition to be examined.
 \end{tabularx}
 \caption{Facility Configurations for Example Simulations}
 \label{tab:facconfigs}
-\end{table}
+\end{table*}
+\twocolumn
 
 
 As described in Table \ref{tab:facconfigs}, the facilities used in these simulations are:
@@ -226,7 +231,7 @@ As described in Table \ref{tab:facconfigs}, the facilities used in these simulat
         uranium, and plutonium. The reactor was also configured to
         take in either enriched \gls{UOX} fuel or recycled \gls{MOX} fuel.
 
-    \item \textbf{Recycled Fuel Fabrication} (\Class{cycamore::Fab}): This
+    \item \textbf{Spent Fuel Fabrication} (\Class{cycamore::Fab}): This
         facility requests depleted uranium and separated fissile material and
         mixes them together into recycled \gls{MOX} fuel that it offers to
         requesters.  The two streams are mixed in a ratio in order to match
@@ -283,9 +288,9 @@ it as a waste commodity which is only requested by the repository.  The
 material flows for the Single-Pass Recycle case are shown in Figure
 \ref{fig:flowmodopen}.
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{./images/flow-mod-open-1.eps}
+\includegraphics[width=\columnwidth]{./images/flow-mod-open-1.eps}
 \end{center}
 \caption{1-pass \gls{MOX} recycle scenario material flows.}
 \label{fig:flowmodopen}
@@ -296,13 +301,13 @@ requires only a one-word change in the input file regarding the output
 commodity for the spent \gls{MOX} fuel of the \Class{Reactor}:
 
 \begin{lstlisting}[language=diff]
-     <fuel>
-       <incommodity>mox</incommodity>
-  -    <outcommodity>waste</outcommodity>
-  +    <outcommodity>spent_fuel</outcommodity>
-       <inrecipe>mox_fresh_fuel</inrecipe>
-       <outrecipe>mox_spent_fuel</outrecipe>
-     </fuel>
+  <fuel>
+    <incommodity>mox</incommodity>
+-   <outcommodity>waste</outcommodity>
++   <outcommodity>spent_fuel</outcommodity>
+    <inrecipe>mox_fresh_fuel</inrecipe>
+    <outrecipe>mox_spent_fuel</outrecipe>
+  </fuel>
 \end{lstlisting}
 
 This results in the material flows in Figure \ref{fig:flowclosed}.  A
@@ -311,9 +316,9 @@ fuel cycle.  Note that because the reactors always transmute fuel into fixed
 compositions, the error in isotopic compositions is larger for the
 Infinite-Pass Recycle case.
 
-\begin{figure}[H]
+\begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{./images/flow-closed-1.eps}
+\includegraphics[width=\columnwidth]{./images/flow-closed-1.eps}
 \end{center}
 \caption{Full \gls{MOX} recycle (multi-pass) fuel cycle material flows.}
 \label{fig:flowclosed}
@@ -336,9 +341,9 @@ Because facilities are represented individually and transact discrete
 materials as discrete events, realistic non-uniform patterns in facility
 behavior that affect total system behavior are observed using \Cyclus.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/puseries-1.eps}
+\includegraphics[width=\columnwidth]{./images/puseries-1.eps}
 \end{center}
 \caption{System plutonium buildup with one reactor.}
 \label{fig:puseries1}
@@ -350,9 +355,9 @@ scenarios.  As the number of reactors (with staggered refueling) increases,
 the behavior of the system approaches a more steady average reminiscent of
 continuous material flow models.
 
-\begin{figure}[H]
+\begin{figure}[htb]
 \begin{center}
-\includegraphics[width=\textwidth]{./images/puseries-n.eps}
+\includegraphics[width=\columnwidth]{./images/puseries-n.eps}
 \end{center}
 \caption{System plutonium buildup with staggered refueling for many reactors.}
 \label{fig:puseriesn}
